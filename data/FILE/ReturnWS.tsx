@@ -19,6 +19,9 @@ const ReturnWS = () => {
       return(
   <WSurl.Consumer>
     {(val)=>{
+      console.log("--");
+      console.log(val);
+      console.log("--");
       return(
   <WS
   ref={ref => {wswrite(ref)}}
@@ -35,8 +38,9 @@ const ReturnWS = () => {
    notelistwrite(appendeddata); 
     //タイムラグが有り一個遅れで出るのかも
   }}
-  onError={ err => {alert(err["message"])}}
-  onClose={ msg => {alert(msg)}}
+  //一回エラーメッセージ出して切断するようにする
+  onError={ err => {console.log(err["message"])}}
+  onClose={ msg => {console.log(msg)}}
   reconnect
   // Will try to reconnect
   />
