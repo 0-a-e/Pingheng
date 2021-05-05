@@ -5,6 +5,7 @@ import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';
 import NoteView from './NoteView';
+
 //(Noteview(仮))
 
 const ListKey = (props) => {

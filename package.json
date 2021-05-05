@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@fawazahmed/react-native-read-more": "^2.0.3",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.4",
@@ -26,6 +27,7 @@
     "react-native-get-random-values": "^1.7.0",
     "react-native-interactable-reanimated": "^0.0.8",
     "react-native-material-ripple": "^0.9.1",
+    "react-native-progress": "^4.1.2",
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",

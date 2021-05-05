@@ -25,9 +25,10 @@ const ReturnWS = () => {
   url={val["wsurl"]}
   onOpen={() => {
     console.log('Open!');
-    
   }}
   onMessage={(msg: { [x: string]: any; }) => {
+    console.log(msg["data"]);
+    //ノートかどうか判定入れる
    const appendeddata = [...notelist,JSON.parse(msg["data"])];
    appendeddata.reverse();
    console.log(appendeddata);
@@ -35,7 +36,7 @@ const ReturnWS = () => {
     //タイムラグが有り一個遅れで出るのかも
   }}
   onError={ err => {alert(err["message"])}}
-  onClose={console.log}
+  onClose={ msg => {alert(msg)}}
   reconnect
   // Will try to reconnect
   />

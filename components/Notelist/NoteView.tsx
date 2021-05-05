@@ -2,6 +2,8 @@ import React, {} from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
+import ReadMore from '@fawazahmed/react-native-read-more';
+
 
 const notestyles = StyleSheet.create({
   card:{
@@ -77,7 +79,9 @@ const NoteView = (props) => {
   <ListItem.Subtitle style={notestyles.username}>@{data["item"]["body"]["body"]["user"]["username"]}</ListItem.Subtitle>
   </View>
   <View style={notestyles.notebox}>
-      <Text style={notestyles.notetext}>{data["item"]["body"]["body"]["text"]}</Text>
+    <ReadMore numberOfLines={3} style={notestyles.notetext}>
+      {data["item"]["body"]["body"]["text"]}
+      </ReadMore>
         <Text>{data["item"]["body"]["body"]["visibility"]}</Text>
         <Text>{data["item"]["body"]["body"]["localOnly"]}</Text>
   </View>

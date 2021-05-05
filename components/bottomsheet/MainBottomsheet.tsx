@@ -4,7 +4,6 @@ import Animated from 'react-native-reanimated';
 import { Button} from 'react-native-elements';
 import  BottomSheet from "react-native-bottomsheet-reanimated";
 import Icon from 'react-native-vector-icons/Feather';
-import Textarea from 'react-native-textarea';
 import SwitchTimeline from './SwitchTimeline';
 import Box from './Postbox';
 
@@ -45,17 +44,7 @@ const postopen = () =>{
         borderRadius:20,
         backgroundColor: "transparent"
         },
-        textareaContainer: {
-          height: 180,
-          padding: 4,
-          backgroundColor: '#F5FCFF',
-        },
-        textarea: {
-          textAlignVertical: 'top',  // hack android
-          height: 170,
-          fontSize: 14,
-          color: '#333',
-        },
+
     }
     );
     
@@ -118,46 +107,7 @@ const postopen = () =>{
         <View>
         <Text>{bartoggle.toString()}</Text>
 
-        <Textarea
-containerStyle={styles.textareaContainer}
-style={styles.textarea}
-//onChangeText={this.onChange}
-//defaultValue={this.state.text}
-maxLength={3000}
-placeholder={'ノートしたいことを入力...'}
-placeholderTextColor={'#c7c7c7'}
-underlineColorAndroid={'transparent'}
-/>
-<Button
-        title="ノート"
-        //buttonStyle={styles.btmbutton}
-        onPress={() => null}
-        icon ={
-        <Icon size={35} name="send" />
-         }
-         type="solid"
-         />
-<Button
-        title=""
-        //buttonStyle={styles.btmbutton}
-        onPress={() => null}
-        icon ={
-        <Icon size={35} name="image" />
-         }
-         type="solid"
-  />
-        <Button
-        title="test"
-        //buttonStyle={styles.btmbutton}
-        onPress={() => postclose()}
-         type="solid"
-/>
-      <Button
-        title="test2"
-        //buttonStyle={styles.btmbutton}
-        onPress={() => postopen()}
-         type="solid"
-/>
+        <Box />  
 </View>
 <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%"}}>
 <SwitchTimeline/>
@@ -168,3 +118,16 @@ underlineColorAndroid={'transparent'}
 );
 };
  export default MainBottomsheet; 
+ 
+ /*        <Button
+        title="test"
+        //buttonStyle={styles.btmbutton}
+        onPress={() => postclose()}
+         type="solid"
+/>
+      <Button
+        title="test2"
+        //buttonStyle={styles.btmbutton}
+        onPress={() => postopen()}
+         type="solid"
+/> */
