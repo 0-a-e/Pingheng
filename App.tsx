@@ -11,26 +11,30 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
 import Mainbox from './components/Mainbox';
 import WSobj from './Variable/WSobj';
+import Mtokenvar from './Variable/Mtoken';
+import { initializeParse } from  '@parse/react-native';
 
 
 export default function App() {
 
-/* *     const response = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
-      console.log(response.status);
-      const arrayPost = response.data;
-      console.log(arrayPost);
-      <NoteListBox />
-      */
+  initializeParse(
+    'https://parseapi.back4app.com/',
+    'RrU04nqwR3tjFyW6y00WfjP1hUmZmDj9xyZmtbyt',
+    'f4t9GuIa6FU0YAlKN6MfXJMJ4dFtnvCBTUlUw6dW'
+  );
+
 
   //localオンリーは表示されない
   const [notelist, notelistwrite] = useState([]);
   const [timelinestate, timelinestatewrite] = useState(undefined);
   const [ws,wswrite] = useState("");
+  const [Mtoken,Mtokenwrite] = useState("");
   const Stack = createStackNavigator();
 
 
   return (
       <View style={styles.container}>
+    <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
     <WSobj.Provider value ={{ ws,wswrite }}>
     <NoteList.Provider value={{ notelist, notelistwrite }}>
     <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
@@ -52,6 +56,7 @@ export default function App() {
     </TimelineStateContext.Provider>
     </NoteList.Provider>
     </WSobj.Provider>
+    </Mtokenvar.Provider>
      </View>
 );
 }

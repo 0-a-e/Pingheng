@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
+import { NavigationEvents } from 'react-navigation';
 
 
 const notestyles = StyleSheet.create({
@@ -40,9 +41,10 @@ username:{
   marginLeft: 5
   },
 
-  incardbox:{
-flexDirection: 'column',
-  },
+  incardcontainer:{
+height: 77,
+flexDirection: 'row',
+  }
 
     });
 
@@ -55,7 +57,7 @@ const NoteView = (props) => {
           alert('長押しタップ成功！');
         }}>
           <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-
+          <View style={notestyles.incardcontainer}>
           <Avatar
       size="large"
       overlayContainerStyle={notestyles.avatar}
@@ -65,31 +67,35 @@ const NoteView = (props) => {
         uri:data["item"]["body"]["body"]["user"]["avatarUrl"]
       }}
     />
-  <View style={notestyles.incardbox}>
   <View style={notestyles.topcontainer}>
     <ListItem.Title style={notestyles.name}>{data["item"]["body"]["body"]["user"]["name"]}</ListItem.Title>
   
-    <Badge
+    {
+    data["item"]["body"]["body"]["user"]["isBot"] && <Badge 
     status="primary"
     value={<Icon name="terminal" color="#fff"/>}
     containerStyle={{marginLeft: 5}}
     badgeStyle={{width: 35}}
-  />
+    />
+  }
 
   <ListItem.Subtitle style={notestyles.username}>@{data["item"]["body"]["body"]["user"]["username"]}</ListItem.Subtitle>
   </View>
+
   <View style={notestyles.notebox}>
-    <ReadMore numberOfLines={3} style={notestyles.notetext}>
+    <ReadMore numberOfLines={3} style={notestyles.notetext} seeMoreText="続きを見る"　seeLessText="折りたたむ"　seeMoreStyle={{color: "rgba(255,255,255,0.6)"}}　seeLessStyle={{color:"rgba(255,255,255,0.6)"}}>
       {data["item"]["body"]["body"]["text"]}
       </ReadMore>
         <Text>{data["item"]["body"]["body"]["visibility"]}</Text>
         <Text>{data["item"]["body"]["body"]["localOnly"]}</Text>
   </View>
+
 </View>
         </Card>
     </TouchableOpacity>
       </View>
 );
 };
+//<View style={notestyles.incardcontainer}>
 
 export default NoteView;

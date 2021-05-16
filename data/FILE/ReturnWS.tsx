@@ -4,15 +4,15 @@ import NoteList from '../../Variable/NoteList';
 import WS from 'react-native-websocket';
 import WSurl from '../../Variable/WSurl';
 import WSobj from '../../Variable/WSobj';
-
+import Mtokenvar from '../../Variable/Mtoken';
 const ReturnWS = () => {
 
     const {notelist, notelistwrite} = useContext(NoteList);
     const {wsurl,wsurlwrite} = useContext(WSurl);
     const {ws,wswrite} = useContext(WSobj);
-
+    const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
     useEffect(() => {
-      gettoken(wsurlwrite);
+      gettoken(Mtokenwrite,wsurlwrite);
     },[]);
     //    wsurl = gettingtoken;
 

@@ -25,7 +25,7 @@ const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => 
         "body": {
         "id": "timeline",
            }
-         }));    
+         }));
 
     ws.send(JSON.stringify({
         "type": "connect",

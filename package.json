@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fawazahmed/react-native-read-more": "^2.0.3",
+    "@parse/react-native": "^0.0.1-alpha.14",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.4",
@@ -18,6 +19,7 @@
     "expo-status-bar": "~1.0.3",
     "i": "^0.3.6",
     "npm": "^7.10.0",
+    "parse": "^3.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
