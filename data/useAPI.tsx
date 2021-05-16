@@ -8,12 +8,10 @@ export const sendAPI = async ([Mtoken,endpoint,data]:[String,String,Object]) => 
      const response = await axios.post("https://msk.seppuku.club/api/" + endpoint,{"i":Mtoken, ...data});
      console.log(response.status);
      if(response.status == 200){
-        return true;
+        return response.data;
       } else {
         return false;
       }
     }
     //  const arrayPost = response.data;
     //  console.log(arrayPost);
-
-//だめ

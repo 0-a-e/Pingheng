@@ -52,7 +52,21 @@ const convert = (tlstate: any) => {
           alert(`該当するタイムラインインデックスがありません`);
       }
       }
-    
-return {"convert":convert,"reconvert":reconvert}
+
+const toendpoint = (tlstate: any) => {
+    switch (tlstate) {
+        case "localTimeline":
+          return "local-timeline";
+        case "homeTimeline":
+          return "timeline";
+        case "globalTimeline":
+         return "global-timeline";
+        case "hybridTimeline":
+        return "hybrid-timeline";
+        default:
+          alert(`該当する再変換タイムラインインデックスがありません`);
+      }
+      }
+return {"convert":convert,"reconvert":reconvert,"toendpoint":toendpoint}
 }
 export default switchTL;
