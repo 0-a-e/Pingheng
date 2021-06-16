@@ -9,9 +9,10 @@ import NoteView from './NoteView';
 //(Noteview(仮))
 
 const ListKey = (props) => {
-   // console.log(props["body"]["body"]["id"]);
+   //console.log(props["id"]);
   //  const data = props["data"]["item"];
-    return props["body"]["body"]["id"];
+    return props["id"];
+
 
 }
 
@@ -27,7 +28,7 @@ console.log(nlist);
 return (
     //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
-    <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
+     <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
       <SwipeActionList
     style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
     keyExtractor={item => ListKey(item)}
@@ -35,7 +36,7 @@ return (
     renderItem={item => <NoteView data={item} />} 
     renderLeftHiddenItem={RenderLeft}
     renderRightHiddenItem={RenderRight}
-  />
+  /> 
   </View>
 )
 }}

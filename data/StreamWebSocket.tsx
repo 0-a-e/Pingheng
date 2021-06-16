@@ -1,8 +1,6 @@
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, Suspense } from 'react';
 import TimelineStateContext from '../Variable/TimelineState';
-import { View,Text } from 'react-native';
-import disconnect from './FILE/disconnect';
-import connect from './FILE/connect';
+import { Text } from 'react-native';
 import ReturnWS from './FILE/ReturnWS';
 import WSurl from '../Variable/WSurl';
 

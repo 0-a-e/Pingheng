@@ -5,15 +5,15 @@ import TimelineStateContext from '../../Variable/TimelineState';
 import useSwitchTL from './useSwitchTL';
 import WSobj from '../../Variable/WSobj';
 import useOldNote from '../../data/useOldNote';
-import Mtokenvar from '../../Variable/Mtoken';
+import NoteList from '../../Variable/NoteList';
+
 
 const {convert,reconvert} = useSwitchTL();
 
-const SwitchTimeline = () => {
+const SwitchTimeline = (Props: {Mtoken:string}) => {
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
-    const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
-
+    const {notelist, notelistwrite} = useContext(NoteList);
     const local = () => <Icon name="box" size={45} color={timelinestate === "localTimeline" ? '#fff' : 'rgb(180,180,230)'} />
     const home = () => <Icon name="home" size={45} color={timelinestate === "homeTimeline" ? '#fff' : 'rgb(180,180,230)'} />
     const global= () => <Icon name="globe" size={45} color={timelinestate === "globalTimeline" ? '#fff' : 'rgb(180,180,230)'} />
@@ -24,8 +24,8 @@ const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => 
     const convertedval = convert(val);
     timelinestatewrite(convertedval);
     //TL切り替え完成　2021/5/2/22:50
-    useOldNote(Mtoken,convertedval);
-    ws.send(JSON.stringify({
+    useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
+  /*   ws.send(JSON.stringify({
         "type": "disconnect",
         "body": {
         "id": "timeline",
@@ -39,7 +39,7 @@ const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => 
         "id": "timeline",
         "params": {}
            }
-         }));
+         }));*/
 };
     
 return ( 

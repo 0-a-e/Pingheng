@@ -1,4 +1,4 @@
-import React, { ComponentState, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { Button} from 'react-native-elements';
@@ -6,20 +6,35 @@ import  BottomSheet from "react-native-bottomsheet-reanimated";
 import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './SwitchTimeline';
 import Box from './Postbox';
-
+import Mtokenvar from '../../Variable/Mtoken';
+import TabbarState from '../../Variable/TabbarState';
 const MainBottomsheet = () => {
 
-const postclose = () =>{
-  bartoggleWrite(true);
-  Keyboard.dismiss();
-}
+  const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
+  //????同じコンテキスト（デバッグ中）なのに下だけ作動しない,WHAT THE FUCK!
+  const {Tabbarvar,Tabbarwritevar} = useContext(Mtokenvar);
+ // const {tabbar,tabbarwrite} = useContext(TabbarState);
+  const [bartoggle,bartoggleWrite] = useState(true);
+  const bottomsheetref = React.useRef();
 
-const postopen = () =>{
-  bartoggleWrite(false);
-  //textareaにフォーカス;
-} 
+  console.log("ddd");
+  console.log(TabbarState);
+  console.log(Mtoken);
+  console.log("^--");
+  console.log(Tabbarvar);
+  console.log("fff");
 
-    const styles = StyleSheet.create({
+  const postclose = () =>{
+    bartoggleWrite(true);
+    Keyboard.dismiss();
+  }
+
+  const postopen = () =>{
+    bartoggleWrite(false);
+    //textareaにフォーカス;
+  } 
+
+  const styles = StyleSheet.create({
       container: {
      backgroundColor: '#fff',
         alignItems: 'center',
@@ -46,19 +61,55 @@ const postopen = () =>{
         },
 
     }
-    );
+  );
     
   //homeは外部含めたフォロー中
   //globalは外内全部
   //localは内全部
   //hybrid ?
   
-    
-  const [bartoggle,bartoggleWrite] = useState(true);
-  const bottomsheetref = React.useRef();
   
-    
-    
+  //ぼたんおすとundefinedになる　あとで修正
+  const writetabbar = (name:string) => {
+      Tabbarwritevar(name);
+  }
+
+  function Navbtn(props: { indexname: string; icon: string; }){
+    return(
+      <Button
+        title=""
+        buttonStyle={styles.btmbutton}
+        onPress={() => {writetabbar(props.indexname)}}
+        icon = {
+            <Icon size={55} name={props.icon} color="rgb(180,180,230)"/>
+        }
+        type="clear"
+      />
+    )
+  }
+
+  function Insheet(){
+    return(
+    <View style={{height:Dimensions.get('window').height - 63}}>
+      {bartoggle &&
+      <View style={styles.btmbox} >
+        <Navbtn icon="hexagon" indexname="home" />
+        <Navbtn icon="bell" indexname="notify" />
+      </View>
+    }
+      <View>
+        <Text>{bartoggle.toString()}</Text>
+        <Box Mtoken={Mtoken}/>  
+      </View>
+
+      <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%"}}>
+        <SwitchTimeline Mtoken={Mtoken}/>
+      </View>  
+
+    </View>
+    )
+}
+
     return (
     <BottomSheet
     //backDropColor="red"
@@ -76,45 +127,13 @@ const postopen = () =>{
     // isModal
     //containerStyle={{backgroundColor:"red"}}
      tipStyle={{backgroundColor:"#fff"}}
-    headerStyle={{padding:10,backgroundColor:"rgba(5,5,20,0.7)",borderRadiusTop:50}}
-     bodyStyle={{backgroundColor:"rgba(5,5,20,0.7)",flex:1}}
+     //あとでこのいろのまま透明にする方法を考える
+    headerStyle={{padding:10,backgroundColor:"rgba(5,5,20,0.95)",borderRadiusTop:50}}
+    bodyStyle={{backgroundColor:"rgba(5,5,20,0.95)",flex:1}}
     body={
-      <View style={{height:Dimensions.get('window').height - 63}}>
-        {bartoggle &&
-      <View style={styles.btmbox} >
-        <Button
-        title=""
-        buttonStyle={styles.btmbutton} 
-        onPress={() => console.log}
-        icon ={
-        <Icon size={55} name="hexagon" color="rgb(180,180,230)"/>
-         }
-         type="clear"
-         />
-  
-        <Button
-        title=""
-        buttonStyle={styles.btmbutton}
-        onPress={() => null}
-        icon ={
-        <Icon size={55} name="bell" color="rgb(180,180,230)"/>
-         }
-         type="clear"
-         />
-        </View>
-        }
-
-        <View>
-        <Text>{bartoggle.toString()}</Text>
-
-        <Box />  
-</View>
-<View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%"}}>
-<SwitchTimeline/>
-</View>  
-      </View>
-    }
-  />
+      <Insheet />
+     }
+     />
 );
 };
  export default MainBottomsheet; 

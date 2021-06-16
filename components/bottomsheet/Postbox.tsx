@@ -7,10 +7,8 @@ import Textarea from './Postbox/Textarea';
 import Mtokenvar from '../../Variable/Mtoken';
 import { sendAPI } from '../../data/useAPI';
 
-const box = () => {
-  const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
+const box = (Props:{Mtoken:string}) => {
   const textref = createRef();
-  console.log("----" + Mtoken);
 
   const sendpost = () => {
     console.log("sendpost");
@@ -19,7 +17,7 @@ const box = () => {
     if(text){
     //  progresswrite(0.2);
     //ws.send自体が無効？
-      sendAPI([Mtoken,"notes/create",
+      sendAPI([Props["Mtoken"],"notes/create",
       {
           "text": text
       }

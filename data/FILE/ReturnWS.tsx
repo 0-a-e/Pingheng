@@ -30,20 +30,24 @@ const ReturnWS = () => {
     console.log('Open!');
   }}
   onMessage={(msg: { [x: string]: any; }) => {
-    console.log(msg["data"]);
+   console.log(msg["data"]["body"]["body"]);
     //ノートかどうか判定入れる
-   const appendeddata = [...notelist,JSON.parse(msg["data"])];
+   const appendeddata = [...notelist,JSON.parse(msg["data"]["body"]["body"])];
    appendeddata.reverse();
-   console.log(appendeddata);
+  // console.log(appendeddata);
    notelistwrite(appendeddata); 
     //タイムラグが有り一個遅れで出るのかも
   }}
   //一回エラーメッセージ出して切断するようにする
-  onError={ err => {console.log(err["message"])}}
+  onError={ (err: { [x: string]: any; }) =>  {
+    console.log(err["message"])
+  }
+}
   onClose={ msg => {console.log(msg)}}
   reconnect
   // Will try to reconnect
   />
+
   )
 
 }}
