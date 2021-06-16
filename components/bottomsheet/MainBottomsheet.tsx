@@ -7,22 +7,14 @@ import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './SwitchTimeline';
 import Box from './Postbox';
 import Mtokenvar from '../../Variable/Mtoken';
-import TabbarState from '../../Variable/TabbarState';
+import TabbarStateContext from '../../Variable/TabbarState';
 const MainBottomsheet = () => {
 
   const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
-  //????同じコンテキスト（デバッグ中）なのに下だけ作動しない,WHAT THE FUCK!
-  const {Tabbarvar,Tabbarwritevar} = useContext(Mtokenvar);
- // const {tabbar,tabbarwrite} = useContext(TabbarState);
+  const {TabbarState,TabbarStatewrite} = useContext(TabbarStateContext);
+
   const [bartoggle,bartoggleWrite] = useState(true);
   const bottomsheetref = React.useRef();
-
-  console.log("ddd");
-  console.log(TabbarState);
-  console.log(Mtoken);
-  console.log("^--");
-  console.log(Tabbarvar);
-  console.log("fff");
 
   const postclose = () =>{
     bartoggleWrite(true);
@@ -68,18 +60,12 @@ const MainBottomsheet = () => {
   //localは内全部
   //hybrid ?
   
-  
-  //ぼたんおすとundefinedになる　あとで修正
-  const writetabbar = (name:string) => {
-      Tabbarwritevar(name);
-  }
-
   function Navbtn(props: { indexname: string; icon: string; }){
     return(
       <Button
         title=""
         buttonStyle={styles.btmbutton}
-        onPress={() => {writetabbar(props.indexname)}}
+        onPress={() => {TabbarStatewrite(props.indexname)}}
         icon = {
             <Icon size={55} name={props.icon} color="rgb(180,180,230)"/>
         }

@@ -10,11 +10,6 @@ const Mainbox = () => {
 //後で記憶するように？いやいらんかも
 
 const [TabbarState,TabbarStatewrite] = useState("home");
-
-console.log("333");
-console.log(TabbarStatewrite);
-console.log("444");
-
 return(
    <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
     <Homebox />
