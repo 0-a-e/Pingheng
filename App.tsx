@@ -3,10 +3,9 @@ import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View,} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import NoteView from './components/Notelist/NoteView';
 import NoteList from './Variable/NoteList';
+import NotifyList from './Variable/NotifyState';
 import TimelineStateContext from './Variable/TimelineState';
-import NoteListBox from './components/Notelist/NoteListBox';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
 import Mainbox from './components/Mainbox';
@@ -24,8 +23,8 @@ export default function App() {
   );
 
 
-  //localオンリーは表示されない
   const [notelist, notelistwrite] = useState([]);
+  const [notifylist,notifylistwrite] = useState([]);
   const [timelinestate, timelinestatewrite] = useState(undefined);
   const [ws,wswrite] = useState("");
   const [Mtoken,Mtokenwrite] = useState("");
@@ -33,31 +32,31 @@ export default function App() {
 
 
   return (
-      <View style={styles.container}>
-    <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
-    <WSobj.Provider value ={{ ws,wswrite }}>
-    <NoteList.Provider value={{ notelist, notelistwrite }}>
-    <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
-  
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="Welcome">
-    <Stack.Screen
-    name="Main"
-    component={Mainbox}
-    options={{ headerShown: false }}
-    />
-    <Stack.Screen
-    name="Welcome"
-    component={Register}
-    />
-    </Stack.Navigator>
-    </NavigationContainer>
-
-    </TimelineStateContext.Provider>
-    </NoteList.Provider>
-    </WSobj.Provider>
-    </Mtokenvar.Provider>
-     </View>
+    <View style={styles.container}>
+      <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
+        <WSobj.Provider value ={{ ws,wswrite }}>
+          <NotifyList.Provider value = {{notifylist,notifylistwrite}}>
+            <NoteList.Provider value={{ notelist, notelistwrite }}>
+              <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
+                <NavigationContainer>
+                  <Stack.Navigator initialRouteName="Welcome">
+                    <Stack.Screen
+                      name="Main"
+                      component={Mainbox}
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                      name="Welcome"
+                      component={Register}
+                    />
+                  </Stack.Navigator>
+                </NavigationContainer>
+              </TimelineStateContext.Provider>
+            </NoteList.Provider>
+          </NotifyList.Provider>
+        </WSobj.Provider>
+      </Mtokenvar.Provider>
+    </View>
 );
 }
 

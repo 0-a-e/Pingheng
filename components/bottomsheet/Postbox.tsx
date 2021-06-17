@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState,useMemo, createRef } fro
 import {RefreshControlBase, StyleSheet, View} from 'react-native';
 import { Button} from 'react-native-elements';
 import GestureRecognizer from 'react-native-swipe-gestures';
-import Icon from 'react-native-vector-icons/Feather';
+import  icon from 'react-native-vector-icons/Feather';
 import Textarea from './Postbox/Textarea';
 import Mtokenvar from '../../Variable/Mtoken';
 import { sendAPI } from '../../data/useAPI';

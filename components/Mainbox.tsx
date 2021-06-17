@@ -12,7 +12,8 @@ const Mainbox = () => {
 const [TabbarState,TabbarStatewrite] = useState("home");
 return(
    <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
-    <Homebox />
+    {TabbarState == "home" && <Homebox />}
+    {TabbarState == "notify" &&<Notifybox />}
     <Mainbottomsheet />
     </TabbarStateContext.Provider>
     )
