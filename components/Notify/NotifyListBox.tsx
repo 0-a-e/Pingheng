@@ -1,7 +1,8 @@
 import NotifyState from '../../Variable/NotifyState';
 import React, { useContext } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View,RefreshControl } from 'react-native';
 import NotifyView from './NotifyView';
+import { useState } from 'react';
 
 //(Noteview(仮))
 
@@ -13,17 +14,28 @@ const ListKey = (props) => {
 
 }
 
+const NotifyListBox = (props: any) => {
+    
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
 
-const NotifyListBox = () => {
+    const gn = () => {
+        console.log("props");
+        refreshwrite(true);
+        props.PgetNotify();
+        refreshwrite(false);
+    }
+
+const [refresh,refreshwrite] = useState(false);
 const {notifylist, notifylistwrite} = useContext(NotifyState);
 return(
 <NotifyState.Consumer>
 {(value) => {
 const notifylist = value["notifylist"];
 //初回は唐リスト
-//console.log(nlist);
+
 return (
-    //FlatListだとこのままでok
      <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
 
       <FlatList
@@ -31,7 +43,12 @@ return (
         style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
         keyExtractor={item => ListKey(item)}
         renderItem={item => <NotifyView data={item} />} 
-        //renderItem={item => <Text>{JSON.stringify(item)}</Text>}
+        refreshControl={<RefreshControl
+            colors={["rgb(19,20,26)", "#000"]}
+            refreshing={refresh}
+            onRefresh={gn}
+            />}
+       //renderItem={item => <Text style={{color:"#fff"}}>{JSON.stringify(item)}</Text>}
       /> 
   </View>
 )

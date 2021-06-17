@@ -84,7 +84,8 @@ const NoteView = (props) => {
 
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
-              <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>
+              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>}
+              {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
   
               {
               data["item"]["user"]["isBot"] && 

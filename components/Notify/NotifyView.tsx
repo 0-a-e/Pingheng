@@ -1,104 +1,49 @@
 import React, {} from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
+import { Text, View,TouchableOpacity } from 'react-native';
+import { ListItem,Card } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
 import { NavigationEvents } from 'react-navigation';
+import switchactionring from './switchActionring';
+import notifystyles from './notifyStyle';
+import Actionring from './Actionring';
 
-
-const notestyles = StyleSheet.create({
-  card:{
-    borderRadius: 50,
-    backgroundColor: "rgb(31,34,42)",
-    borderWidth: 0,
-    padding: 0,
-    height: 77
-  },
-
-  cardwrapper:{
-    flexDirection: 'row',
-  },
-
-  topcontainer:{
-    width: "100%",
-    flexDirection: 'row',
-    paddingTop: 5
-  },
-  normalcontainer:{
-    width: "100%",
-
-    flexDirection: 'column',
-    paddingTop: 5
-  },
-  avatar: {
-      backgroundColor: "rgba(230,230,230,1)",
-      height: 77
-  },
-
-  notebox:{
-    marginLeft: 5,
-    //width: "85%",
-    width: 100,
-    height: 100,
-    backgroundColor: "#ffffff"
-  },
-  name:{
-    color: "#fff"
-  },
-  notetext:{
-    color:"rgba(230,230,230,1)"
-  },
-  username:{
-    color: "rgba(200,200,200,1)",
-    marginLeft: 5
-  },
-
-  incardcontainer:{
-    height: 77,
-    flexDirection: 'column',
-    //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
-    //Avaterの位置変更で修正済み
-  }
-
-    });
-
-const NoteView = (props) => {
-
+const NoteView = (props:any) => {
+    const actionringvar = switchactionring(props["data"]["item"]["type"],props);
+    console.log("----");
+    console.log(props["data"]["item"]);
     return (
     <View>
-      <TouchableOpacity  onLongPress={() => {
-      //リアクション選択を実装
+        <TouchableOpacity  onLongPress={() => {
+            //リアクション選択を実装
           alert('長押しタップ成功！');
         }}>
-        <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-        <Avatar
-              size="large"
-              overlayContainerStyle={notestyles.avatar}
-              rounded
-              title={props["data"]["item"]["user"]["name"]}
-              source={{
-                uri:props["data"]["item"]["user"]["avatarUrl"]
-              }}
-          />
-
-          <Icon size={20} name="refresh-ccw" color="rgb(180,180,230)"/>
-          
-          
-<Text>{JSON.stringify(props["data"]["item"])}</Text>
-          
-        </Card>
-    </TouchableOpacity>
-      </View>
+            <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
+                <Actionring actionringvar={actionringvar} props={props}/>
+                <View style={notifystyles.incardcontainer}>
+                    <View style={notifystyles.topcontainer}>
+                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>{props["data"]["item"]["user"]["name"]}</ListItem.Title>}
+                        {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
+                    </View>
+                    <View style={notifystyles.normalcontainer}>     
+                        <Text
+                            style={notifystyles.notetext}
+                            numberOfLines={2}
+                            ellipsizeMode='middle'
+            　          >
+                            {actionringvar.text}
+                        </Text>
+                    </View>
+                </View>
+            </Card>
+        </TouchableOpacity>
+    </View>
 );
 };
-//<View style={notestyles.incardcontainer}>
-/*
- */
 
 /*
-<View style={notestyles.incardcontainer}>
-            <View style={notestyles.topcontainer}>
-              <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>
+<View style={notifystyles.incardcontainer}>
+            <View style={notifystyles.topcontainer}>
+              <ListItem.Title style={notifystyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>
   
               {
               data["item"]["user"]["isBot"] && 
@@ -109,13 +54,13 @@ const NoteView = (props) => {
                 badgeStyle={{width: 35}}
                 />
               }
-              <ListItem.Subtitle style={notestyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
+              <ListItem.Subtitle style={notifystyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
             </View>
             
-            <View style={notestyles.normalcontainer}>     
+            <View style={notifystyles.normalcontainer}>     
               <ReadMore
                 numberOfLines={3}
-                style={notestyles.notetext}
+                style={notifystyles.notetext}
                 seeMoreText="続きを見る"
               　seeLessText="折りたたむ"　seeMoreStyle={{color: "rgba(255,255,255,0.6)"}}
               　seeLessStyle={{color:"rgba(255,255,255,0.6)"}}

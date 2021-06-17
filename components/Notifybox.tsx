@@ -23,12 +23,7 @@ const Notifybox= () => {
 
     return(
     <View>
-        <Text>ddd</Text>
-        <Button
-          onPress={getNotify}
-          title="取得"
-          />
-        <NotifyListbox />
+        <NotifyListbox PgetNotify={() => getNotify()}/>
     </View>
     )
 }
