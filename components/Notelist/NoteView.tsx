@@ -1,9 +1,12 @@
-import React, {} from 'react';
+import React, { createRef } from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
 import { NavigationEvents } from 'react-navigation';
+
+
+
 
 
 const notestyles = StyleSheet.create({
@@ -67,7 +70,12 @@ const NoteView = (props) => {
 
     return (
     <View>
-      <TouchableOpacity  onLongPress={() => {
+      
+      <TouchableOpacity  
+        onPress={() => {
+            props.EopenAction(data);
+        }}
+        onLongPress={() => {
       //リアクション選択を実装
           alert('長押しタップ成功！');
         }}>
@@ -81,7 +89,6 @@ const NoteView = (props) => {
                 uri:data["item"]["user"]["avatarUrl"]
               }}
           />
-
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>}

@@ -9,8 +9,6 @@ import Actionring from './Actionring';
 
 const NoteView = (props:any) => {
     const actionringvar = switchactionring(props["data"]["item"]["type"],props);
-    console.log("----");
-    console.log(props["data"]["item"]);
     return (
     <View>
         <TouchableOpacity  onLongPress={() => {

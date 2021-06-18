@@ -6883,6 +6883,11 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-actions-sheet@^0.4.9:
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/react-native-actions-sheet/-/react-native-actions-sheet-0.4.9.tgz#2446f97eca4cc3674128c445665b1f8774a5d64a"
+  integrity sha512-4FuybHH+psq738w/6OIfdUEL4/5pG43yH+C0YeX22jQo0tYppqxVqQr3ITiXHF2PDJtdIiV7egy8Xncuuw5n9w==
+
 react-native-bottomsheet-reanimated@^0.0.28:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/react-native-bottomsheet-reanimated/-/react-native-bottomsheet-reanimated-0.0.28.tgz#acb02763ff1e4523c62580f0b557e2e16d0d1125"

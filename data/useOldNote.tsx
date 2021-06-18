@@ -10,9 +10,7 @@ async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelis
     };
     sendAPI([Mtoken,"notes/" +  tltype,payload]).then(data => {
     if(data){
-      console.log("**");
       notelistwrite(data); 
-      console.dir(notelist);
     } else {
       console.log("nodata");
     }

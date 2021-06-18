@@ -1,7 +1,7 @@
 import React from "react";
 
 // set the defaults
-const TimelineStateContext = React.createContext("");
+const MtokenContext = React.createContext("");
 
-export default TimelineStateContext;
+export default MtokenContext;
 

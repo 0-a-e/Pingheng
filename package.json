@@ -23,6 +23,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-actions-sheet": "^0.4.9",
     "react-native-bottomsheet-reanimated": "^0.0.28",
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
