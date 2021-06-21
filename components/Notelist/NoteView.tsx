@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, memo } from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
@@ -65,7 +65,7 @@ const notestyles = StyleSheet.create({
 
     });
 
-const NoteView = (props) => {
+const NoteViewraw = (props) => {
     const data = props["data"];
 
     return (
@@ -73,7 +73,8 @@ const NoteView = (props) => {
       
       <TouchableOpacity  
         onPress={() => {
-            props.EopenAction(data);
+          
+        //    props.EopenAction(data);
         }}
         onLongPress={() => {
       //リアクション選択を実装
@@ -128,6 +129,7 @@ const NoteView = (props) => {
       </View>
 );
 };
+const NoteView = memo(NoteViewraw);
 //<View style={notestyles.incardcontainer}>
 
 export default NoteView;

@@ -1,5 +1,5 @@
 import NoteList from '../../Variable/NoteList';
-import React, { createRef, useContext } from 'react';
+import React, { createRef,useContext } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
@@ -64,5 +64,4 @@ return(
 )
 */
 }
-
 export default NoteListBox;
