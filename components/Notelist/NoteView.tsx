@@ -6,9 +6,6 @@ import ReadMore from '@fawazahmed/react-native-read-more';
 import { NavigationEvents } from 'react-navigation';
 
 
-
-
-
 const notestyles = StyleSheet.create({
   card:{
     borderRadius: 50,
@@ -61,12 +58,40 @@ const notestyles = StyleSheet.create({
     flexDirection: 'column',
     //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
     //Avaterの位置変更で修正済み
+  },
+  linkbox:{
+    position: 'absolute',
+    zIndex:18,
+    height: 77,
+    width:60,
+    right:0,
+    borderTopEndRadius:50,
+    borderBottomEndRadius:50,
+    justifyContent: 'center', //Centered vertically
+  //  paddingLeft:83,  
+    backgroundColor:"#343640"
   }
-
     });
+
 
 const NoteViewraw = (props) => {
     const data = props["data"];
+
+    const geturl = (text) => {
+      //httpsのみかも
+        var regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+        if(text){
+        const res = text.match(regexp_url);
+          if(res != []){
+            return res;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+    }
+    console.log(geturl(data["item"]["text"]));
 
     return (
     <View>
@@ -108,21 +133,24 @@ const NoteViewraw = (props) => {
             </View>
             
             <View style={notestyles.normalcontainer}>     
-              <ReadMore
+ 
+            <ReadMore
                 numberOfLines={3}
                 style={notestyles.notetext}
                 seeMoreText="続きを見る"
               　seeLessText="折りたたむ"　seeMoreStyle={{color: "rgba(255,255,255,0.6)"}}
               　seeLessStyle={{color:"rgba(255,255,255,0.6)"}}
               >
-
-              {data["item"]["text"] == false && "リツイート対応まで消さないで"}
-              {data["item"]["text"]}
+                    {data["item"]["text"] == false && "リツイート対応まで消さないで"}
+                    {data["item"]["text"]}
               </ReadMore>
+           
               <Text>{data["item"]["visibility"]}</Text>
               <Text>{data["item"]["localOnly"]}</Text>
             </View>
 
+          </View>
+          <View style={notestyles.linkbox}>
           </View>
         </Card>
     </TouchableOpacity>

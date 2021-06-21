@@ -33,7 +33,6 @@ return(
 {(value) => {
 const nlist = value["notelist"];
 //初回は唐リスト
-console.log(nlist);
 return (
     //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
