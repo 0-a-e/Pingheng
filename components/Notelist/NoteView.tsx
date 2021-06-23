@@ -4,75 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
 import { NavigationEvents } from 'react-navigation';
-
-
-const notestyles = StyleSheet.create({
-  card:{
-    borderRadius: 50,
-    backgroundColor: "rgb(31,34,42)",
-    borderWidth: 0,
-    padding: 0,
-    height: 77
-  },
-
-  cardwrapper:{
-    flexDirection: 'row',
-  },
-
-  topcontainer:{
-    width: "100%",
-    flexDirection: 'row',
-    paddingTop: 5
-  },
-  normalcontainer:{
-    width: "100%",
-
-    flexDirection: 'column',
-    paddingTop: 5
-  },
-  avatar: {
-      backgroundColor: "rgba(230,230,230,1)",
-      height: 77
-  },
-
-  notebox:{
-    marginLeft: 5,
-    //width: "85%",
-    width: 100,
-    height: 100,
-    backgroundColor: "#ffffff"
-  },
-  name:{
-    color: "#fff"
-  },
-  notetext:{
-    color:"rgba(230,230,230,1)"
-  },
-  username:{
-    color: "rgba(200,200,200,1)",
-    marginLeft: 5
-  },
-
-  incardcontainer:{
-    height: 77,
-    flexDirection: 'column',
-    //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
-    //Avaterの位置変更で修正済み
-  },
-  linkbox:{
-    position: 'absolute',
-    zIndex:18,
-    height: 77,
-    width:60,
-    right:0,
-    borderTopEndRadius:50,
-    borderBottomEndRadius:50,
-    justifyContent: 'center', //Centered vertically
-  //  paddingLeft:83,  
-    backgroundColor:"#343640"
-  }
-    });
-
+import notestyles from './NoteStyle';
 
 const NoteViewraw = (props) => {
     const data = props["data"];
@@ -91,22 +23,13 @@ const NoteViewraw = (props) => {
           return false;
         }
     }
-    console.log(geturl(data["item"]["text"]));
 
-    return (
-    <View>
-      
-      <TouchableOpacity  
-        onPress={() => {
-          
-        //    props.EopenAction(data);
-        }}
-        onLongPress={() => {
-      //リアクション選択を実装
-          alert('長押しタップ成功！');
-        }}>
-        <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-          <Avatar
+   // console.log("#swssssxd");
+    //console.log(data);
+   // console.log("#sssss");
+
+  //  console.log(geturl(data["item"]["text"]));
+/*<Avatar
               size="large"
               overlayContainerStyle={notestyles.avatar}
               rounded
@@ -115,6 +38,23 @@ const NoteViewraw = (props) => {
                 uri:data["item"]["user"]["avatarUrl"]
               }}
           />
+           */
+    return (
+    <View>
+      
+      <TouchableOpacity  
+        onPress={() => {
+          
+            props.EopenAction(data);
+        }}
+
+        onLongPress={() => {
+      //リアクション選択を実装
+          alert('長押しタップ成功！');
+        }}>
+        <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
+          
+          <Text>画像</Text>
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>}

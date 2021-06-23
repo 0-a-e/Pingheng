@@ -11,6 +11,7 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
     const {notedata,notedatawrite} = useContext(NotedataContext);
     console.log("#--#");
     console.log(notedata);
+    console.log("#--#");
     //const [noteid,noteidwrite] = useState(props.data["item"]["text"]);
     return(
         <ActionSheet ref={props.actionSheetRef}>
