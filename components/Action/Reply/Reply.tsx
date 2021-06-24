@@ -5,9 +5,9 @@ import { Input } from "react-native-elements";
 const Reply = (props) => {
     return(
         <View>
-            
             <Input
             inputContainerStyle={{borderBottomWidth: 0, borderRadius:50,padding:10,backgroundColor:"rgba(0,0,0,1)"}}
+            style = {{color:"rgb(240,240,240)"}}
                 placeholder='返信...'
             />
         </View>

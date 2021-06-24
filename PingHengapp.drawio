@@ -438,6 +438,15 @@
                 <mxCell id="131" value="エラー" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="-655" y="130" width="135" height="60" as="geometry"/>
                 </mxCell>
+                <mxCell id="132" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                    <mxGeometry x="1350" y="218" width="217" height="217" as="geometry"/>
+                </mxCell>
+                <mxCell id="133" value="admin/emoji/list" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1350" y="375" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="134" value="絵文字サーバー" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1413.5" y="310" width="90" height="20" as="geometry"/>
+                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>

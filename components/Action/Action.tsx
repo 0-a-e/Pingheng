@@ -4,7 +4,7 @@ import { View,Text } from "react-native";
 import Reply from "./Reply/Reply";
 import { useState } from "react";
 import NotedataContext from "../../Variable/Notedata";
-
+import Reaction from "./Rection/Reaction";
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
 
@@ -16,7 +16,7 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
     return(
         <ActionSheet ref={props.actionSheetRef}>
             <View style={{backgroundColor:"rgb(19,20,26)"}}>
-                <Text>YOUR CUSTOM COMPONENT INSIDE THE ACTIONSHEET</Text>
+                <Reaction />
                 <Reply />
             </View>
         </ActionSheet>
