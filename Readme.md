@@ -1,6 +1,5 @@
 # PingHeng
 
-![bitmap](https://user-images.githubusercontent.com/42256381/123548399-9dac0380-d79f-11eb-882a-5b855479a046.png)
 
 
 ReactNative製Misskeyクライアント(仮)
