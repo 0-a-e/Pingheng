@@ -29,15 +29,7 @@ const NoteViewraw = (props) => {
    // console.log("#sssss");
 
   //  console.log(geturl(data["item"]["text"]));
-/*<Avatar
-              size="large"
-              overlayContainerStyle={notestyles.avatar}
-              rounded
-              title={data["item"]["user"]["name"]}
-              source={{
-                uri:data["item"]["user"]["avatarUrl"]
-              }}
-          />
+/*
            */
     return (
     <View>
@@ -53,8 +45,15 @@ const NoteViewraw = (props) => {
           alert('長押しタップ成功！');
         }}>
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-          
-          <Text>画像</Text>
+        <Avatar
+              size="large"
+              overlayContainerStyle={notestyles.avatar}
+              rounded
+              title={data["item"]["user"]["name"]}
+              source={{
+                uri:data["item"]["user"]["avatarUrl"]
+              }}
+          />
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>}

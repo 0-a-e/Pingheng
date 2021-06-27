@@ -19,7 +19,6 @@ const Register = ({navigation}) => {
 const [ktokenurl, ktokenwrite] = useState();
 
 const storage: Storage = new Storage({
-    // バックエンドにAsyncStorageを使う
     storageBackend: AsyncStorage,
     defaultExpires: null,
     enableCache: true,
