@@ -52,7 +52,6 @@ try{
     if(!sessionid){
         alert("パースに失敗しました");
     } else {
-    console.log(sessionid);
     const checkurl = "https://msk.seppuku.club/api/miauth/" + sessionid + "/check";
     axios.post(checkurl).then(function (response) {
         //あとでユーザー情報取り出してこんにちは！xxさんをやる
@@ -64,7 +63,6 @@ try{
                 token: token
               },
             });
-            console.log(token);
             navigation.navigate("Main");
         } else {
             alert("認証エラー");
