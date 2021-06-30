@@ -3,6 +3,7 @@ import { View } from "react-native";
 import Mainbottomsheet from './bottomsheet/MainBottomsheet';
 import Homebox from './Homebox';
 import Notifybox from './Notifybox';
+import Settingsbox from "./Settingsbox";
 import TabbarStateContext from "../Variable/TabbarState";
 import emoji from "../data/Emojis/emoji";
 
@@ -15,6 +16,7 @@ return(
    <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
     {TabbarState == "home" && <Homebox />}
     {TabbarState == "notify" &&<Notifybox />}
+    {TabbarState == "settings" &&<Settingsbox />}
     <Mainbottomsheet />
     </TabbarStateContext.Provider>
     )

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Button, Text, View } from 'react-native';
-
 import { sendAPI } from '../data/useAPI';
 import Mtokenvar from '../Variable/Mtoken';
 import NotifyState from '../Variable/NotifyState';

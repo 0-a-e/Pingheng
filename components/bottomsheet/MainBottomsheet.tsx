@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { Button} from 'react-native-elements';
-import  BottomSheet from "react-native-bottomsheet-reanimated";
+import BottomSheet from "react-native-bottomsheet-reanimated";
 import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './SwitchTimeline';
 import Box from './Postbox';
@@ -85,7 +85,8 @@ const MainBottomsheet = () => {
     }
       <View>
         <Text>{bartoggle.toString()}</Text>
-        <Box Mtoken={Mtoken}/>  
+        <Box Mtoken={Mtoken}/>
+        <Button title="settings" onPress={() => {TabbarStatewrite("settings")}}/>
       </View>
 
       <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%"}}>

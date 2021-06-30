@@ -14,7 +14,6 @@ import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
-import * as AuthSession from 'expo-auth-session';
 
 const Register = ({navigation}) => {
   
@@ -31,8 +30,7 @@ const storage: Storage = new Storage({
     storageBackend: AsyncStorage,
     defaultExpires: null,
     enableCache: true,
-})
-
+});
 
 /* 重複防止処理　でも再ログインしたいときのためいらないかも　いや　先に再ログイン前にトークン消すかも*/
 storage.load({key: 'user'}).then(res => {
