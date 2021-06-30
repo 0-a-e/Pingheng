@@ -96,7 +96,7 @@ const getAuthURL = async () => {
     <View>
       <Input
         disabled
-        placeholder='http://msk.seppuku.club(現在変更不可)'
+        placeholder='http://msk.seppuku.club(現在変更不可) 2回ログイン必要'
       />
       <Button
         title="ログインする"

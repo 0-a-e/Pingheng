@@ -8,15 +8,19 @@ import ReactNativeSettingsPage, {
     SliderRow
 } from 'react-native-settings-page';
 //import Icon from 'react-native-vector-icons/Feather';
+import logout from '../data/logout';
 
 const Settingsbox= () => {
-  return(
+const lgout = () => {
+    logout();
+};
+    return(
 <ReactNativeSettingsPage>
 				<SectionRow text='Usage'>
 					<NavigateRow
 						text='ログアウト'
 						iconName='sign-out'
-					//	onPressCallback={this._navigateToScreen} 
+						onPressCallback={lgout} 
                         />
                     <NavigateRow
 						text='Github'
@@ -32,28 +36,6 @@ const Settingsbox= () => {
 						text='バージョン: 1.0'
 						iconName='info'
 					//	onPressCallback={this._navigateToScreen} 
-                    />
-                    					<SwitchRow 
-						text='SwitchRow' 
-					//	iconName='your-icon-name'
-					//	_value={this.state.switch}
-					//	_onValueChange={() => { this.setState({ switch: !this.state.switch }) }} 
-                    />
-					<CheckRow 
-						text='CheckRow'
-					//	iconName='your-icon-name'
-						_color='#000'
-						//_value={this.state.check}
-					//	_onValueChange={() => { this.setState({ check: !this.state.check }) }} 
-                    />
-					<SliderRow 
-						text='SliderRow'
-					//	iconName='your-icon-name'
-						_color='#000'
-						_min={0}
-						_max={100}
-						//_value={this.state.value}
-					//	_onValueChange={value => { this.setState({ value }) }} 
                     />
 				</SectionRow>
 			</ReactNativeSettingsPage>
