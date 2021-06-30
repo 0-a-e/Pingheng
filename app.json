@@ -5,6 +5,7 @@
     "version": "0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme":"pingheng",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

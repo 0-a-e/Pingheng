@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View,} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,10 +12,9 @@ import Mainbox from './components/Mainbox';
 import WSobj from './Variable/WSobj';
 import Mtokenvar from './Variable/Mtoken';
 import { initializeParse } from  '@parse/react-native';
-
+import * as Linking from 'expo-linking';
 
 export default function App() {
-
   initializeParse(
     'https://parseapi.back4app.com/',
     'RrU04nqwR3tjFyW6y00WfjP1hUmZmDj9xyZmtbyt',

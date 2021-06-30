@@ -1,8 +1,7 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Linking,
   Text,
   View,
 } from 'react-native';
@@ -13,10 +12,20 @@ import url from 'url';
 import axios from 'axios';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
+import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
+import * as AuthSession from 'expo-auth-session';
 
 const Register = ({navigation}) => {
-
+  
 const [ktokenurl, ktokenwrite] = useState();
+
+useEffect(() => {
+  Linking.addEventListener('url', event => {
+    ktokenwrite(event.url);
+    getAuth();
+  });
+});
 
 const storage: Storage = new Storage({
     storageBackend: AsyncStorage,
@@ -34,6 +43,7 @@ storage.load({key: 'user'}).then(res => {
 
     });
 
+
 const parseurl = (url) => {
 var regex = /[?&]([^=#]+)=([^&#]*)/g,
   params = {},
@@ -47,63 +57,54 @@ return params;
 
 const getAuth = () => {
     if(ktokenurl){
-try{
-    const sessionid = parseurl(ktokenurl)["session"];
-    if(!sessionid){
-        alert("パースに失敗しました");
-    } else {
-    const checkurl = "https://msk.seppuku.club/api/miauth/" + sessionid + "/check";
-    axios.post(checkurl).then(function (response) {
-        //あとでユーザー情報取り出してこんにちは！xxさんをやる
-        if(response.data["ok"]){
-            const token = response.data["token"];
-            storage.save({
-              key: 'user',
-              data: {
-                token: token
-              },
-            });
-            navigation.navigate("Main");
+      try{
+        const sessionid = parseurl(ktokenurl)["session"];
+        if(!sessionid){
+          alert("パースに失敗しました");
         } else {
-            alert("認証エラー");
+          const checkurl = "https://msk.seppuku.club/api/miauth/" + sessionid + "/check";
+          axios.post(checkurl).then(function (response) {
+          //あとでユーザー情報取り出してこんにちは！xxさんをやる
+            if(response.data["ok"]){
+              const token = response.data["token"];
+              storage.save({
+                key: 'user',
+                data: {
+                  token: token
+                },
+              });
+              navigation.navigate("Main");
+            } else {
+                alert("認証エラー");
+            }
+          });
         }
-      });
-    }
-}catch{
-    alert("パースに失敗しました");
-}
+      }catch{
+        alert("パースに失敗しました");
+      }
     } else {
         alert("入力されていません");
     }
 }
 
-const getAuthURL = () => {
+const getAuthURL = async () => {
     const uuid = uuidv4();
-    const url = 'https://msk.seppuku.club/miauth/' + uuid + '?name=PingHeng&callback=https://example.com&permission=read:account,write:account,read:blocks,write:blocks,read:drive,write:drive,read:favorites,write:favorites,read:following,write:following,read:messageing,write:messageing,read:mutes,write:mutes,write:notes,read:notifications,write:notificaions,write:reactions,write:votes,read:pages,write:pages,write:page-likes,read:page-likes';
-    Linking.openURL(url);
-}
+    let redirectUrl = Linking.createURL('auth/', {});
+    const url = 'https://msk.seppuku.club/miauth/' + uuid + '?name=PingHeng&callback=' + redirectUrl + '&permission=read:account,write:account,read:blocks,write:blocks,read:drive,write:drive,read:favorites,write:favorites,read:following,write:following,read:messageing,write:messageing,read:mutes,write:mutes,write:notes,read:notifications,write:notificaions,write:reactions,write:votes,read:pages,write:pages,write:page-likes,read:page-likes';
+    WebBrowser.openBrowserAsync(url);
+  }
 
-return(
-<View>
-<Input
-disabled
-  placeholder='http://msk.seppuku.club(現在変更不可)'
-/>
-<Button
-  title="認証URLを発行する"
-  onPress={getAuthURL}
-/>
-<Text>認証後のURLをコピーし、表示された入力欄に貼り付けてください。</Text>
-
-<Input
-  onChangeText={(val)=>{ktokenwrite(val)} }
-  placeholder='http://example.com&session...'
-/>
-<Button
-  title="認証する"
-  onPress={getAuth}
-/>
-</View>
-    );
+  return(
+    <View>
+      <Input
+        disabled
+        placeholder='http://msk.seppuku.club(現在変更不可)'
+      />
+      <Button
+        title="ログインする"
+        onPress={getAuthURL}
+      />
+    </View>
+  );
 }
 export default Register;
