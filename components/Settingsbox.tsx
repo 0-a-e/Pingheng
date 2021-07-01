@@ -1,3 +1,4 @@
+import { WebBrowser } from 'expo';
 import React, { useContext } from 'react';
 import { Button, Text, View } from 'react-native';
 import ReactNativeSettingsPage, { 
@@ -25,12 +26,12 @@ const lgout = () => {
                     <NavigateRow
 						text='Github'
 						iconName='github'
-					//	onPressCallback={this._navigateToScreen} 
+						onPressCallback={WebBrowser.openBrowserAsync("https://github.com/0-a-e/Pingheng")} 
                     />
                     <NavigateRow
 						text='@oae'
 				//		iconName='github'
-					//	onPressCallback={this._navigateToScreen} 
+						onPressCallback={WebBrowser.openBrowserAsync("https:///msk.seppuku.club/oae")} 
                     />
                     <NavigateRow
 						text='バージョン: 1.0'
