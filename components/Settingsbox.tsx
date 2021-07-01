@@ -1,4 +1,4 @@
-import { WebBrowser } from 'expo';
+import * as WebBrowser from 'expo-web-browser';
 import React, { useContext } from 'react';
 import { Button, Text, View } from 'react-native';
 import ReactNativeSettingsPage, { 
@@ -15,6 +15,9 @@ const Settingsbox= () => {
 const lgout = () => {
     logout();
 };
+const openlink = (url:string) => {
+    WebBrowser.openBrowserAsync(url);
+}
     return(
 <ReactNativeSettingsPage>
 				<SectionRow text='Usage'>
@@ -26,12 +29,12 @@ const lgout = () => {
                     <NavigateRow
 						text='Github'
 						iconName='github'
-						onPressCallback={WebBrowser.openBrowserAsync("https://github.com/0-a-e/Pingheng")} 
+						onPressCallback={() => {openlink("https://github.com/0-a-e/Pingheng")}} 
                     />
                     <NavigateRow
 						text='@oae'
 				//		iconName='github'
-						onPressCallback={WebBrowser.openBrowserAsync("https:///msk.seppuku.club/oae")} 
+						onPressCallback={() => {openlink("https:///msk.seppuku.club/@oae")}} 
                     />
                     <NavigateRow
 						text='バージョン: 1.0'
