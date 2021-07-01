@@ -17,12 +17,11 @@ import * as Linking from 'expo-linking';
 
 const Register = ({navigation}) => {
   
-const [ktokenurl, ktokenwrite] = useState();
-
+console.log("Register open");
 useEffect(() => {
-  Linking.addEventListener('url', event => {
-    ktokenwrite(event.url);
-    getAuth();
+  Linking.addEventListener('url', async event => {
+    await console.log(event.url);
+    await getAuth(event.url);
   });
 });
 
@@ -53,10 +52,10 @@ return params;
 }
 
 
-const getAuth = () => {
-    if(ktokenurl){
+const getAuth = (url:string) => {
+    if(url){
       try{
-        const sessionid = parseurl(ktokenurl)["session"];
+        const sessionid = parseurl(url)["session"];
         if(!sessionid){
           alert("パースに失敗しました");
         } else {
@@ -96,7 +95,7 @@ const getAuthURL = async () => {
     <View>
       <Input
         disabled
-        placeholder='http://msk.seppuku.club(現在変更不可) 2回ログイン必要'
+        placeholder='http://msk.seppuku.club(現在変更不可)'
       />
       <Button
         title="ログインする"
