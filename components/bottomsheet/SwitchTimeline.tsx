@@ -14,10 +14,10 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
-    const local = () => <Icon name="box" size={45} color={timelinestate === "localTimeline" ? '#fff' : 'rgb(180,180,230)'} />
-    const home = () => <Icon name="home" size={45} color={timelinestate === "homeTimeline" ? '#fff' : 'rgb(180,180,230)'} />
-    const global= () => <Icon name="globe" size={45} color={timelinestate === "globalTimeline" ? '#fff' : 'rgb(180,180,230)'} />
-    const hybrid= () => <Icon name="shuffle" size={45} color={timelinestate === "hybridTimeline" ? '#fff' : 'rgb(180,180,230)'} />
+    const local = () => <Icon name="box" size={45} color={timelinestate === "localTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
+    const home = () => <Icon name="home" size={45} color={timelinestate === "homeTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
+    const global= () => <Icon name="globe" size={45} color={timelinestate === "globalTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
+    const hybrid= () => <Icon name="shuffle" size={45} color={timelinestate === "hybridTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
     const switchtimelinebutton = [{"element":local},{"element":home},{"element":global},{"element":hybrid}];
 
 const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
@@ -44,12 +44,13 @@ const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => 
     
 return ( 
     <ButtonGroup
-onPress={val => {changetimeline(val,timelinestate,timelinestatewrite)}}
-selectedIndex={reconvert(timelinestate)}
-buttons={switchtimelinebutton}
-innerBorderStyle={{width:0}}
-containerStyle={{backgroundColor: "rgb(30,30,46)",height: 100,borderRadius:50,borderWidth:0,position:"relative",marginTop:80}}
-buttonStyle={{borderWidth:0}}
+      onPress={val => {changetimeline(val,timelinestate,timelinestatewrite)}}
+      selectedIndex={reconvert(timelinestate)}
+      buttons={switchtimelinebutton}
+      innerBorderStyle={{width:0}}
+      selectedButtonStyle={{backgroundColor:"rgba(10,10,40,0.5)"}}
+      containerStyle={{backgroundColor: "rgb(30,30,46)",height: 100,borderRadius:50,borderWidth:0,position:"relative",marginTop:80}}
+      buttonStyle={{borderWidth:0}}
  />
 );
 };
