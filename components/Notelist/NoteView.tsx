@@ -64,8 +64,8 @@ const NoteViewraw = (props) => {
                 <Badge 
                 status="primary"
                 value={<Icon name="terminal" color="#fff"/>}
-                containerStyle={{marginLeft: 5}}
-                badgeStyle={{width: 35}}
+                containerStyle={{marginLeft: 5,marginTop:3}}
+                badgeStyle={{width: 25}}
                 />
               }
               <ListItem.Subtitle style={notestyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
@@ -84,9 +84,6 @@ const NoteViewraw = (props) => {
                     {data["item"]["text"]}
 
               </ReadMore>
-           
-              <Text>{data["item"]["visibility"]}</Text>
-              <Text>{data["item"]["localOnly"]}</Text>
             </View>
 
           </View>
