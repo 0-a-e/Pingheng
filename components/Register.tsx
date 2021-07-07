@@ -92,7 +92,8 @@ const getAuthURL = async () => {
   }
 
   return(
-    <View>
+    <View style={{backgroundColor: "rgb(19,20,26)",height:"100%"}}>
+      <Text style={{color:"white",fontSize:60}}>欢迎来到</Text>
       <Input
         disabled
         placeholder='http://msk.seppuku.club(現在変更不可)'

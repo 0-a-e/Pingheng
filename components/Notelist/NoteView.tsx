@@ -1,11 +1,11 @@
 import React, { createRef, memo } from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
 import { NavigationEvents } from 'react-navigation';
+import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notestyles from './NoteStyle';
-
 const NoteViewraw = (props) => {
     const data = props["data"];
 
@@ -56,7 +56,7 @@ const NoteViewraw = (props) => {
           />
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
-              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>}
+              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]}  /></ListItem.Title>}
               {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
   
               {
@@ -72,7 +72,7 @@ const NoteViewraw = (props) => {
             </View>
             
             <View style={notestyles.normalcontainer}>     
- 
+
             <ReadMore
                 numberOfLines={3}
                 style={notestyles.notetext}
@@ -82,6 +82,7 @@ const NoteViewraw = (props) => {
               >
                     {data["item"]["text"] == false && "リツイート対応まで消さないで"}
                     {data["item"]["text"]}
+
               </ReadMore>
            
               <Text>{data["item"]["visibility"]}</Text>

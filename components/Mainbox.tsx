@@ -6,11 +6,15 @@ import Notifybox from './Notifybox';
 import Settingsbox from "./Settingsbox";
 import TabbarStateContext from "../Variable/TabbarState";
 import emoji from "../data/Emojis/emoji";
+import { useEffect } from "react";
 
 // <Notifybox />
 const Mainbox = () => {
 //後で記憶するように？いやいらんかも
-emoji();
+useEffect(() => {
+    emoji();
+});
+
 const [TabbarState,TabbarStatewrite] = useState("home");
 return(
    <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>

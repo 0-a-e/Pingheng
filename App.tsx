@@ -45,6 +45,7 @@ export default function App() {
                     <Stack.Screen
                       name="Welcome"
                       component={Register}
+                      options={{ headerShown: false }}
                     />
                   </Stack.Navigator>
                 </NavigationContainer>

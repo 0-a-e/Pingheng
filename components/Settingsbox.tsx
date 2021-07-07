@@ -32,6 +32,11 @@ const openlink = (url:string) => {
 						onPressCallback={() => {openlink("https://github.com/0-a-e/Pingheng")}} 
                     />
                     <NavigateRow
+						text='絵文字を更新'
+						iconName='wrench'
+					//	onPressCallback={() => {openlink("https:///msk.seppuku.club/@oae")}} 
+                    />
+                    <NavigateRow
 						text='@oae'
 				//		iconName='github'
 						onPressCallback={() => {openlink("https:///msk.seppuku.club/@oae")}} 

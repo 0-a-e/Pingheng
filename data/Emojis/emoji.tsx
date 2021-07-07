@@ -16,20 +16,19 @@ const Emoji = () => {
 
     
     //あとでurlに
-    axios.get('http://192.168.3.16:3000').then((resp) => {
+    axios.get('http://192.168.3.16:3000').then(async (resp) => {
          
         if(resp.status == 200){
          
-            storage.remove({
-            key: 'emoji'
+            await storage.remove({
+                key: 'emoji'
             });
-/*
-        storage.save({
-            key: 'emoji',
-            data: {
-              data:resp.data
-            },
-        });*/
+            await storage.save({
+                key: 'emoji',
+                data: {
+                    data:resp.data
+                },
+            });
         console.log("emoji update OK");
          } else {
             console.log('emojiget status err:', resp.status);
