@@ -6,6 +6,7 @@ import { NavigationEvents } from 'react-navigation';
 import switchactionring from './switchActionring';
 import notifystyles from './notifyStyle';
 import Actionring from './Actionring';
+import ParseEmoji from '../../data/Emojis/ParseEmoji';
 
 const NoteView = (props:any) => {
     const actionringvar = switchactionring(props["data"]["item"]["type"],props);
@@ -19,7 +20,7 @@ const NoteView = (props:any) => {
                 <Actionring actionringvar={actionringvar} props={props}/>
                 <View style={notifystyles.incardcontainer}>
                     <View style={notifystyles.topcontainer}>
-                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>{props["data"]["item"]["user"]["name"]}</ListItem.Title>}
+                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  /> </ListItem.Title>}
                         {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
                     </View>
                     <View style={notifystyles.normalcontainer}>     
