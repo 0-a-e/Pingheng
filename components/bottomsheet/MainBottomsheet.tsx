@@ -86,10 +86,10 @@ const MainBottomsheet = () => {
       <View>
         <Text>{bartoggle.toString()}</Text>
         <Box Mtoken={Mtoken}/>
-        <Button title="settings" onPress={() => {TabbarStatewrite("settings")}}/>
       </View>
 
-      <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%"}}>
+      <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%",height:190,}}>
+      <Button containerStyle={{position:"absolute",top:0,right:20,width:60,height:60,borderRadius:50}}  buttonStyle={{width:60,height:60,borderRadius:50,backgroundColor:"rgb(30,30,46)"}} icon={<Icon size={30} name={"settings"} color="rgb(180,180,230)"/>} onPress={() => {TabbarStatewrite("settings")}}/>
         <SwitchTimeline Mtoken={Mtoken}/>
       </View>  
 

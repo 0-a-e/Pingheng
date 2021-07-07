@@ -48,8 +48,8 @@ onPress={val => {changetimeline(val,timelinestate,timelinestatewrite)}}
 selectedIndex={reconvert(timelinestate)}
 buttons={switchtimelinebutton}
 innerBorderStyle={{width:0}}
-containerStyle={{height: 100,borderRadius:50,borderWidth:0}}
-buttonStyle={{backgroundColor: "rgb(30,30,46)",borderWidth:0}}
+containerStyle={{backgroundColor: "rgb(30,30,46)",height: 100,borderRadius:50,borderWidth:0,position:"relative",marginTop:80}}
+buttonStyle={{borderWidth:0}}
  />
 );
 };

@@ -20,7 +20,7 @@ const openlink = (url:string) => {
 }
     return(
 <ReactNativeSettingsPage>
-				<SectionRow text='Usage'>
+				<SectionRow text='設定'>
 					<NavigateRow
 						text='ログアウト'
 						iconName='sign-out'
