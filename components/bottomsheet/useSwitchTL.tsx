@@ -33,8 +33,9 @@ const reconvert = (tlstate: any) => {
        return 2;
       case "hybridTimeline":
       return 3;
-      default:
-        alert(`該当する再変換タイムラインインデックスがありません`);
+      //default:
+        //return "homeTimeline";
+        //alert(`該当する再変換タイムラインインデックスがありません`);
     }
     }
   
@@ -47,9 +48,10 @@ const convert = (tlstate: any) => {
         case 2:
          return "globalTimeline";
         case 3:
-        return "hybridTimeline";
-        default:
-          alert(`該当するタイムラインインデックスがありません`);
+          return "hybridTimeline";
+        //default:
+          //return "homeTimeline";
+          //alert(`該当するタイムラインインデックスがありません`);
       }
       }
 
@@ -63,8 +65,9 @@ const toendpoint = (tlstate: any) => {
          return "global-timeline";
         case "hybridTimeline":
         return "hybrid-timeline";
-        default:
-          alert(`該当する再変換タイムラインインデックスがありません`);
+        //default:
+          //return "timeline";
+          //alert(`該当する再変換タイムラインインデックスがありません`);
       }
       }
 return {"convert":convert,"reconvert":reconvert,"toendpoint":toendpoint}

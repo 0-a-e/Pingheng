@@ -14,7 +14,7 @@ const NoteView = (props:any) => {
     <View>
         <TouchableOpacity  onLongPress={() => {
             //リアクション選択を実装
-          alert('長押しタップ成功！');
+          alert('長押し成功');
         }}>
             <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
                 <Actionring actionringvar={actionringvar} props={props}/>

@@ -49,7 +49,7 @@ const switchactionring = (type: string,props: any) =>{
             //console.log(props["data"]["item"]["note"]["renote"]["text"]);     
             //  鍵アカウントのときはNullになるぽい？
             // いや　鍵外してもnullか ["note"]にそもそもないぽい　["data"]["item"]でもなし？　全部でもIDもtextもない　意味わからん　諦め
-            console.log(props);
+            //  console.log(props);
             return {
                 background:"#3ea9b5",
                 icon:"git-branch",
@@ -62,7 +62,7 @@ const switchactionring = (type: string,props: any) =>{
                 text: "メンションされました"
             }
         default:
-            console.log("Unknown event: " + type);
+          //  console.log("Unknown event: " + type);
             return {
                 background:"#d62951",
                 icon:"help-circle",

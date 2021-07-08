@@ -3,7 +3,7 @@ import { StyleSheet,View} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import NoteList from './Variable/NoteList';
-import NotifyList from './Variable/NotifyState';
+
 import TimelineStateContext from './Variable/TimelineState';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
@@ -21,7 +21,6 @@ export default function App() {
 
 
   const [notelist, notelistwrite] = useState([]);
-  const [notifylist,notifylistwrite] = useState([]);
   const [timelinestate, timelinestatewrite] = useState(undefined);
   const [ws,wswrite] = useState("");
   const [Mtoken,Mtokenwrite] = useState("");
@@ -32,7 +31,6 @@ export default function App() {
     <View style={styles.container}>
       <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
         <WSobj.Provider value ={{ ws,wswrite }}>
-          <NotifyList.Provider value = {{notifylist,notifylistwrite}}>
             <NoteList.Provider value={{ notelist, notelistwrite }}>
               <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
                 <NavigationContainer>
@@ -51,7 +49,6 @@ export default function App() {
                 </NavigationContainer>
               </TimelineStateContext.Provider>
             </NoteList.Provider>
-          </NotifyList.Provider>
         </WSobj.Provider>
       </Mtokenvar.Provider>
     </View>

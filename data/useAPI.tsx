@@ -12,5 +12,3 @@ export const sendAPI = async ([Mtoken,endpoint,data]:[String,String,Object]) => 
         return false;
       }
     }
-    //  const arrayPost = response.data;
-    //  console.log(arrayPost);

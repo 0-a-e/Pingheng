@@ -14,6 +14,7 @@ ReactNative製Misskeyクライアント(仮)
 - [x] tl切替時に過去ノートを取得
 - [x] TLの切り替え
 - [x] ノート送信
+- [x] ログアウト
 - [ ] 切り替え時自動ロード
 - [ ] アクションシート（いいねとリプ）
 - [ ] ノートの折りたたみ/展開 
@@ -37,7 +38,6 @@ ReactNative製Misskeyクライアント(仮)
 - [ ] Mtokenをreact-native-keychainで保存する
 - [ ] hogeStateからhogeContextに改名
 - [ ] 画像トリミング
-- [ ] ログアウト
 - [ ] 鯖エラー、鯖落ち時の処理
 - [ ] 下書き（云）
 - [ ] 複垢対応

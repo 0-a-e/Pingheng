@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import { sendAPI } from '../data/useAPI';
 import Mtokenvar from '../Variable/Mtoken';
-import NotifyState from '../Variable/NotifyState';
 import NotifyListbox from './Notify/NotifyListBox';
+import NotifyState from '../Variable/NotifyState';
 
 const Notifybox= () => {
-    const {notifylist, notifylistwrite} = useContext(NotifyState);
+    const [notifylist,notifylistwrite] = useState([]);
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
 
     function getNotify(){
@@ -19,11 +19,11 @@ const Notifybox= () => {
             }
         });
     }
-
+ //   useEffect(() =>{getNotify();});
     return(
-    <View>
+    <NotifyState.Provider value = {{notifylist,notifylistwrite}}>
         <NotifyListbox PgetNotify={() => getNotify()}/>
-    </View>
+    </NotifyState.Provider>
     )
 }
 export default Notifybox;
