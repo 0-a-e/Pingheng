@@ -86,14 +86,16 @@ const NoteViewraw = (props) => {
             </View>
 
           </View>
-          <View style={notestyles.linkbox}>
-          </View>
+
+
         </Card>
     </TouchableOpacity>
       </View>
 );
 };
 const NoteView = memo(NoteViewraw);
+//<View style={notestyles.linkbox}></View>
+
 //<View style={notestyles.incardcontainer}>
 
 export default NoteView;
