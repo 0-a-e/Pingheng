@@ -20,10 +20,12 @@ const notestyles = StyleSheet.create({
       paddingTop: 5
     },
     normalcontainer:{
-      width: "100%",
-  
+      width: "87%",
       flexDirection: 'column',
-      paddingTop: 5
+      paddingTop: 5,
+    },
+    notetext:{
+      color:　"#fff",
     },
     avatar: {
         backgroundColor: "rgba(230,230,230,1)",

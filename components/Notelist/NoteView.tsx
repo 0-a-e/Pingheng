@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View,TouchableOpacity } from 'react-native';
+import { View,TouchableOpacity,Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Avatar,ListItem,Card,Badge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
@@ -41,7 +41,7 @@ const NoteViewraw = (props) => {
 
         onLongPress={() => {
       //リアクション選択を実装
-          alert('長押しタップ成功！');
+          alert('long tap');
         }}>
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
         <Avatar
@@ -71,18 +71,14 @@ const NoteViewraw = (props) => {
             </View>
             
             <View style={notestyles.normalcontainer}>     
-
-            <ReadMore
-                numberOfLines={3}
-                style={notestyles.notetext}
-                seeMoreText="続きを見る"
-              　seeLessText="折りたたむ"　seeMoreStyle={{color: "rgba(255,255,255,0.6)"}}
-              　seeLessStyle={{color:"rgba(255,255,255,0.6)"}}
+              <Text style={notestyles.notetext}
+                numberOfLines={2}
+                ellipsizeMode='tail'
               >
                     {data["item"]["text"] == false && "リツイート対応まで消さないで"}
                     {data["item"]["text"]}
 
-              </ReadMore>
+              </Text>
             </View>
 
           </View>
