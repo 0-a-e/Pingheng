@@ -1,4 +1,4 @@
-import React, { useState,sets } from "react";
+import React, { useState,sets, useRef } from "react";
 import { View } from "react-native";
 import Mainbottomsheet from './bottomsheet/MainBottomsheet';
 import Homebox from './Homebox';
@@ -10,12 +10,15 @@ import { useEffect } from "react";
 
 // <Notifybox />
 const Mainbox = () => {
-//後で記憶するように？いやいらんかも
+    //後で記憶するように？いやいらんかも
 useEffect(() => {
     emoji();
 });
 
+
 const [TabbarState,TabbarStatewrite] = useState("home");
+if(TabbarState == "notify"){
+}
 return(
    <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
     {TabbarState == "home" && <Homebox />}
