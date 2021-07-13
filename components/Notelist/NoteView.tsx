@@ -1,9 +1,8 @@
-import React, { createRef, memo } from 'react';
-import { StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native';
+import React, { memo } from 'react';
+import { View,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { Button,Avatar,ListItem,Card,ButtonGroup,Badge,withBadge } from 'react-native-elements';
+import { Avatar,ListItem,Card,Badge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
-import { NavigationEvents } from 'react-navigation';
 import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notestyles from './NoteStyle';
 const NoteViewraw = (props) => {

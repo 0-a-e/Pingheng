@@ -1,12 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
-import React, { useContext } from 'react';
-import { Button, Text, View } from 'react-native';
+import React from 'react';
 import ReactNativeSettingsPage, { 
 	SectionRow, 
 	NavigateRow,
-    SwitchRow,
-	CheckRow,
-    SliderRow
 } from 'react-native-settings-page';
 //import Icon from 'react-native-vector-icons/Feather';
 import logout from '../data/logout';

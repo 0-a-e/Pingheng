@@ -1,7 +1,4 @@
 import axios from "axios";
-import React from "react";
-import { View,Text } from "react-native";
-import { Input } from "react-native-elements";
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 

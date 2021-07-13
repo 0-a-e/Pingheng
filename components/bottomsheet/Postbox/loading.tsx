@@ -9,8 +9,9 @@ animationType={"decay"}
 />
   )
 }
-*/
 import * as Progress from 'react-native-progress';
+
+*/
 
 const loadingstyles = StyleSheet.create({
 

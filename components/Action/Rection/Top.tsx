@@ -1,6 +1,6 @@
 import React from "react";
-import { View,Text, Dimensions } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { View } from "react-native";
+import { Button} from "react-native-elements";
 
 const Top = (props) => {
     return(

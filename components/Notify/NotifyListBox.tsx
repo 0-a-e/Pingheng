@@ -1,6 +1,6 @@
 import NotifyState from '../../Variable/NotifyState';
 import React, { useContext, useEffect } from 'react';
-import { FlatList, Text, View,RefreshControl } from 'react-native';
+import { FlatList, View,RefreshControl } from 'react-native';
 import NotifyView from './NotifyView';
 import { useState } from 'react';
 import { sendAPI } from '../../data/useAPI';

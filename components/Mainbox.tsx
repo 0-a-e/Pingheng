@@ -1,5 +1,4 @@
-import React, { useState,sets, useRef } from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
 import Mainbottomsheet from './bottomsheet/MainBottomsheet';
 import Homebox from './Homebox';
 import Notifybox from './Notifybox';

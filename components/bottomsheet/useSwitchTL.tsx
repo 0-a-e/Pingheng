@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 const switchTL = () => {
 //切り分けと接続だけ
 //切断はしない

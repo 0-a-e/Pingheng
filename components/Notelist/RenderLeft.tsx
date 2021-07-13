@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import React, { useContext } from 'react';
+import React from 'react';
 
 const RenderLeft = () => {
 <Text>ddd</Text>    

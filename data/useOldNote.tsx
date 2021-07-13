@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import { sendAPI } from '../data/useAPI';
 import useSwitchTL from '../components/bottomsheet/useSwitchTL';
 

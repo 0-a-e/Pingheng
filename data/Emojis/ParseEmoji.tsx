@@ -1,9 +1,5 @@
-import axios from "axios";
 import React from "react";
-import { View,Text,Image } from "react-native";
-import { Input } from "react-native-elements";
-import Storage from 'react-native-storage';
-import AsyncStorage from '@react-native-community/async-storage';
+import { Image } from "react-native";
 const reactStringReplace = require('react-string-replace');
 
 const imageCom = (match) => {

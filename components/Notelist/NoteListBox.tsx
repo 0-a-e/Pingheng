@@ -1,6 +1,6 @@
 import NoteList from '../../Variable/NoteList';
 import React, { createRef,useCallback,useContext } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { View } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';

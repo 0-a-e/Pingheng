@@ -1,6 +1,5 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext,useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions } from 'react-native';
-import Animated from 'react-native-reanimated';
 import { Button} from 'react-native-elements';
 import BottomSheet from "react-native-bottomsheet-reanimated";
 import Icon from 'react-native-vector-icons/Feather';

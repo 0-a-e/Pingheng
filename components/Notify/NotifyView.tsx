@@ -1,8 +1,6 @@
 import React, {} from 'react';
 import { Text, View,TouchableOpacity } from 'react-native';
 import { ListItem,Card } from 'react-native-elements';
-import ReadMore from '@fawazahmed/react-native-read-more';
-import { NavigationEvents } from 'react-navigation';
 import switchactionring from './switchActionring';
 import notifystyles from './notifyStyle';
 import Actionring from './Actionring';

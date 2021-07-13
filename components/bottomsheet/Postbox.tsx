@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useRef, useState,useMemo, createRef } from 'react';
-import {RefreshControlBase, StyleSheet, View} from 'react-native';
-import { Button} from 'react-native-elements';
+import React, {createRef } from 'react';
+import {View} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
-import  icon from 'react-native-vector-icons/Feather';
 import Textarea from './Postbox/Textarea';
-import Mtokenvar from '../../Variable/Mtoken';
 import { sendAPI } from '../../data/useAPI';
 
 const box = (Props:{Mtoken:string}) => {
