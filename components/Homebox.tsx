@@ -1,5 +1,5 @@
 import StreamWebSocket from '../data/StreamWebSocket';
-import NoteListBox from '../components/Notelist/NoteListBox';
+import NoteListBox from './Notelist/NoteListBox';
 import React from 'react';
 import { View,Text } from 'react-native';
 

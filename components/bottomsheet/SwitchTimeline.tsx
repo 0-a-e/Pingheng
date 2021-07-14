@@ -1,14 +1,14 @@
 import { ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import TimelineStateContext from '../../Variable/TimelineState';
 import useSwitchTL from './useSwitchTL';
 import WSobj from '../../Variable/WSobj';
 import useOldNote from '../../data/useOldNote';
 import NoteList from '../../Variable/NoteList';
 
-
 const {convert,reconvert} = useSwitchTL();
+
 
 const SwitchTimeline = (Props: {Mtoken:string}) => {
     const {ws,wswrite} = useContext(WSobj);
@@ -16,33 +16,35 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
     const {notelist, notelistwrite} = useContext(NoteList);
     const local = () => <Icon name="box" size={45} color={timelinestate === "localTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
     const home = () => <Icon name="home" size={45} color={timelinestate === "homeTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
-    const global= () => <Icon name="globe" size={45} color={timelinestate === "globalTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
-    const hybrid= () => <Icon name="shuffle" size={45} color={timelinestate === "hybridTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
+    const global = () => <Icon name="globe" size={45} color={timelinestate === "globalTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
+    const hybrid = () => <Icon name="shuffle" size={45} color={timelinestate === "hybridTimeline" ? 'rgba(255,255,255,0.9)' : 'rgb(180,180,230)'} />
     const switchtimelinebutton = [{"element":local},{"element":home},{"element":global},{"element":hybrid}];
 
-const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
-    const convertedval = convert(val);
-    timelinestatewrite(convertedval);
-    //TL切り替え完成　2021/5/2/22:50
-    useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
-  /*   ws.send(JSON.stringify({
-        "type": "disconnect",
-        "body": {
-        "id": "timeline",
-           }
-         }));
-
-    ws.send(JSON.stringify({
-        "type": "connect",
-        "body": {
-        "channel": convertedval,
-        "id": "timeline",
-        "params": {}
-           }
-         }));*/
-};
+    const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
+      const convertedval = convert(val);
+      timelinestatewrite(convertedval);
+      //TL切り替え完成　2021/5/2/22:50
+      useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
+    /*   ws.send(JSON.stringify({
+          "type": "disconnect",
+          "body": {
+          "id": "timeline",
+             }
+           }));
     
-return ( 
+      ws.send(JSON.stringify({
+          "type": "connect",
+          "body": {
+          "channel": convertedval,
+          "id": "timeline",
+          "params": {}
+             }
+           }));*/
+    };
+
+  //  useEffect(() => {changetimeline(1,timelinestate,timelinestatewrite);},[]);
+    
+  return ( 
     <ButtonGroup
       onPress={val => {changetimeline(val,timelinestate,timelinestatewrite)}}
       selectedIndex={reconvert(timelinestate)}
@@ -51,8 +53,8 @@ return (
       selectedButtonStyle={{backgroundColor:"rgba(10,10,40,0.5)"}}
       containerStyle={{backgroundColor: "rgb(30,30,46)",height: 100,borderRadius:50,borderWidth:0,position:"relative",marginTop:80}}
       buttonStyle={{borderWidth:0}}
- />
-);
+    />
+  );
 };
 
 export default SwitchTimeline;

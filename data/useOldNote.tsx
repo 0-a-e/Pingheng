@@ -2,6 +2,8 @@ import { sendAPI } from '../data/useAPI';
 import useSwitchTL from '../components/bottomsheet/useSwitchTL';
 
 async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelistwrite: any) {
+    console.log("--##");
+    console.log("--##");
     const tltype = useSwitchTL()["toendpoint"](rawtltype);
     console.log(tltype);
     const payload = {

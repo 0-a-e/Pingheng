@@ -14,9 +14,8 @@ const ListKey = (props) => {
    //console.log(props["id"]);
   //  const data = props["data"]["item"];
     return props["id"];
+  }
 
-
-}
 const NoteListBox = () => {
   const actionSheetRef = createRef();
   const {notelist, notelistwrite} = useContext(NoteList);
