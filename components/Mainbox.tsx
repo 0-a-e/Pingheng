@@ -17,7 +17,9 @@ useEffect(() => {
 
 const [notelist, notelistwrite] = useState([]);
 const [TabbarState,TabbarStatewrite] = useState("home");
+
 if(TabbarState == "notify"){
+
 }
 return(
 
