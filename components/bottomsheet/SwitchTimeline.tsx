@@ -15,11 +15,12 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
+
     const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
-      const convertedval = convert(val);
-      timelinestatewrite(convertedval);
       //TL切り替え完成　2021/5/2/22:50
+      const convertedval = convert(val);
       useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
+      timelinestatewrite(convertedval);
     /*   ws.send(JSON.stringify({
           "type": "disconnect",
           "body": {
@@ -37,7 +38,6 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
            }));*/
     };
 
-  //  useEffect(() => {changetimeline(1,timelinestate,timelinestatewrite);},[]);
   const returnbutton = () => {
 
     return ( 

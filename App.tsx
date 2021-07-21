@@ -2,7 +2,6 @@ import React, {useState } from 'react';
 import { StyleSheet,View} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import TimelineStateContext from './Variable/TimelineState';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
 import Mainbox from './components/Mainbox';
@@ -17,8 +16,6 @@ export default function App() {
     'f4t9GuIa6FU0YAlKN6MfXJMJ4dFtnvCBTUlUw6dW'
   );
 
-
-  const [timelinestate, timelinestatewrite] = useState(undefined);
   const [ws,wswrite] = useState("");
   const [Mtoken,Mtokenwrite] = useState("");
   const Stack = createStackNavigator();
@@ -28,7 +25,6 @@ export default function App() {
     <View style={styles.container}>
       <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
         <WSobj.Provider value ={{ ws,wswrite }}>
-              <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
                 <NavigationContainer>
                   <Stack.Navigator initialRouteName="Welcome">
                     <Stack.Screen
@@ -43,7 +39,6 @@ export default function App() {
                     />
                   </Stack.Navigator>
                 </NavigationContainer>
-              </TimelineStateContext.Provider>
         </WSobj.Provider>
       </Mtokenvar.Provider>
     </View>
