@@ -11,7 +11,6 @@ const {convert,reconvert} = useSwitchTL();
 
 
 const SwitchTimeline = (Props: {Mtoken:string}) => {
-    console.log("refreshed");
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
@@ -19,8 +18,8 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
     const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
       //TL切り替え完成　2021/5/2/22:50
       const convertedval = convert(val);
-      useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
       timelinestatewrite(convertedval);
+      useOldNote(Props["Mtoken"],convertedval,notelist,notelistwrite);
     /*   ws.send(JSON.stringify({
           "type": "disconnect",
           "body": {

@@ -9,9 +9,9 @@ import Reaction from "./Rection/Reaction";
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
 
     const {notedata,notedatawrite} = useContext(NotedataContext);
-    console.log("#--#");
+    console.log("#-Action.tsx-notedata-#");
     console.log(notedata);
-    console.log("#--#");
+    console.log("#-Action.tsx-notedata-end-#");
     //const [noteid,noteidwrite] = useState(props.data["item"]["text"]);
     return(
         <ActionSheet ref={props.actionSheetRef}>

@@ -19,9 +19,6 @@ const ReturnWS = () => {
       return(
   <WSurl.Consumer>
     {(val)=>{
-      console.log("--");
-      console.log(val);
-      console.log("--");
       return(
   <WS
   ref={ref => {wswrite(ref)}}

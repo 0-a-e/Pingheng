@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
 import Mainbox from './components/Mainbox';
 import WSobj from './Variable/WSobj';
-import Mtokenvar from './Variable/Mtoken';
 import { initializeParse } from  '@parse/react-native';
 
 export default function App() {
@@ -17,13 +16,11 @@ export default function App() {
   );
 
   const [ws,wswrite] = useState("");
-  const [Mtoken,Mtokenwrite] = useState("");
   const Stack = createStackNavigator();
 
-
+console.log("APPRELOAD============");
   return (
     <View style={styles.container}>
-      <Mtokenvar.Provider value = {{Mtoken,Mtokenwrite}}>
         <WSobj.Provider value ={{ ws,wswrite }}>
                 <NavigationContainer>
                   <Stack.Navigator initialRouteName="Welcome">
@@ -40,7 +37,6 @@ export default function App() {
                   </Stack.Navigator>
                 </NavigationContainer>
         </WSobj.Provider>
-      </Mtokenvar.Provider>
     </View>
 );
 }
