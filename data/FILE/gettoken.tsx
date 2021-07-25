@@ -3,21 +3,18 @@ import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
-const gettoken = async (Mtokenwrite: (arg0: string) => void,wsurlwrite: (arg0: string) => void) => {
+const gettoken = async () => {
   const storage: Storage = new Storage({
      storageBackend: AsyncStorage,
      defaultExpires: null,
      enableCache: true,
    });
 
-    await storage.load({key: 'user'}).then(res => {
-        if (res["token"] && res){
-          Mtokenwrite(res["token"].toString());
-          const url ="wss://msk.seppuku.club/streaming?i=" + res["token"].toString();
-          console.log(url);
-          wsurlwrite(url);
-      }
-});
+  const res = await storage.load({key: 'user'});
+    if (res["token"] && res){
+        console.log("Mtoken loaded:" + res["token"]);
+        return res["token"].toString();
+    }
 }
 
 export default gettoken;

@@ -11,6 +11,7 @@ import TimelineStateContext from '../Variable/TimelineState';
 import useSwitchTL from './bottomsheet/useSwitchTL';
 import useOldNote from '../data/useOldNote';
 import Mtokenvar from '../Variable/Mtoken';
+import gettoken from '../data/FILE/gettoken';
 
 // <Notifybox />
 //2021/7/22 Mtokenが来てない
@@ -21,13 +22,13 @@ const Mainbox = () => {
     emoji();
 });
 */
-const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => {
+const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any,Mtokenlocal:string) => {
     //TL切り替え完成　2021/5/2/22:50
-    console.log("--ud>" + Mtoken + "<ud--");
+    console.log("--ud>" + Mtokenlocal + "<ud--");
     const convertedval = convert(val);
     console.log(convertedval);
     timelinestatewrite(convertedval);
-    useOldNote(Mtoken,convertedval,notelist,notelistwrite);
+    useOldNote(Mtokenlocal,convertedval,notelist,notelistwrite);
   /*   ws.send(JSON.stringify({
         "type": "disconnect",
         "body": {
@@ -45,28 +46,23 @@ const changetimeline = (val: any,timelinestate: any,timelinestatewrite: any) => 
          }));*/
   };
 
-  const firstloadTL = () => {
-    if(TabbarState == "home"){
-        if(Mtoken){
-        console.log("home");
-        changetimeline(1,timelinestate,timelinestatewrite);
-        }
+  const firstloadTL = (Mtokenlocal) => {
+    if(TabbarState == "home" && Mtokenlocal){
+        changetimeline(1,timelinestate,timelinestatewrite,Mtokenlocal);
     }
 };
 
-const [Mtoken,Mtokenwrite] = useState("");
+const [Mtoken,Mtokenwrite] = useState();
 const {convert,reconvert} = useSwitchTL();
 const [timelinestate, timelinestatewrite] = useState(undefined);
 const [notelist, notelistwrite] = useState([]);
 const [TabbarState,TabbarStatewrite] = useState("home");
 
-console.log("--ss>" + Mtoken + "<ss--");
-
 useLayoutEffect(() => {
     const f = async () => {
-    await new Promise(r => setTimeout(r, 1000));
-    console.log("--sU>" + Mtoken + "<Us--");
-    firstloadTL();
+        const token = await gettoken();
+        Mtokenwrite(token);
+        firstloadTL(token);
   };
     f();
 },[]);

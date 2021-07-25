@@ -9,8 +9,9 @@ const Homebox= () => {
   return(
     <View style={{height: "100%",backgroundColor:"red"}}>
     <NoteListBox />
-    <StreamWebSocket />
+    
     </View>
     )
 }
+//<StreamWebSocket />
 export default Homebox;
