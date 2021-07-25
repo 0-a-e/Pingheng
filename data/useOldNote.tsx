@@ -3,12 +3,6 @@ import useSwitchTL from '../components/bottomsheet/useSwitchTL';
 
 async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelistwrite: any) {
     const tltype = useSwitchTL()["toendpoint"](rawtltype);
-    console.log("=====");
-    console.log(Mtoken);
-    console.log(tltype);
-    console.log(notelist);
-    console.log(notelistwrite);
-    console.log("=====");
     const payload = {
         "limit":100
     };
