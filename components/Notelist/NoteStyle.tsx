@@ -32,13 +32,17 @@ const notestyles = StyleSheet.create({
     },
     RTtext:{
       color: "#fff",
+      fontSize: 13,
+      marginTop:3
     },
     RTtextcontainer:{
       backgroundColor:"#3eb585",
       borderTopEndRadius: 50,
       borderBottomEndRadius:50,
       marginTop:5,
-      paddingLeft: 5
+      paddingLeft: 5,
+      paddingRight:5,
+      maxWidth: "65%"
 
     },
     topRTcontainer:{
@@ -47,7 +51,6 @@ const notestyles = StyleSheet.create({
       marginTop: 5,
       marginLeft:-30,
       backgroundColor:"#3eb585",
-      borderRadius: 50
     },
     normalcontainer:{
       width: "87%",
@@ -66,7 +69,7 @@ const notestyles = StyleSheet.create({
       height:25,
       width:25,
       marginRight:3,
-      marginLeft:53
+      marginLeft:52
     },
     renoteavataroverlay:{
       backgroundColor: "rgba(230,230,230,1)",
