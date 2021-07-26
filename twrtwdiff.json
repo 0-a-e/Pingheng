@@ -1,0 +1,33 @@
+//Oさんがやまでのおれんじ起床をリツイートしている
+"renote": Object {
+    "createdAt": "2021-07-25T00:18:43.327Z",
+    "cw": null,
+    "emojis": Array [],
+    "fileIds": Array [],
+    "files": Array [],
+    "id": "8om0p9fjl2",
+    "myReaction": "❤",
+    "reactions": Object {
+      "❤": 4,
+    },
+    
+    "renoteCount": 2,
+    "renoteId": null,
+    "repliesCount": 1,
+    "replyId": null,
+    "text": "ぉれんぢ起床",
+    "user": Object {
+      "avatarBlurhash": "yTNJRK-:_LbvRkozWV_3e:%gx[oyoyRQ.QnhxYadM{oJs:%gM|MyM|V@jFkC%LR+Rkt6oLaeWX%fkDV@oet6WBoyt7t6RjoLs.WBbI",
+      "avatarColor": null,
+      "avatarUrl": "https://msk.seppuku.club/files/thumbnail-95bbddf8-af2e-4cae-9a73-6283ede06019",
+      "emojis": Array [],
+      "host": null,
+      "id": "8j1286nful",
+      "isAdmin": true,
+      "name": "؜",
+      "onlineStatus": "online",
+      "username": "yamad",
+    },
+    "userId": "8j1286nful",
+    "visibility": "public",
+  },
