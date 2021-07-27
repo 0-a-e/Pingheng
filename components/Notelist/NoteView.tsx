@@ -8,28 +8,6 @@ import notestyles from './NoteStyle';
 const NoteViewraw = (props) => {
     const data = props["data"];
 
-    const geturl = (text) => {
-      //httpsのみかも
-        var regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
-        if(text){
-        const res = text.match(regexp_url);
-          if(res != []){
-            return res;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-    }
-
-   // console.log("#swssssxd");
-    //console.log(data);
-   // console.log("#sssss");
-
-  //  console.log(geturl(data["item"]["text"]));
-/*
-           */
 
   const notereturn = () =>{  
     return (

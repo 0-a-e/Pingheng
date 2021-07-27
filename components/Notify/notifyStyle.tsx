@@ -71,6 +71,50 @@ const notifystyles = StyleSheet.create({
     },
     actionringicon:{
         position:'relative',
+    },
+    /*RT系*/
+    RTicon:{
+      marginTop:5,
+      marginLeft:32,
+      color: "#fff"
+  
+    },
+    RT1container:{
+      flexDirection: 'row',
+      position: 'relative',
+      zIndex:-3,
+    },
+    RTtext:{
+      color: "#fff",
+      fontSize: 13,
+      marginTop:3
+    },
+    RTtextcontainer:{
+      backgroundColor:"#3eb585",
+      borderTopEndRadius: 50,
+      borderBottomEndRadius:50,
+      marginTop:5,
+      paddingLeft: 5,
+      paddingRight:5,
+      maxWidth: "65%"
+
+    },
+    topRTcontainer:{
+      height:25,
+      width: 77,
+      marginTop: 5,
+      marginLeft:-30,
+      backgroundColor:"#3eb585",
+    },
+    renoteavatarcontainer:{
+      position: "absolute",
+      height:25,
+      width:25,
+      marginRight:3,
+      marginLeft:52
+    },
+    renoteavataroverlay:{
+      backgroundColor: "rgba(230,230,230,1)",
     }
       });
   

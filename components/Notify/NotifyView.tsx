@@ -1,17 +1,18 @@
 import React, {} from 'react';
 import { Text, View,TouchableOpacity } from 'react-native';
-import { ListItem,Card } from 'react-native-elements';
+import { ListItem,Card, Avatar } from 'react-native-elements';
 import switchactionring from './switchActionring';
 import notifystyles from './notifyStyle';
 import Actionring from './Actionring';
 import ParseEmoji from '../../data/Emojis/ParseEmoji';
+import Icon from 'react-native-vector-icons/Feather';
 
-const NoteView = (props:any) => {
+const NotifyView = (props:any) => {
     const actionringvar = switchactionring(props["data"]["item"]["type"],props);
+    const notereturn = () => {
     return (
     <View>
         <TouchableOpacity  onLongPress={() => {
-            //リアクション選択を実装
           alert('long tap');
         }}>
             <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
@@ -35,7 +36,77 @@ const NoteView = (props:any) => {
         </TouchableOpacity>
     </View>
 );
+}
+
+
+const renotereturn = () => {
+  const bdr = () => {
+    if(props.data.item.text != null){
+      return 0;
+    } else{
+      return 50;
+    }
+  }
+  const bd = bdr();
+
+  return (
+    <View>
+    <TouchableOpacity  onLongPress={() => {
+        //リアクション選択を実装
+      alert('long tap');
+    }}>
+        <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
+            <Actionring actionringvar={actionringvar} props={props}/>
+            <View style={notifystyles.incardcontainer}>
+            <View style={notifystyles.RT1container}>
+          <View style={[notifystyles.topRTcontainer,{borderRadius:bd}]}>
+          <ListItem.Title style={notifystyles.RTicon}><Icon size={15} name="refresh-cw"/></ListItem.Title>
+          <Avatar
+            containerStyle = {notifystyles.renoteavatarcontainer}
+            overlayContainerStyle={notifystyles.renoteavataroverlay}
+            rounded
+            title={props["data"]["item"]["user"]["name"]}
+            source={{
+              uri:props["data"]["item"]["user"]["avatarUrl"]
+            }}
+          /> 
+          </View>
+          {props["data"]["item"]["text"]  != null && <View style={notifystyles.RTtextcontainer}>
+            <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notifystyles.RTtext}><ParseEmoji text={props["data"]["item"]["text"]} /></ListItem.Title>
+          </View>
+          }
+          </View>
+
+                <View style={notifystyles.topcontainer}>
+                {props["data"]["item"]["renote"]["text"]}
+                </View>
+                <View style={notifystyles.normalcontainer}>     
+                    <Text
+                        style={notifystyles.notetext}
+                        numberOfLines={2}
+                        ellipsizeMode='middle'
+        　          >
+                        {actionringvar.text}
+                    </Text>
+                </View>
+            </View>
+        </Card>
+    </TouchableOpacity>
+</View>
+  );
+}
+
+
+if(props.data.item.renoteId){
+  return renotereturn();
+} else if (props.data.item.renoteId == null){
+  return notereturn();
+} else {
+console.log("???renote");
+}
 };
+
+
 
 /*
 <View style={notifystyles.incardcontainer}>
@@ -72,4 +143,4 @@ const NoteView = (props:any) => {
 
           </View>
 */
-export default NoteView;
+export default NotifyView;

@@ -19,6 +19,7 @@ const notestyles = StyleSheet.create({
       flexDirection: 'row',
       paddingTop: 5
     },
+    /*RT系*/
     RTicon:{
       marginTop:5,
       marginLeft:32,
@@ -57,13 +58,6 @@ const notestyles = StyleSheet.create({
       flexDirection: 'column',
       paddingTop: 5,
     },
-    notetext:{
-      color:　"#fff",
-    },
-    avatar: {
-        backgroundColor: "rgba(230,230,230,1)",
-        height: 77
-    },
     renoteavatarcontainer:{
       position: "absolute",
       height:25,
@@ -73,6 +67,14 @@ const notestyles = StyleSheet.create({
     },
     renoteavataroverlay:{
       backgroundColor: "rgba(230,230,230,1)",
+    },
+    /*RT系ここまで*/
+    notetext:{
+      color:　"#fff",
+    },
+    avatar: {
+        backgroundColor: "rgba(230,230,230,1)",
+        height: 77
     },
   
     notebox:{

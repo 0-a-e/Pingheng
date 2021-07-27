@@ -23,6 +23,8 @@ ReactNative製Misskeyクライアント(仮)
 
 ## そのうち
 - [ ] リアルタイム通知
+- [ ] RT表示部の共通化
+- [ ] noteviewとnotifyviewのデータの使い方を揃える
 - [ ] Twitterに同時ツイート
 - [ ] 設定画面作り直す
 - [ ] 怪レい日本語
