@@ -84,7 +84,6 @@ const MainBottomsheet = () => {
       </View>
     }
       <View>
-        <Text>{bartoggle.toString()}</Text>
         <Box Mtoken={Mtoken}/>
       </View>
 

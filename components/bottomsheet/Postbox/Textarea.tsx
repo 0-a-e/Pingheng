@@ -27,7 +27,7 @@ const textareabox = () => {
         style={Style.textarea}
         containerStyle={Style.textareaContainer}
         maxLength={3000}
-        placeholder={'ノートしたいことを入力...'}
+        placeholder={'ノートしたいことを入力してスライド...'}
         placeholderTextColor={'#c7c7c7'}
         underlineColorAndroid={'transparent'}
       />

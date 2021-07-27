@@ -5,12 +5,16 @@ const styles = StyleSheet.create({
       textAlignVertical: 'top',  // android用　外さない
       height: 170,
       fontSize: 14,
-      color: '#333',
+      color: '#c7c7c7',
     },
   textareaContainer: {
     height: 180,
-    padding: 4,
-    backgroundColor: '#F5FCFF',
+    padding: 10,
+    marginLeft:"5%",
+    marginRight:"5%",
+    width: "90%",
+    backgroundColor: '#1a202e',
+    borderRadius: 20,
 },
 });
 
