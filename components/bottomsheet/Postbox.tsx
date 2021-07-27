@@ -1,16 +1,21 @@
-import React, {createRef } from 'react';
-import {View} from 'react-native';
+import React, {createRef, useState } from 'react';
+import {View,Text} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Textarea from './Postbox/Textarea';
 import { sendAPI } from '../../data/useAPI';
+import Icon from 'react-native-vector-icons/Feather';
 
 const box = (Props:{Mtoken:string}) => {
   const textref = createRef();
+  const [showsuccess,showsuccesswrite] = useState(false);
 
-  const sendpost = () => {
-    console.log("sendpost");
+  const sleep = (ms: number) =>{
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  const sendpost = async () => {    
     const text = textref.current.returntext();
-    console.log(text);
     if(text){
     //  progresswrite(0.2);
     //ws.send自体が無効？
@@ -20,6 +25,11 @@ const box = (Props:{Mtoken:string}) => {
       }
       ]);
     //progresswrite(1);
+      showsuccesswrite(true);
+      console.log("e");
+      await sleep(400);
+     console.log("d");
+      showsuccesswrite(false);
     } else {
       console.log("notext");
     }
@@ -27,6 +37,15 @@ const box = (Props:{Mtoken:string}) => {
 
 const Postcreatebox = () => {
   return(
+  <>
+{showsuccess &&
+   <View style={{position:"relative",zIndex:4,backgroundColor:"#52a352",width:"90%",height:180,borderRadius:20,marginLeft:"5%",marginRight:"5%"}}>
+   <Icon size={45} 
+     //style={{backgroundColor:"red"}}
+     name="check-circle" color="rgb(255,255,255)"
+     />
+  </View>
+}
   <GestureRecognizer
   onSwipeLeft={sendpost}
   onSwipeRight={sendpost}
@@ -36,9 +55,12 @@ const Postcreatebox = () => {
   }}
   style={{
     flex: 1,
+    position: "absolute",
+    width:"100%"
   }}>
       <Textarea ref={textref}/>
 </GestureRecognizer>
+</>
 )
 }
 
