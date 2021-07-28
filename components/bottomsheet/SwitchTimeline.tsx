@@ -7,7 +7,7 @@ import timelinebuttonelem from './timelinebuttonelem';
 import changetimeline from '../../data/changetimeline';
 import useSwitchTL from './useSwitchTL';
 
-const SwitchTimeline = (Props: {Mtoken:string}) => {
+const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
@@ -16,7 +16,7 @@ const SwitchTimeline = (Props: {Mtoken:string}) => {
   const returnbutton = () => {
     return ( 
       <ButtonGroup
-        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite)}}
+        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);Props["bottomsheetref"].current.snapTo(1);}}
         selectedIndex={reconvert(timelinestate)}
         buttons={timelinebuttonelem(timelinestate)}
         innerBorderStyle={{width:0}}

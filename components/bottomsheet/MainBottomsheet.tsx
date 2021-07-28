@@ -89,7 +89,7 @@ const MainBottomsheet = () => {
           }
         }
       />
-        <SwitchTimeline Mtoken={Mtoken}/>
+        <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref}/>
       </View>  
 
     </View>
