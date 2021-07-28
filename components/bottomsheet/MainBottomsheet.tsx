@@ -100,7 +100,7 @@ const MainBottomsheet = () => {
     <BottomSheet
     //backDropColor="red"
     ref={bottomsheetref}
-    initialPosition={"50%"}  //200, 300
+    initialPosition={100}
     snapPoints={["95%" ,100]}
     isBackDrop={false}
     isBackDropDismisByPress={true}
