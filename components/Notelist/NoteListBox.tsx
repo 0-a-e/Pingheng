@@ -43,9 +43,10 @@ const NoteListBox = () => {
 return (
     //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
-    <Notedata.Provider value={{notedata,notedatawrite}}>
       <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
-        <Action style={{justifyContent: "center",flex: 1}} actionSheetRef={actionSheetRef} />
+        <Notedata.Provider value={{notedata,notedatawrite}}>
+          <Action style={{justifyContent: "center",flex: 1}} actionSheetRef={actionSheetRef} />
+        </Notedata.Provider>
         <SwipeActionList
           style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
           keyExtractor={getkey}
@@ -56,7 +57,6 @@ return (
           getItemLayout = {getItemLayout} 
         /> 
       </View>
-    </Notedata.Provider>
 )
 }}
 </NoteList.Consumer>

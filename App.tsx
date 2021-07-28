@@ -18,7 +18,6 @@ export default function App() {
   const [ws,wswrite] = useState("");
   const Stack = createStackNavigator();
 
-console.log("APPRELOAD============");
   return (
     <View style={styles.container}>
         <WSobj.Provider value ={{ ws,wswrite }}>

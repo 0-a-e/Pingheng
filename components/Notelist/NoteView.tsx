@@ -15,7 +15,6 @@ const NoteViewraw = (props) => {
       
       <TouchableOpacity  
         onPress={() => {
-          
             props.EopenAction(data);
         }}
 
