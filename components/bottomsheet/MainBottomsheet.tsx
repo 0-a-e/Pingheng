@@ -15,16 +15,8 @@ const MainBottomsheet = () => {
 
   const [bartoggle,bartoggleWrite] = useState(true);
   const bottomsheetref = React.useRef();
-
-  const postclose = () =>{
-    bartoggleWrite(true);
-    Keyboard.dismiss();
-  }
-
-  const postopen = () =>{
-    bartoggleWrite(false);
-    //textareaにフォーカス;
-  } 
+  //let bottomsheetref;
+  //this.refs.BottomSheet.current.snapTo(0);
 
   const styles = StyleSheet.create({
       container: {
@@ -65,7 +57,7 @@ const MainBottomsheet = () => {
       <Button
         title=""
         buttonStyle={styles.btmbutton}
-        onPress={() => {TabbarStatewrite(props.indexname)}}
+        onPress={() => {TabbarStatewrite(props.indexname);bottomsheetref.current.snapTo(1);}}
         icon = {
             <Icon size={55} name={props.icon} color="rgb(180,180,230)"/>
         }
@@ -88,7 +80,15 @@ const MainBottomsheet = () => {
       </View>
 
       <View style={{position:'absolute',bottom: 0,backgroundColor: "transparent",width:"100%",height:190,}}>
-      <Button containerStyle={{position:"absolute",top:0,right:20,width:60,height:60,borderRadius:50}}  buttonStyle={{width:60,height:60,borderRadius:50,backgroundColor:"rgb(30,30,46)"}} icon={<Icon size={30} name={"settings"} color="rgb(180,180,230)"/>} onPress={() => {TabbarStatewrite("settings")}}/>
+      <Button 
+      containerStyle={{position:"absolute",top:0,right:20,width:60,height:60,borderRadius:50}}
+      buttonStyle={{width:60,height:60,borderRadius:50,backgroundColor:"rgb(30,30,46)"}}
+      icon={<Icon size={30} name={"settings"} color="rgb(180,180,230)"/>}
+      onPress={() => {TabbarStatewrite("settings");
+      bottomsheetref.current.snapTo(1);
+          }
+        }
+      />
         <SwitchTimeline Mtoken={Mtoken}/>
       </View>  
 
@@ -108,8 +108,6 @@ const MainBottomsheet = () => {
     borderRadius={50}
     isRoundBorderWithTipHeader={true}
     enabledContentTapInteraction={false}
-    onOpenStart={() => postopen()}
-    onCloseend={() => postclose()}
     // isModal
     //containerStyle={{backgroundColor:"red"}}
      tipStyle={{backgroundColor:"#fff"}}
