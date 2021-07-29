@@ -5,6 +5,8 @@ import { Avatar,ListItem,Card,Badge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
 import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notestyles from './NoteStyle';
+import ReactionView from './ReactionView';
+
 const NoteViewraw = (props) => {
     const data = props["data"];
 
@@ -47,6 +49,7 @@ const NoteViewraw = (props) => {
                 />
               }
               <ListItem.Subtitle style={notestyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
+              <ListItem.Subtitle style={notestyles.username}><ReactionView data={data["item"]} /></ListItem.Subtitle>
             </View>
             
             <View style={notestyles.normalcontainer}>     

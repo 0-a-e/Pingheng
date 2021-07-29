@@ -7,8 +7,8 @@ import NotedataContext from "../../Variable/Notedata";
 import Reaction from "./Reaction/Reaction";
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
-
     const {notedata,notedatawrite} = useContext(NotedataContext);
+    console.log(notedata);
     const closesheet = () => {
         props.actionSheetRef.current?.setModalVisible(false);
     }
