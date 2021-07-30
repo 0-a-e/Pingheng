@@ -19,7 +19,7 @@ const NotifyView = (props:any) => {
                 <Actionring actionringvar={actionringvar} props={props}/>
                 <View style={notifystyles.incardcontainer}>
                     <View style={notifystyles.topcontainer}>
-                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  /> </ListItem.Title>}
+                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
                         {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>@{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
                     </View>
                     <View style={notifystyles.normalcontainer}>     
