@@ -15,7 +15,8 @@ const ReactionView= (props) => {
         //console.log(num);
         //console.log(actionlist);
         return(
-                <ParseEmoji text={actionlist} emojis={props.data["emojis"]}/>
+            <></>
+               // <ParseEmoji text={actionlist} emojis={props.data["emojis"]}/>
            )
     } else {
         return(<></>)

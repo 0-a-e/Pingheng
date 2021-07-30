@@ -9,8 +9,6 @@ import ReactionView from './ReactionView';
 
 const NoteViewraw = (props) => {
     const data = props["data"];
-
-
   const notereturn = () =>{  
     return (
     <View>
@@ -36,7 +34,7 @@ const NoteViewraw = (props) => {
           />
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
-              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]}  /></ListItem.Title>}
+              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} /></ListItem.Title>}
               {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
   
               {
