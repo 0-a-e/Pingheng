@@ -4,7 +4,7 @@ import Homebox from './Homebox';
 import Notifybox from './Notifybox';
 import Settingsbox from "./Settingsbox";
 import TabbarStateContext from "../Variable/TabbarState";
-import emoji from "../data/Emojis/emoji";
+//import emoji from "../data/Emojis/emoji";
 import { useEffect,useLayoutEffect } from "react";
 import NoteList from '../Variable/NoteList';
 import TimelineStateContext from '../Variable/TimelineState';

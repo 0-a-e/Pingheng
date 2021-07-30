@@ -1,13 +1,22 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {Text} from 'react-native';
 import ReactNativeSettingsPage, { 
 	SectionRow, 
 	NavigateRow,
 } from 'react-native-settings-page';
 //import Icon from 'react-native-vector-icons/Feather';
 import logout from '../data/logout';
+import getMeta from '../data/Getmeta';
 
-const Settingsbox= () => {
+const Settingsbox = () => {
+	const [meta, metawrite] = useState();
+	useEffect(() => {
+	getMeta(false).then(metaraw => {
+		metawrite(metaraw);
+	});
+	}, []);
+
 const lgout = () => {
     logout();
 };
@@ -28,9 +37,9 @@ const openlink = (url:string) => {
 						onPressCallback={() => {openlink("https://github.com/0-a-e/Pingheng")}} 
                     />
                     <NavigateRow
-						text='絵文字を更新'
+						text='絵文字とサーバー情報を更新'
 						iconName='wrench'
-					//	onPressCallback={() => {openlink("https:///msk.seppuku.club/@oae")}} 
+						onPressCallback={() => {getMeta(true);}} 
                     />
                     <NavigateRow
 						text='@oae'
@@ -43,6 +52,17 @@ const openlink = (url:string) => {
 					//	onPressCallback={this._navigateToScreen} 
                     />
 				</SectionRow>
+				{meta &&
+				<>
+				<Text>サーバー名:{meta.name}</Text>
+				<Text>バージョン:{meta.version}</Text>
+				<Text>管理者:{meta.maintainerName}</Text>
+				<Text>管理者メールアドレス:{meta.maintainerEmail}</Text>
+				<Text>URL:{meta.uri}</Text>
+				<Text>リポジトリ:{meta.repositoryUrl}</Text>
+				<Text>説明:{meta.description}</Text>
+				</>
+				}
 			</ReactNativeSettingsPage>
     )
 }

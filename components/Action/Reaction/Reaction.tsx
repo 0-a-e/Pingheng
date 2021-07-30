@@ -3,14 +3,11 @@ import { View } from "react-native";
 import Top from "./Top";
 import { sendAPI } from '../../../data/useAPI';
 import Mtokenvar from '../../../Variable/Mtoken';
-
+import Picker from './Picker';
 const Reaction = (props) => {
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
     const addreaction = (reactionname) => {
         props.closesheet();
-        console.log(reactionname);
-        console.log(props.noteid);
-        console.log(Mtoken);
         sendAPI([Mtoken,"notes/reactions/create",
         {
             "noteId": props.noteid,
@@ -21,6 +18,7 @@ const Reaction = (props) => {
     return(
         <View>
             <Top addreaction={(i) => {addreaction(i);}}/>
+            <Picker/>
         </View>
     )
 }

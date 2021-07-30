@@ -13,7 +13,6 @@ const imageComemojis = (match,props) => {
   props.emojis.forEach(element => {
     if(element["name"] == match){
         url = element["url"];
-        console.log(element["name"]);
     }
     });
   const id = Math.random().toString(32).substring(2);
