@@ -5,19 +5,26 @@ import getMeta from '../../../data/Getmeta';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
-    const [search, searchwrite] = useState();
+    const [emojis, emojiswrite] = useState();
     
-    const searchfunc = () => {
+    const searchfunc = (search) => {
+            const filterItems= (arr, query) => {
+            return arr.filter(function (el) {
+              return el.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+            })
+        }
+            const raw = meta.emojis;
+            emojiswrite(filterItems(raw, search));
+          
     }
 
     useEffect(() => {
         let unmounted = false;
-	    (async() => {const res = await getMeta(false); if(!unmounted){metawrite(res);}})();
+	    (async() => {const res = await getMeta(false); if(!unmounted){metawrite(res);emojiswrite(res["emojis"]);}})();
             return ()=>{ unmounted = true; };
     },[]);
-
-        const py =(meta) => {
-            return(meta.emojis.map(data => { 
+        const py =(emojis) => {
+            return(emojis.map(data => { 
                 return (<TouchableOpacity style={{width:55,height:55,borderRadius:15}} key={data.id} onPress={() => props.addreaction(":" + data.name + ":")}>
                     <Image source={{uri:data.url}}  style={{ width: 55, height: 55 }}/>
                     </TouchableOpacity>)
@@ -30,10 +37,10 @@ const Picker = (props) => {
                     inputContainerStyle={{borderBottomWidth: 0, borderRadius:50,padding:10,marginTop:10,backgroundColor:"#1b1d26"}}
                     style = {{color:"rgb(240,240,240)",width:"100%"}}
                     placeholder='絵文字を検索...'
-                    onChangeText={value => searchwrite(value)}
+                    onChangeText={value => searchfunc(value)}
                 />
                 <ScrollView contentContainerStyle={{flexDirection:'row',flexWrap: 'wrap',justifyContent:'space-between',paddingLeft:10,paddingRight:10,borderRadius:20,}} style={{width:"100%",marginTop:-15}}>
-                    { (meta) ?  py(meta): <Text>お待ちください...</Text>}
+                    { (emojis) ?  py(emojis): <Text>お待ちください...</Text>}
                 </ScrollView>
             </View>
         </View>
