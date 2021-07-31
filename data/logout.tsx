@@ -12,6 +12,9 @@ const logout = async () => {
     await storage.remove({
         key: 'user'
     });
+    await storage.remove({
+        key: 'meta'
+    });
     await ToastAndroid.show("ログアウトしました。再度アプリを開いてログインしてください。", 3000);
     await BackHandler.exitApp();
 }
