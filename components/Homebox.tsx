@@ -7,9 +7,8 @@ import { View,Text } from 'react-native';
 
 const Homebox= () => {
   return(
-    <View style={{height: "100%",backgroundColor:"red"}}>
+    <View style={{height: "100%"}}>
     <NoteListBox />
-    
     </View>
     )
 }

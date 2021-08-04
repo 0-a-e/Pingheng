@@ -8,7 +8,7 @@ import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import Icon from 'react-native-vector-icons/Feather';
 
 const NotifyView = (props:any) => {
-    const actionringvar = switchactionring(props["data"]["item"]["type"],props);
+    const actionringbar = switchactionring(props["data"]["item"]["type"],props);
     const notereturn = () => {
     return (
     <View>
@@ -16,7 +16,7 @@ const NotifyView = (props:any) => {
           alert('long tap');
         }}>
             <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
-                <Actionring actionringvar={actionringvar} props={props}/>
+                <Actionring actionringbar={actionringbar} props={props}/>
                 <View style={notifystyles.incardcontainer}>
                     <View style={notifystyles.topcontainer}>
                         {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
@@ -28,7 +28,7 @@ const NotifyView = (props:any) => {
                             numberOfLines={2}
                             ellipsizeMode='middle'
             　          >
-                            {actionringvar.text}
+                            {actionringbar.text}
                         </Text>
                     </View>
                 </View>
@@ -56,7 +56,7 @@ const renotereturn = () => {
       alert('long tap');
     }}>
         <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
-            <Actionring actionringvar={actionringvar} props={props}/>
+            <Actionring actionringbar={actionringbar} props={props}/>
             <View style={notifystyles.incardcontainer}>
             <View style={notifystyles.RT1container}>
           <View style={[notifystyles.topRTcontainer,{borderRadius:bd}]}>
@@ -86,7 +86,7 @@ const renotereturn = () => {
                         numberOfLines={2}
                         ellipsizeMode='middle'
         　          >
-                        {actionringvar.text}
+                        {actionringbar.text}
                     </Text>
                 </View>
             </View>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 const reactStringReplace = require('react-string-replace');
+import { parse } from 'twemoji-parser';
 
 const imageCom = (match) => {
   const id = Math.random().toString(32).substring(2);
@@ -11,7 +12,8 @@ const imageCom = (match) => {
 const imageComemojis = (match,props) => {
   let url = "https://lh3.googleusercontent.com/proxy/Rue5cq69mZaE4jguWbI8kblrkI6IOEdy6gnx9adIOSrgQCdPlwEb07bn2tZG79yXd6RRy9Sx-H-y2NkPdyIKrshG_EJ_dFzkA61pWGnvmxFWRofSkjTAOaW8ZQQvc1uAyIN6jyOCNwXLKY4";
   props.emojis.forEach(element => {
-    if(element["name"] == match){
+    const rmattodot = element["name"].replace(/@/g,"").replace(/\./g,"");
+    if(element["name"] == match || rmattodot == match){
         url = element["url"];
     }
     });
@@ -24,16 +26,31 @@ const imageComemojis = (match,props) => {
 const ParseEmoji = (props) => {
   const str = props.text;
   if(props.emojis && props.emojis.length > 0){
-    const regexp = /:["']?([a-zA-Z0-9_\.\/\-@]+)["']?\:/g;
+    const regexp = /:["']?([a-zA-Z0-9_\.\/\-@<>]+)["']?\:/g;
     let returntext;
     returntext = reactStringReplace(str, regexp, (match, i) => (imageComemojis(match,props)));
+   // returntext = reactStringReplace(twemojied(str), regexp, (match, i) => (imageComemojis(match,props)));
     return returntext;
   } else {
-    const regexp = /:["']?([a-zA-Z0-9_\.\/\-@]+)["']?\:/g;
+    const regexp = /:["']?([a-zA-Z0-9_\.\/\-@<>]+)["']?\:/g;
     let returntext;
     returntext = reactStringReplace(str, regexp, (match, i) => (imageCom(match)));
-    return returntext;
+    return  returntext;
   }
 }
 
+const twemojied = (text) => {
+  const twemojientity = parse(text);
+  twemojientity.forEach((emoji: { text: string | undefined; url: string | undefined; }) => {
+    text = reactStringReplace(text, emoji.text, (match, i) => (
+      <Image
+        key={match + i}
+        source={{uri: emoji.url}}
+      />
+    ));
+  });
+  return text;
+}
+
 export default ParseEmoji;
+export {twemojied};

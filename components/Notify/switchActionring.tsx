@@ -26,10 +26,13 @@ const switchactionring = (type: string,props: any) =>{
                 text: props["data"]["item"]["note"]["text"],
             }
         case "reaction":
+           console.log(props["data"]["item"]["reaction"]);
+           console.log(props["data"]["item"]["note"]["emojis"]);
             return {
                 background:"#eb9534",
-                icon:"activity",
                 text:props["data"]["item"]["note"]["text"],
+                emoji:props["data"]["item"]["note"]["emojis"],
+                reaction:props["data"]["item"]["reaction"]
         }
         case "followRequestAccepted":
             return {

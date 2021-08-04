@@ -31,8 +31,8 @@ const Picker = (props) => {
             }))
         }
     return (
-        <View style={{width:"100%",alignItems: 'center',borderRadius:20,marginTop:20}}>
-            <View style={{width:"90%",backgroundColor:"#282a36",borderRadius:20}}>
+        <View style={{width:"100%",height:250,marginBottom:150,alignItems: 'center',borderRadius:20,marginTop:20}}>
+            <View style={{width:"90%",backgroundColor:"#282a36",borderRadius:20,paddingBottom:10}}>
                 <Input
                     inputContainerStyle={{borderBottomWidth: 0, borderRadius:50,padding:10,marginTop:10,backgroundColor:"#1b1d26"}}
                     style = {{color:"rgb(240,240,240)",width:"100%"}}

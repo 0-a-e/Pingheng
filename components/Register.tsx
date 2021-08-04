@@ -14,7 +14,7 @@ import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
-
+import getMeta from '../data/Getmeta';
 const Register = ({navigation}) => {
   
 console.log("Register open");
@@ -31,10 +31,9 @@ const storage: Storage = new Storage({
     enableCache: true,
 });
 
-/* 重複防止処理　でも再ログインしたいときのためいらないかも　いや　先に再ログイン前にトークン消すかも*/
 storage.load({key: 'user'}).then(res => {
     if (res["token"] && res){
-    navigation.navigate("Main");
+      navigation.navigate("Main");
     }
     }).catch(err => {
 
@@ -69,7 +68,7 @@ const getAuth = (url:string) => {
                 data: {
                   token: token
                 },
-              });
+              }).then(() => {getMeta(false);});
               navigation.navigate("Main");
             } else {
                 alert("認証エラー");

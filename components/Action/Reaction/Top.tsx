@@ -1,7 +1,7 @@
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View,Text } from "react-native";
 import { Button} from "react-native-elements";
-
+import { twemojied } from "../../../data/Emojis/ParseEmoji";
 const Top = (props) => {
     return(
         <View style={{
@@ -13,6 +13,13 @@ const Top = (props) => {
         justifyContent:'center',
      //   flexWrap: "nowrap",
           }}>
+            <TouchableOpacity
+            style={{width:55,height:55,borderRadius:15}}
+            onPress={() => props.addreaction(":❤️:")}
+            >
+                <Text>{twemojied("👍")}</Text>
+            </TouchableOpacity>
+
             <Button title="❤"
                 onPress={() => {props.addreaction(":❤:");}}
                 buttonStyle={{backgroundColor:"rgb(10,10,18)",height:120,borderBottomStartRadius:20,borderColor:"#202020",borderRightWidth:0.5,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0}}
@@ -23,7 +30,7 @@ const Top = (props) => {
         />
             <Button
                 onPress={() => {props.addreaction(":👍:");}}
-                title="👍"
+                title={twemojied("👍")}
                 buttonStyle={{backgroundColor:"rgb(10,10,18)",height:120,borderLeftWidth:0.5,borderColor:"#202020",borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,
                     borderTopStartRadius:0}}
                 style={{ borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,

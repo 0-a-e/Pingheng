@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { StyleSheet,View} from 'react-native';
+import { StyleSheet,View,StatusBar} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,6 +20,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="rgb(19,20,26)"
+        />
         <WSobj.Provider value ={{ ws,wswrite }}>
                 <NavigationContainer>
                   <Stack.Navigator initialRouteName="Welcome">

@@ -7213,6 +7213,13 @@ react-native-textarea@^1.0.4:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-twemojis@^1.0.1:
+  version "1.0.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-twemojis/-/react-native-twemojis-1.0.1.tgz#eb462442da5affe11f63b790022346527f285d90"
+  integrity sha512-g4Kk5Q0MRA7Lwmoeqx3dIxWIsTfFbYmfIN7Z/CJO0lSRLz3YVtlaCVLatJt6xB6GpXH/EihvDtLidwAXfeqsiQ==
+  dependencies:
+    react-string-replace "^0.4.4"
+
 react-native-vector-icons@^6.2.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.7.0.tgz#8871ba52ef8e98878ba7a932847f96b6dfc1c137"
@@ -8331,6 +8338,11 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
+
+twemoji-parser@^13.1.0:
+  version "13.1.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/twemoji-parser/-/twemoji-parser-13.1.0.tgz#65e7e449c59258791b22ac0b37077349127e3ea4"
+  integrity sha512-AQOzLJpYlpWMy8n+0ATyKKZzWlZBJN+G0C+5lhX7Ftc2PeEVdUU/7ns2Pn2vVje26AIZ/OHwFoUbdv6YYD/wGg==
 
 type-fest@^0.3.1:
   version "0.3.1"
