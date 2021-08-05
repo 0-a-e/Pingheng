@@ -12,8 +12,6 @@ const ReactionView= (props) => {
       });
     
     if(actionlist.length>0){
-        //console.log(num);
-        //console.log(actionlist);
         return(
                <ParseEmoji text={actionlist} emojis={props.data["emojis"]}/>
            )

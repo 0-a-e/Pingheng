@@ -8,12 +8,14 @@ import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import Icon from 'react-native-vector-icons/Feather';
 
 const NotifyView = (props:any) => {
-    const actionringbar = switchactionring(props["data"]["item"]["type"],props);
+
     const notereturn = () => {
+      const actionringbar = switchactionring(props["data"]["item"]["type"],props,false);
     return (
     <View>
         <TouchableOpacity  onLongPress={() => {
           alert('long tap');
+          console.log(props.data.item);
         }}>
             <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
                 <Actionring actionringbar={actionringbar} props={props}/>
@@ -40,45 +42,58 @@ const NotifyView = (props:any) => {
 
 
 const renotereturn = () => {
+  const actionringbar = switchactionring(props["data"]["item"]["type"],props,true);
+
   const bdr = () => {
-    if(props.data.item.text != null){
+    if(props.data.item.note.renote.text != null){
       return 0;
     } else{
       return 50;
     }
   }
+
   const bd = bdr();
 
   return (
     <View>
     <TouchableOpacity  onLongPress={() => {
         //リアクション選択を実装
-      alert('long tap');
+      alert('long tapeee');
+      console.log(props.data.item);
     }}>
         <Card wrapperStyle={notifystyles.cardwrapper} containerStyle={notifystyles.card}>
-            <Actionring actionringbar={actionringbar} props={props}/>
+        <Actionring actionringbar={actionringbar} props={props}/>
             <View style={notifystyles.incardcontainer}>
-            <View style={notifystyles.RT1container}>
-          <View style={[notifystyles.topRTcontainer,{borderRadius:bd}]}>
-          <ListItem.Title style={notifystyles.RTicon}><Icon size={15} name="refresh-cw"/></ListItem.Title>
-          <Avatar
-            containerStyle = {notifystyles.renoteavatarcontainer}
-            overlayContainerStyle={notifystyles.renoteavataroverlay}
-            rounded
-            title={props["data"]["item"]["user"]["name"]}
-            source={{
-              uri:props["data"]["item"]["user"]["avatarUrl"]
-            }}
-          /> 
-          </View>
-          {props["data"]["item"]["text"]  != null && <View style={notifystyles.RTtextcontainer}>
-            <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notifystyles.RTtext}><ParseEmoji text={props["data"]["item"]["text"]} /></ListItem.Title>
-          </View>
-          }
-          </View>
+              
+              <View style={notifystyles.RT1container}>
+                <View style={[notifystyles.topRTcontainer,{borderRadius:bd}]}>
+                  <ListItem.Title style={notifystyles.RTicon}><Icon size={15} name="refresh-cw"/></ListItem.Title>
+                  <Avatar
+                    containerStyle = {notifystyles.renoteavatarcontainer}
+                    overlayContainerStyle={notifystyles.renoteavataroverlay}
+                    rounded
+                    title={props["data"]["item"]["note"]["user"]["name"]}
+                    source={{
+                      uri:props["data"]["item"]["note"]["user"]["avatarUrl"]
+                    }}
+                  /> 
+                </View>
+
+                {props["data"]["item"]["note"]["renote"]["text"]  != null &&
+                  <View style={notifystyles.RTtextcontainer}>
+                    <ListItem.Title
+                      numberOfLines={1}
+                      ellipsizeMode='tail'
+                      style={notifystyles.RTtext}
+                    >
+                      <ParseEmoji text={props["data"]["item"]["note"]["text"]} emojis={props["data"]["item"]["note"]["emojis"]} />
+                    </ListItem.Title>
+                  </View>
+                }
+
+              </View>
 
                 <View style={notifystyles.topcontainer}>
-                {props["data"]["item"]["renote"]["text"]}
                 </View>
                 <View style={notifystyles.normalcontainer}>     
                     <Text
@@ -86,7 +101,8 @@ const renotereturn = () => {
                         numberOfLines={2}
                         ellipsizeMode='middle'
         　          >
-                        {actionringbar.text}
+          {actionringbar.text}
+                    
                     </Text>
                 </View>
             </View>
@@ -95,52 +111,26 @@ const renotereturn = () => {
 </View>
   );
 }
-
-
-if(props.data.item.renoteId){
-  return renotereturn();
-} else if (props.data.item.renoteId == null){
-  return notereturn();
-} else {
-console.log("???renote");
+try {
+  if(props.data.item.note.renoteId){
+    return renotereturn()
+  } else if (props.data.item.note.renoteId == null){
+    return notereturn();
+  } else {
+    console.log("???renote");
+  }
+} catch(e){
+  if(e.message == "undefined is not an object (evaluating 'props.data.item.note.renoteId')"){
+    return notereturn();
+  } else {
+    return <TouchableOpacity  onLongPress={() => {
+              alert('jsonが出力されました');
+              console.log(props.data.item);
+            }}>
+      <Text style={{color:"red"}}>error: {e.message}</Text>
+      </TouchableOpacity>;
+  }
 }
-};
 
-
-
-/*
-<View style={notifystyles.incardcontainer}>
-            <View style={notifystyles.topcontainer}>
-              <ListItem.Title style={notifystyles.name}>{data["item"]["user"]["name"]}</ListItem.Title>
-  
-              {
-              data["item"]["user"]["isBot"] && 
-                <Badge 
-                status="primary"
-                value={<Icon name="terminal" color="#fff"/>}
-                containerStyle={{marginLeft: 5}}
-                badgeStyle={{width: 35}}
-                />
-              }
-              <ListItem.Subtitle style={notifystyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
-            </View>
-            
-            <View style={notifystyles.normalcontainer}>     
-              <ReadMore
-                numberOfLines={3}
-                style={notifystyles.notetext}
-                seeMoreText="続きを見る"
-              　seeLessText="折りたたむ"　seeMoreStyle={{color: "rgba(255,255,255,0.6)"}}
-              　seeLessStyle={{color:"rgba(255,255,255,0.6)"}}
-              >
-
-              {data["item"]["text"] == false && "リツイート対応まで消さないで"}
-              {data["item"]["text"]}
-              </ReadMore>
-              <Text>{data["item"]["visibility"]}</Text>
-              <Text>{data["item"]["localOnly"]}</Text>
-            </View>
-
-          </View>
-*/
+}
 export default NotifyView;

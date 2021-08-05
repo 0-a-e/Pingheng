@@ -1,18 +1,24 @@
-import React from 'react';
 
-const switchactionring = (type: string,props: any) =>{
+const switchactionring = (type: string,props: any,rn:boolean) =>{
     switch (type) {
         case "renote":
          // json位置の参考用　消さない
          //   console.log("333---");
          //   console.log(props["data"]["item"]["note"]["renote"]["text"]);
          //未実装: pollvote
+         if(!rn){
             return {
                 background:"#3eb585",
                 icon:"refresh-ccw",
-              //  text: "",
+                text: props["data"]["item"]["note"]["text"]
+            }
+        } else {
+            return {
+                background:"#3eb585",
+                icon:"refresh-ccw",
                 text: props["data"]["item"]["note"]["renote"]["text"]
             }
+        }
         case "follow":
             return {
                 background:"#296bd6",
@@ -26,14 +32,26 @@ const switchactionring = (type: string,props: any) =>{
                 text: props["data"]["item"]["note"]["text"],
             }
         case "reaction":
-           console.log(props["data"]["item"]["reaction"]);
-           console.log(props["data"]["item"]["note"]["emojis"]);
-            return {
-                background:"#eb9534",
-                text:props["data"]["item"]["note"]["text"],
-                emoji:props["data"]["item"]["note"]["emojis"],
-                reaction:props["data"]["item"]["reaction"]
-        }
+         /*   console.log("--");
+            console.log(props["data"]["item"]["reaction"]);
+            console.log(props["data"]["item"]["note"]["emojis"]);
+            console.log("--");*/
+            if(!rn){
+                return {
+                    background:"#eb9534",
+                    emoji:props["data"]["item"]["note"]["emojis"],
+                    reaction:props["data"]["item"]["reaction"],
+                    text: props["data"]["item"]["note"]["text"]
+                }
+            } else {
+                return {
+                    background:"#eb9534",
+                    emoji:props["data"]["item"]["note"]["emojis"],
+                    reaction:props["data"]["item"]["reaction"],
+                    text: props["data"]["item"]["note"]["renote"]["text"]
+                }
+            }
+
         case "followRequestAccepted":
             return {
                 background:"#293ad6",

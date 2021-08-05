@@ -17,7 +17,8 @@ const Top = (props) => {
             style={{width:55,height:55,borderRadius:15}}
             onPress={() => props.addreaction(":❤️:")}
             >
-                <Text>{twemojied("👍")}</Text>
+           
+           
             </TouchableOpacity>
 
             <Button title="❤"

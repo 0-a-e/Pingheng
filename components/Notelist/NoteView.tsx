@@ -14,14 +14,15 @@ const NoteViewraw = (props) => {
     <View>
       
       <TouchableOpacity  
-        onPress={() => {
+        onLongPress={() => {
             props.EopenAction(data);
         }}
 
-        onLongPress={() => {
-      //リアクション選択を実装
+        onPress={() => {
           alert('long tap');
-        }}>
+        }
+      }
+        >
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
         <Avatar
               size="large"
@@ -82,14 +83,15 @@ const renotereturn = () => {
   return (
     <View>
     <TouchableOpacity  
-      onPress={() => {
+      onLongPress={() => {
           props.EopenAction(data);
       }}
 
-      onLongPress={() => {
-    //リアクション選択を実装
+      onPress={() => {
+    console.log(data["item"]);
         alert('long tap');
-      }}>
+      }}
+      >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
       <Avatar
             size="large"
@@ -115,7 +117,7 @@ const renotereturn = () => {
           /> 
           </View>
           {data["item"]["text"]  != null && <View style={notestyles.RTtextcontainer}>
-            <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}><ParseEmoji text={data["item"]["text"]} /></ListItem.Title>
+            <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}><ParseEmoji text={data["item"]["text"]} emojis={data["item"]["emojis"]}/></ListItem.Title>
           </View>
           }
           </View>
