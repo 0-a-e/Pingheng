@@ -65,6 +65,7 @@ const renotereturn = () => {
         <Actionring actionringbar={actionringbar} props={props}/>
             <View style={notifystyles.incardcontainer}>
               
+              {(props["data"]["item"]["type"] != "renote") ? 
               <View style={notifystyles.RT1container}>
                 <View style={[notifystyles.topRTcontainer,{borderRadius:bd}]}>
                   <ListItem.Title style={notifystyles.RTicon}><Icon size={15} name="refresh-cw"/></ListItem.Title>
@@ -92,9 +93,12 @@ const renotereturn = () => {
                 }
 
               </View>
-
-                <View style={notifystyles.topcontainer}>
-                </View>
+              :
+              <View style={notifystyles.topcontainer}>
+                {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
+                {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>@{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
+              </View>
+                }
                 <View style={notifystyles.normalcontainer}>     
                     <Text
                         style={notifystyles.notetext}
@@ -118,6 +122,7 @@ try {
     return notereturn();
   } else {
     console.log("???renote");
+    return (<Text style={{color:"red"}}>???</Text>);
   }
 } catch(e){
   if(e.message == "undefined is not an object (evaluating 'props.data.item.note.renoteId')"){

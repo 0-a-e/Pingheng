@@ -19,7 +19,7 @@ const NoteViewraw = (props) => {
         }}
 
         onPress={() => {
-          alert('long tap');
+          alert('tap');
         }
       }
         >
@@ -84,12 +84,13 @@ const renotereturn = () => {
     <View>
     <TouchableOpacity  
       onLongPress={() => {
+          alert("lp");
           props.EopenAction(data);
       }}
 
       onPress={() => {
     console.log(data["item"]);
-        alert('long tap');
+        alert('tap');
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>

@@ -25,3 +25,4 @@
 //textcolor
 //colorbox
 //boxed
+//rainbow
