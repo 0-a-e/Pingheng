@@ -68,8 +68,11 @@ const getAuth = (url:string) => {
                 data: {
                   token: token
                 },
-              }).then(() => {getMeta(false);});
-              navigation.navigate("Main");
+              }).then(() => {
+                getMeta(true).then(() => {
+                  navigation.navigate("Main");
+                });
+              });
             } else {
                 alert("認証エラー");
             }
