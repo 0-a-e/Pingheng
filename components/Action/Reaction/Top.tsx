@@ -1,7 +1,8 @@
 import React from "react";
 import { TouchableOpacity, View,Text } from "react-native";
 import { Button} from "react-native-elements";
-import { twemojied } from "../../../data/Emojis/ParseEmoji";
+import SvgUri from "react-native-svg-uri";
+import ParseEmoji, { twemojied } from "../../../data/Emojis/ParseEmoji";
 const Top = (props) => {
     return(
         <View style={{
@@ -14,32 +15,33 @@ const Top = (props) => {
      //   flexWrap: "nowrap",
           }}>
             <TouchableOpacity
-            style={{width:55,height:55,borderRadius:15}}
+            style={{width:'45%',borderBottomStartRadius:20,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0,backgroundColor:"rgb(10,10,18)",height:120,
+            borderRightWidth:0.5,borderColor:"#202020",alignItems: 'center',
+            justifyContent: 'center',}}
             onPress={() => props.addreaction(":❤️:")}
             >
-           
-           
+                <SvgUri
+                    key={"fav"}
+                    height={40}
+                    width={40}
+                    source={{uri: "https://twemoji.maxcdn.com/v/latest/svg/2764.svg"}}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity
+            style={{width:'45%', borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,
+            borderTopStartRadius:0,backgroundColor:"rgb(10,10,18)",height:120,borderLeftWidth:0.5,borderColor:"#202020",
+            alignItems: 'center',
+            justifyContent: 'center',}}
+            onPress={() => props.addreaction(":👍:")}
+            >
+                <SvgUri
+                    key={"fav"}
+                    height={40}
+                    width={40}
+                    source={{uri: "https://twemoji.maxcdn.com/v/latest/svg/1f44d.svg"}}
+                />
             </TouchableOpacity>
 
-            <Button title="❤"
-                onPress={() => {props.addreaction(":❤:");}}
-                buttonStyle={{backgroundColor:"rgb(10,10,18)",height:120,borderBottomStartRadius:20,borderColor:"#202020",borderRightWidth:0.5,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0}}
-                style={{ borderBottomStartRadius:20,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0}}
-                titleStyle={{fontSize:35}}
-                containerStyle={[{ width: '45%',height:120,borderBottomStartRadius:20,
-                    borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0 }]}
-        />
-            <Button
-                onPress={() => {props.addreaction(":👍:");}}
-                title={twemojied("👍")}
-                buttonStyle={{backgroundColor:"rgb(10,10,18)",height:120,borderLeftWidth:0.5,borderColor:"#202020",borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,
-                    borderTopStartRadius:0}}
-                style={{ borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,
-                    borderTopStartRadius:0 }}
-                titleStyle={{fontSize:35}}
-                containerStyle={[{ borderBottomEndRadius:20,borderTopEndRadius:20,borderBottomStartRadius:0,
-                    borderTopStartRadius:0,width:"45%",height:120 }]}
-            />
         </View>
     )
 }

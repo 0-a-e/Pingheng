@@ -89,8 +89,9 @@ const renotereturn = () => {
       }}
 
       onPress={() => {
+        props.EopenAction(data);
     console.log(data["item"]);
-        alert('tap');
+       // alert('tap');
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
