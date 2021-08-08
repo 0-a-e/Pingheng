@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { View,TouchableOpacity,Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Avatar,ListItem,Card,Badge } from 'react-native-elements';
-import ReadMore from '@fawazahmed/react-native-read-more';
 import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notestyles from './NoteStyle';
 import ReactionView from './ReactionView';
@@ -15,11 +14,12 @@ const NoteViewraw = (props) => {
       
       <TouchableOpacity  
         onLongPress={() => {
-            props.EopenAction(data);
+          //メモ　あとでアクションシートは長押し時に開くようにしてタップでツイート詳細を出す
+          alert("lp");
         }}
 
         onPress={() => {
-          alert('tap');
+          props.EopenAction(data);
         }
       }
         >
@@ -48,7 +48,7 @@ const NoteViewraw = (props) => {
                 />
               }
               <ListItem.Subtitle style={notestyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
-              <ListItem.Subtitle style={notestyles.username}><ReactionView data={data["item"]} /></ListItem.Subtitle>
+              <ReactionView data={data["item"]} />
             </View>
             
             <View style={notestyles.normalcontainer}>     
@@ -85,13 +85,12 @@ const renotereturn = () => {
     <TouchableOpacity  
       onLongPress={() => {
           alert("lp");
-          props.EopenAction(data);
+          console.log(data["item"]);
       }}
 
       onPress={() => {
+        //メモ　あとでアクションシートは長押し時に開くようにしてタップでツイート詳細を出す
         props.EopenAction(data);
-    console.log(data["item"]);
-       // alert('tap');
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>

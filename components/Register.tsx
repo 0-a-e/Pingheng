@@ -8,13 +8,13 @@ import {
 import { Button, Input } from 'react-native-elements';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import url from 'url';
 import axios from 'axios';
-import Storage from 'react-native-storage';
-import AsyncStorage from '@react-native-community/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 import getMeta from '../data/Getmeta';
+import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
+import * as SecureStore from 'expo-secure-store';
+
 const Register = ({navigation}) => {
   
 console.log("Register open");
@@ -25,19 +25,14 @@ useEffect(() => {
   });
 });
 
-const storage: Storage = new Storage({
-    storageBackend: AsyncStorage,
-    defaultExpires: null,
-    enableCache: true,
+SecureStore.getItemAsync("user1")
+.then((res) => {
+  if(res){
+    navigation.navigate("Main");
+  }
+}, (err) => {
+console.log(err);
 });
-
-storage.load({key: 'user'}).then(res => {
-    if (res["token"] && res){
-      navigation.navigate("Main");
-    }
-    }).catch(err => {
-
-    });
 
 
 const parseurl = (url) => {
@@ -63,12 +58,10 @@ const getAuth = (url:string) => {
           //あとでユーザー情報取り出してこんにちは！xxさんをやる
             if(response.data["ok"]){
               const token = response.data["token"];
-              storage.save({
-                key: 'user',
-                data: {
-                  token: token
-                },
-              }).then(() => {
+              SecureStore.setItemAsync("user1", token).then(() => {
+               /* HMSAvailability.isHuaweiMobileServicesAvailable()
+                    .then((res) => { console.log(JSON.stringify(res)) })
+                    .catch((err) => { console.log(JSON.stringify(err)) });*/
                 getMeta(true).then(() => {
                   navigation.navigate("Main");
                 });

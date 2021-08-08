@@ -1,7 +1,7 @@
-import React from 'react';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import { BackHandler, ToastAndroid } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
 const logout = async () => {
     const storage: Storage = new Storage({
@@ -9,9 +9,8 @@ const logout = async () => {
         defaultExpires: null,
         enableCache: true,
     });
-    await storage.remove({
-        key: 'user'
-    });
+    await SecureStore.deleteItemAsync("user1");
+
     await storage.remove({
         key: 'meta'
     });

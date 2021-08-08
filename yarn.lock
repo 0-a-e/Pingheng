@@ -1131,10 +1131,33 @@
     xcode "^2.1.0"
     xml2js "^0.4.23"
 
+"@expo/config-plugins@2.0.4":
+  version "2.0.4"
+  resolved "https://repo.huaweicloud.com/repository/npm/@expo/config-plugins/-/config-plugins-2.0.4.tgz#955fd70a2aeefbe99ec71cecb1d7ea7b626dc79e"
+  integrity sha512-JGt/X2tFr7H8KBQrKfbGo9hmCubQraMxq5sj3bqDdKmDOLcE1a/EDCP9g0U4GHsa425J8VDIkQUHYz3h3ndEXQ==
+  dependencies:
+    "@expo/config-types" "^41.0.0"
+    "@expo/json-file" "8.2.30"
+    "@expo/plist" "0.0.13"
+    debug "^4.3.1"
+    find-up "~5.0.0"
+    fs-extra "9.0.0"
+    getenv "^1.0.0"
+    glob "7.1.6"
+    resolve-from "^5.0.0"
+    slash "^3.0.0"
+    xcode "^3.0.1"
+    xml2js "^0.4.23"
+
 "@expo/config-types@^40.0.0-beta.2":
   version "40.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@expo/config-types/-/config-types-40.0.0-beta.2.tgz#4fea4ef5654d02218b02b0b3772529a9ce5b0471"
   integrity sha512-t9pHCQMXOP4nwd7LGXuHkLlFy0JdfknRSCAeVF4Kw2/y+5OBbR9hW9ZVnetpBf0kORrekgiI7K/qDaa3hh5+Qg==
+
+"@expo/config-types@^41.0.0":
+  version "41.0.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/@expo/config-types/-/config-types-41.0.0.tgz#ffe1444c6c26e0e3a8f7149b4afe486e357536d1"
+  integrity sha512-Ax0pHuY5OQaSrzplOkT9DdpdmNzaVDnq9VySb4Ujq7UJ4U4jriLy8u93W98zunOXpcu0iiKubPsqD6lCiq0pig==
 
 "@expo/config@^3.3.18":
   version "3.3.33"
@@ -1148,6 +1171,26 @@
     "@expo/config-plugins" "1.0.23"
     "@expo/config-types" "^40.0.0-beta.2"
     "@expo/json-file" "8.2.28-alpha.0"
+    fs-extra "9.0.0"
+    getenv "^1.0.0"
+    glob "7.1.6"
+    require-from-string "^2.0.2"
+    resolve-from "^5.0.0"
+    semver "7.3.2"
+    slugify "^1.3.4"
+
+"@expo/config@^4.0.0":
+  version "4.0.4"
+  resolved "https://repo.huaweicloud.com/repository/npm/@expo/config/-/config-4.0.4.tgz#48686c2b83bc00db469e01592e396e973e91e11d"
+  integrity sha512-O3xRlwMCidOgk1WHIy6eOjh2yp0h/kgBDRNKqPe21+YDiOufyTGGNvbWgHwoax8goa1iMg443WQO7GhvaH286g==
+  dependencies:
+    "@babel/core" "7.9.0"
+    "@babel/plugin-proposal-class-properties" "~7.12.13"
+    "@babel/preset-env" "~7.12.13"
+    "@babel/preset-typescript" "~7.12.13"
+    "@expo/config-plugins" "2.0.4"
+    "@expo/config-types" "^41.0.0"
+    "@expo/json-file" "8.2.30"
     fs-extra "9.0.0"
     getenv "^1.0.0"
     glob "7.1.6"
@@ -1199,6 +1242,16 @@
     json5 "^1.0.1"
     write-file-atomic "^2.3.0"
 
+"@expo/json-file@8.2.30":
+  version "8.2.30"
+  resolved "https://repo.huaweicloud.com/repository/npm/@expo/json-file/-/json-file-8.2.30.tgz#bd855b6416b5c3af7e55b43f6761c1e7d2b755b0"
+  integrity sha512-vrgGyPEXBoFI5NY70IegusCSoSVIFV3T3ry4tjJg1MFQKTUlR7E0r+8g8XR6qC705rc2PawaZQjqXMAVtV6s2A==
+  dependencies:
+    "@babel/code-frame" "~7.10.4"
+    fs-extra "9.0.0"
+    json5 "^1.0.1"
+    write-file-atomic "^2.3.0"
+
 "@expo/plist@0.0.11":
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/@expo/plist/-/plist-0.0.11.tgz#5d7900dc31df57d45a3524c061dde34aacc8dabf"
@@ -1207,6 +1260,15 @@
     base64-js "^1.2.3"
     xmlbuilder "^14.0.0"
     xmldom "~0.1.31"
+
+"@expo/plist@0.0.13":
+  version "0.0.13"
+  resolved "https://repo.huaweicloud.com/repository/npm/@expo/plist/-/plist-0.0.13.tgz#700a48d9927aa2b0257c613e13454164e7371a96"
+  integrity sha512-zGPSq9OrCn7lWvwLLHLpHUUq2E40KptUFXn53xyZXPViI0k9lbApcR9KlonQZ95C+ELsf0BQ3gRficwK92Ivcw==
+  dependencies:
+    base64-js "^1.2.3"
+    xmlbuilder "^14.0.0"
+    xmldom "~0.5.0"
 
 "@expo/spawn-async@1.5.0":
   version "1.5.0"
@@ -1276,6 +1338,11 @@
   integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
   dependencies:
     "@hapi/hoek" "^8.3.0"
+
+"@hmscore/react-native-hms-availability@^5.2.0-300":
+  version "5.2.0-300"
+  resolved "https://repo.huaweicloud.com/repository/npm/@hmscore/react-native-hms-availability/-/react-native-hms-availability-5.2.0-300.tgz#fe2cd36ba8fb3ac84fffd9ab59a0a90166f4ea07"
+  integrity sha512-Rhg7DzCnO0QvF68NpPzpJTrCMRfjPPLDjZGvjSf9rTha59DZMWWf0OBjv3tOkbt9emHbtXeOH2P2CH37hwnPng==
 
 "@jest/console@^24.9.0":
   version "24.9.0"
@@ -2016,6 +2083,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
   integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
 
+"@types/node@^16.4.3":
+  version "16.4.13"
+  resolved "https://repo.huaweicloud.com/repository/npm/@types/node/-/node-16.4.13.tgz#7dfd9c14661edc65cccd43a29eb454174642370d"
+  integrity sha512-bLL69sKtd25w7p1nvg9pigE4gtKVpGTPojBFLMkGHXuUgap2sLqQt2qUnqmVCDfzGUL0DRNZP+1prIZJbMeAXg==
+
 "@types/prop-types@*":
   version "15.7.3"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
@@ -2101,6 +2173,16 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/twemoji-parser@^13.1.1":
+  version "13.1.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/@types/twemoji-parser/-/twemoji-parser-13.1.1.tgz#71e8a30cc542c51a893ee6583c401b56ad605b9f"
+  integrity sha512-KhGr5xLxf8XCITgMMG8CIHpnZ5EzbVFPmStoEPd6KqtX7Lc7pc7OZyicfcWJgPv68lq/+y52zu+S5A58oOdVJw==
+
+"@types/uuid@^8.3.1":
+  version "8.3.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/@types/uuid/-/uuid-8.3.1.tgz#1a32969cf8f0364b3d8c8af9cc3555b7805df14f"
+  integrity sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -3371,6 +3453,13 @@ debug@4, debug@^4.1.0, debug@^4.1.1:
   dependencies:
     ms "2.1.2"
 
+debug@^4.3.1:
+  version "4.3.2"
+  resolved "https://repo.huaweicloud.com/repository/npm/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
+  integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
+  dependencies:
+    ms "2.1.2"
+
 debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
@@ -3786,6 +3875,15 @@ expo-constants@^9.3.3, expo-constants@~9.3.3:
     fbjs "1.0.0"
     uuid "^3.3.2"
 
+expo-constants@~11.0.1:
+  version "11.0.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/expo-constants/-/expo-constants-11.0.1.tgz#8a33d9702d03289ab68d6de2bbeb2bbc9654734c"
+  integrity sha512-yolJSfsNAVmuNDc+NNxBzUKbZRXPM35edoMpv8xdmRBMpOWkRmTdpBIFAYAKCtrGruw2tkIQhnLmCD2aDycvTg==
+  dependencies:
+    "@expo/config" "^4.0.0"
+    expo-modules-core "~0.2.0"
+    uuid "^3.3.2"
+
 expo-crypto@^8.4.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-8.4.0.tgz#59a5b0640bb39db93e6857feafa2c9514b172cef"
@@ -3823,6 +3921,16 @@ expo-linear-gradient@~8.4.0:
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-8.4.0.tgz#34e6f960b1971c57dacf7211c747ba490a76bf63"
   integrity sha512-f9JOXaIl0MR8RBYRIud5UAsEi52oz81XhQs73VUpujemHjOyHmrZa6dqwf399YOwI/WBwbpcINcUIw/mCYE1mA==
 
+expo-linking@^2.0.1:
+  version "2.3.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/expo-linking/-/expo-linking-2.3.1.tgz#477af2bcc156a7f8ba9961c7b3f4aa103e18db98"
+  integrity sha512-c2O23OdWOHaIRAKhveZ/PhdNq8DUx3995GQKtnz0WK7fuAmEYM8GU/F6KIUXV0QGEkRKB7drDb8Rk2JYi39Gag==
+  dependencies:
+    expo-constants "~11.0.1"
+    invariant "^2.2.4"
+    qs "^6.5.0"
+    url-parse "^1.4.4"
+
 expo-linking@~2.0.0, expo-linking@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-2.0.1.tgz#0ac0298039b0f7f6c109d7efbbb661efc1c56760"
@@ -3837,6 +3945,11 @@ expo-location@~10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-10.0.0.tgz#2923411649434f2f079343b163b13c5c9eee8b2d"
   integrity sha512-QLEb0iaBv4/blLxxfKRj2/HPisY+1t+g6MgegqZ1j1U/0qih4dvzUQrxie9ZOZyQB9gnXFCRnZv3QzHEb52dcA==
+
+expo-modules-core@~0.2.0:
+  version "0.2.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/expo-modules-core/-/expo-modules-core-0.2.0.tgz#68e5b6e53d0afbf8d131578831aed657589a2d42"
+  integrity sha512-inpfZ5X/BaTtbj2wG9PA9AC0MN8VyId6KSRlVuEg7+ziurHBy/kKDFxpOddUokhwiln2uhoYPSStJjR/tKypdw==
 
 expo-permissions@~10.0.0:
   version "10.0.0"
@@ -3868,7 +3981,7 @@ expo-status-bar@~1.0.3:
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.0.3.tgz#62b4d6145680abd43ba6ecfa465f835e88bf6263"
   integrity sha512-/Orgla1nkIrfswNHbuAOTbPVq0g3+GrhoQVk7MRafY2dwrFLgXhaPExS+eN2hpmzqPv2LG5cqAZDCQUAjmZYBQ==
 
-expo-web-browser@^8.6.0, expo-web-browser@~8.6.0:
+expo-web-browser@^8.6.0:
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.6.0.tgz#121ad81b2597b8273739b630c278a6f6937b95ae"
   integrity sha512-VHFuBl0im00yEVbEzOZUrQVvq8uGhyU/4WivJkfLF4GA3Pj7CaG6PMo0+6YNzkzB1JoVx5AfuKgBbSuOuETP9Q==
@@ -8877,7 +8990,7 @@ xcode@^2.0.0, xcode@^2.1.0:
     simple-plist "^1.0.0"
     uuid "^3.3.2"
 
-xcode@^3.0.0:
+xcode@^3.0.0, xcode@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/xcode/-/xcode-3.0.1.tgz#3efb62aac641ab2c702458f9a0302696146aa53c"
   integrity sha512-kCz5k7J7XbJtjABOvkc5lJmkiDh8VhjVCGNiqdKCscmVpdVUpEAyXv1xmCLkQJ5dsHqx3IPO4XW+NTDhU/fatA==
@@ -8942,7 +9055,7 @@ xmldom@^0.1.22, xmldom@~0.1.31:
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.31.tgz#b76c9a1bd9f0a9737e5a72dc37231cf38375e2ff"
   integrity sha512-yS2uJflVQs6n+CyjHoaBmVSqIDevTAWrzMmjG1Gc7h1qQ7uVozNhEPJAwZXWyGQ/Gafo3fCwrcaokezLPupVyQ==
 
-xmldom@^0.5.0:
+xmldom@^0.5.0, xmldom@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.5.0.tgz#193cb96b84aa3486127ea6272c4596354cb4962e"
   integrity sha512-Foaj5FXVzgn7xFzsKeNIde9g6aFBxTPi37iwsno8QvApmtg7KYrr+OPyRHcJF7dud2a5nGRBXK3n0dL62Gf7PA==
