@@ -1,6 +1,7 @@
 # Pingheng
 
-{: align="center"} [日本語](Readme.md) [中文](Readme_CN.md) English
+{: align="center"}
+[日本語](Readme.md) [中文](Readme_CN.md) English
 
 ```text
 Readme in other language versions may not be updated as fast as the Japanese Readme.
