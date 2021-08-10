@@ -1,6 +1,5 @@
 # Pingheng
 
-{: align="center"}
 [日本語](Readme.md) [中文](Readme_CN.md) English
 
 ```text
