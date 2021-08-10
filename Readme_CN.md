@@ -6,7 +6,7 @@
 其他语言版本的Readme可能不会像日语Readme那样更新。 如有差异，请查阅日文版的最新信息。
 ```
 
-Pingheng是一个用ReactNative创建的Android的Misskey客户端。
+Pingheng是用ReactNative的Misskey客户端。
 
 ## 特点和计划
 
@@ -15,8 +15,8 @@ Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 - [x] 登录
 - [x] 登录(有深度链接)
 - [x] 通知
-- [x] 通知支持拉动式链接。
-- [x] 提及的通知。
+- [x] 通知支持拉动式链接
+- [x] 提及的通知
 - [x] 显示TL
 - [x] 在切换tl时获得过去的笔记
 - [x] 切换TL
@@ -36,7 +36,7 @@ Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 - [ ] RT
 - [ ] 折叠/展开注释
 - [ ] 额外的
-- [x] 用securestore保存Mtoken。
+- [x] 用securestore保存Mtoken
 
 ### 快一点
 
@@ -55,7 +55,7 @@ Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 - [ ] 支持鸿蒙
 - [ ] 支持iOS
 - [ ] 普通RT显示部分
-- [ ] 统一noteview和notifyview数据的使用。
+- [ ] 统一noteview和notifyview数据的使用
 - [ ] 同时向Twitter发送推文
 - [ ] 重新设计设置屏幕
 - [ ] Weird日语
@@ -70,12 +70,12 @@ Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 - [ ] 发送图像
 - [ ] 显示投票
 - [ ] 发送投票
-- [ ] 圣图
+- [ ] shengtu
 - [ ] 从hogeState重新命名为hogeContext
 - [ ] 图像剪裁
 - [ ] 处理鲭鱼的错误和鲭鱼的失败
 - [ ] 起草 (云)
 - [ ] 支持重复的内容
 - [ ] 支持不同的鲭鱼
-- [ ] 用这个颜色使底栏透明。
+- [ ] 用这个颜色使底栏透明
 - [ ] 重复使用图像（用户图标）
