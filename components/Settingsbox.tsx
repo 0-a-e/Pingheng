@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useEffect, useState } from 'react';
-import {Text} from 'react-native';
+import {Text, ToastAndroid} from 'react-native';
 import ReactNativeSettingsPage, { 
 	SectionRow, 
 	NavigateRow,
@@ -14,6 +14,7 @@ const Settingsbox = () => {
 	useEffect(() => {
 	getMeta(false).then(metaraw => {
 		metawrite(metaraw);
+		ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);
 	});
 	}, []);
 
