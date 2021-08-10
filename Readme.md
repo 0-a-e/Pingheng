@@ -1,5 +1,7 @@
 # Pingheng
 
+ 日本語 [中文](Readme_CN.md) [English](Readme_EN.md)
+
 PinghengはReactNativeで制作されたAndroid向けMisskeyクライアントです。
 
 ## 機能と予定
