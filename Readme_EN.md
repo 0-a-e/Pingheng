@@ -2,6 +2,10 @@
 
  [日本語](Readme.md) [中文](Readme_CN.md) English
 
+```text
+Readme in other language versions may not be updated as fast as the Japanese Readme. In case of discrepancies, please check the Japanese version for the latest information.
+```
+
 Pingheng is a Misskey client for Android created with ReactNative.
 
 ## Features and Plans

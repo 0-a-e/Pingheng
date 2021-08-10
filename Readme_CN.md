@@ -2,6 +2,10 @@
 
  [日本語](Readme.md) 中文 [English](Readme_EN.md)
 
+```text
+其他语言版本的Readme可能不会像日语Readme那样更新。 如有差异，请查阅日文版的最新信息。
+```
+
 Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 
 ## 特点和计划
