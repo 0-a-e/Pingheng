@@ -25,14 +25,14 @@ const ReactionView= (props) => {
         num = num - 3;
     //    console.log(actionlist);
        return(
-            <View style={{flexDirection:"row",borderRadius:50,backgroundColor:"red",alignItems:"center",justifyContent: 'center',height:25,width:75}}>
-                <View style={{backgroundColor:"pink",alignItems:"center",justifyContent: 'center',height:25,width:50}}>
+            <View style={{flexDirection:"row",borderRadius:50,backgroundColor:"red",alignItems:"center",justifyContent: 'center',height:25,width:70}}>
+                <View style={{alignItems:"center",justifyContent: 'center',height:25,width:45}}>
                 {actionlist.map((action,index) => {
                     const zindexv = 10 + index;
                     const Left = index*10;
                     const marginleft = index*2;
                     return(
-                        <View style={{position:"absolute",alignItems:"center",justifyContent: 'center',zIndex:zindexv,elevation:zindexv,width:20,height:20,left:Left,top:0,backgroundColor:"grey",marginLeft:marginleft,borderLeftColor:"green",borderLeftWidth:2}}>
+                        <View style={{position:"absolute",alignItems:"center",justifyContent: 'center',zIndex:zindexv,elevation:zindexv,width:20,height:20,left:Left,top:0,backgroundColor:"grey",marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}>
                             <Text style={{width:20,height:25,alignItems:"center",justifyContent: 'center',top:0}}>
                                 <ParseEmoji text={action} emojis={props.data["emojis"]} />
                             </Text>
