@@ -13,7 +13,7 @@ Pingheng is a Misskey client for Android created with ReactNative.
 - [x] Notifications
 - [x] Notification support for pull-links.
 - [x] Mention support for notifications.
-- x] display TL
+- [x] display TL
 - [x] Get past notes when switching tl
 - [x] Switch TL
 - [x] Send note
@@ -24,7 +24,7 @@ Pingheng is a Misskey client for Android created with ReactNative.
 - [ ] Resurrect WS
 - [x] Action Sheet (❤ and 👍)
 - [ ] Action Sheet (RIP)
-- [ x] Action Sheet (Reactions)
+- [x] Action Sheet (Reactions)
 - [ ] Twemoji
 - [ ] Making Icons
 - [ ] Show RTs
