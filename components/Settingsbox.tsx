@@ -14,7 +14,6 @@ const Settingsbox = () => {
 	useEffect(() => {
 	getMeta(false).then(metaraw => {
 		metawrite(metaraw);
-		ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);
 	});
 	}, []);
 
@@ -40,7 +39,7 @@ const openlink = (url:string) => {
                     <NavigateRow
 						text='絵文字とサーバー情報を更新'
 						iconName='wrench'
-						onPressCallback={() => {getMeta(true);}} 
+						onPressCallback={() => {getMeta(true);ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);}} 
                     />
                     <NavigateRow
 						text='@oae'
