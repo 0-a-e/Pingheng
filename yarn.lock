@@ -5960,6 +5960,13 @@ metro@0.59.0, metro@^0.59.0:
     xpipe "^1.0.5"
     yargs "^14.2.0"
 
+mfm-js@^0.19.0:
+  version "0.19.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/mfm-js/-/mfm-js-0.19.0.tgz#77419fb54cb1bcfa49d931467903d6dc6c1815e1"
+  integrity sha512-06uVz9v+ltO9Obt1vWpwfJZEyZloihYuoxud+Rt6R9PW4aUk2/zua8qUeMBDNQkKZ/+IRtRSmmgn2A2GiDSMEg==
+  dependencies:
+    twemoji-parser "13.1.x"
+
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
@@ -8538,7 +8545,7 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
-twemoji-parser@^13.1.0:
+twemoji-parser@13.1.x, twemoji-parser@^13.1.0:
   version "13.1.0"
   resolved "https://repo.huaweicloud.com/repository/npm/twemoji-parser/-/twemoji-parser-13.1.0.tgz#65e7e449c59258791b22ac0b37077349127e3ea4"
   integrity sha512-AQOzLJpYlpWMy8n+0ATyKKZzWlZBJN+G0C+5lhX7Ftc2PeEVdUU/7ns2Pn2vVje26AIZ/OHwFoUbdv6YYD/wGg==

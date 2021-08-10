@@ -19,26 +19,28 @@ const ReactionView= (props) => {
     //const e = num - actionlist.length;
 
     //リアクションが3個以上のときはactionlistを3個までにしてリアクション数から3引く
-    console.log(actionlist.length);
+    //console.log(actionlist.length);
     if(actionlist.length>3){
         actionlist = actionlist.slice(0,3);
         num = num - 3;
-        console.log(actionlist);
+    //    console.log(actionlist);
        return(
-            <Text numberOfLines={1} style={{borderRadius:50,backgroundColor:"red",alignItems:"center",height:30,width:50}}>
+            <View style={{flexDirection:"row",borderRadius:50,backgroundColor:"red",alignItems:"center",justifyContent: 'center',height:25,width:80}}>
+                <View style={{borderRadius:50,backgroundColor:"pink",alignItems:"center",justifyContent: 'center',height:25,width:55}}>
                 {actionlist.map((action,index) => {
-                    const zindex = 10 + index;
-                    console.log(zindex);
+                    const zindexv = 10 + index;
+                    const Left = index*10;
                     return(
-                        <View style={{backgroundColor:"rgba(255,255,255,0.5)",position:"absolute",zIndex:zindex,width:20,height:20}}>
-                            <Text>
+                        <View style={{position:"absolute",zIndex:zindexv,elevation:zindexv,width:20,height:20,left:Left,top:0,paddingLeft:2}}>
+                            <Text style={{width:20,height:25,position:"relative"}}>
                                 <ParseEmoji text={action} emojis={props.data["emojis"]} />
                             </Text>
                         </View>
                     )
                 })}
-                +{num}
-            </Text>
+                </View>
+                <Text style={{height:25,backgroundColor:"blue",color:"#fff",alignItems:"center",justifyContent: 'center',}}> +{num}</Text>
+            </View>
             );
     } else if(actionlist.length > 0){
         //リアクションなし

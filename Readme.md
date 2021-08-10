@@ -1,6 +1,6 @@
 # Pingheng
 
-ReactNative製Misskeyクライアント(仮)
+PinghengはReactNativeで制作されたAndroid向けMisskeyクライアントです。
 
 ## 機能と予定
 
@@ -35,6 +35,7 @@ ReactNative製Misskeyクライアント(仮)
 ### はやめに
 
 - [ ] HMS対応
+- [ ] 16:9対応
 - [ ] 今のリアクションのボタンを白くする
 - [ ] スワイプいいね/RT機能の復活
 - [ ] リアクションをリノート対応に（リノートは元ツイに、引リツは引リツに）
@@ -44,6 +45,8 @@ ReactNative製Misskeyクライアント(仮)
 ### そのうち
 
 - [ ] リアルタイム通知
+- [ ] HarmonyOS対応
+- [ ] iOS対応
 - [ ] RT表示部の共通化
 - [ ] noteviewとnotifyviewのデータの使い方を揃える
 - [ ] Twitterに同時ツイート
@@ -60,7 +63,7 @@ ReactNative製Misskeyクライアント(仮)
 - [ ] 画像送信
 - [ ] 投票表示
 - [ ] 投票送信
-- [ ] Shengtu　ツイキャスもどき
+- [ ] Shengtu
 - [ ] hogeStateからhogeContextに改名
 - [ ] 画像トリミング
 - [ ] 鯖エラー、鯖落ち時の処理
