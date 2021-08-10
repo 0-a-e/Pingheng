@@ -1,5 +1,7 @@
 # Pingheng
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
  [日本語](Readme.md) 中文 [English](Readme_EN.md)
 
 ```text
@@ -7,6 +9,7 @@
 ```
 
 Pingheng是用ReactNative的Misskey客户端。
+在MisskeyV12可用。
 
 ## 特点和计划
 

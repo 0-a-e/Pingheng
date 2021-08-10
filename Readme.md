@@ -1,8 +1,11 @@
 # Pingheng
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
  日本語 [中文](Readme_CN.md) [English](Readme_EN.md)
 
 PinghengはReactNativeで制作されたAndroid向けMisskeyクライアントです。
+MisskeyV12で利用できます。
 
 ## 機能と予定
 
