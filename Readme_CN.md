@@ -47,6 +47,7 @@ Pingheng是一个用ReactNative创建的Android的Misskey客户端。
 - [ ] 使反应重注兼容（重注到原件，重写到重写）
 - [ ] 更加平滑的音符发送动画
 - [ ] 用户页
+- [ ] MFM
 
 ### 在时间上
 

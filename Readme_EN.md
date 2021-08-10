@@ -48,6 +48,7 @@ Pingheng is a Misskey client for Android created with ReactNative.
 - [ ] Make reactions re-note compatible (re-note to original, re-right to re-right)
 - [ ] Smooth note sending animation
 - [ ] User page
+- [ ] MFM
 
 ### In time
 
