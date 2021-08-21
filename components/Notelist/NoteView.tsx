@@ -35,9 +35,10 @@ const NoteViewraw = (props) => {
           />
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
-              {data["item"]["user"]["name"]  != null &&  <ListItem.Title style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} /></ListItem.Title>}
-              {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
-  
+              <View style={notestyles.uncontainer}>
+                {data["item"]["user"]["name"]  != null &&  <Text style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} /></Text>}
+                {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
+              </View>
               {
               data["item"]["user"]["isBot"] && 
                 <Badge 
@@ -47,7 +48,7 @@ const NoteViewraw = (props) => {
                 badgeStyle={{width: 25}}
                 />
               }
-              <ListItem.Subtitle style={notestyles.username}>@{data["item"]["user"]["username"]}</ListItem.Subtitle>
+              <Text style={notestyles.username}>@{data["item"]["user"]["username"]}</Text>
               <ReactionView data={data["item"]} />
             </View>
             

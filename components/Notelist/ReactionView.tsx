@@ -33,7 +33,7 @@ const ReactionView= (props) => {
                     const marginleft = index*2;
                     return(
                         <View style={{position:"absolute",alignItems:"center",justifyContent: 'center',zIndex:zindexv,
-                        marginTop:2.5,
+                      //  marginTop:2.5,
                         //elevation:zindexv,
                         width:20,height:20,left:Left,top:0,
                       //  backgroundColor:"grey",

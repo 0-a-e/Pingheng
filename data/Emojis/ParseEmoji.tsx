@@ -1,8 +1,8 @@
 import React from "react";
-import { Image,Text } from "react-native";
+import { Text, View } from "react-native";
 const reactStringReplace = require('react-string-replace');
 import { parse } from 'twemoji-parser';
-import SvgUri from 'react-native-svg-uri';
+import Image from 'react-native-remote-svg';
 
 const imageComemojis = (match,props,i:number) => {
   let url = "https://lh3.googleusercontent.com/proxy/Rue5cq69mZaE4jguWbI8kblrkI6IOEdy6gnx9adIOSrgQCdPlwEb07bn2tZG79yXd6RRy9Sx-H-y2NkPdyIKrshG_EJ_dFzkA61pWGnvmxFWRofSkjTAOaW8ZQQvc1uAyIN6jyOCNwXLKY4";
@@ -13,7 +13,15 @@ const imageComemojis = (match,props,i:number) => {
         url = element["url"];
     }
     });
-  return(<Image key={match + i} style={{height:20,width:20}} source={{uri: url}} />);
+//url = "https://www.kawaiifabric.com/images/product_images/large_img/solid-red-fabric-Robert-Kaufman-USA-Red-179485-1.JPG";
+//url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
+  return(
+  <Image
+    key={match + i}
+    style={{height:20,width:20,justifyContent:"center",alignItems: 'center',backgroundColor:"green"}}
+    source={{uri: url}}
+  />)
+  ;
 };
 
 const twemojied = (text) => {
@@ -22,13 +30,16 @@ const twemojied = (text) => {
   //Twemojiリストをループして置換済みのリストを返す
   twemojientity.forEach((emoji: { text: string | undefined; url: string | undefined; }) => {
     returntext = reactStringReplace(text, emoji.text, (match, i) => { 
+      const url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
+      //emoji.url
       return (
-        <SvgUri
-          key={match + i}
-          height={20}
-          width={20}
-          source={{uri: emoji.url}}
-        />
+        <View style={{width:20,height:20}}>
+        <Image
+            key={match + i}
+            source={{uri:emoji.url}}
+            style={{height:20,width:20,justifyContent:"center",alignItems: 'center',backgroundColor:'#fff'}}
+          />
+        </View>
       )
     });
   });

@@ -56,6 +56,7 @@ It is available in MisskeyV12.
 ### In time
 
 - [ ] Real-time notifications
+- [ ] Multi-language support
 - [ ] HarmonyOS support
 - [ ] iOS support
 - [ ] Commonization of RT display section

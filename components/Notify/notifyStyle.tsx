@@ -32,7 +32,13 @@ const notifystyles = StyleSheet.create({
       backgroundColor: "#ffffff"
     },
     name:{
-      color: "#fff"
+      color: "#fff",
+   //   flexDirection: "row",
+      lineHeight:20,
+      paddingBottom:1,
+  //    textAlignVertical: 'top',
+   //   includeFontPadding: false,
+      backgroundColor:"blue"
     },
     notetext:{
       color:"rgba(230,230,230,1)",

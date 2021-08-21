@@ -55,6 +55,7 @@ Pingheng是用ReactNative的Misskey客户端。
 ### 在时间上
 
 - [ ] 实时通知
+- [ ] 多语言支持
 - [ ] 支持鸿蒙
 - [ ] 支持iOS
 - [ ] 普通RT显示部分

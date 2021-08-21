@@ -1,5 +1,5 @@
 import React, {} from 'react';
-import { Text, View,TouchableOpacity } from 'react-native';
+import { Text, View,TouchableOpacity,Image } from 'react-native';
 import { ListItem,Card, Avatar } from 'react-native-elements';
 import switchactionring from './switchActionring';
 import notifystyles from './notifyStyle';
@@ -21,7 +21,9 @@ const NotifyView = (props:any) => {
                 <Actionring actionringbar={actionringbar} props={props}/>
                 <View style={notifystyles.incardcontainer}>
                     <View style={notifystyles.topcontainer}>
-                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
+                        {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}>
+                          <Image key="ddj" style={{width:20,height:20}} source={{uri: "https://www.kawaiifabric.com/images/product_images/large_img/solid-red-fabric-Robert-Kaufman-USA-Red-179485-1.JPG"}} />
+                          <ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
                         {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>@{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
                     </View>
                     <View style={notifystyles.normalcontainer}>     
@@ -95,7 +97,7 @@ const renotereturn = () => {
               </View>
               :
               <View style={notifystyles.topcontainer}>
-                {props["data"]["item"]["user"]["name"]  != null &&  <ListItem.Title style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </ListItem.Title>}
+                {props["data"]["item"]["user"]["name"]  != null &&  <Text style={notifystyles.name}><ParseEmoji text={props["data"]["item"]["user"]["name"]}  emojis={props["data"]["item"]["user"]["emojis"]} /> </Text>}
                 {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>@{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
               </View>
                 }

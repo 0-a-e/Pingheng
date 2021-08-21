@@ -85,11 +85,24 @@ const notestyles = StyleSheet.create({
       backgroundColor: "#ffffff"
     },
     name:{
-      color: "#fff"
+      color: "#fff",
+      lineHeight:20,
+      paddingBottom:1,
+      backgroundColor:"blue",
+    },
+    
+    uncontainer:{
+      height:20,
+//      width:20
     },
     username:{
       color: "rgba(200,200,200,1)",
-      marginLeft: 5
+      marginLeft: 5,
+      fontSize: 14,
+      height:20,
+      backgroundColor:"red",
+      flexDirection: 'row',
+      alignItems: 'center',
     },
   
     incardcontainer:{
