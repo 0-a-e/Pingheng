@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+> :warning: This application has not been released yet.
+
 [日本語](Readme.md) [中文](Readme_CN.md) English
 
 ```text
@@ -61,6 +63,7 @@ It is available in MisskeyV12.
 - [ ] iOS support
 - [ ] Commonization of RT display section
 - [ ] Align the usage of noteview and notifyview data
+- [ ] Display a question mark or 404 image when there is no custom emoji image.
 - [ ] Simultaneous tweeting to Twitter
 - [ ] Redesign the setting screen
 - [ ] Weird Japanese

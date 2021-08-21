@@ -90,7 +90,7 @@ const notestyles = StyleSheet.create({
       paddingBottom:1,
       backgroundColor:"blue",
     },
-    
+
     uncontainer:{
       height:20,
 //      width:20
@@ -100,7 +100,6 @@ const notestyles = StyleSheet.create({
       marginLeft: 5,
       fontSize: 14,
       height:20,
-      backgroundColor:"red",
       flexDirection: 'row',
       alignItems: 'center',
     },

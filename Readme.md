@@ -4,7 +4,7 @@
 
  日本語 [中文](Readme_CN.md) [English](Readme_EN.md)
 
-PinghengはReactNativeで制作されたAndroid向けMisskeyクライアントです。
+PinghengはReactNative製のAndroid向けMisskeyクライアントです。
 MisskeyV12で利用できます。
 
 ## 機能と予定
@@ -56,6 +56,7 @@ MisskeyV12で利用できます。
 - [ ] iOS対応
 - [ ] RT表示部の共通化
 - [ ] noteviewとnotifyviewのデータの使い方を揃える
+- [ ] カスタム絵文字の画像がない時?とか404の画像を表示する
 - [ ] Twitterに同時ツイート
 - [ ] 設定画面作り直す
 - [ ] 怪レい日本語

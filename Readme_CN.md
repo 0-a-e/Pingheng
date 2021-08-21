@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+> :warning: 这个应用程序还没有发布。
+
  [日本語](Readme.md) 中文 [English](Readme_EN.md)
 
 ```text
@@ -60,6 +62,7 @@ Pingheng是用ReactNative的Misskey客户端。
 - [ ] 支持iOS
 - [ ] 普通RT显示部分
 - [ ] 统一noteview和notifyview数据的使用
+- [ ] 当没有自定义表情符号图像时，显示一个问号或404图像
 - [ ] 同时向Twitter发送推文
 - [ ] 重新设计设置屏幕
 - [ ] Weird日语
