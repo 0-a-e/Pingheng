@@ -29,7 +29,7 @@ const wraptext = (rtextraw: any[],textStyle:any) => {
   let rtext = rtextraw; 
   rtextraw.forEach((elem,index) => {
     if(typeof elem == "string"){
-    rtext[index] = <Text style={textStyle}>{elem}</Text>;
+    rtext[index] = <Text key={elem + index + uuidv4()} style={textStyle}>{elem}</Text>;
     }
   });
   return rtext;
@@ -44,7 +44,7 @@ const twemojied = (text) => {
      // const url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
       //emoji.url
       return (
-        <View style={{width:20,height:20}}>
+        <View style={{width:20,height:20}} key={match + i + uuidv4()}>
         <Image
             key={match + i + uuidv4()}
             source={{uri:emoji.url}}
