@@ -22,7 +22,7 @@ const NotifyView = (props:any) => {
                 <View style={notifystyles.incardcontainer}>
                     <View style={notifystyles.topcontainer}>
                         {props["data"]["item"]["user"]["name"]  != null &&  <View style={notifystyles.name}>
-                          <ParseEmoji text={props["data"]["item"]["user"]["name"]} emojis={props["data"]["item"]["user"]["emojis"]} /></View>}
+                          <ParseEmoji text={props["data"]["item"]["user"]["name"]} emojis={props["data"]["item"]["user"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} /></View>}
                         {props["data"]["item"]["user"]["name"]  == null &&  <ListItem.Title numberOfLines={1} style={notifystyles.name}>@{props["data"]["item"]["user"]["username"]}</ListItem.Title>}
                     </View>
                     <View style={notifystyles.normalcontainer}>     

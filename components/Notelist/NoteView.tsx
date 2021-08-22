@@ -36,7 +36,7 @@ const NoteViewraw = (props) => {
           <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               <View style={notestyles.uncontainer}>
-                {data["item"]["user"]["name"]  != null &&  <View style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} /></View>}
+                {data["item"]["user"]["name"]  != null &&  <View style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} /></View>}
                 {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
               </View>
               {

@@ -3,7 +3,7 @@ import { View,TouchableOpacity,Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Avatar,ListItem,Card,Badge } from 'react-native-elements';
 import ReadMore from '@fawazahmed/react-native-read-more';
-import ParseEmoji from '../../data/Emojis/ParseEmoji';
+import  from '../../data/Emojis/ParseEmoji';
 import notestyles from './NoteStyle';
 
 const RTViewraw = (props) => {

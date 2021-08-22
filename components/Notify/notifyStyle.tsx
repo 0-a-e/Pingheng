@@ -33,11 +33,7 @@ const notifystyles = StyleSheet.create({
     },
     name:{
       color: "#fff",
-   //   flexDirection: "row",
-      flexDirection:'row',
-  //    textAlignVertical: 'top',
-   //   includeFontPadding: false,
-      backgroundColor:"blue"
+      flexDirection:'row'
     },
     notetext:{
       color:"rgba(230,230,230,1)",

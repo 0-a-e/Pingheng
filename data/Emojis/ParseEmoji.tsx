@@ -24,11 +24,11 @@ const imageComemojis = (match,props,i:number) => {
   ;
 };
 
-const wraptext = (rtextraw: any[]) => {
+const wraptext = (rtextraw: any[],textStyle:any) => {
   let rtext = rtextraw; 
   rtextraw.forEach((elem,index) => {
     if(typeof elem == "string"){
-    rtext[index] = <Text>{elem}</Text>;
+    rtext[index] = <Text style={textStyle}>{elem}</Text>;
     }
   });
   return rtext;
@@ -56,27 +56,26 @@ const twemojied = (text) => {
   return returntext;
 }
 
-const ParseEmoji = (props: { text: any; emojis: string | any[]; }) => {
+const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }) => {
   const str = props.text;
   if(props.emojis && props.emojis.length > 0){
     const regexp = /:["']?([a-zA-Z0-9_\.\/\-@<>]+)["']?\:/g;
-    const textreg = /.*?/;
     let returntext;
     const twemojieding = twemojied(str);
     if(twemojieding != undefined){
       returntext = reactStringReplace(twemojieding, regexp, (match, i) => (imageComemojis(match,props,i)));
-      return wraptext(returntext);
+      return wraptext(returntext,props.textStyle);
     } else {
       returntext = reactStringReplace(str, regexp, (match, i) => (imageComemojis(match,props,i)));
-      return wraptext(returntext);
+      return wraptext(returntext,props.textStyle);
     }
     return returntext;
   } else {
     let twemojieding = twemojied(str);
     if(twemojieding != undefined){
-      return wraptext(twemojieding);
+      return wraptext(twemojieding,props.textStyle);
     } else  {
-      return <Text>{str}</Text>;
+      return <Text style={props.textStyle}>{str}</Text>;
     }
   }
 

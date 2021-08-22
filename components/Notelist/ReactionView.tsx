@@ -38,7 +38,7 @@ const ReactionView= (props) => {
                         width:20,height:20,left:Left,top:0,
                      //   backgroundColor:"grey",
                         marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}>
-                                <ParseEmoji text={action} emojis={props.data["emojis"]} />
+                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
                         </View>
                     )
                 })}
@@ -50,7 +50,7 @@ const ReactionView= (props) => {
         //リアクションなし
         return(<></>);
       } else {
-        return(<ParseEmoji text={actionlist} emojis={props.data["emojis"]}/>);
+        return(<ParseEmoji text={actionlist} emojis={props.data["emojis"]} textStyle={{}} />);
       }
       
     }
