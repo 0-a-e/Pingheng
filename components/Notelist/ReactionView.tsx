@@ -10,7 +10,6 @@ const ReactionView= (props) => {
         [...Array(props.data["reactions"][key])].map(() => actionlist.push(key))
     }); 
     //actionlistが全部のリアクション（重複含む）
-    console.log(actionlist);
     if(actionlist.length>3){
         let l3list = [];
         actionlist.forEach(function (key) {
@@ -24,7 +23,6 @@ const ReactionView= (props) => {
             l3list = actionlist.slice(0,3);
         }
         //l3listはそれぞれのリアクションが3つ以上あるなら重複除いたやつの先頭3つ　重複で消えて3以下ならactionlistの先頭3つ
-        console.log();
         num = actionlist.length - 3;
 
        return(
@@ -59,11 +57,9 @@ const ReactionView= (props) => {
             alignItems:"center",
             justifyContent: 'center',
             height:25,
-         //   width:70
             }}>
                 <View style={{position:"relative",height:25,width:5}} />
                 {actionlist.map((action,index) => {
-                    const Left = index*20;
                     return(
                         <View style={{
                         position:"relative",
