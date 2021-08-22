@@ -86,11 +86,12 @@ const notestyles = StyleSheet.create({
     },
     name:{
       color: "#fff",
-      lineHeight:20,
-      paddingBottom:1,
-      backgroundColor:"blue",
-    },
-
+   //   flexDirection: "row",
+      flexDirection:'row',
+  //    textAlignVertical: 'top',
+   //   includeFontPadding: false,
+      backgroundColor:"blue"
+},
     uncontainer:{
       height:20,
 //      width:20

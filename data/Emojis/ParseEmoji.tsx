@@ -18,11 +18,21 @@ const imageComemojis = (match,props,i:number) => {
   return(
   <Image
     key={match + i}
-    style={{height:20,width:20,justifyContent:"center",alignItems: 'center',backgroundColor:"green"}}
+    style={{height:20,width:20,justifyContent:"center",alignItems: 'center'}}
     source={{uri: url}}
   />)
   ;
 };
+
+const wraptext = (rtextraw: any[]) => {
+  let rtext = rtextraw; 
+  rtextraw.forEach((elem,index) => {
+    if(typeof elem == "string"){
+    rtext[index] = <Text>{elem}</Text>;
+    }
+  });
+  return rtext;
+}
 
 const twemojied = (text) => {
   const twemojientity = parse(text);
@@ -37,7 +47,7 @@ const twemojied = (text) => {
         <Image
             key={match + i}
             source={{uri:emoji.url}}
-            style={{height:20,width:20,justifyContent:"center",alignItems: 'center',backgroundColor:'#fff'}}
+            style={{height:20,width:20,justifyContent:"center",alignItems: 'center'}}
           />
         </View>
       )
@@ -50,22 +60,23 @@ const ParseEmoji = (props: { text: any; emojis: string | any[]; }) => {
   const str = props.text;
   if(props.emojis && props.emojis.length > 0){
     const regexp = /:["']?([a-zA-Z0-9_\.\/\-@<>]+)["']?\:/g;
+    const textreg = /.*?/;
     let returntext;
     const twemojieding = twemojied(str);
-   
     if(twemojieding != undefined){
-      //returntext = twemojieding;
       returntext = reactStringReplace(twemojieding, regexp, (match, i) => (imageComemojis(match,props,i)));
+      return wraptext(returntext);
     } else {
       returntext = reactStringReplace(str, regexp, (match, i) => (imageComemojis(match,props,i)));
+      return wraptext(returntext);
     }
     return returntext;
   } else {
-    const twemojieding = twemojied(str);
+    let twemojieding = twemojied(str);
     if(twemojieding != undefined){
-    return twemojieding;
+      return wraptext(twemojieding);
     } else  {
-      return str;
+      return <Text>{str}</Text>;
     }
   }
 

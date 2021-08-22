@@ -34,8 +34,7 @@ const notifystyles = StyleSheet.create({
     name:{
       color: "#fff",
    //   flexDirection: "row",
-      lineHeight:20,
-      paddingBottom:1,
+      flexDirection:'row',
   //    textAlignVertical: 'top',
    //   includeFontPadding: false,
       backgroundColor:"blue"

@@ -33,14 +33,12 @@ const ReactionView= (props) => {
                     const marginleft = index*2;
                     return(
                         <View style={{position:"absolute",alignItems:"center",justifyContent: 'center',zIndex:zindexv,
-                      //  marginTop:2.5,
+                        marginTop:2.5,
                         //elevation:zindexv,
                         width:20,height:20,left:Left,top:0,
-                      //  backgroundColor:"grey",
+                     //   backgroundColor:"grey",
                         marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}>
-                            <Text style={{width:20,height:25,alignItems:"center",justifyContent: 'center',top:0}}>
                                 <ParseEmoji text={action} emojis={props.data["emojis"]} />
-                            </Text>
                         </View>
                     )
                 })}
