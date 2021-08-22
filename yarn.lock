@@ -7325,10 +7325,9 @@ react-native-reanimated@^2.1.0:
     mockdate "^3.0.2"
     string-hash-64 "^1.0.3"
 
-react-native-remote-svg@^2.0.6:
+"react-native-remote-svg@https://github.com/0-a-e/react-native-remote-svg.git":
   version "2.0.6"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-remote-svg/-/react-native-remote-svg-2.0.6.tgz#5f8bc7cefc18f4d37cf02f8158d6b2a9f534891d"
-  integrity sha512-tQbDL+gtfGgG9Evz5TOn5Odmrn/EYsmsLqVZ0Do0VMJevfLBuQRioLiwRsI/BCgOHu1oQLZIIE5p7V/lN9jLrw==
+  resolved "https://github.com/0-a-e/react-native-remote-svg.git#8e3691978ac49698175efac216eba023157d1c7a"
 
 react-native-safe-area-context@3.1.9:
   version "3.1.9"

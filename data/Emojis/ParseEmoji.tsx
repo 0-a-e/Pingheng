@@ -41,7 +41,7 @@ const twemojied = (text) => {
   //Twemojiリストをループして置換済みのリストを返す
   twemojientity.forEach((emoji: { text: string | undefined; url: string | undefined; }) => {
     returntext = reactStringReplace(text, emoji.text, (match, i) => { 
-      const url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
+     // const url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
       //emoji.url
       return (
         <View style={{width:20,height:20}}>
@@ -70,7 +70,6 @@ const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }
       returntext = reactStringReplace(str, regexp, (match, i) => (imageComemojis(match,props,i)));
       return wraptext(returntext,props.textStyle);
     }
-    return returntext;
   } else {
     let twemojieding = twemojied(str);
     if(twemojieding != undefined){

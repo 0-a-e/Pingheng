@@ -24,7 +24,9 @@ const NoteViewraw = (props) => {
       }
         >
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-        <TouchableOpacity onPress={() => {alert("p");}}  style={{position:"absolute",right:0,marginRight:20,marginTop:5}}><ReactionView data={data["item"]} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => {props.EopenReaction(data)}}  style={{position:"absolute",right:0,marginRight:20,marginTop:5}}>
+          <ReactionView data={data["item"]} />
+        </TouchableOpacity>
         <Avatar
               size="large"
               overlayContainerStyle={notestyles.avatar}
@@ -95,7 +97,7 @@ const renotereturn = () => {
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-      <TouchableOpacity onPress={() => {alert("p");}} style={{position:"absolute",right:0,marginRight:20,marginTop:5}}>
+      <TouchableOpacity onPress={() => {props.EopenReaction(data)}} style={{position:"absolute",right:0,marginRight:20,marginTop:5}}>
         <ReactionView data={data["item"]["renote"]} />
       </TouchableOpacity>
       <Avatar

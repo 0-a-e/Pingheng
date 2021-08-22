@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
-        <mxGraphModel dx="2054" dy="1647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1942" dy="1647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -437,15 +437,6 @@
                 <mxCell id="131" value="エラー" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="-655" y="130" width="135" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="132" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1350" y="218" width="217" height="217" as="geometry"/>
-                </mxCell>
-                <mxCell id="133" value="admin/emoji/list" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1350" y="375" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="134" value="絵文字サーバー" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="1413.5" y="310" width="90" height="20" as="geometry"/>
-                </mxCell>
                 <mxCell id="135" value="NotifyList" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;fillColor=#ffcc99;strokeColor=#36393d;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-540" y="790" width="230" height="80" as="geometry"/>
                 </mxCell>
@@ -825,7 +816,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="296" value="&lt;font style=&quot;font-size: 27px&quot;&gt;あんまり更新されてないから参考にしないで(2021/8/22)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                <mxCell id="296" value="&lt;font style=&quot;font-size: 27px&quot;&gt;あんまり更新されてないから参考にしないで(2021/8/22)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
                     <mxGeometry x="10" y="-280" width="580" height="320" as="geometry"/>
                 </mxCell>
             </root>

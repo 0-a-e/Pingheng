@@ -1,7 +1,7 @@
 import React from 'react';
 import { View,Text } from 'react-native';
 import ParseEmoji from '../../data/Emojis/ParseEmoji';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const ReactionView= (props) => {
     let num = 0;
@@ -34,17 +34,19 @@ const ReactionView= (props) => {
                     const marginleft = index*2;
                     return(
                         <View style={{position:"absolute",alignItems:"center",justifyContent: 'center',zIndex:zindexv,
-                        marginTop:2.5,
+                            marginTop:2.5,
                         //elevation:zindexv,
-                        width:20,height:20,left:Left,top:0,
-                     //   backgroundColor:"grey",
-                        marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}>
+                            width:20,height:20,left:Left,top:0,
+                        //   backgroundColor:"grey",
+                            marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}
+                        key={action + index + uuidv4()}
+                        >
                                 <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
                         </View>
                     )
                 })}
                 </View>
-                <Text style={{color:"#fff",alignItems:"center",justifyContent: 'center',}}> +{num}</Text>
+                <Text style={{color:"#fff",alignItems:"center",justifyContent: 'center'}}> +{num}</Text>
             </View>
             );
 
@@ -62,11 +64,13 @@ const ReactionView= (props) => {
                 {actionlist.map((action,index) => {
                     return(
                         <View style={{
-                        position:"relative",
-                        alignItems:"center",
-                        justifyContent: 'center',
-                        height:20,
-                        }}>
+                            position:"relative",
+                            alignItems:"center",
+                            justifyContent: 'center',
+                            height:20,
+                        }}
+                        key={action + index + uuidv4()}
+                        >
                                 <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
                         </View>
                     )
