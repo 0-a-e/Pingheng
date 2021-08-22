@@ -24,6 +24,7 @@ const NoteViewraw = (props) => {
       }
         >
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
+        <View style={{position:"absolute",right:0,marginRight:20,marginTop:5}}><ReactionView data={data["item"]} /></View>
         <Avatar
               size="large"
               overlayContainerStyle={notestyles.avatar}
@@ -49,7 +50,6 @@ const NoteViewraw = (props) => {
                 />
               }
               <Text style={notestyles.username}>@{data["item"]["user"]["username"]}</Text>
-              <ReactionView data={data["item"]} />
             </View>
             
             <View style={notestyles.normalcontainer}>     
@@ -95,6 +95,7 @@ const renotereturn = () => {
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
+      <View style={{position:"absolute",right:0,marginRight:20,marginTop:5}}><ReactionView data={data["item"]["renote"]} /></View>
       <Avatar
             size="large"
             overlayContainerStyle={notestyles.avatar}

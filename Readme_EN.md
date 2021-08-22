@@ -53,6 +53,7 @@ It is available in MisskeyV12.
 - [ ] Make reactions re-note compatible (re-note to original, re-right to re-right)
 - [ ] Smooth note sending animation
 - [ ] User page
+- [ ] DeepL translate
 - [ ] MFM
 
 ### In time
