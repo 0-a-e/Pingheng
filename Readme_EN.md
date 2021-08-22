@@ -35,7 +35,7 @@ It is available in MisskeyV12.
 - [x] Action Sheet (❤ and 👍)
 - [ ] Action Sheet (RIP)
 - [x] Action Sheet (Reactions)
-- [ ] Twemoji
+- [x] Twemoji
 - [ ] Making Icons
 - [ ] Show RTs
 - [ ] Show Reactions

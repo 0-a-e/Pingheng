@@ -14,10 +14,6 @@ const ReactionView= (props) => {
             console.log("already added");
         }
     });
-    
-    // numはリアクション数,actionlistは重複するのは消したやつ　eは重複で消えたやつの数 いやこれ使わなくない？
-    //const e = num - actionlist.length;
-
     //リアクションが3個以上のときはactionlistを3個までにしてリアクション数から3引く
     //console.log(actionlist.length);
     if(actionlist.length>3){
@@ -46,13 +42,38 @@ const ReactionView= (props) => {
                 <Text style={{color:"#fff",alignItems:"center",justifyContent: 'center',}}> +{num}</Text>
             </View>
             );
-    } else if(actionlist.length > 0){
+    } else if(actionlist.length < 4 && actionlist.length !== 0) {
+        return(
+            <View style={{
+                flexDirection:"row",
+            borderRadius:50,
+            backgroundColor:"#22ba75",
+            alignItems:"center",
+            justifyContent: 'center',
+            height:25,
+         //   width:70
+            }}>
+                <View style={{position:"relative",height:25,width:5}} />
+                {actionlist.map((action,index) => {
+                    const Left = index*20;
+                    return(
+                        <View style={{
+                        position:"relative",
+                        alignItems:"center",
+                        justifyContent: 'center',
+                        height:20,
+                        }}>
+                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
+                        </View>
+                    )
+                })}
+                <View style={{position:"relative",height:25,width:5}} />
+            </View>
+        );
+    } else if(actionlist.length == 0){
         //リアクションなし
         return(<></>);
-      } else {
-        return(<ParseEmoji text={actionlist} emojis={props.data["emojis"]} textStyle={{}} />);
-      }
-      
     }
+};
 //<StreamWebSocket />
 export default ReactionView;

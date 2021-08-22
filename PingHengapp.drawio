@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
-        <mxGraphModel dx="1954" dy="1577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2054" dy="1647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -790,28 +790,28 @@
                 <mxCell id="285" value="notedata" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-410" y="-370" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="286" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="286" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-160" y="-480" width="300" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="287" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="287" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-150" y="-425" width="280" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="289" value="top" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="289" value="top" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-70" y="-400" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="290" value="Action" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="290" value="Action" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-30" y="-460" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="291" value="reaction" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="291" value="reaction" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-30" y="-420" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="292" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-180;rounded=0;" vertex="1" parent="1">
+                <mxCell id="292" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-180;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-290" y="-475" width="130" height="165" as="geometry"/>
                 </mxCell>
-                <mxCell id="293" value="notedata" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="293" value="notedata" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-160" y="-480" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="294" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="293">
+                <mxCell id="294" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="293" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-140" y="-190" as="sourcePoint"/>
                         <mxPoint x="-85" y="-400" as="targetPoint"/>
@@ -820,10 +820,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="295" value="notedata.item.id" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="294">
+                <mxCell id="295" value="notedata.item.id" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="294" vertex="1" connectable="0">
                     <mxGeometry x="0.0316" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="296" value="&lt;font style=&quot;font-size: 27px&quot;&gt;あんまり更新されてないから参考にしないで(2021/8/22)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="-280" width="580" height="320" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

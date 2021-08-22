@@ -54,13 +54,13 @@ const openlink = (url:string) => {
 				</SectionRow>
 				{meta &&
 				<>
-				<Text>サーバー名:{meta.name}</Text>
-				<Text>バージョン:{meta.version}</Text>
-				<Text>管理者:{meta.maintainerName}</Text>
-				<Text>管理者メールアドレス:{meta.maintainerEmail}</Text>
-				<Text>URL:{meta.uri}</Text>
-				<Text>リポジトリ:{meta.repositoryUrl}</Text>
-				<Text>説明:{meta.description}</Text>
+				<Text>サーバー名: {meta.name}</Text>
+				<Text>バージョン: {meta.version}</Text>
+				<Text>管理者: {meta.maintainerName}</Text>
+				<Text>管理者メールアドレス: {meta.maintainerEmail}</Text>
+				<Text>URL: {meta.uri}</Text>
+				<Text>リポジトリ: {meta.repositoryUrl}</Text>
+				<Text>説明: {meta.description}</Text>
 				</>
 				}
 			</ReactNativeSettingsPage>
