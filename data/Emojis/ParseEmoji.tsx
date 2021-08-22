@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 const reactStringReplace = require('react-string-replace');
 import { parse } from 'twemoji-parser';
 import Image from 'react-native-remote-svg';
+import { v4 as uuidv4 } from 'uuid';
 
 const imageComemojis = (match,props,i:number) => {
   let url = "https://lh3.googleusercontent.com/proxy/Rue5cq69mZaE4jguWbI8kblrkI6IOEdy6gnx9adIOSrgQCdPlwEb07bn2tZG79yXd6RRy9Sx-H-y2NkPdyIKrshG_EJ_dFzkA61pWGnvmxFWRofSkjTAOaW8ZQQvc1uAyIN6jyOCNwXLKY4";
@@ -17,7 +18,7 @@ const imageComemojis = (match,props,i:number) => {
 //url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
   return(
   <Image
-    key={match + i}
+    key={match + i + uuidv4()}
     style={{height:20,width:20,justifyContent:"center",alignItems: 'center'}}
     source={{uri: url}}
   />)
@@ -45,7 +46,7 @@ const twemojied = (text) => {
       return (
         <View style={{width:20,height:20}}>
         <Image
-            key={match + i}
+            key={match + i + uuidv4()}
             source={{uri:emoji.url}}
             style={{height:20,width:20,justifyContent:"center",alignItems: 'center'}}
           />

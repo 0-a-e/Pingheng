@@ -7,23 +7,30 @@ const ReactionView= (props) => {
     let num = 0;
     let actionlist = [];
     Object.keys(props.data["reactions"]).forEach(function (key) {
-        num = num+parseInt(props.data["reactions"][key]);
-        if(!actionlist.includes(key)){
-        actionlist.push(key);
-        } else {
-            console.log("already added");
-        }
-    });
-    //リアクションが3個以上のときはactionlistを3個までにしてリアクション数から3引く
-    //console.log(actionlist.length);
+        [...Array(props.data["reactions"][key])].map(() => actionlist.push(key))
+    }); 
+    //actionlistが全部のリアクション（重複含む）
+    console.log(actionlist);
     if(actionlist.length>3){
-        actionlist = actionlist.slice(0,3);
-        num = num - 3;
-    //    console.log(actionlist);
+        let l3list = [];
+        actionlist.forEach(function (key) {
+            if(!l3list.includes(key)){
+                l3list.push(key);
+            }
+        });
+        if(l3list.length >= 3){
+            l3list = l3list.slice(0,3);
+        } else {
+            l3list = actionlist.slice(0,3);
+        }
+        //l3listはそれぞれのリアクションが3つ以上あるなら重複除いたやつの先頭3つ　重複で消えて3以下ならactionlistの先頭3つ
+        console.log();
+        num = actionlist.length - 3;
+
        return(
-            <View style={{flexDirection:"row",borderRadius:50,backgroundColor:"#22ba75",alignItems:"center",justifyContent: 'center',height:25,width:70}}>
+            <View style={{flexDirection:"row",borderRadius:50,backgroundColor:"#22ba75",alignItems:"center",justifyContent: 'center',height:25,width:75}}>
                 <View style={{position:"relative",height:25,width:45,alignItems:"center",justifyContent: 'center'}}>
-                {actionlist.map((action,index) => {
+                {l3list.map((action,index) => {
                     const zindexv = 10 + index;
                     const Left = index*10;
                     const marginleft = index*2;
@@ -42,6 +49,7 @@ const ReactionView= (props) => {
                 <Text style={{color:"#fff",alignItems:"center",justifyContent: 'center',}}> +{num}</Text>
             </View>
             );
+
     } else if(actionlist.length < 4 && actionlist.length !== 0) {
         return(
             <View style={{
