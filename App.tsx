@@ -87,6 +87,7 @@ const SectionsScreen = () => {
           renderItem={renderSection}
           ref={myRef}
           initialScrollIndex={0}
+          initialNumToRender={9999}
           keyExtractor={item => item.name}
           scrollEventThrottle={1}
           snapToAlignment={"start"}
