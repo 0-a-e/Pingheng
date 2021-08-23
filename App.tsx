@@ -2,40 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View,ScrollView, Dimensions, TouchableOpacity,FlatList } from 'react-native';
 
-import {
-  ScrollIntoView, // enhanced View container
-  wrapScrollView, // simple wrapper, no config
- // wrapScrollViewConfigured, // complex wrapper, takes a config
-  useScrollIntoView, // access hook for imperative usage
-} from 'react-native-scroll-into-view';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-//import { wrapScrollViewConfigured } from '../../src';
-import { wrapScrollViewConfigured } from 'react-native-scroll-into-view';
-
-
 export default function App() {
   //const Sections = [...new Array(300).keys()];
   const Sections = [{name:"a"},{name:"b"},{name:"c"},{name:"d"},{name:"e"},
 {name:"f"},{name:"g"},{name:"h"},{name:"i"},{name:"j"},{name:"k"},{name:"l"},{name:"m"},{name:"n"},{name:"o"},{name:"p"},{name:"q"},{name:"r"},
   {name:"s"},{name:"t"},{name:"u"},{name:"v"},{name:"w"},{name:"z"}];
 
-  //const CustomScrollView = wrapScrollView(ScrollView);
-  /*
-  const ScrollIntoViewScrollView = wrapScrollViewConfigured({
-    refPropName: 'innerRef',
-  })(KeyboardAwareScrollView);
-  */
-
 const SectionsScreen = () => {
   let myRef = useRef();
 
   const renderSectionButton = (d: any,index: number) => {
-    const scrollSectionIntoView = (index: number) => {
-      // console.log(myRef.current);
-       //console.log(index);
-       //sectionsRefs[section].current!.scrollIntoView({ align: 'top' });
-       
-     };
      return (
       <TouchableOpacity
         key={index}
