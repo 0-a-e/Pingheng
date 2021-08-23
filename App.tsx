@@ -88,6 +88,12 @@ const SectionsScreen = () => {
           ref={myRef}
           initialScrollIndex={0}
           keyExtractor={item => item.name}
+          scrollEventThrottle={1}
+          snapToAlignment={"start"}
+          decelerationRate={"fast"}
+          pagingEnabled={true}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     );
