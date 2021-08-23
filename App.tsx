@@ -103,8 +103,10 @@ const SectionsScreen = () => {
   
   return (
     <>
-    <StatusBar style="auto"/>
-    <SectionsScreen />
+      <SectionsScreen />
+      <View>
+        <StatusBar hidden={true}/>
+      </View>
     </>
   );
 }
