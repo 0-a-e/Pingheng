@@ -19,20 +19,21 @@ const SectionsScreen = () => {
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          width: 50,
-          height: 50,
+          marginBottom: 5,
+          width: 60,
+          height: 60,
         }}
       >
         <View
           style={{
             alignItems: 'center',
             justifyContent: 'center',
-            width: 40,
-            height: 40,
+            width: 60,
+            height: 60,
             backgroundColor: 'white',
             borderWidth: 1,
             borderColor: 'darkgrey',
-            borderRadius: 20,
+            borderRadius: 50,
           }}
         >
           <Text>{index}</Text>
@@ -72,7 +73,7 @@ const SectionsScreen = () => {
   )};
 
   const Btnlist = () => (
-    <View  style={{width:55,height: '100%'}}>
+    <View style={{width:65,marginLeft:5,height: '100%'}}>
     <ScrollView style={{paddingTop:15}}>
           {Sections.map(renderSectionButton)}
     </ScrollView>
