@@ -5,79 +5,95 @@ import { FlatList } from "react-native-gesture-handler";
 import { sendAPI } from "../../data/useAPI";
 import ParseEmoji from "../../data/Emojis/ParseEmoji";
 import * as Progress from 'react-native-progress';
+import { Avatar } from "react-native-elements";
 
 const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
-  /*const reactiondata = props.Egetreactiondata();
-  
-  const getreactions = (reactiondata: any) => {
+  const [reactiondata, setReactiondata] = useState();
+  const [dlist, setDlist] = useState([]);
+  const [contentheight,contentheightwrite] = useState();
+  let myRef = useRef();
+
+  const getreactions = async () => {
+    setReactiondata(props.Egetreactiondata());
     let dlist: { name: string; user: any[]; }[] = [];
     try {
-      console.log(reactiondata["item"]["emojis"]);
-      sendAPI(["","notes/reactions",{"noteId":reactiondata["item"]["id"],limit:100}]).then(data => {
-        if(data){
-          dlist = [];
-          Object.keys(reactiondata["item"]["reactions"]).forEach(function (key) {
-            let ulist: any[] = [];
-            data.forEach((item: { type: string; }) => {
-              if(item.type == key){
-                ulist.push(item);
-              }
-           });
-            dlist.push({"name":key,user:ulist});
-          });
-          return dlist;
-        } else {
+    //  console.log(reactiondata["item"]["emojis"]);
+      const data = await sendAPI(["","notes/reactions",{"noteId":reactiondata["item"]["id"],limit:100}]);
+      if(data){
+        dlist = [];
+        Object.keys(reactiondata["item"]["reactions"]).forEach(function (key) {
+          let ulist: any[] = [];
+          data.forEach((item: { type: string; }) => {
+            if(item.type == key){
+              ulist.push(item);
+            }
+            });
+          dlist.push({"name":key,user:ulist});
+        });
+
+        return dlist;
+      } else {
           console.log("nodata");
+          return [];
        }
-      });
     } catch {
       console.log("noreactiondata.item");
+      return [];
+
     }
   };
 
-  console.log("============================================");
-  console.log(dlist);
-  console.log("============================================");
-  */
-  //let dlist = [{"name":":o:","user":[]},{"name":":seppuku:","user":[]},{"name":":suki:","user":[]}];
-  let dlist = [];
-  /*
-  const [contentheight,contentheightwrite] = useState();
     const closesheet = () => {
         props.reactionSheetRef.current?.setModalVisible(false);
     }
 
-        let myRef = useRef();
-      
-        const renderSectionButton = (d: any,index: number) => {
-           return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => myRef.current.scrollToIndex({animated:true,index:index})}
+      const Userlistitem = (props) => {
+        console.log(props.item.user);
+        return (
+          <View style={{flexDirection:"row",alignItems:"center",backgroundColor:"rgba(230,230,255,0.1)",marginBottom:5,borderRadius:50}}>
+            <Avatar
+            containerStyle={{marginRight:5}}
+              size="medium"
+              rounded
+              title={props.item.user.name}
+              source={{
+                uri:props.item.user.avatarUrl
+              }}
+            />
+            <ParseEmoji emojis={props.item.user.emojis} text={props.item.user.name} textStyle={{color:"#fff"}}/>
+          </View>
+          );
+      }
+
+      const renderSectionButton = (d: any,index: number) => {
+          return (
+          <TouchableOpacity
+            key={index}
+            onPress={() => myRef.current.scrollToIndex({animated:true,index:index})}
+              style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 5,
+              width: 60,
+              height: 60,
+            }}
+          >
+           
+            <View
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: 5,
                 width: 60,
                 height: 60,
+               // backgroundColor: 'white',
+               borderColor:"rgba(255,255,255,0.1)",
+               borderWidth:1,
+                borderRadius: 50,
               }}
             >
-           
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 60,
-                  height: 60,
-                  backgroundColor: 'white',
-                  borderWidth: 1,
-                  borderColor: 'darkgrey',
-                  borderRadius: 50,
-                }}
-              >
-                 <ParseEmoji text={d.name} emojis={reactiondata["item"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
-              </View>
-            </TouchableOpacity>
+               <ParseEmoji text={d.name} emojis={reactiondata["item"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
+            </View>
+          </TouchableOpacity>
         )};
       
         const RenderSectionraw = (props) => {
@@ -91,20 +107,21 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
               height:contentheight,
             }}
           >
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                borderBottomWidth: 2,
-                color: 'white',
-                borderColor: 'black',
-              }}
-            >
-              dddpwjmep {props.index}
-            </Text>
-            <Text style={{ fontSize: 14, marginTop: 20,color:"white" }}>
-              dfgh
-            </Text>
+            <FlatList
+              style={{ width: '100%', backgroundColor: ""}}
+              data={props.item.user}
+              renderItem={({ item, index }) => <Userlistitem item={item} />}
+         //     ref={myRef}
+              initialScrollIndex={0}
+              initialNumToRender={9999}
+              keyExtractor={item => item.name}
+              scrollEventThrottle={1}
+           //   snapToAlignment={"start"}
+           //   decelerationRate={"fast"}
+           //   pagingEnabled={true}
+            //  showsVerticalScrollIndicator={false}
+           //   showsHorizontalScrollIndicator={false} 
+           />
           </View>
         )
       };
@@ -123,19 +140,34 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
           </View>
           </View>
         );
-      */
+      
           return (
-            <ActionSheet containerStyle={{backgroundColor:"#14141c"}} ref={props.reactionSheetRef} onOpen={console.log} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
+            <ActionSheet containerStyle={{backgroundColor:"#14141c"}} ref={props.reactionSheetRef} onClose={() => {setDlist([]);}} onOpen={() => {getreactions().then(data => {setDlist(data);});}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
             <View style={{width: '100%', flexDirection: 'row'}}>
             {dlist.length > 0 ?
               <>
-                <Text>ddd</Text>
+                <Btnlist />
+                <FlatList
+                  onLayout={d => (d.nativeEvent.layout.height && !(contentheight == d.nativeEvent.layout.height)) && contentheightwrite(d.nativeEvent.layout.height)}
+                  style={{ width: '100%', backgroundColor: "", zIndex: 2 }}
+                  data={dlist}
+                  renderItem={({ item, index }) => <RenderSection item={item} index={index} />}
+                  ref={myRef}
+                  initialScrollIndex={0}
+                  initialNumToRender={9999}
+                  keyExtractor={item => item.name}
+                  scrollEventThrottle={1}
+                  snapToAlignment={"start"}
+                  decelerationRate={"fast"}
+                  pagingEnabled={true}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false} />
               </>
               :
               <>
                 <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center', }}>
                 <Progress.Bar indeterminate={true} width={null} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
-                <Text style={{marginTop:10,color:"white",fontSize:14}}>読み込み中...</Text>
+                <Text style={{marginTop:10,color:"white",fontSize:14,marginBottom:20}}>読み込み中...</Text>
                 </View>
               </>
               }
@@ -144,25 +176,5 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
           );
 
 }
-/*
- <Btnlist />
-              <FlatList
-                    //onLayout={d => (!contentheight && contentheight != d.nativeEvent.layout.height) ? contentheightwrite(d.nativeEvent.layout.height): console.log(contentheight)}
-                    onLayout={d => (d.nativeEvent.layout.height && !(contentheight == d.nativeEvent.layout.height)) && contentheightwrite(d.nativeEvent.layout.height)}
-                    style={{ width: '100%', backgroundColor: "", zIndex: 2 }}
-                    data={dlist}
-                    renderItem={({ item, index }) => <RenderSection item={item} index={index} />}
-                    ref={myRef}
-                    initialScrollIndex={0}
-                    initialNumToRender={9999}
-                    keyExtractor={item => item.name}
-                    scrollEventThrottle={1}
-                    snapToAlignment={"start"}
-                    decelerationRate={"fast"}
-                    pagingEnabled={true}
-                    showsVerticalScrollIndicator={false}
-                    showsHorizontalScrollIndicator={false} />
 
-
-                    */
 export default Reaction;

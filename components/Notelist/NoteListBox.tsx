@@ -7,10 +7,11 @@ import RenderRight from './RenderRight';
 import NoteView from './NoteView';
 import Action from '../Action/Action';
 import Reaction from '../Reaction/Reaction';
-import { useState } from 'react';
+
 
 //(Noteview(仮))
 
+//ラグくなるのは読み込み終わるまで待っちゃうからかも
 const ListKey = (props) => {
    //console.log(props["id"]);
   //  const data = props["data"]["item"];
