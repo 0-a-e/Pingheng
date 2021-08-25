@@ -8,20 +8,26 @@ import * as Progress from 'react-native-progress';
 import { Avatar } from "react-native-elements";
 
 const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
+  //ところでこれいまのリアクションのborder光らせたりしないとどれがどれのアクションかわからんな
+
   const [reactiondata, setReactiondata] = useState();
   const [dlist, setDlist] = useState([]);
   const [contentheight,contentheightwrite] = useState();
+  const [err, setErr] = useState(false);
   let myRef = useRef();
 
   const getreactions = async () => {
-    setReactiondata(props.Egetreactiondata());
-    let dlist: { name: string; user: any[]; }[] = [];
+    const r = props.Egetreactiondata();
+    setReactiondata(r);
+    //setStateが即時反映されなくてエラーになるから取りあえずrに入れとく
+    let dlist: { name: string; user: any[];}[] = [];
     try {
     //  console.log(reactiondata["item"]["emojis"]);
-      const data = await sendAPI(["","notes/reactions",{"noteId":reactiondata["item"]["id"],limit:100}]);
+    //この時点で詰まってる
+      const data = await sendAPI(["","notes/reactions",{"noteId":r["item"]["id"],limit:100}]);
       if(data){
         dlist = [];
-        Object.keys(reactiondata["item"]["reactions"]).forEach(function (key) {
+        Object.keys(r["item"]["reactions"]).forEach(function (key) {
           let ulist: any[] = [];
           data.forEach((item: { type: string; }) => {
             if(item.type == key){
@@ -36,8 +42,8 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
           console.log("nodata");
           return [];
        }
-    } catch {
-      console.log("noreactiondata.item");
+    } catch (error) {
+      console.log(error);
       return [];
 
     }
@@ -60,7 +66,8 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                 uri:props.item.user.avatarUrl
               }}
             />
-            <ParseEmoji emojis={props.item.user.emojis} text={props.item.user.name} textStyle={{color:"#fff"}}/>
+            {props.item.user.name != null && <ParseEmoji emojis={props.item.user.emojis} text={props.item.user.name} textStyle={{color:"#fff"}}/>}
+            {props.item.user.name == null && <Text style={{color:"#fff"}}>{props.item.user.username}</Text>}
           </View>
           );
       }
@@ -142,7 +149,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
         );
       
           return (
-            <ActionSheet containerStyle={{backgroundColor:"#14141c"}} ref={props.reactionSheetRef} onClose={() => {setDlist([]);}} onOpen={() => {getreactions().then(data => {setDlist(data);});}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
+            <ActionSheet containerStyle={{backgroundColor:"#14141c"}} ref={props.reactionSheetRef} onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}} onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
             <View style={{width: '100%', flexDirection: 'row'}}>
             {dlist.length > 0 ?
               <>
@@ -163,6 +170,12 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false} />
               </>
+              : err ?
+              <>
+              <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center', }}>
+              <Text style={{marginTop:16,color:"white",fontSize:14,marginBottom:20}}>エラーが発生しました</Text>
+              </View>
+            </>
               :
               <>
                 <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center', }}>
