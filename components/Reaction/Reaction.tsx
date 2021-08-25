@@ -6,6 +6,7 @@ import { sendAPI } from "../../data/useAPI";
 import ParseEmoji from "../../data/Emojis/ParseEmoji";
 import * as Progress from 'react-native-progress';
 import { Avatar } from "react-native-elements";
+import { v4 as uuidv4 } from "uuid";
 
 const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
   //ところでこれいまのリアクションのborder光らせたりしないとどれがどれのアクションかわからんな
@@ -119,7 +120,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
          //     ref={myRef}
               initialScrollIndex={0}
               initialNumToRender={9999}
-              keyExtractor={item => item.name}
+              keyExtractor={item => item.name + uuidv4()}
               scrollEventThrottle={1}
            //   snapToAlignment={"start"}
            //   decelerationRate={"fast"}
@@ -160,7 +161,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                   ref={myRef}
                   initialScrollIndex={0}
                   initialNumToRender={9999}
-                  keyExtractor={item => item.name}
+                  keyExtractor={item => item.name + uuidv4()}
                   scrollEventThrottle={1}
                   snapToAlignment={"start"}
                   decelerationRate={"fast"}
