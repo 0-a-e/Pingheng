@@ -20,13 +20,14 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
   const getreactions = async () => {
     const r = props.Egetreactiondata();
     setReactiondata(r);
+    console.log(r);
     //setStateが即時反映されなくてエラーになるから取りあえずrに入れとく
     let dlist: { name: string; user: any[];}[] = [];
     try {
-      const data = await sendAPI(["","notes/reactions",{"noteId":r["item"]["id"],limit:100}]);
+      const data = await sendAPI(["","notes/reactions",{"noteId":r["id"],limit:100}]);
       if(data){
         dlist = [];
-        Object.keys(r["item"]["reactions"]).forEach(function (key) {
+        Object.keys(r["reactions"]).forEach(function (key) {
           let ulist: any[] = [];
           data.forEach((item: { type: string; }) => {
             if(item.type == key){
@@ -97,7 +98,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                 borderRadius: 50,
               }}
             >
-               <ParseEmoji text={d.name} emojis={reactiondata["item"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
+               <ParseEmoji text={d.name} emojis={reactiondata["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
             </View>
           </TouchableOpacity>
         )};
