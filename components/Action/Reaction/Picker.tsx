@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TouchableOpacity,Image,Text, View, ScrollView } from 'react-native';
 import { Input } from 'react-native-elements';
 import getMeta from '../../../data/Getmeta';
+import FastImage from 'react-native-fast-image';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
@@ -26,7 +27,7 @@ const Picker = (props) => {
         const py =(emojis) => {
             return(emojis.map(data => { 
                 return (<TouchableOpacity style={{width:55,height:55,borderRadius:15}} key={data.id} onPress={() => props.addreaction(":" + data.name + ":")}>
-                    <Image source={{uri:data.url}}  style={{ width: 55, height: 55 }}/>
+                    <FastImage style={{width:55,height:55}} source={{uri:data["url"]}} />
                     </TouchableOpacity>)
             }))
         }
