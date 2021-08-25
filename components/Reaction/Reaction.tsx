@@ -22,8 +22,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
     //setStateが即時反映されなくてエラーになるから取りあえずrに入れとく
     let dlist: { name: string; user: any[];}[] = [];
     try {
-    //  console.log(reactiondata["item"]["emojis"]);
-    //この時点で詰まってる
       const data = await sendAPI(["","notes/reactions",{"noteId":r["item"]["id"],limit:100}]);
       if(data){
         dlist = [];

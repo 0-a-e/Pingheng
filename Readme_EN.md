@@ -38,7 +38,7 @@ It is available in MisskeyV12.
 - [x] Twemoji
 - [ ] Making Icons
 - [ ] Show RTs
-- [ ] Show Reactions
+- [x] Show Reactions
 - [ ] RT
 - [ ] Collapse/expand notes
 - [ ] Extra.
