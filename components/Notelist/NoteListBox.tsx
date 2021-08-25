@@ -32,6 +32,7 @@ const NoteListBox = () => {
   }
   
   const openAction = (data:any) => {
+   // console.log(data);
     notedata = data;
     actionSheetRef.current?.setModalVisible();
   }

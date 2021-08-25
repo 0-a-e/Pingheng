@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View,Text } from "react-native";
 import { Button} from "react-native-elements";
-import SvgUri from "react-native-svg-uri";
+import Image from 'react-native-remote-svg';
 import ParseEmoji, { twemojied } from "../../../data/Emojis/ParseEmoji";
 const Top = (props) => {
     return(
@@ -20,11 +20,10 @@ const Top = (props) => {
             justifyContent: 'center',}}
             onPress={() => props.addreaction(":❤️:")}
             >
-                <SvgUri
+                <Image
                     key={"fav"}
-                    height={40}
-                    width={40}
-                    source={{uri: "https://twemoji.maxcdn.com/v/latest/svg/2764.svg"}}
+                    style={{width:40,height:40}}
+                    source={require("../../../public/svg/heart.svg")}
                 />
             </TouchableOpacity>
             <TouchableOpacity
@@ -34,11 +33,10 @@ const Top = (props) => {
             justifyContent: 'center',}}
             onPress={() => props.addreaction(":👍:")}
             >
-                <SvgUri
+                <Image
                     key={"fav"}
-                    height={40}
-                    width={40}
-                    source={{uri: "https://twemoji.maxcdn.com/v/latest/svg/1f44d.svg"}}
+                    style={{width:40,height:40}}
+                    source={require("../../../public/svg/like.svg")}
                 />
             </TouchableOpacity>
 

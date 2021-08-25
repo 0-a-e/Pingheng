@@ -20,7 +20,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
   const getreactions = async () => {
     const r = props.Egetreactiondata();
     setReactiondata(r);
-    console.log(r);
     //setStateが即時反映されなくてエラーになるから取りあえずrに入れとく
     let dlist: { name: string; user: any[];}[] = [];
     try {
@@ -54,7 +53,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
     }
 
       const Userlistitem = (props) => {
-        console.log(props.item.user);
         return (
           <View style={{flexDirection:"row",alignItems:"center",backgroundColor:"rgba(230,230,255,0.1)",marginBottom:5,borderRadius:50}}>
             <Avatar
@@ -104,7 +102,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
         )};
       
         const RenderSectionraw = (props) => {
-          console.log(props.item.user);
           return (
           <View
             style={{

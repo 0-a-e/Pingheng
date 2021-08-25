@@ -19,7 +19,7 @@ const NoteViewraw = (props) => {
         }}
 
         onPress={() => {
-          props.EopenAction(data);
+          props.EopenAction(data["item"]);
         }
       }
         >
