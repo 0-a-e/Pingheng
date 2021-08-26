@@ -5,7 +5,7 @@
     "version": "0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme":"pingheng",
+    "scheme": "pingheng",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,7 +21,7 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions":[
+      "permissions": [
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
         "VIBRATE"
@@ -29,7 +29,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.orange.pingheng"
     },
     "web": {
       "favicon": "./assets/favicon.png"

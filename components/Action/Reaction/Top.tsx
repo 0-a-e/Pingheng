@@ -1,18 +1,15 @@
 import React from "react";
-import { TouchableOpacity, View,Text } from "react-native";
-import { Button} from "react-native-elements";
+import { TouchableOpacity, View} from "react-native";
 import Image from 'react-native-remote-svg';
-import ParseEmoji, { twemojied } from "../../../data/Emojis/ParseEmoji";
+
 const Top = (props) => {
     return(
         <View style={{
-     //   flex:1,
         flexDirection: 'row',
         width:"100%",
         height:130,
         alignItems:'center',
-        justifyContent:'center',
-     //   flexWrap: "nowrap",
+        justifyContent:'center'
           }}>
             <TouchableOpacity
             style={{width:'45%',borderBottomStartRadius:20,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0,backgroundColor:"rgb(10,10,18)",height:120,

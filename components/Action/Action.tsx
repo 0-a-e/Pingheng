@@ -18,7 +18,8 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                 {notedata ?
                 <>
                     <Reaction closesheet={() =>{closesheet();}} noteid={notedata.id}/>
-                    <Reply />
+                  
+                
                 </>
                 :
                 <View style={{justifyContent:"center",alignItems:"center"}}>
@@ -28,6 +29,10 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                 </View>
             </ActionSheet>
     )
+
+    //  <Reply />
+
+    
   //  } else {
  //       return (<></>);
  //   }

@@ -175,8 +175,8 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
             </>
               :
               <>
-                <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center', }}>
-                <Progress.Bar indeterminate={true} width={null} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
+                <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center',height:Dimensions.get("window").height}}>
+                <Progress.Bar indeterminate={true} useNativeDriver={true}  width={null} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
                 <Text style={{marginTop:10,color:"white",fontSize:14,marginBottom:20}}>読み込み中...</Text>
                 </View>
               </>

@@ -3,6 +3,7 @@ import { TouchableOpacity,Image,Text, View, ScrollView } from 'react-native';
 import { Input } from 'react-native-elements';
 import getMeta from '../../../data/Getmeta';
 import FastImage from 'react-native-fast-image';
+import * as Progress from 'react-native-progress';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
@@ -41,7 +42,10 @@ const Picker = (props) => {
                     onChangeText={value => searchfunc(value)}
                 />
                 <ScrollView contentContainerStyle={{flexDirection:'row',flexWrap: 'wrap',justifyContent:'space-between',paddingLeft:10,paddingRight:10,borderRadius:20,}} style={{width:"100%",marginTop:-15}}>
-                    { (emojis) ?  py(emojis): <Text>お待ちください...</Text>}
+                    { (emojis) ?  py(emojis): <View style={{width: '100%', alignItems: 'center', }}>
+                <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
+                <Text style={{marginTop:10,color:"white",fontSize:14,marginBottom:20}}>読み込み中...</Text>
+                </View>}
                 </ScrollView>
             </View>
         </View>

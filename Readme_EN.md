@@ -52,6 +52,7 @@ It is available in MisskeyV12.
 - [ ] Revive swipe like/RT function
 - [ ] Make reactions re-note compatible (re-note to original, re-right to re-right)
 - [ ] Smooth note sending animation
+- [ ] Loading Reaction... to the skeleton text
 - [ ] User page
 - [ ] DeepL translate
 - [ ] MFM
