@@ -15,10 +15,9 @@ const Reaction = (props) => {
         }
         ]);
     }
-    //            <Top addreaction={(i) => {addreaction(i);}}/>
     return(
         <View>
-
+            <Top addreaction={(i) => {addreaction(i);}}/>
             <Picker addreaction={(i) => {addreaction(i);}}/>
         </View>
     )
