@@ -4,6 +4,8 @@ import WS from 'react-native-websocket';
 import WSurl from '../../Variable/WSurl';
 import WSobj from '../../Variable/WSobj';
 import Mtokenvar from '../../Variable/Mtoken';
+import { getserverURL } from '../../data/Getmeta';
+
 const ReturnWS = () => {
 
     const {notelist, notelistwrite} = useContext(NoteList);
@@ -12,7 +14,11 @@ const ReturnWS = () => {
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
     //    wsurl = gettingtoken;
     useEffect(() => {
-      const url ="wss://msk.seppuku.club/streaming?i=" + Mtoken.toString();
+      const getstreamURL = async () => {
+        await getserverURL();
+        return "wss://msk.seppuku.club/streaming?i=" + Mtoken.toString();
+      }
+      const url = getstreamURL();
       console.log(url);
       wsurlwrite(url);
     },[]);

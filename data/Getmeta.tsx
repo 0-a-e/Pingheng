@@ -9,8 +9,9 @@ const getMeta = async (ifnew) => {
         defaultExpires: null,
         enableCache: true,
     });
-    const setnewMeta = () => {
-        axios.post('https://msk.seppuku.club/api/meta').then(async (resp) => {
+    const setnewMeta = async () => {
+        const serverURL = await getserverURL();
+        axios.post(serverURL + '/api/meta').then(async (resp) => {
             if(resp.status == 200){
                 await storage.remove({
                     key: 'meta'
@@ -50,5 +51,19 @@ const getMeta = async (ifnew) => {
         const d = await useOldMeta();
         return d;
     };
+}
+
+export const getserverURL = async () => {
+    const storage: Storage = new Storage({
+        storageBackend: AsyncStorage,
+        defaultExpires: null,
+        enableCache: true,
+    });
+    const res = await storage.load({key: 'meta'});
+    if (res) {
+        return res["data"].uri;
+    } else {
+        return false;
+    }
 }
 export default getMeta;
