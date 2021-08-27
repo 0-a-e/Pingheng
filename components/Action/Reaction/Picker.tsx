@@ -8,12 +8,12 @@ import * as Progress from 'react-native-progress';
 const Picker = (props) => {
     const [meta, metawrite] = useState();
     const [emojis, emojiswrite] = useState();
-    console.log("loaded");
+
     if(emojis){
      //   emojiswrite(null);
-        console.log("emoji found!");
+
     } else {
-        console.log("emoji notfound");
+     
     }
 
     const searchfunc = (search) => {
@@ -46,10 +46,7 @@ const Picker = (props) => {
                     if(!unmounted){
                         metawrite(res);
                         emojiswrite(res["emojis"]);
-                        console.log("getmeta");
                     }
-                } else {
-                    console.log("already");
                 }
             }
         )

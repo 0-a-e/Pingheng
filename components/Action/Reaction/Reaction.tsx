@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
-import { View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 import Top from "./Top";
 import { sendAPI } from '../../../data/useAPI';
 import Mtokenvar from '../../../Variable/Mtoken';
 import Picker from './Picker';
 const Reaction = (props) => {
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
-    const addreaction = (reactionname) => {
+    const addreaction = async (reactionname) => {
         props.closesheet();
-        sendAPI([Mtoken,"notes/reactions/create",
-        {
-            "noteId": props.noteid,
-            "reaction": reactionname
-        }
-        ]);
+        const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": props.noteid,"reaction": reactionname}]);
+            if(!rtn === true){
+                ToastAndroid.show("エラーが発生しました。もう一度お試しください。",200);
+            }
     }
     return(
         <View>
