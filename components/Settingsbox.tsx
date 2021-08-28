@@ -7,12 +7,12 @@ import ReactNativeSettingsPage, {
 } from 'react-native-settings-page';
 //import Icon from 'react-native-vector-icons/Feather';
 import logout from '../data/logout';
-import getMeta from '../data/Getmeta';
+import getMeta,{setnewMeta,getserverURL} from '../data/Getmeta';
 
 const Settingsbox = () => {
 	const [meta, metawrite] = useState();
 	useEffect(() => {
-	getMeta(false).then(metaraw => {
+	getMeta().then(metaraw => {
 		metawrite(metaraw);
 	});
 	}, []);
@@ -39,7 +39,7 @@ const openlink = (url:string) => {
                     <NavigateRow
 						text='絵文字とサーバー情報を更新'
 						iconName='wrench'
-						onPressCallback={() => {getMeta(true);ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);}} 
+						onPressCallback={async () => {const svurl = await getserverURL();setnewMeta(svurl);ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);}} 
                     />
                     <NavigateRow
 						text='@oae'

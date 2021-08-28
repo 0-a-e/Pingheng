@@ -42,7 +42,7 @@ const Picker = (props) => {
 	    (
             async() => {
                 if(!emojis){
-                    const res = await getMeta(false);
+                    const res = await getMeta();
                     if(!unmounted){
                         metawrite(res);
                         emojiswrite(res["emojis"]);

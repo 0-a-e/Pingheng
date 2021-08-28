@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
-import getMeta from '../data/Getmeta';
+import getMeta,{setnewMeta} from '../data/Getmeta';
 import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
 import * as SecureStore from 'expo-secure-store';
 import Video from "react-native-video";
@@ -78,7 +78,7 @@ const getAuth = (url:string) => {
                /* HMSAvailability.isHuaweiMobileServicesAvailable()
                     .then((res) => { console.log(JSON.stringify(res)) })
                     .catch((err) => { console.log(JSON.stringify(err)) });*/
-                getMeta(true).then(() => {
+                setnewMeta(svurl).then(() => {
                   navigation.navigate("Main");
                 });
               });
@@ -122,6 +122,7 @@ const getAuthURL = async (serverurl:string) => {
           <Input
         //style={{color:"white"}}
         onChangeText={(text) => {setserverURL(text);}}
+        value={serverURL}
         placeholder='サーバーのURLを入力...(例:misskey.io)'
       />
       <Button
