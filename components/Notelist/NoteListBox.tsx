@@ -1,5 +1,5 @@
 import NoteList from '../../Variable/NoteList';
-import React, { createRef,useCallback,useContext } from 'react';
+import React, { createRef,useCallback,useContext, useState } from 'react';
 import { View,Text } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
@@ -19,6 +19,7 @@ const ListKey = (props) => {
   }
 
 const NoteListBox = () => {
+  //const [ifloading,Setifloading] = useState(false);
   const actionSheetRef = createRef();
   const reactionSheetRef = createRef();
   let notedata;
