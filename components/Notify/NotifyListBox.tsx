@@ -1,6 +1,6 @@
 import NotifyState from '../../Variable/NotifyState';
 import React, { useContext, useEffect } from 'react';
-import { FlatList, View,RefreshControl } from 'react-native';
+import { FlatList, View,RefreshControl,Text } from 'react-native';
 import NotifyView from './NotifyView';
 import { useState } from 'react';
 import { sendAPI } from '../../data/useAPI';
@@ -38,6 +38,7 @@ const NotifyListBox = (props: any) => {
     return(
         <NotifyState.Provider value = {{notifylist,notifylistwrite}}>
             <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
+                {notifylist.length > 0 ?
             <FlatList
                 data = {notifylist}
                 style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
@@ -50,7 +51,12 @@ const NotifyListBox = (props: any) => {
                     onRefresh={gn}
                     />
                 }
-            /> 
+            />
+            :
+            <View style={{width: "100%",height: "100%",justifyContent:"center",alignItems:"center"}}>
+                <Text style={{color:"#fff",fontSize:20}}>まだ通知がありません</Text>
+            </View>
+            }
             </View>
         </NotifyState.Provider>
 )

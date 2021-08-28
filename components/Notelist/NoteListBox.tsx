@@ -1,6 +1,6 @@
 import NoteList from '../../Variable/NoteList';
 import React, { createRef,useCallback,useContext } from 'react';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';
@@ -59,6 +59,8 @@ return (
     //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
       <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
+        {nlist.length > 0 ?
+        <>
           <Action style={{justifyContent: "center",flex: 1}} actionSheetRef={actionSheetRef} Egetactiondata={(data:any) => getactiondata(data)} />
           <Reaction style={{justifyContent: "center",flex: 1}} reactionSheetRef={reactionSheetRef}  Egetreactiondata={(data:any) => getreactiondata(data)} />
         <SwipeActionList
@@ -70,6 +72,12 @@ return (
           renderRightHiddenItem={RenderRight}
           getItemLayout = {getItemLayout} 
         /> 
+        </>
+        :
+        <View style={{width: "100%",height: "100%",justifyContent:"center",alignItems:"center"}}>
+          <Text style={{color:"#fff",fontSize:20}}>まだノートがありません</Text>
+        </View>
+        }
       </View>
 )
 }}

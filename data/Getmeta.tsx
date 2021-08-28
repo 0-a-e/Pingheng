@@ -55,7 +55,6 @@ export const setnewMeta = async (svurl:string) => {
 export const getserverURL = async () => {
     const res = await getMeta();
     if (res) {
-        console.log(res.uri);
         return res.uri;
     } else {
         return false;
