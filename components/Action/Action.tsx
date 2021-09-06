@@ -1,13 +1,27 @@
 import ActionSheet from "react-native-actions-sheet";
 import React, { useContext, useState } from "react";
-import { View,Text } from "react-native";
+import { View,Text, ToastAndroid } from "react-native";
 import Reply from "./Reply/Reply";
 import Reaction from "./Reaction/Reaction";
+import Top from "./Reaction/Top";
+import { sendAPI } from '../../data/useAPI';
+import Mtokenvar from '../../Variable/Mtoken';
+import Picker from './Reaction/Picker';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
     const [notedata, setNotedata] = useState([]);
+    const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
+
     const closesheet = () => {
         props.actionSheetRef.current?.setModalVisible(false);
+    }
+    
+    const addreaction = async (reactionname) => {
+        closesheet();
+        const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": notedata.id,"reaction": reactionname}]);
+            if(!rtn === true){
+                ToastAndroid.show("エラーが発生しました。もう一度お試しください。",200);
+            }
     }
     //console.log(props);
     //if(notedata != undefined){
@@ -17,7 +31,10 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                 <View style={{backgroundColor:"rgb(19,20,26)"}}>
                 {notedata ?
                 <>
-                    <Reaction closesheet={() =>{closesheet();}} noteid={notedata.id}/>
+                    <View>
+                        <Top addreaction={(i:string) => {addreaction(i);}}/>
+                        <Picker addreaction={(i:string) => {addreaction(i);}}/>
+                    </View>
                     <Reply />
                 </>
                 :
