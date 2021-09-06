@@ -9,7 +9,6 @@ public class BasePackageList {
     return Arrays.<Package>asList(
         new expo.modules.application.ApplicationPackage(),
         new expo.modules.constants.ConstantsPackage(),
-        new expo.modules.crypto.CryptoPackage(),
         new expo.modules.errorrecovery.ErrorRecoveryPackage(),
         new expo.modules.filesystem.FileSystemPackage(),
         new expo.modules.font.FontLoaderPackage(),
