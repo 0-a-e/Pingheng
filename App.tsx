@@ -17,7 +17,6 @@ export default function App() {
 
   const [ws,wswrite] = useState("");
   const Stack = createStackNavigator();
-
   return (
     <View style={styles.container}>
       <StatusBar

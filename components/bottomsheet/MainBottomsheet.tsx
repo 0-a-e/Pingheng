@@ -1,12 +1,12 @@
 import React, { useContext,useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions } from 'react-native';
 import { Button} from 'react-native-elements';
-import BottomSheet from "react-native-bottomsheet-reanimated";
 import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './SwitchTimeline';
 import Box from './Postbox';
 import Mtokenvar from '../../Variable/Mtoken';
 import TabbarStateContext from '../../Variable/TabbarState';
+import BottomSheet from 'reanimated-bottom-sheet'
 
 const MainBottomsheet = () => {
 
@@ -15,8 +15,6 @@ const MainBottomsheet = () => {
 
   const [bartoggle,bartoggleWrite] = useState(true);
   const bottomsheetref = React.useRef();
-  //let bottomsheetref;
-  //this.refs.BottomSheet.current.snapTo(0);
 
   const styles = StyleSheet.create({
       container: {
@@ -44,6 +42,24 @@ const MainBottomsheet = () => {
         backgroundColor: "transparent"
         },
 
+        header: {
+          backgroundColor:"rgba(5,5,20,0.95)",
+          shadowColor: '#000000',
+          paddingTop: 5,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        },
+        panelHeader: {
+          alignItems: 'center',
+        },
+        panelHandle: {
+          width: 40,
+          height: 8,
+          borderRadius: 4,
+          backgroundColor: '#fff',
+          marginBottom: 5,
+        },
+
     }
   );
     
@@ -68,12 +84,12 @@ const MainBottomsheet = () => {
 
   function Insheet(){
     return(
-    <View style={{height:Dimensions.get('window').height - 63}}>
+    <View style={{height:"100%",backgroundColor:"rgba(5,5,20,0.95)"}}>
       {bartoggle &&
-      <View style={styles.btmbox} >
-        <Navbtn icon="hexagon" indexname="home" />
-        <Navbtn icon="bell" indexname="notify" />
-      </View>
+   <View style={styles.btmbox} >
+   <Navbtn icon="hexagon" indexname="home" />
+   <Navbtn icon="bell" indexname="notify" />
+ </View>
     }
       <View>
         <Box Mtoken={Mtoken}/>
@@ -96,27 +112,53 @@ const MainBottomsheet = () => {
     )
 }
 
+
+ const Header = () => (
+  <View style={styles.header}>
+    <View style={styles.panelHeader}>
+      <View style={styles.panelHandle} />
+    </View>
+  </View>
+)
+//button 70 + header + bottom 5px
+//realme6 85
+//S9 normal 110 / no header 90
+
+//snappoint/intialpositionの高さの適用？カウント？方式がcssと違うのかも
+//S9では高さを10/20にしても見えない　30で初めてちょっと見える 全部無効にしても同じ　うーん
     return (
     <BottomSheet
     //backDropColor="red"
     ref={bottomsheetref}
-    initialPosition={100}
-    snapPoints={["95%" ,100]}
-    isBackDrop={false}
-    isBackDropDismisByPress={true}
-    //効かない？
-    borderRadius={50}
-    isRoundBorderWithTipHeader={true}
+    initialSnap={1}
+    snapPoints={["95%",70 + 5 + 5 + 8]}
     enabledContentTapInteraction={false}
+  
+    //  isBackDrop={false}
+  //  isBackDropDismisByPress={true}
+    //効かない？
+  //  borderRadius={50}
+    //isRoundBorderWithTipHeader={true}
+   // enabledContentTapInteraction={false}
     // isModal
     //containerStyle={{backgroundColor:"red"}}
-     tipStyle={{backgroundColor:"#fff"}}
+   //  tipStyle={{backgroundColor:"black",padding:0,margin:0}}
      //あとでこのいろのまま透明にする方法を考える
-    headerStyle={{padding:10,backgroundColor:"rgba(5,5,20,0.95)",borderRadiusTop:50}}
-    bodyStyle={{backgroundColor:"rgba(5,5,20,0.95)",flex:1}}
-    body={
-      <Insheet />
-     }
+    /*headerStyle={{padding:0,
+      height:10,
+      //backgroundColor:"rgba(5,5,20,0.95)",
+      backgroundColor:"red",
+      borderRadiusTop:50}}*/
+     /* headerStyle={{
+        //backgroundColor:"red",
+        padding:0,
+        height:0,
+        display:"none"
+      }}*/
+      //rgba(5,5,20,0.95)
+//    bodyStyle={{backgroundColor:"transparent",flex:1}}
+      renderHeader={Header}
+      renderContent={Insheet}
      />
 );
 };

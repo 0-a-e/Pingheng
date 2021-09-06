@@ -43,7 +43,7 @@
     "react-native-material-ripple": "^0.9.1",
     "react-native-modal": "^12.0.1",
     "react-native-progress": "^4.1.2",
-    "react-native-reanimated": "^2.1.0",
+    "react-native-reanimated": "^2.2.0",
     "react-native-remote-svg": "https://github.com/0-a-e/react-native-remote-svg.git",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
@@ -65,6 +65,7 @@
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "react-navigation/stack",
     "react-string-replace": "^0.4.4",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "rn-fetch-blob": "^0.12.0",
     "twemoji-parser": "^13.1.0",
     "uuid": "^8.3.2"
