@@ -120,12 +120,7 @@ const MainBottomsheet = () => {
     </View>
   </View>
 )
-//button 70 + header + bottom 5px
-//realme6 85
-//S9 normal 110 / no header 90
 
-//snappoint/intialpositionの高さの適用？カウント？方式がcssと違うのかも
-//S9では高さを10/20にしても見えない　30で初めてちょっと見える 全部無効にしても同じ　うーん
     return (
     <BottomSheet
     //backDropColor="red"
@@ -133,32 +128,8 @@ const MainBottomsheet = () => {
     initialSnap={1}
     snapPoints={["95%",70 + 5 + 5 + 8]}
     enabledContentTapInteraction={false}
-  
-    //  isBackDrop={false}
-  //  isBackDropDismisByPress={true}
-    //効かない？
-  //  borderRadius={50}
-    //isRoundBorderWithTipHeader={true}
-   // enabledContentTapInteraction={false}
-    // isModal
-    //containerStyle={{backgroundColor:"red"}}
-   //  tipStyle={{backgroundColor:"black",padding:0,margin:0}}
-     //あとでこのいろのまま透明にする方法を考える
-    /*headerStyle={{padding:0,
-      height:10,
-      //backgroundColor:"rgba(5,5,20,0.95)",
-      backgroundColor:"red",
-      borderRadiusTop:50}}*/
-     /* headerStyle={{
-        //backgroundColor:"red",
-        padding:0,
-        height:0,
-        display:"none"
-      }}*/
-      //rgba(5,5,20,0.95)
-//    bodyStyle={{backgroundColor:"transparent",flex:1}}
-      renderHeader={Header}
-      renderContent={Insheet}
+    renderHeader={Header}
+    renderContent={Insheet}
      />
 );
 };
