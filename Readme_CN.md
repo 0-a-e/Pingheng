@@ -36,7 +36,7 @@ Pingheng是用ReactNative的Misskey客户端。
 - [x] 行动表（反应）
 - [x] Twemoji
 - [ ] 制作图标
-- [ ] 显示RTs
+- [x] 显示RTs
 - [x] 显示反应
 - [ ] RT
 - [ ] 折叠/展开注释

@@ -37,7 +37,7 @@ It is available in MisskeyV12.
 - [x] Action Sheet (Reactions)
 - [x] Twemoji
 - [ ] Making Icons
-- [ ] Show RTs
+- [x] Show RTs
 - [x] Show Reactions
 - [ ] RT
 - [ ] Collapse/expand notes
