@@ -8,7 +8,7 @@ powered-test
 docs
 doc
 website
-images
+# react-native-ratingsでエラー出るからimagesは無効化してる
 
 # examples
 example
