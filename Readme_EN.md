@@ -67,7 +67,7 @@ It is available in MisskeyV12.
 - [ ] Align the usage of noteview and notifyview data
 - [ ] Display a question mark or 404 image when there is no custom emoji image.
 - [ ] Simultaneous tweeting to Twitter
-- [ ] Redesign the setting screen
+- [x] Redesign the setting screen
 - [ ] Weird Japanese
 - [ ] Voting support for notifications
 - [ ] Show text in notifications

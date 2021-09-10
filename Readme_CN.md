@@ -66,7 +66,7 @@ Pingheng是用ReactNative的Misskey客户端。
 - [ ] 统一noteview和notifyview数据的使用
 - [ ] 当没有自定义表情符号图像时，显示一个问号或404图像
 - [ ] 同时向Twitter发送推文
-- [ ] 重新设计设置屏幕
+- [x] 重新设计设置
 - [ ] Weird日语
 - [ ] 支持在通知中投票
 - [ ] 在通知中显示文本

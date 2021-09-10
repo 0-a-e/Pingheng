@@ -54,7 +54,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
 
       const Userlistitem = (props) => {
         return (
-          <View style={{flexDirection:"row",alignItems:"center",backgroundColor:"rgba(230,230,255,0.1)",marginBottom:5,borderRadius:50}}>
+          <View style={{flexDirection:"row",alignItems:"center",backgroundColor:"rgba(230,230,255,0.1)",marginBottom:10,borderRadius:50}}>
             <Avatar
             containerStyle={{marginRight:5}}
               size="medium"
@@ -112,7 +112,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
             }}
           >
             <FlatList
-              style={{ width: '100%', backgroundColor: ""}}
+              style={{ width: '100%', backgroundColor: "",marginTop:"10%"}}
               data={props.item.user}
               renderItem={({ item, index }) => <Userlistitem item={item} />}
          //     ref={myRef}
