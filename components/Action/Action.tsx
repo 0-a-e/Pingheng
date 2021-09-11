@@ -1,6 +1,6 @@
 import ActionSheet from "react-native-actions-sheet";
 import React, { useContext, useState } from "react";
-import { View,Text, ToastAndroid } from "react-native";
+import { View,Text, ToastAndroid, Dimensions } from "react-native";
 import Reply from "./Reply/Reply";
 import Reaction from "./Reaction/Reaction";
 import Top from "./Reaction/Top";
@@ -27,7 +27,8 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
     //if(notedata != undefined){
     //const [noteid,noteidwrite] = useState(props.data["item"]["text"]);
         return(
-            <ActionSheet ref={props.actionSheetRef} onClose={() => {setNotedata(null);}} onOpen={() => {const n = props.Egetactiondata(); setNotedata(n);}}  containerStyle={{backgroundColor:"rgb(19,20,26)"}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
+            <ActionSheet ref={props.actionSheetRef} onClose={() => {setNotedata(null);}} onOpen={() => {const n = props.Egetactiondata(); setNotedata(n);}} 
+            containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
                 <View style={{backgroundColor:"rgb(19,20,26)"}}>
                 {notedata ?
                 <>

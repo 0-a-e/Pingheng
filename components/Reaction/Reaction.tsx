@@ -146,7 +146,15 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
         );
       
           return (
-            <ActionSheet containerStyle={{backgroundColor:"#14141c"}} ref={props.reactionSheetRef} onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}} onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
+            <ActionSheet
+              containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}}
+              ref={props.reactionSheetRef}
+              onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}}
+              onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
+              drawUnderStatusBar={false}
+              indicatorColor={"white"}
+              headerAlwaysVisible={true}
+            >
             <View style={{width: '100%', flexDirection: 'row'}}>
             {dlist.length > 0 ?
               <>

@@ -4,6 +4,7 @@ const reactStringReplace = require('react-string-replace');
 import { parse } from 'twemoji-parser';
 import Image from 'react-native-remote-svg';
 import { v4 as uuidv4 } from 'uuid';
+import FastImage from "react-native-fast-image";
 
 const imageComemojis = (match,props,i:number) => {
   let url = "https://lh3.googleusercontent.com/proxy/Rue5cq69mZaE4jguWbI8kblrkI6IOEdy6gnx9adIOSrgQCdPlwEb07bn2tZG79yXd6RRy9Sx-H-y2NkPdyIKrshG_EJ_dFzkA61pWGnvmxFWRofSkjTAOaW8ZQQvc1uAyIN6jyOCNwXLKY4";
@@ -17,7 +18,7 @@ const imageComemojis = (match,props,i:number) => {
 //url = "https://www.kawaiifabric.com/images/product_images/large_img/solid-red-fabric-Robert-Kaufman-USA-Red-179485-1.JPG";
 //url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
   return(
-  <Image
+  <FastImage
     key={match + i + uuidv4()}
     style={{height:20,width:20,justifyContent:"center",alignItems: 'center'}}
     source={{uri: url}}
