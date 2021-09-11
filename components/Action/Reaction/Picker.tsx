@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity,Image,Text, View, ScrollView, Dimensions } from 'react-native';
+import { TouchableOpacity,Image,Text, View, Dimensions } from 'react-native';
 import { Input } from 'react-native-elements';
 import getMeta from '../../../data/Getmeta';
 import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
 import { FlatList } from 'react-native-gesture-handler';
-import { v4 as uuidv4 } from 'uuid';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
     const [emojis, emojiswrite] = useState();
-    const [contentwidth,contentwidthwrite] = useState(0);
 
     if(emojis){
      //   emojiswrite(null);
@@ -36,12 +34,10 @@ const Picker = (props) => {
         console.log("rerender");
         if(waru60use == 0 && sidepaddingwidthuse == 0){
             //メモ　消さない
-            // dwidthはディスプレイ幅
             // widthはディスプレイ幅の90%(枠内)
             //waru60はwidthを60(55 + 両サイド2.5x2の5を足してる)pxで割っていくつ横に並べるか計算したやつを小数点切り捨ててる(四捨五入ではなく切り捨て）
             //sidepaddingwidthはwidthから絵文字の幅(waru60 * 60)を引いて割る2で両サイドのpadding
-            const dwidth = Dimensions.get('window').width;
-            const width = (dwidth / 10) * 9;
+            const width = (Dimensions.get('window').width / 10) * 9;
             const waru60 = Math.floor(width/60); 
             const sidepaddingwidth = (width - (waru60 * 60)) / 2;
             waru60write(waru60);
