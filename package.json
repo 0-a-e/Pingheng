@@ -43,7 +43,7 @@
     "react-native-material-ripple": "^0.9.1",
     "react-native-modal": "^12.0.1",
     "react-native-progress": "^4.1.2",
-    "react-native-reanimated": "^2.2.0",
+    "react-native-reanimated": "^2.0.0",
     "react-native-remote-svg": "https://github.com/0-a-e/react-native-remote-svg.git",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
