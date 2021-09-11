@@ -57,8 +57,6 @@ const setnewEmoji = async () => {
             style={{width:'90%', borderRadius:20,backgroundColor:"rgb(31,34,42)",height:80,alignItems: 'center',justifyContent: 'center',flexDirection:"row"}}
             onPress={() => alert("サーバー名: " + meta.name + "\nバージョン: " + meta.version + "\n管理者: " + meta.maintainerName + "\n管理者メールアドレス: " + meta.maintainerEmail + "\nリポジトリ: " + meta.repositoryUrl + "\nこのサーバーについて: " + meta.description)}
         >
-			 <Icon name="server" size={45} color="rgb(120,120,200)" />
-			 <View style={{width:5}}></View>
         	 <Icon name="info" size={50} color="rgb(120,120,200)" />
         </TouchableOpacity>
 		</View>

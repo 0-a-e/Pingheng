@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity,Image,Text, View, ScrollView } from 'react-native';
+import { TouchableOpacity,Image,Text, View, ScrollView, Dimensions } from 'react-native';
 import { Input } from 'react-native-elements';
 import getMeta from '../../../data/Getmeta';
 import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
+import { FlatList } from 'react-native-gesture-handler';
+import { v4 as uuidv4 } from 'uuid';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
     const [emojis, emojiswrite] = useState();
+    const [contentwidth,contentwidthwrite] = useState(0);
 
     if(emojis){
      //   emojiswrite(null);
@@ -26,15 +29,41 @@ const Picker = (props) => {
             emojiswrite(filterItems(raw, search));
           
     }
-
-    const py = (emojis) => {
-        return(emojis.map(data => { 
-            return (
-                <TouchableOpacity style={{width:55,height:55,borderRadius:15}} key={data.id} onPress={() => props.addreaction(":" + data.name + ":")}>
-                    <FastImage style={{width:55,height:55}} source={{uri:data["url"]}} />
-                </TouchableOpacity>
-                )
-        }))
+    const Emojislist = (props) => {
+        const emojis = props.emojis;
+        const [waru60use, waru60write] = useState(0);
+        const [sidepaddingwidthuse,sidepaddingwidthwrite] = useState(0);
+        console.log("rerender");
+        if(waru60use == 0 && sidepaddingwidthuse == 0){
+            //メモ　消さない
+            // dwidthはディスプレイ幅
+            // widthはディスプレイ幅の90%(枠内)
+            //waru60はwidthを60(55 + 両サイド2.5x2の5を足してる)pxで割っていくつ横に並べるか計算したやつを小数点切り捨ててる(四捨五入ではなく切り捨て）
+            //sidepaddingwidthはwidthから絵文字の幅(waru60 * 60)を引いて割る2で両サイドのpadding
+            const dwidth = Dimensions.get('window').width;
+            const width = (dwidth / 10) * 9;
+            const waru60 = Math.floor(width/60); 
+            const sidepaddingwidth = (width - (waru60 * 60)) / 2;
+            waru60write(waru60);
+            sidepaddingwidthwrite(sidepaddingwidth);
+        }
+        return(
+            <FlatList
+                style={{backgroundColor:'',marginLeft:sidepaddingwidthuse,marginRight:sidepaddingwidthuse,height:240}}
+                data={emojis}
+                numColumns={waru60use}
+                key={waru60use}
+                renderItem={(data:{item:{name:string,url:string}}) => {
+                    const item = data.item;
+                    return(
+                        <TouchableOpacity style={{width:55,height:55,borderRadius:15,marginLeft:2.5,marginBottom:2.5,marginTop:2.5,marginRight:2.5,backgroundColor:""}} onPress={() => props.addreaction(":" + item.name + ":")}>
+                            <FastImage style={{width:55,height:55}} source={{uri:item.url}} />
+                        </TouchableOpacity>
+                    )
+                }}
+                keyExtractor={(item, index) => item.id}
+            />
+        )
     }
 
     useEffect(() => {
@@ -55,8 +84,7 @@ const Picker = (props) => {
     },[]);
 
     return (
-        <View style={{width:"100%",height:250,marginBottom:150,alignItems: 'center',borderRadius:20,marginTop:20}}>
-            <View style={{width:"90%",backgroundColor:"#282a36",borderRadius:20,paddingBottom:10}}>
+            <View style={{width:"90%",marginLeft:"5%",marginRight:"5%",marginBottom:150,backgroundColor:"#282a36",alignItems:"center",marginTop:20,borderRadius:20,paddingBottom:10}}>
                 <Input
                     inputContainerStyle={{borderBottomWidth: 0, borderRadius:50,padding:10,marginTop:10,backgroundColor:"#1b1d26"}}
                     style = {{color:"rgb(240,240,240)",width:"100%"}}
@@ -64,20 +92,17 @@ const Picker = (props) => {
                     onChangeText={value => searchfunc(value)}
                 />
                 { emojis ? 
-                <ScrollView
-                contentContainerStyle={{flexDirection:'row',flexWrap: 'wrap',justifyContent:'space-between',paddingLeft:10,paddingRight:10,borderRadius:20,}}
-                style={{width:"100%",marginTop:-15}}
+                <View
+               style={{width:"100%",marginTop:-15}}
                 >
-                    {py(emojis)}
-                  
-                </ScrollView>
+                    <Emojislist emojis={emojis}/>
+                </View>
                 : <View style={{width: '100%', alignItems: 'center',height:240 }}>
                         <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
                         <Text style={{color:"rgb(240,240,240)",marginTop:10}}>読み込み中...</Text>
                   </View>
                 }
             </View>
-        </View>
     );
 };
 
