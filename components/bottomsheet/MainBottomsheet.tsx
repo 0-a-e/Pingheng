@@ -1,5 +1,5 @@
 import React, { useContext,useState } from 'react';
-import { StyleSheet, Text, View,Keyboard,Dimensions } from 'react-native';
+import { StyleSheet, Text, View,Keyboard,Dimensions, TouchableNativeFeedback } from 'react-native';
 import { Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './SwitchTimeline';
@@ -7,6 +7,7 @@ import Box from './Postbox';
 import Mtokenvar from '../../Variable/Mtoken';
 import TabbarStateContext from '../../Variable/TabbarState';
 import BottomSheet from 'reanimated-bottom-sheet'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const MainBottomsheet = () => {
 
@@ -33,15 +34,6 @@ const MainBottomsheet = () => {
         alignItems:'stretch',
         justifyContent:'space-between'
       },
-
-      btmbutton:{
-        position: "relative",
-        width: 150,
-        height:70,
-        borderRadius:20,
-        backgroundColor: "transparent"
-        },
-
         header: {
           backgroundColor:"rgba(5,5,20,0.95)",
           shadowColor: '#000000',
@@ -68,21 +60,17 @@ const MainBottomsheet = () => {
   //localは内全部
   //hybrid ?
   
-  function Navbtn(props: { indexname: string; icon: string; }){
+  const Navbtn = (props: { indexname: string; icon: string; }) => {
     return(
-      <Button
-        title=""
-        buttonStyle={styles.btmbutton}
-        onPress={() => {TabbarStatewrite(props.indexname);bottomsheetref.current.snapTo(1);}}
-        icon = {
-            <Icon size={55} name={props.icon} color="rgb(180,180,230)"/>
-        }
-        type="clear"
-      />
+      <TouchableOpacity  style={{width:150,borderRadius:20,height:70,alignItems: 'center',justifyContent: 'center'}}
+      onPress={() => {TabbarStatewrite(props.indexname);bottomsheetref.current.snapTo(1);}}
+      >
+           <Icon size={55} name={props.icon} color="rgb(180,180,230)"/>
+      </TouchableOpacity>
     )
   }
 
-  function Insheet(){
+  const Insheet = () => {
     return(
     <View style={{height:"100%",backgroundColor:"rgba(5,5,20,0.95)"}}>
       {bartoggle &&
