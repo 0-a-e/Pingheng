@@ -11,7 +11,7 @@ import * as Progress from 'react-native-progress';
 const ListKey = (props) => {
     return props["id"];
 }
-const NotifyListBox = (props: any) => {
+const NotifyBox = (props: any) => {
     const [ifloading,Setifloading] = useState(false);
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
 
@@ -70,4 +70,4 @@ const NotifyListBox = (props: any) => {
 )
 }
 
-export default NotifyListBox;
+export default NotifyBox;

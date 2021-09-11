@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import logout from '../data/logout';
 import getMeta,{setnewMeta,getserverURL} from '../data/Getmeta';
 
-const Settingsbox = () => {
+const Settings = () => {
 	const [meta, metawrite] = useState();
 	useEffect(() => {
 	getMeta().then(metaraw => {
@@ -63,4 +63,4 @@ const setnewEmoji = async () => {
 		</View>
     )
 }
-export default Settingsbox;
+export default Settings;

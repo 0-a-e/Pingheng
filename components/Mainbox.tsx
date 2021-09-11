@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Mainbottomsheet from './bottomsheet/MainBottomsheet';
 import Homebox from './Homebox';
-import Notifybox from './Notifybox';
-import Settingsbox from "./Settingsbox";
+import Notifybox from './Notify/NotifyBox';
+import Settingsbox from "./Settings";
 import TabbarStateContext from "../Variable/TabbarState";
 //import emoji from "../data/Emojis/emoji";
 import { useEffect,useLayoutEffect } from "react";
