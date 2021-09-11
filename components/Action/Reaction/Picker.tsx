@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TouchableOpacity,Image,Text, View, Dimensions } from 'react-native';
 import { Input } from 'react-native-elements';
 import getMeta from '../../../data/Getmeta';
@@ -43,21 +43,26 @@ const Picker = (props) => {
             waru60write(waru60);
             sidepaddingwidthwrite(sidepaddingwidth);
         }
+        const keyExtractor = useCallback((item, index) => index.toString(),[]);
+        const renderItem = useCallback((data:{item:{name:string,url:string}}) => {
+                const item = data.item;
+                return(
+                    <TouchableOpacity style={{width:55,height:55,borderRadius:15,marginLeft:2.5,marginBottom:2.5,marginTop:2.5,marginRight:2.5,backgroundColor:""}} onPress={() => props.addreaction(":" + item.name + ":")}>
+                        <FastImage style={{width:55,height:55}} source={{uri:item.url}} />
+                    </TouchableOpacity>
+                )
+            },[]);
+        const getItemLayout = useCallback((data, index) => ({length: 60,offset: 60 * index,index,}),[]);
         return(
             <FlatList
                 style={{backgroundColor:'',marginLeft:sidepaddingwidthuse,marginRight:sidepaddingwidthuse,height:240}}
                 data={emojis}
                 numColumns={waru60use}
                 key={waru60use}
-                renderItem={(data:{item:{name:string,url:string}}) => {
-                    const item = data.item;
-                    return(
-                        <TouchableOpacity style={{width:55,height:55,borderRadius:15,marginLeft:2.5,marginBottom:2.5,marginTop:2.5,marginRight:2.5,backgroundColor:""}} onPress={() => props.addreaction(":" + item.name + ":")}>
-                            <FastImage style={{width:55,height:55}} source={{uri:item.url}} />
-                        </TouchableOpacity>
-                    )
-                }}
-                keyExtractor={(item, index) => item.id}
+                renderItem={renderItem}
+                maxToRenderPerBatch={7}
+                keyExtractor={keyExtractor}
+                getItemLayout={getItemLayout}
             />
         )
     }
