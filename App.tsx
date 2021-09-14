@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Mainbox from './components/Mainbox';
 import WSobj from './Variable/WSobj';
 import { initializeParse } from  '@parse/react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {
   initializeParse(
@@ -18,6 +19,7 @@ export default function App() {
   const [ws,wswrite] = useState("");
   const Stack = createStackNavigator();
   return (
+    <PaperProvider>
     <View style={styles.container}>
       <StatusBar
         animated={true}
@@ -40,6 +42,7 @@ export default function App() {
                 </NavigationContainer>
         </WSobj.Provider>
     </View>
+    </PaperProvider>
 );
 }
 

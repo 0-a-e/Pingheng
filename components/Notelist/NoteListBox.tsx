@@ -35,7 +35,7 @@ const NoteListBox = () => {
   const openAction = (data:any) => {
    // console.log(data);
     notedata = data;
-    actionSheetRef.current?.setModalVisible();
+    actionSheetRef.current?.snapTo(0);
   }
 
   const openReaction = (data:any) => {

@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import axios from 'axios';
 import { getserverURL } from './Getmeta';
 export const sendAPI = async ([Mtoken,endpoint,data]:[String,String,Object]) => {
@@ -11,6 +10,7 @@ export const sendAPI = async ([Mtoken,endpoint,data]:[String,String,Object]) => 
     }  
   }
   const datajson = getjsondata();
+  try{
      const response = await axios.post(serverURL + "/api/" + endpoint,datajson);
      if(response.status == 200 || response.status == 201 || response.status == 204){
         if(response.data){
@@ -24,4 +24,14 @@ export const sendAPI = async ([Mtoken,endpoint,data]:[String,String,Object]) => 
         console.log(response.data);
         return false;
       }
+    } catch(error:any){
+      if(error.message == "Network Error"){
+        console.log("sendAPI: ネットワークエラー");
+        return false;
+      } else {
+        console.log("sendAPI: 不明なエラー");
+        console.log(error.message);
+        return false;
+      }
     }
+}

@@ -8,13 +8,16 @@ import { FlatList } from 'react-native-gesture-handler';
 
 const Picker = (props) => {
     const [meta, metawrite] = useState();
-    const [emojis, emojiswrite] = useState();
-
+    const [emojis, emojiswrite] = useState(false);
+  //  const [waitrender, waitrenderwrite] = useState(false);
+          // waitrenderwrite(false);
+    //console.log("picker useeffect");
+    console.log("==rerender==");
     if(emojis){
      //   emojiswrite(null);
-
+        console.log("found emojis");
     } else {
-     
+        console.log("not found emojis");
     }
 
     const searchfunc = (search) => {
@@ -28,32 +31,38 @@ const Picker = (props) => {
           
     }
 
-    const Emojislist = (props) => {
-        const emojis = props.emojis;
-        const [waru60use, waru60write] = useState(0);
-        const [sidepaddingwidthuse,sidepaddingwidthwrite] = useState(0);
-        console.log("rerender");
-        if(waru60use == 0 && sidepaddingwidthuse == 0){
+    const renderItem = useCallback((data:{item:{name:string,url:string}}) => {
+        const item = data.item;
+        return(
+            <TouchableOpacity style={{width:55,height:55,borderRadius:15,marginLeft:2.5,marginBottom:2.5,marginTop:2.5,marginRight:2.5,backgroundColor:""}}
+            onPress={() => {props.addreaction(":" + item.name + ":");}}>
+                <FastImage style={{width:55,height:55}} source={{uri:item.url}} />
+            </TouchableOpacity>
+        )
+    },[]);
+
+    const keyExtractor = useCallback((item, index) => index.toString(),[]);
+    const getItemLayout = useCallback((data, index) => ({length: 60,offset: 60 * index,index,}),[]);
+    const calcbox = () => {
             //メモ　消さない
             // widthはディスプレイ幅の90%(枠内)
-            //waru60はwidthを60(55 + 両サイド2.5x2の5を足してる)pxで割っていくつ横に並べるか計算したやつを小数点切り捨ててる(四捨五入ではなく切り捨て）
+            //waru60はwidthを60(55 + 両サイド2.5x2の5を足してる)pxで割っていくつ横に並べるか計算したやつを小数点切り捨て(四捨五入ではなく切り捨て）
             //sidepaddingwidthはwidthから絵文字の幅(waru60 * 60)を引いて割る2で両サイドのpadding
             const width = (Dimensions.get('window').width / 10) * 9;
             const waru60 = Math.floor(width/60); 
             const sidepaddingwidth = (width - (waru60 * 60)) / 2;
+            return {waru60,sidepaddingwidth};
+    }
+
+    const Emojislist = (props) => {
+        const emojis = props.emojis;
+        const [waru60use, waru60write] = useState(0);
+        const [sidepaddingwidthuse,sidepaddingwidthwrite] = useState(0);
+        if(waru60use == 0 && sidepaddingwidthuse == 0){
+            const {waru60,sidepaddingwidth} = calcbox();
             waru60write(waru60);
             sidepaddingwidthwrite(sidepaddingwidth);
         }
-        const keyExtractor = useCallback((item, index) => index.toString(),[]);
-        const renderItem = useCallback((data:{item:{name:string,url:string}}) => {
-                const item = data.item;
-                return(
-                    <TouchableOpacity style={{width:55,height:55,borderRadius:15,marginLeft:2.5,marginBottom:2.5,marginTop:2.5,marginRight:2.5,backgroundColor:""}} onPress={() => props.addreaction(":" + item.name + ":")}>
-                        <FastImage style={{width:55,height:55}} source={{uri:item.url}} />
-                    </TouchableOpacity>
-                )
-            },[]);
-        const getItemLayout = useCallback((data, index) => ({length: 60,offset: 60 * index,index,}),[]);
         return(
             <FlatList
                 style={{backgroundColor:'',marginLeft:sidepaddingwidthuse,marginRight:sidepaddingwidthuse,height:240}}
@@ -69,19 +78,25 @@ const Picker = (props) => {
     }
 
     useEffect(() => {
+        console.log("====in useeffect=====");
+        emojiswrite(false);
         let unmounted = false;
+     //   waitrenderwrite(true);
 	    (
             async() => {
                 if(!emojis){
                     const res = await getMeta();
                     if(!unmounted){
                         metawrite(res);
+                        console.log("getting emojis");
                         emojiswrite(res["emojis"]);
+                        //ここでリレンダリング
                     }
                 }
             }
         )
         ();
+      //  console.log(waitrender);
         return ()=>{ unmounted = true; };
     },[]);
 
@@ -95,7 +110,10 @@ const Picker = (props) => {
                 />
                 { emojis ? 
                 <View
-               style={{width:"100%",marginTop:-15}}
+               style={
+                   //[
+                   {width:"100%",marginTop:-15}}
+               //,waitrender && {display:"none"}]}
                 >
                     <Emojislist emojis={emojis}/>
                 </View>
@@ -104,6 +122,14 @@ const Picker = (props) => {
                         <Text style={{color:"rgb(240,240,240)",marginTop:10}}>読み込み中...</Text>
                   </View>
                 }
+                {/*waitrender ?
+                    <></>
+                    :
+                    <View style={{width: '100%', alignItems: 'center',height:240 }}>
+                        <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
+                        <Text style={{color:"rgb(240,240,240)",marginTop:10}}>レンダリング中...</Text>
+                    </View>
+                */}
             </View>
     );
 };
