@@ -1,7 +1,7 @@
 //import ActionSheet from "react-native-actions-sheet";
 import BottomSheet from 'reanimated-bottom-sheet'
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet,View,Text, ToastAndroid, Dimensions,BackHandler } from "react-native";
+import { StyleSheet,View,Text, ToastAndroid, Dimensions,BackHandler, TouchableOpacity } from "react-native";
 import Reply from "./Reply/Reply";
 import Top from "./Reaction/Top";
 import { sendAPI } from '../../data/useAPI';
@@ -72,7 +72,10 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
         }
 
         return(
-            <View style={{backgroundColor:"rgb(19,20,26)"}}>
+            <View style={{height:"100%"}}>
+                <TouchableOpacity onPress={closesheet} style={{height: '10%'}} />
+                <View style={{backgroundColor:"rgb(19,20,26)",height:"90%"}}>
+                    <Header></Header>
                 {notedata ?
                 <>
                     <View>
@@ -86,6 +89,8 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                     <Text style={{color:"white",marginTop:10,marginBottom:10}}>読み込み中..</Text>
                 </View>
                 }
+                </View>
+
             </View>
         )
     };
@@ -95,17 +100,20 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
     //const [noteid,noteidwrite] = useState(props.data["item"]["text"]);
         return(
             <Portal>
+                <View style={{position:"absolute",width:"100%",height:"100%",
+                //marginTop:88
+            }}>
                 <BottomSheet
                     //backDropColor="red"
                     ref={props.actionSheetRef}
                     initialSnap={1}
-                    snapPoints={["90%",0]}
+                    snapPoints={["100%",0]}
                     enabledContentTapInteraction={false}
-                    renderHeader={Header}
                     renderContent={Content}
                     onCloseEnd={() => {ifopensheet = false;}}
                     onOpenEnd={() => {ifopensheet = true;}}
                 />
+                </View>
              </Portal>
          
 /* 
