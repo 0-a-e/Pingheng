@@ -3,13 +3,11 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet,View,Text, ToastAndroid, Dimensions,BackHandler } from "react-native";
 import Reply from "./Reply/Reply";
-import Reaction from "./Reaction/Reaction";
 import Top from "./Reaction/Top";
 import { sendAPI } from '../../data/useAPI';
 import Mtokenvar from '../../Variable/Mtoken';
 import Picker from './Reaction/Picker';
-import { Portal } from 'react-native-paper';
-
+import { Portal } from 'react-native-portalize';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
     const [notedata, setNotedata] = useState([]);
@@ -98,17 +96,18 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
         return(
             <Portal>
                 <BottomSheet
-                //backDropColor="red"
-                ref={props.actionSheetRef}
-                initialSnap={1}
-                snapPoints={["90%",0]}
-                enabledContentTapInteraction={false}
-                renderHeader={Header}
-                renderContent={Content}
-                onCloseEnd={() => {ifopensheet = false;}}
-                onOpenEnd={() => {ifopensheet = true;}}
-             />
-            </Portal>
+                    //backDropColor="red"
+                    ref={props.actionSheetRef}
+                    initialSnap={1}
+                    snapPoints={["90%",0]}
+                    enabledContentTapInteraction={false}
+                    renderHeader={Header}
+                    renderContent={Content}
+                    onCloseEnd={() => {ifopensheet = false;}}
+                    onOpenEnd={() => {ifopensheet = true;}}
+                />
+             </Portal>
+         
 /* 
             <ActionSheet ref={props.actionSheetRef} onClose={() => {setNotedata(null);}} onOpen={() => {const n = props.Egetactiondata(); setNotedata(n);}} 
             containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}} drawUnderStatusBar={false} indicatorColor={"white"} headerAlwaysVisible={true}>
