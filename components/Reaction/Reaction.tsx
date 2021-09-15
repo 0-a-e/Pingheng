@@ -7,6 +7,8 @@ import ParseEmoji from "../../data/Emojis/ParseEmoji";
 import * as Progress from 'react-native-progress';
 import { Avatar } from "react-native-elements";
 import { v4 as uuidv4 } from "uuid";
+import BottomSheet from 'reanimated-bottom-sheet';
+import { Portal } from 'react-native-portalize';
 
 const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
   //ところでこれいまのリアクションのborder光らせたりしないとどれがどれのアクションかわからんな
@@ -16,6 +18,27 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
   const [contentheight,contentheightwrite] = useState();
   const [err, setErr] = useState(false);
   let myRef = useRef();
+
+  const styles = StyleSheet.create({
+    header: {
+        backgroundColor:"rgb(19,20,26)",
+        shadowColor: '#000000',
+        paddingTop: 5,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+      },
+      panelHeader: {
+        alignItems: 'center',
+      },
+      panelHandle: {
+        width: 40,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: '#fff',
+        marginBottom: 5,
+      },
+});
+
 
   const getreactions = async () => {
     const r = props.Egetreactiondata();
@@ -49,7 +72,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
   };
 
     const closesheet = () => {
-        props.reactionSheetRef.current?.setModalVisible(false);
+        props.reactionSheetRef.current?.snapTo(1);
     }
 
       const Userlistitem = (props) => {
@@ -144,18 +167,21 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
           </View>
           </View>
         );
-      
-          return (
-            <ActionSheet
-              containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}}
-              ref={props.reactionSheetRef}
-              onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}}
-              onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
-              drawUnderStatusBar={false}
-              indicatorColor={"white"}
-              headerAlwaysVisible={true}
-            >
-            <View style={{width: '100%', flexDirection: 'row'}}>
+
+        const Header = () => (
+          <View style={styles.header}>
+            <View style={styles.panelHeader}>
+              <View style={styles.panelHandle} />
+            </View>
+          </View>
+        )
+  
+        const Content = () => {
+          return(
+            <View style={{height:"100%"}}>
+                <TouchableOpacity onPress={closesheet} style={{height: '10%'}} />
+                    <Header />
+<View style={{width: '100%', height:"90%",flexDirection: 'row',backgroundColor:"#14141C"}}>
             {dlist.length > 0 ?
               <>
                 <Btnlist />
@@ -190,9 +216,40 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
               </>
               }
             </View>
-            </ActionSheet>
+            </View>
+          )
+     //     return(<View style={{backgroundColor:"#14141c",width: '100%', height: '100%'}}></View>);
+        };
+      
+          return (
+            <Portal>
+                <View style={{position:"absolute",width:"100%",height:"100%"}}>
+                <BottomSheet
+                    //backDropColor="red"
+                    ref={props.reactionSheetRef}
+                    initialSnap={1}
+                    snapPoints={["100%",0]}
+                    enabledContentTapInteraction={false}
+                    renderContent={Content}
+                    onCloseStart={() => {setDlist([]);setErr(false);setReactiondata(null);}}
+                    onOpenStart={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
+                />
+                </View>
+
+            </Portal>
           );
 
 }
 
 export default Reaction;
+
+        /*     <ActionSheet
+              containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}}
+              ref={props.reactionSheetRef}
+              onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}}
+              onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
+              drawUnderStatusBar={false}
+              indicatorColor={"white"}
+              headerAlwaysVisible={true}
+            >
+            */

@@ -40,7 +40,7 @@ const NoteListBox = () => {
 
   const openReaction = (data:any) => {
     reactiondata = data;
-    reactionSheetRef.current?.setModalVisible();
+    reactionSheetRef.current?.snapTo(0);
   }
 
   const renderNoteView = useCallback(({item}) => <NoteView data={item} EopenAction={(data:any) => openAction(data)}/>,[]);

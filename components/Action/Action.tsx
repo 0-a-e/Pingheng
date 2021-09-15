@@ -1,5 +1,5 @@
 //import ActionSheet from "react-native-actions-sheet";
-import BottomSheet from 'reanimated-bottom-sheet'
+import BottomSheet from 'reanimated-bottom-sheet';
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet,View,Text, ToastAndroid, Dimensions,BackHandler, TouchableOpacity } from "react-native";
 import Reply from "./Reply/Reply";
@@ -75,7 +75,7 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
             <View style={{height:"100%"}}>
                 <TouchableOpacity onPress={closesheet} style={{height: '10%'}} />
                 <View style={{backgroundColor:"rgb(19,20,26)",height:"90%"}}>
-                    <Header></Header>
+                    <Header />
                 {notedata ?
                 <>
                     <View>
