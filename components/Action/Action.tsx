@@ -8,6 +8,7 @@ import { sendAPI } from '../../data/useAPI';
 import Mtokenvar from '../../Variable/Mtoken';
 import Picker from './Reaction/Picker';
 import { Portal } from 'react-native-portalize';
+import * as Progress from 'react-native-progress';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
     const [notedata, setNotedata] = useState([]);
@@ -57,17 +58,18 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                     <Header />
                 {notedata ?
                 <>
+                </>
+                :
+                <View style={{justifyContent:"center",alignItems:"center"}}>
+                    <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
+                </View>
+                }
+
                     <View>
                         <Top addreaction={(i:string) => {addreaction(i);}}/>
                         <Picker addreaction={(i:string) => {addreaction(i);}}/>
                     </View>
                     <Reply />
-                </>
-                :
-                <View style={{justifyContent:"center",alignItems:"center"}}>
-                    <Text style={{color:"white",marginTop:10,marginBottom:10}}>読み込み中..</Text>
-                </View>
-                }
                 </View>
 
             </View>

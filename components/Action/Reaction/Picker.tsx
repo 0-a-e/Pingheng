@@ -9,15 +9,20 @@ import { FlatList } from 'react-native-gesture-handler';
 const Picker = (props) => {
     const [meta, metawrite] = useState();
     const [emojis, emojiswrite] = useState(false);
-  //  const [waitrender, waitrenderwrite] = useState(false);
-          // waitrenderwrite(false);
-    //console.log("picker useeffect");
-    console.log("==rerender==");
-    if(emojis){
-     //   emojiswrite(null);
-        console.log("found emojis");
-    } else {
-        console.log("not found emojis");
+    
+    const getemojis =  async (unmounted: boolean)=> {
+        if(!emojis){
+            const res = await getMeta();
+            if(!unmounted){
+                metawrite(res);
+                emojiswrite(res["emojis"]);
+                //ここでリレンダリング
+            }
+        }
+    }
+
+    if(!emojis){
+        getemojis(false);
     }
 
     const searchfunc = (search) => {
@@ -77,26 +82,10 @@ const Picker = (props) => {
         )
     }
 
-    useEffect(() => {
-        console.log("====in useeffect=====");
+    useEffect(() => {  
         emojiswrite(false);
         let unmounted = false;
-     //   waitrenderwrite(true);
-	    (
-            async() => {
-                if(!emojis){
-                    const res = await getMeta();
-                    if(!unmounted){
-                        metawrite(res);
-                        console.log("getting emojis");
-                        emojiswrite(res["emojis"]);
-                        //ここでリレンダリング
-                    }
-                }
-            }
-        )
-        ();
-      //  console.log(waitrender);
+        getemojis(unmounted);
         return ()=>{ unmounted = true; };
     },[]);
 
@@ -111,9 +100,7 @@ const Picker = (props) => {
                 { emojis ? 
                 <View
                style={
-                   //[
                    {width:"100%",marginTop:-15}}
-               //,waitrender && {display:"none"}]}
                 >
                     <Emojislist emojis={emojis}/>
                 </View>
@@ -122,14 +109,6 @@ const Picker = (props) => {
                         <Text style={{color:"rgb(240,240,240)",marginTop:10}}>読み込み中...</Text>
                   </View>
                 }
-                {/*waitrender ?
-                    <></>
-                    :
-                    <View style={{width: '100%', alignItems: 'center',height:240 }}>
-                        <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
-                        <Text style={{color:"rgb(240,240,240)",marginTop:10}}>レンダリング中...</Text>
-                    </View>
-                */}
             </View>
     );
 };
