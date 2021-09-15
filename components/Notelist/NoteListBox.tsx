@@ -1,6 +1,6 @@
 import NoteList from '../../Variable/NoteList';
 import React, { createRef,useCallback,useContext, useEffect, useState } from 'react';
-import { View,Text, BackHandler } from 'react-native';
+import { View,Text, BackHandler, ToastAndroid } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';
@@ -42,7 +42,9 @@ const NoteListBox = () => {
    closeAction({"onlyclose":true});
    return true;
  } else if(whichsheet == "nothing"){
-   return false;
+ //  return false;
+    ToastAndroid.show("この画面では戻るボタンでホームに戻る操作はブロックされています。ホームに戻る場合はホームボタンを使用してください。", ToastAndroid.SHORT);
+    return true;
    }
 };
  
@@ -63,13 +65,13 @@ const NoteListBox = () => {
 
   const openReaction = (data:any) => {
     reactiondata = data;
-   whichsheet = "reaction";
+    whichsheet = "reaction";
     reactionSheetRef.current?.snapTo(0);
   }
 
 
   const closeAction = (d) => {
-    //console.log("---action: ",d);
+   // console.log("---action: ",d);
     try{
     if(d["onlyclose"] == true){
       actionSheetRef.current?.snapTo(1);
@@ -82,7 +84,7 @@ const NoteListBox = () => {
    }
  
    const closeReaction = (d) => {
-     //console.log("---reaction:",d);
+    // console.log("---reaction:",d);
      try{
      if(d["onlyclose"] == true){
       reactionSheetRef.current?.snapTo(1);
