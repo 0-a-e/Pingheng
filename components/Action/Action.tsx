@@ -11,7 +11,8 @@ import { Portal } from 'react-native-portalize';
 import * as Progress from 'react-native-progress';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
-    const [notedata, setNotedata] = useState([]);
+   // const [notedata, setNotedata] = useState([]);
+   let notedata;
     const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
 
     const styles = StyleSheet.create({
@@ -45,10 +46,12 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
     const Content = () => {    
         const addreaction = async (reactionname) => {
             props.closeAction({"onlynotify":false});
-            const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": notedata.id,"reaction": reactionname}]);
+            console.log(notedata.id);
+            console.log(reactionname);
+          /*   const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": notedata.id,"reaction": reactionname}]);
                 if(!rtn === true){
                     ToastAndroid.show("エラーが発生しました。もう一度お試しください。",200);
-                }
+                }*/
         }
 
         return(
@@ -56,15 +59,6 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                 <TouchableOpacity onPress={() => {props.closeAction({"onlyclose":true})}} style={{height: '10%'}} />
                 <View style={{backgroundColor:"rgb(19,20,26)",height:"90%"}}>
                     <Header />
-                {notedata ?
-                <>
-                </>
-                :
-                <View style={{justifyContent:"center",alignItems:"center"}}>
-                    <Progress.Bar indeterminate={true} width={null} useNativeDriver={true} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
-                </View>
-                }
-
                     <View>
                         <Top addreaction={(i:string) => {addreaction(i);}}/>
                         <Picker addreaction={(i:string) => {addreaction(i);}}/>
@@ -85,8 +79,8 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
                     snapPoints={["100%",0]}
                     enabledContentTapInteraction={false}
                     renderContent={Content}
-                    onCloseEnd={() => {props.closeAction({"onlyclose":false});setNotedata(null);}}
-                    onOpenStart={() => {const n = props.Egetactiondata(); setNotedata(n);}}
+                    onCloseEnd={() => {props.closeAction({"onlyclose":false});notedata = null;}}
+                    onOpenStart={() => {notedata = props.Egetactiondata();}}
                 />
                 </View>
              </Portal>
