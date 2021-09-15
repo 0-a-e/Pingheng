@@ -1,6 +1,6 @@
 import NoteList from '../../Variable/NoteList';
-import React, { createRef,useCallback,useContext, useState } from 'react';
-import { View,Text } from 'react-native';
+import React, { createRef,useCallback,useContext, useEffect, useState } from 'react';
+import { View,Text, BackHandler } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';
@@ -22,8 +22,30 @@ const NoteListBox = () => {
   //const [ifloading,Setifloading] = useState(false);
   const actionSheetRef = createRef();
   const reactionSheetRef = createRef();
+  let whichsheet = "nothing";
   let notedata;
   let reactiondata;
+
+  
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+  return () =>
+    BackHandler.removeEventListener("hardwareBackPress", backAction);
+ }, []);
+ 
+ const backAction = () => {
+  console.log(whichsheet);
+  if(whichsheet === "reaction"){
+   closeReaction({"onlyclose":true});
+   return true;
+ } else if(whichsheet === "action"){
+   closeAction({"onlyclose":true});
+   return true;
+ } else if(whichsheet === "nothing"){
+   return false;
+   }
+};
+ 
 
   const getactiondata = () => {
     return notedata;
@@ -35,15 +57,44 @@ const NoteListBox = () => {
   const openAction = (data:any) => {
    // console.log(data);
     notedata = data;
+    whichsheet = "action";
     actionSheetRef.current?.snapTo(0);
   }
 
   const openReaction = (data:any) => {
     reactiondata = data;
+   whichsheet = "reaction";
     reactionSheetRef.current?.snapTo(0);
   }
 
-  const renderNoteView = useCallback(({item}) => <NoteView data={item} EopenAction={(data:any) => openAction(data)}/>,[]);
+
+  const closeAction = (d) => {
+    console.log("---action: ",d);
+    try{
+    if(d["onlyclose"] == true){
+      actionSheetRef.current?.snapTo(1);
+    } else {
+     whichsheet = "nothing";
+     }
+     } catch(e){
+      console.log(e);
+     }
+   }
+ 
+   const closeReaction = (d) => {
+     console.log("---reaction:",d);
+     try{
+     if(d["onlyclose"] == true){
+      reactionSheetRef.current?.snapTo(1);
+    } else {
+      whichsheet = "nothing";
+     }
+     } catch(e){
+       console.log(e);
+     }
+   }
+ 
+  //const renderNoteView = useCallback(({item}) => <NoteView data={item} EopenAction={(data:any) => openAction(data)}/>,[]);
   const getkey = useCallback((item) => ListKey(item),[]);
   const getItemLayout  = useCallback((data,index) => ({
     length:77,
@@ -62,8 +113,18 @@ return (
       <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
         {nlist.length > 0 ?
         <>
-          <Action style={{justifyContent: "center",flex: 1}} actionSheetRef={actionSheetRef} Egetactiondata={(data:any) => getactiondata(data)} />
-          <Reaction style={{justifyContent: "center",flex: 1}} reactionSheetRef={reactionSheetRef}  Egetreactiondata={(data:any) => getreactiondata(data)} />
+          <Action
+            style={{justifyContent: "center",flex: 1}}
+            actionSheetRef={actionSheetRef}
+            closeAction={(d) => closeAction(d)}
+            Egetactiondata={(data:any) => getactiondata(data)}
+          />
+          <Reaction
+            style={{justifyContent: "center",flex: 1}}
+            reactionSheetRef={reactionSheetRef}
+            closeReaction={(d) => closeReaction(d)}
+            Egetreactiondata={(data:any) => getreactiondata(data)}
+          />
         <SwipeActionList
           style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
           keyExtractor={getkey}

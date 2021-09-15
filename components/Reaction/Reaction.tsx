@@ -1,6 +1,6 @@
 import ActionSheet from "react-native-actions-sheet";
-import React, { useContext,useRef, useState,memo } from "react";
-import { StyleSheet, Text, View,ScrollView, Dimensions, TouchableOpacity} from 'react-native';
+import React, { useContext,useRef, useState,memo, useEffect } from "react";
+import { StyleSheet, Text, View,ScrollView, Dimensions, TouchableOpacity, BackHandler} from 'react-native';
 import { FlatList } from "react-native-gesture-handler";
 import { sendAPI } from "../../data/useAPI";
 import ParseEmoji from "../../data/Emojis/ParseEmoji";
@@ -18,6 +18,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
   const [contentheight,contentheightwrite] = useState();
   const [err, setErr] = useState(false);
   let myRef = useRef();
+
 
   const styles = StyleSheet.create({
     header: {
@@ -70,10 +71,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
 
     }
   };
-
-    const closesheet = () => {
-        props.reactionSheetRef.current?.snapTo(1);
-    }
 
       const Userlistitem = (props) => {
         return (
@@ -179,7 +176,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
         const Content = () => {
           return(
             <View style={{height:"100%"}}>
-                <TouchableOpacity onPress={closesheet} style={{height: '10%'}} />
+                <TouchableOpacity onPress={() => {props.closeReaction({"onlyclose":true})}} style={{height: '10%'}} />
                     <Header />
 <View style={{width: '100%', height:"90%",flexDirection: 'row',backgroundColor:"#14141C"}}>
             {dlist.length > 0 ?
@@ -199,7 +196,8 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                   decelerationRate={"fast"}
                   pagingEnabled={true}
                   showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false} />
+                  showsHorizontalScrollIndicator={false}
+                  />
               </>
               : err ?
               <>
@@ -218,7 +216,6 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
             </View>
             </View>
           )
-     //     return(<View style={{backgroundColor:"#14141c",width: '100%', height: '100%'}}></View>);
         };
       
           return (
@@ -231,7 +228,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                     snapPoints={["100%",0]}
                     enabledContentTapInteraction={false}
                     renderContent={Content}
-                    onCloseStart={() => {setDlist([]);setErr(false);setReactiondata(null);}}
+                    onCloseEnd={() => {props.closeReaction({"onlyclose":false});setDlist([]);setErr(false);setReactiondata(null);}}
                     onOpenStart={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
                 />
                 </View>
@@ -242,14 +239,3 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
 }
 
 export default Reaction;
-
-        /*     <ActionSheet
-              containerStyle={{backgroundColor:"rgb(19,20,26)",borderRadius:20,height:(Dimensions.get("window").height /10) * 9}}
-              ref={props.reactionSheetRef}
-              onClose={() => {setDlist([]);setErr(false);setReactiondata(null);}}
-              onOpen={() => {getreactions().then(data => {if(data.length > 0){setDlist(data);} else {setErr(true);}});}}
-              drawUnderStatusBar={false}
-              indicatorColor={"white"}
-              headerAlwaysVisible={true}
-            >
-            */
