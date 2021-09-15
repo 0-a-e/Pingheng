@@ -35,13 +35,13 @@ const NoteListBox = () => {
  
  const backAction = () => {
   console.log(whichsheet);
-  if(whichsheet === "reaction"){
+  if(whichsheet == "reaction"){
    closeReaction({"onlyclose":true});
    return true;
- } else if(whichsheet === "action"){
+ } else if(whichsheet == "action"){
    closeAction({"onlyclose":true});
    return true;
- } else if(whichsheet === "nothing"){
+ } else if(whichsheet == "nothing"){
    return false;
    }
 };
@@ -69,7 +69,7 @@ const NoteListBox = () => {
 
 
   const closeAction = (d) => {
-    console.log("---action: ",d);
+    //console.log("---action: ",d);
     try{
     if(d["onlyclose"] == true){
       actionSheetRef.current?.snapTo(1);
@@ -82,7 +82,7 @@ const NoteListBox = () => {
    }
  
    const closeReaction = (d) => {
-     console.log("---reaction:",d);
+     //console.log("---reaction:",d);
      try{
      if(d["onlyclose"] == true){
       reactionSheetRef.current?.snapTo(1);
