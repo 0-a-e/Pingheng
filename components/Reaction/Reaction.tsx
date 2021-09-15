@@ -1,6 +1,6 @@
 import ActionSheet from "react-native-actions-sheet";
-import React, { useContext,useRef, useState,memo, useEffect } from "react";
-import { StyleSheet, Text, View,ScrollView, Dimensions, TouchableOpacity, BackHandler} from 'react-native';
+import React, {useRef, useState,memo } from "react";
+import { StyleSheet, Text, View,ScrollView, Dimensions, TouchableOpacity} from 'react-native';
 import { FlatList } from "react-native-gesture-handler";
 import { sendAPI } from "../../data/useAPI";
 import ParseEmoji from "../../data/Emojis/ParseEmoji";
@@ -135,16 +135,10 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
               style={{ width: '100%', backgroundColor: "",marginTop:"10%"}}
               data={props.item.user}
               renderItem={({ item, index }) => <Userlistitem item={item} />}
-         //     ref={myRef}
               initialScrollIndex={0}
               initialNumToRender={9999}
               keyExtractor={item => item.name + uuidv4()}
               scrollEventThrottle={1}
-           //   snapToAlignment={"start"}
-           //   decelerationRate={"fast"}
-           //   pagingEnabled={true}
-            //  showsVerticalScrollIndicator={false}
-           //   showsHorizontalScrollIndicator={false} 
            />
           </View>
         )

@@ -1,7 +1,7 @@
 //import ActionSheet from "react-native-actions-sheet";
 import BottomSheet from 'reanimated-bottom-sheet';
-import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet,View,Text, ToastAndroid, Dimensions,BackHandler, TouchableOpacity } from "react-native";
+import React, { useContext, useState } from "react";
+import { StyleSheet,View,Text, ToastAndroid,TouchableOpacity } from "react-native";
 import Reply from "./Reply/Reply";
 import Top from "./Reaction/Top";
 import { sendAPI } from '../../data/useAPI';
