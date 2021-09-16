@@ -45,13 +45,13 @@ const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined
 
     const Content = () => {    
         const addreaction = async (reactionname) => {
-            props.closeAction({"onlynotify":false});
+            props.closeAction({"onlyclose":true});
             console.log(notedata.id);
             console.log(reactionname);
-          /*   const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": notedata.id,"reaction": reactionname}]);
+            const rtn = await sendAPI([Mtoken,"notes/reactions/create",{"noteId": notedata.id,"reaction": reactionname}]);
                 if(!rtn === true){
                     ToastAndroid.show("エラーが発生しました。もう一度お試しください。",200);
-                }*/
+                }
         }
 
         return(
