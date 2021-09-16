@@ -9,6 +9,7 @@ import { Avatar } from "react-native-elements";
 import { v4 as uuidv4 } from "uuid";
 import BottomSheet from 'reanimated-bottom-sheet';
 import { Portal } from 'react-native-portalize';
+import ContentLoader, { Rect, Circle,Code } from 'react-content-loader/native';
 
 const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
   //ところでこれいまのリアクションのborder光らせたりしないとどれがどれのアクションかわからんな
@@ -57,7 +58,8 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
               ulist.push(item);
             }
             });
-          dlist.push({"name":key,user:ulist});
+            //ローディングデザイン用にコメントアウトしてる
+         dlist.push({"name":key,user:ulist});
         });
 
         return dlist;
@@ -167,6 +169,39 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
           </View>
         )
   
+        const MLoader = () => {
+          return(
+          <View style={{width:"100%",height:"100%",flexDirection:"row"}}>
+           <View style={{width:75,backgroundColor:"",height:"100%",padding:0,justifyContent: 'center'}}>
+              <View style={{width:70,marginLeft:5,paddingLeft:5,paddingRight:5,height: '90%',borderRadius:50,backgroundColor:"rgba(230,230,255,0.1)",overflow: 'hidden'}}>  
+                <ContentLoader
+                  speed={1}
+                  backgroundColor={'#333'}
+                  foregroundColor={'#999'}
+                  style={{ width: '60', height: '100%'}}
+                >
+                  <Circle cx="30" cy="45" r="30" />
+                  <Circle cx="30" cy="110" r="30" />
+                  <Circle cx="30" cy="175" r="30" />
+                  </ContentLoader>
+              </View>
+            </View>
+          <View style={{width:Dimensions.get("screen").width - 85,height:"100%",marginTop:"10%",marginLeft:10}}>
+          <ContentLoader
+                speed={1}
+                backgroundColor={'#333'}
+                  foregroundColor={'#999'}
+              >
+            <Rect x="0" y="0" rx="25" ry="30" width="95%" height="45" />
+            <Rect x="0" y="60" rx="25" ry="30" width="95%" height="45" />
+            <Rect x="0" y="120" rx="25" ry="30" width="95%" height="45" />
+            <Rect x="0" y="180" rx="25" ry="30" width="95%" height="45" />
+          </ContentLoader>
+          </View>
+          </View>
+        )
+      };
+
         const Content = () => {
           return(
             <View style={{height:"100%"}}>
@@ -193,17 +228,16 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                   showsHorizontalScrollIndicator={false}
                   />
               </>
-              : err ?
+          /*    : err ?
               <>
               <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center', }}>
               <Text style={{marginTop:16,color:"white",fontSize:14,marginBottom:20}}>エラーが発生しました</Text>
               </View>
-            </>
+            </> */
               :
               <>
-                <View style={{width: '100%', backgroundColor: "#14141c", alignItems: 'center',height:Dimensions.get("window").height}}>
-                <Progress.Bar indeterminate={true} useNativeDriver={true}  width={null} style={{width:"100%"}} borderRadius={0} borderWidth={0}/>
-                <Text style={{marginTop:10,color:"white",fontSize:14,marginBottom:20}}>読み込み中...</Text>
+                <View style={{width: '100%', backgroundColor: "#14141c"}}>
+                <MLoader />
                 </View>
               </>
               }
