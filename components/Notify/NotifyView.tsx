@@ -117,26 +117,26 @@ const renotereturn = () => {
   );
 }
 try {
-  if(props.data.item.note.renoteId){
-    return renotereturn()
-  } else if (props.data.item.note.renoteId == null){
+  if(props.data.item.type == "follow" || props.data.item.type == "followRequestAccepted" || props.data.item.type == "receiveFollowRequest"){
     return notereturn();
+  }
+  if(props.data.item.note.renoteId == null || props.data.item.note.renoteId === void 0){
+    return notereturn()
+  } else if(props.data.item.note.renoteId != null){
+    return renotereturn();
   } else {
     console.log("???renote");
     return (<Text style={{color:"red"}}>???</Text>);
   }
 } catch(e){
-  if(e.message == "undefined is not an object (evaluating 'props.data.item.note.renoteId')"){
-    return notereturn();
-  } else {
-    return <TouchableOpacity  onLongPress={() => {
-              alert('jsonが出力されました');
+    return(
+    <TouchableOpacity  onLongPress={() => {
+              alert('jsonがconsoleに出力されました');
               console.log(props.data.item);
             }}>
       <Text style={{color:"red"}}>error: {e.message}</Text>
-      </TouchableOpacity>;
+    </TouchableOpacity>);
   }
 }
 
-}
 export default NotifyView;

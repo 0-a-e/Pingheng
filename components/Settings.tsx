@@ -13,9 +13,6 @@ const Settings = () => {
 	});
 	}, []);
 
-const lgout = () => {
-    logout();
-};
 const openlink = (url:string) => {
     WebBrowser.openBrowserAsync(url);
 }
@@ -37,7 +34,7 @@ const setnewEmoji = async () => {
             	style={{width:'45%',borderBottomStartRadius:20,borderTopStartRadius:20,borderBottomEndRadius:0,borderTopEndRadius:0,backgroundColor:"rgb(31,34,42)",height:120,
             	borderRightWidth:0.5,borderColor:"#202020",alignItems: 'center',
 	            justifyContent: 'center',}}
-    	        onPress={() => lgout}
+    	        onPress={() => {logout();}}
         	>
          		<Icon name="log-out" size={50} color="rgb(255,120,120)" />
             </TouchableOpacity>
@@ -46,7 +43,7 @@ const setnewEmoji = async () => {
     	        borderTopStartRadius:0,backgroundColor:"rgb(31,34,42)",height:120,borderLeftWidth:0.5,borderColor:"#202020",
         	    alignItems: 'center',
             	justifyContent: 'center',}}
-    	        onPress={() => setnewEmoji()}
+    	        onPress={() => {setnewEmoji();}}
             >
        			<Icon name="download-cloud" size={50} color="rgb(120,140,255)" />
             </TouchableOpacity>

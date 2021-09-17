@@ -51,7 +51,7 @@ Pingheng是用ReactNative的Misskey客户端。
 - [ ] 恢复扫视像/RT功能
 - [ ] 使反应重注兼容（重注到原件，重写到重写）
 - [ ] 更加平滑的音符发送动画
-- [ ] 载入反应... 到骨架文本
+- [x] inReaction > loading.. 到骨架文本
 - [ ] 用户页
 - [ ] DeepL
 - [ ] MFM
