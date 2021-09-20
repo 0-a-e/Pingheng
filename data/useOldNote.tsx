@@ -1,8 +1,8 @@
 import { sendAPI } from '../data/useAPI';
-import useSwitchTL from '../components/bottomsheet/useSwitchTL';
+import {toendpoint} from '../components/bottomsheet/useSwitchtltranslator';
 
 async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelistwrite: any) {
-    const tltype = useSwitchTL()["toendpoint"](rawtltype);
+    const tltype = toendpoint(rawtltype);
     const payload = {
         "limit":25
     };

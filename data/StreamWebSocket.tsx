@@ -15,25 +15,13 @@ const [wsurl,wsurlwrite] = useState("wss://example.com");
     //切断はしなくても切り替わる？
       const timelinestate = value;
       console.log(timelinestate["timelinestate"]);
-  //    const tlstate = switchTL(timelinestateval);
-//valueが変わるたび更新
- 
-    //try-catchは初回用
- //   try{
- //     disconnect(ws);
- //     switchTL(timelinestate,ws);
-//    } catch(ee) {
-//      console.log(ee);
-//      console.log("初回接続");
-    //  return connect(token,wswrite,notelist,notelistwrite,WS);
-//      switchTL(timelinestate,ws);
-return(
-<WSurl.Provider value ={{ wsurl,wsurlwrite }}>
-<Suspense fallback={<Text>Loading...</Text>}>
-<ReturnWS />
-</Suspense>
-</WSurl.Provider>
-);
+      return(
+        <WSurl.Provider value ={{ wsurl,wsurlwrite }}>
+          <Suspense fallback={<Text>Loading...</Text>}>
+            <ReturnWS />
+          </Suspense>
+        </WSurl.Provider>
+      );
 
     }
 }

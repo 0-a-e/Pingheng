@@ -5,18 +5,17 @@ import WSobj from '../../Variable/WSobj';
 import NoteList from '../../Variable/NoteList';
 import timelinebuttonelem from './timelinebuttonelem';
 import changetimeline from '../../data/changetimeline';
-import useSwitchTL from './useSwitchTL';
+import { reconvert } from './useSwitchtltranslator';
 
 const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
-    const {convert,reconvert} = useSwitchTL();
 
   const returnbutton = () => {
     return ( 
       <ButtonGroup
-        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);Props["bottomsheetref"].current.snapTo(1);}}
+        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);switchws();Props["bottomsheetref"].current.snapTo(1);}}
         selectedIndex={reconvert(timelinestate)}
         buttons={timelinebuttonelem(timelinestate)}
         innerBorderStyle={{width:0}}
@@ -25,6 +24,31 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
         buttonStyle={{borderWidth:0}}
       />
     );
+  }
+
+  const switchws = () => {
+    try{
+      console.log("--");
+      console.log(timelinestate);
+      console.log("--");
+     ws.send(JSON.stringify({
+        "type": "disconnect",
+        "body": {
+          "id": "timeline",
+        }
+      })); 
+      ws.send(JSON.stringify({
+      "type": "connect",
+      "body": {
+      "channel": timelinestate,
+      "id": "timeline",
+      "params": {}
+         }
+       }));
+     }catch(ee){
+      console.log(ee);
+      alert("タイムライン切り替えエラー");
+     }
   }
   return returnbutton();
 };

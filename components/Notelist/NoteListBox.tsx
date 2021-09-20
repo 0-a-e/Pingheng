@@ -23,8 +23,8 @@ const NoteListBox = () => {
   const actionSheetRef = createRef();
   const reactionSheetRef = createRef();
   let whichsheet = "nothing";
-  let notedata;
-  let reactiondata;
+  let notedata: any;
+  let reactiondata: any;
 
   
   useEffect(() => {

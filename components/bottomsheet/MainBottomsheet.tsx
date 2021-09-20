@@ -2,7 +2,7 @@ import React, { useContext,useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions, TouchableNativeFeedback } from 'react-native';
 import { Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
-import SwitchTimeline from './SwitchTimeline';
+import SwitchTimeline from './TimelineSwitchButton';
 import Box from './Postbox';
 import Mtokenvar from '../../Variable/Mtoken';
 import TabbarStateContext from '../../Variable/TabbarState';

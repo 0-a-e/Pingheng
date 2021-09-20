@@ -8,9 +8,9 @@ import { View,Text } from 'react-native';
 const Homebox= () => {
   return(
     <View style={{height: "100%"}}>
+    <StreamWebSocket />
     <NoteListBox />
     </View>
     )
 }
-//<StreamWebSocket />
 export default Homebox;

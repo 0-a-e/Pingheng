@@ -8,7 +8,6 @@ import { sendAPI } from '../../data/useAPI';
 import Mtokenvar from '../../Variable/Mtoken';
 import Picker from './Reaction/Picker';
 import { Portal } from 'react-native-portalize';
-import * as Progress from 'react-native-progress';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
    // const [notedata, setNotedata] = useState([]);
