@@ -60,6 +60,8 @@ const twemojied = (text) => {
 
 const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }) => {
   const str = props.text;
+  
+  //絵文字ある時
   if(props.emojis && props.emojis.length > 0){
     const regexp = /:["']?([a-zA-Z0-9_\.\/\-@<>]+)["']?\:/g;
     let returntext;
@@ -79,7 +81,6 @@ const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }
       return <Text style={props.textStyle}>{str}</Text>;
     }
   }
-
 }
 
 

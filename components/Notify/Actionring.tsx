@@ -21,9 +21,7 @@ return(
 
     <View style={[{backgroundColor:data.actionringbar.background},notifystyles.actionring]}>
             {(data.actionringbar.reaction) ? 
-            <Text style={{width:20,height:20,fontSize:30,justifyContent: 'center', alignItems: 'center'}}>
-              <ParseEmoji text={data.actionringbar.reaction} emojis={data.actionringbar.emoji} textStyle={{}}/>
-            </Text>
+            <ParseEmoji text={data.actionringbar.reaction} emojis={data.actionringbar.emoji} textStyle={{}}/>
             : 
             <Icon style={notifystyles.actionringicon} size={20} name={data.actionringbar.icon} color="#fff"/>
             }
