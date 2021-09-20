@@ -1,6 +1,6 @@
 import NoteList from '../../Variable/NoteList';
 import React, { createRef,useCallback,useContext, useEffect, useState } from 'react';
-import { View,Text, BackHandler, ToastAndroid } from 'react-native';
+import { View,Text, BackHandler, ToastAndroid, TouchableOpacity, FlatList } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
 import RenderLeft from './RenderLeft';
 import RenderRight from './RenderRight';
@@ -103,19 +103,22 @@ const NoteListBox = () => {
     offset: 77 * index,
     index
   }),[]);
-  
+  const renderItem = useCallback((item) =><NoteView data={item} EopenAction={(data:any) => openAction(data)} EopenReaction={(data:any) => openReaction(data)}/>,[]);
+  const InitialNumToRender = 10;
+  //const renderItem = useCallback((item) =><TouchableOpacity><Text style={{margin:70,backgroundColor:"red",fontSize:30}}>rgf</Text></TouchableOpacity>,[]);
   return(
   <NoteList.Consumer>
     {(value) => {
       const nlist = value["notelist"];
-//初回は唐リスト
+//初回は空のリスト
 return (
     //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
-      <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
+
+    <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
         {nlist.length > 0 ?
         <>
-          <Action
+         <Action
             style={{justifyContent: "center",flex: 1}}
             actionSheetRef={actionSheetRef}
             closeAction={(d) => closeAction(d)}
@@ -127,14 +130,16 @@ return (
             closeReaction={(d) => closeReaction(d)}
             Egetreactiondata={(data:any) => getreactiondata(data)}
           />
-        <SwipeActionList
+        <FlatList
           style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
           keyExtractor={getkey}
           data={nlist} //be string 更新されるとだめらしい
-          renderItem={item => <NoteView data={item} EopenAction={(data:any) => openAction(data)} EopenReaction={(data:any) => openReaction(data)}/>} 
-          renderLeftHiddenItem={RenderLeft}
-          renderRightHiddenItem={RenderRight}
+          renderItem={renderItem} 
+      //    renderLeftHiddenItem={RenderLeft}
+       //   renderRightHiddenItem={RenderRight}
           getItemLayout = {getItemLayout} 
+          initialNumToRender={InitialNumToRender}
+          removeClippedSubviews={true}
         /> 
         </>
         :

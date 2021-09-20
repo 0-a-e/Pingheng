@@ -10,6 +10,7 @@ const NoteViewraw = (props) => {
     const data = props["data"];
   const notereturn = () =>{  
     return (
+
     <View>
       
       <TouchableOpacity  
@@ -36,7 +37,9 @@ const NoteViewraw = (props) => {
                 uri:data["item"]["user"]["avatarUrl"]
               }}
           />
-          <View style={notestyles.incardcontainer}>
+      
+      
+                <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               <View style={notestyles.uncontainer}>
                 {data["item"]["user"]["name"]  != null &&  <View style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} /></View>}
