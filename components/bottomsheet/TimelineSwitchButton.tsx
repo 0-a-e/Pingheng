@@ -15,7 +15,7 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
   const returnbutton = () => {
     return ( 
       <ButtonGroup
-        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);switchws();Props["bottomsheetref"].current.snapTo(1);}}
+        onPress={val => {changetimeline(val,timelinestate,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);Props["bottomsheetref"].current.snapTo(1);}}
         selectedIndex={reconvert(timelinestate)}
         buttons={timelinebuttonelem(timelinestate)}
         innerBorderStyle={{width:0}}
@@ -26,30 +26,6 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     );
   }
 
-  const switchws = () => {
-    try{
-      console.log("--");
-      console.log(timelinestate);
-      console.log("--");
-     ws.send(JSON.stringify({
-        "type": "disconnect",
-        "body": {
-          "id": "timeline",
-        }
-      })); 
-      ws.send(JSON.stringify({
-      "type": "connect",
-      "body": {
-      "channel": timelinestate,
-      "id": "timeline",
-      "params": {}
-         }
-       }));
-     }catch(ee){
-      console.log(ee);
-      alert("タイムライン切り替えエラー");
-     }
-  }
   return returnbutton();
 };
 

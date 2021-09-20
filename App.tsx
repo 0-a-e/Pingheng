@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './components/Register';
 import Mainbox from './components/Mainbox';
-import WSobj from './Variable/WSobj';
 import { initializeParse } from  '@parse/react-native';
 import { Host } from 'react-native-portalize';
 
@@ -16,7 +15,6 @@ export default function App() {
     'f4t9GuIa6FU0YAlKN6MfXJMJ4dFtnvCBTUlUw6dW'
   );
 
-  const [ws,wswrite] = useState("");
   const Stack = createStackNavigator();
   return (
 
@@ -25,7 +23,6 @@ export default function App() {
         animated={true}
         backgroundColor="rgb(19,20,26)"
         />
-        <WSobj.Provider value ={{ ws,wswrite }}>
                 <NavigationContainer>
                   <Host>
                   <Stack.Navigator initialRouteName="Welcome">
@@ -42,7 +39,6 @@ export default function App() {
                   </Stack.Navigator>
                   </Host>
                 </NavigationContainer>
-        </WSobj.Provider>
     </View>
   
 );
