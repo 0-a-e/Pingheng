@@ -6,9 +6,8 @@ import { getserverURL } from '../../data/Getmeta';
 import gettoken from './gettoken';
 
 const ReturnWS = () => {
-
-    const {notelist, notelistwrite} = useContext(NoteList);
     const {ws,wswrite} = useContext(WSobj);
+    const {notelist, notelistwrite} = useContext(NoteList);
     const [wsurl, setwsurl] = useState("");
     useEffect(() => {
       const d = async () => {
@@ -20,9 +19,9 @@ const ReturnWS = () => {
       },[wsurl]);
 
 if(wsurl){
-      return(
+    return(
         <WS
-          ref={ref => {wswrite(ref)}}
+          ref={ref => {wswrite(ref);console.log("wswrite");}}
           url={wsurl}
           onOpen={() => {
             console.log('Open!');
@@ -31,11 +30,11 @@ if(wsurl){
             //あとでノートかどうか判定入れる  
             const data = JSON.parse(msg["data"])["body"]["body"];
             console.log(data);
-            const appendeddata = [...notelist].unshift(data);
-            console.log(appendeddata);
+           // const appendeddata = [...notelist].unshift(data);
+        //    console.log(appendeddata);
             //appendeddata.reverse();
             // console.log(appendeddata);
-            notelistwrite(appendeddata); 
+          //  notelistwrite(appendeddata); 
             //タイムラグがあって一個遅れで出るのかも
           }}
           //一回エラーメッセージ出して切断するようにする
@@ -46,7 +45,7 @@ if(wsurl){
           onClose={ msg => {console.log(msg)}}
           reconnect
         />
-      );
+    );
 } else {
   return(<></>);
 }

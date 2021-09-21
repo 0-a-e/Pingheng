@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React from 'react';
 import { StyleSheet,View,StatusBar} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
