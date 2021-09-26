@@ -1,6 +1,5 @@
 import React,{useContext,useState,useEffect} from 'react';
 import NoteList from '../../Variable/NoteList';
-import WS from 'react-native-websocket';
 import WSobj from '../../Variable/WSobj';
 import { getserverURL } from '../../data/Getmeta';
 import gettoken from './gettoken';
@@ -8,18 +7,31 @@ import gettoken from './gettoken';
 const ReturnWS = () => {
     const {ws,wswrite} = useContext(WSobj);
     const {notelist, notelistwrite} = useContext(NoteList);
-    const [wsurl, setwsurl] = useState("");
     useEffect(() => {
       const d = async () => {
-          const svurl = await getserverURL().then(res => {return res.replace('https://','').replace('http://','');});
-          const Mtoken = await gettoken();
-          setwsurl("wss://" + svurl +"/streaming?i=" + Mtoken);
+        const svurl = await getserverURL().then(res => {return res.replace('https://','').replace('http://','');});
+        const Mtoken = await gettoken();
+        const wsurl = "wss://" + svurl +"/streaming?i=" + Mtoken;
+        console.log("wsfr");
+        const sddf = new WebSocket(wsurl);
+  //      wswrite(sddf);
+        sddf.onopen = () => {console.log("wsopen");
+        sddf.send(JSON.stringify({
+          "type": "connect",
+          "body": {
+          "channel": "homeTimeline",
+          "id": "timeline",
+          "params": {}
+             }
+           })); 
+        };
+          sddf.onmessage = ({data}) => { console.log(data);};
         };
       d();
-      },[wsurl]);
+      },[]);
 
-if(wsurl){
-    return(
+
+    return(/*
         <WS
           ref={ref => {wswrite(ref);console.log("wswrite");}}
           url={wsurl}
@@ -31,7 +43,8 @@ if(wsurl){
             const data = JSON.parse(msg["data"])["body"]["body"];
             console.log(data);
            // const appendeddata = [...notelist].unshift(data);
-        //    console.log(appendeddata);
+        
+           //    console.log(appendeddata);
             //appendeddata.reverse();
             // console.log(appendeddata);
           //  notelistwrite(appendeddata); 
@@ -45,10 +58,9 @@ if(wsurl){
           onClose={ msg => {console.log(msg)}}
           reconnect
         />
+        */
+        <></>
     );
-} else {
-  return(<></>);
-}
   }
 
 export default ReturnWS;

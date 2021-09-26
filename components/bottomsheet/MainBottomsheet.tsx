@@ -1,22 +1,29 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import { StyleSheet, Text, View,Keyboard,Dimensions, TouchableNativeFeedback } from 'react-native';
 import { Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
 import SwitchTimeline from './TimelineSwitchButton';
 import Box from './Postbox';
-import Mtokenvar from '../../Variable/Mtoken';
 import TabbarStateContext from '../../Variable/TabbarState';
 import BottomSheet from 'reanimated-bottom-sheet'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import gettoken from '../../data/FILE/gettoken';
 
 const MainBottomsheet = () => {
 
-  const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
+  const [Mtoken,Mtokenwrite] = useState();
   const {TabbarState,TabbarStatewrite} = useContext(TabbarStateContext);
 
   const [bartoggle,bartoggleWrite] = useState(true);
   const bottomsheetref = React.useRef();
 
+  useEffect(() => {
+    const f = async () => {
+    const token = await gettoken();
+    Mtokenwrite(token);
+    };
+    f();
+  } ,[]);
   const styles = StyleSheet.create({
       container: {
      backgroundColor: '#fff',

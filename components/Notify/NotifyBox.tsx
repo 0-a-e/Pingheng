@@ -4,8 +4,8 @@ import { FlatList, View,RefreshControl,Text } from 'react-native';
 import NotifyView from './NotifyView';
 import { useState } from 'react';
 import { sendAPI } from '../../data/useAPI';
-import Mtokenvar from '../../Variable/Mtoken';
 import * as Progress from 'react-native-progress';
+import gettoken from '../../data/FILE/gettoken';
 //(Noteview(仮))
 
 const ListKey = (props) => {
@@ -13,9 +13,8 @@ const ListKey = (props) => {
 }
 const NotifyBox = (props: any) => {
     const [ifloading,Setifloading] = useState(false);
-    const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
 
-    const getNotify = () => {
+    const getNotify = (Mtoken:string) => {
         sendAPI([Mtoken,"i/notifications",{"limit":50}]).then(data => {
             Setifloading(false);
             if(data){
@@ -29,10 +28,11 @@ const NotifyBox = (props: any) => {
     const [notifylist,notifylistwrite] = useState([]);
     const [refresh,refreshwrite] = useState(false);
 
-    const gn = () => {
+    const gn = async () => {
         Setifloading(true);
         refreshwrite(true);
-        getNotify();
+        const Mtoken = await gettoken();
+        getNotify(Mtoken);
         refreshwrite(false);
     }
     useEffect(() => {gn();},[]);

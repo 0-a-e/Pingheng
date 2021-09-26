@@ -1,19 +1,25 @@
 //import ActionSheet from "react-native-actions-sheet";
 import BottomSheet from 'reanimated-bottom-sheet';
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet,View,Text, ToastAndroid,TouchableOpacity } from "react-native";
 import Reply from "./Reply/Reply";
 import Top from "./Reaction/Top";
 import { sendAPI } from '../../data/useAPI';
-import Mtokenvar from '../../Variable/Mtoken';
 import Picker from './Reaction/Picker';
 import { Portal } from 'react-native-portalize';
+import gettoken from '../../data/FILE/gettoken';
 
 const Action = (props: {actionSheetRef: React.LegacyRef<ActionSheet> | undefined; }) => {
    // const [notedata, setNotedata] = useState([]);
    let notedata;
-    const {Mtoken,Mtokenwrite} = useContext(Mtokenvar);
+   let Mtoken:string;
 
+   useEffect(() => {
+    const f = async () => {
+    Mtoken = await gettoken();
+    };
+    f();
+  } ,[]);
     const styles = StyleSheet.create({
         header: {
             backgroundColor:"rgb(19,20,26)",

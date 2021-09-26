@@ -12,7 +12,7 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
   const wssend = () => {
-    ws.send(JSON.stringify({
+ /*   ws.send(JSON.stringify({
       "type": "disconnect",
       "body": {
         "id": "timeline",
@@ -25,8 +25,9 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     "id": "timeline",
     "params": {}
        }
-     }));
+     })); */
   }
+
   const returnbutton = () => {
     return ( 
       <ButtonGroup
