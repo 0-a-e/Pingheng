@@ -1,37 +1,24 @@
 import { ButtonGroup } from 'react-native-elements';
 import React, { useContext, useEffect, useState } from 'react';
 import TimelineStateContext from '../../Variable/TimelineState';
-import WSobj from '../../Variable/WSobj';
 import NoteList from '../../Variable/NoteList';
 import timelinebuttonelem from './timelinebuttonelem';
-import changetimeline from '../../data/changetimeline';
+//import changetimeline from '../../data/changetimeline';
 import { reconvert } from './useSwitchtltranslator';
+import { useWS } from '../../Variable/wshook';
 
 const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
-    const {ws,wswrite} = useContext(WSobj);
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
-  const wssend = () => {
- /*   ws.send(JSON.stringify({
-      "type": "disconnect",
-      "body": {
-        "id": "timeline",
-      }
-    })); 
-    ws.send(JSON.stringify({
-    "type": "connect",
-    "body": {
-    "channel": timelinestate,
-    "id": "timeline",
-    "params": {}
-       }
-     })); */
-  }
-
+  //  const {changetimeline,CWS} = useWS();
+    
   const returnbutton = () => {
     return ( 
       <ButtonGroup
-        onPress={val => {changetimeline(val,timelinestatewrite,Props["Mtoken"],notelist,notelistwrite);wssend();Props["bottomsheetref"].current.snapTo(1);}}
+        onPress={val => {
+          //changetimeline(val,timelinestatewrite,notelist,notelistwrite);
+          Props["bottomsheetref"].current.snapTo(1);
+        }}
         selectedIndex={reconvert(timelinestate)}
         buttons={timelinebuttonelem(timelinestate)}
         innerBorderStyle={{width:0}}

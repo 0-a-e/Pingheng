@@ -1,4 +1,4 @@
-import React,{useContext,useState,useEffect} from 'react';
+/*import React,{useContext,useState,useEffect} from 'react';
 import NoteList from '../../Variable/NoteList';
 import WSobj from '../../Variable/WSobj';
 import { getserverURL } from '../../data/Getmeta';
@@ -25,7 +25,7 @@ const ReturnWS = () => {
              }
            })); 
         };
-          sddf.onmessage = ({data}) => { console.log(data);};
+          sddf.onmessage = ({data}) => { };
         };
       d();
       },[]);
@@ -59,8 +59,8 @@ const ReturnWS = () => {
           reconnect
         />
         */
-        <></>
+  /*       <></>
     );
   }
 
-export default ReturnWS;
+export default ReturnWS;*/

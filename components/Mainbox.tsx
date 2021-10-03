@@ -8,69 +8,26 @@ import TabbarStateContext from "../Variable/TabbarState";
 import { useEffect,useLayoutEffect } from "react";
 import NoteList from '../Variable/NoteList';
 import TimelineStateContext from '../Variable/TimelineState';
-import gettoken from '../data/FILE/gettoken';
-import WSobj from "../Variable/WSobj";
-import ReturnWS from '../data/FILE/ReturnWS';
-import changetimeline from "../data/changetimeline";
-import { getserverURL } from "../data/Getmeta";
-
+import { useWS } from "../Variable/wshook";
 // <Notifybox />
 const Mainbox = () => {
     //後でTL状態記憶するように？いやいらんかも
     const [timelinestate, timelinestatewrite] = useState(undefined);
     const [notelist, notelistwrite] = useState([]);
     const [TabbarState,TabbarStatewrite] = useState("home");
-    const [ws,wswrite] = useState("");
-    useLayoutEffect(() => {
+    const {changetimeline,CWS} = useWS();
+   // changestatus("a");
+    useEffect(() => {
         //メモ　絵文字追加時にemojiaddedってやつ来てるしノートのみ見るようにフィルター必要かも
-        const f = async () => {
-            const Mtoken = await gettoken();
-            const wsurl = await getserverURL().then(res => {return "wss://" + res.replace('https://','').replace('http://','') + "/streaming?i=" + Mtoken;});
-            console.log(wsurl);
-            const sddf = new WebSocket(wsurl);
-      //      wswrite(sddf);
-            sddf.onopen = () => {
-                console.log("wsopen");
-                sddf.send(JSON.stringify({
-                      "type": "connect",
-                      "body": {
-                          "channel": "homeTimeline",
-                          "id": "timeline",
-                          "params": {}
-                         }
-                   }));
-            };
-            sddf.onmessage = ({data}) => { console.log(data);}; 
             if(TabbarState == "home"){
-                changetimeline(1,timelinestatewrite,Mtoken,notelist,notelistwrite);
-                if(ws){
-                    //wsがはいったときのりレンダリングでwsfoundが出るはずだが出ない
-                    console.log("wsfound");
-            /*    ws.send(JSON.stringify({
-                    "type": "disconnect",
-                    "body": {
-                      "id": "timeline",
-                    }
-                  })); 
-                  ws.send(JSON.stringify({
-                    "type": "connect",
-                    "body": {
-                    "channel": timelinestate,
-                    "id": "timeline",
-                    "params": {}
-                       }
-                     }));*/
-                } else {
-                    console.log("wsnotfound");
-                }
+             //   console.log("dd");
+                //changetimeline(1,timelinestatewrite,notelist,notelistwrite);
             }
-        };
-        f();
     },[]);
-
+console.log("reload");
 return(
     <>
-                <WSobj.Provider value ={{ ws,wswrite }}>
+    <CWS />
                 <NoteList.Provider value={{ notelist, notelistwrite }}>
                 <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
                 <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
@@ -81,8 +38,8 @@ return(
                 </TabbarStateContext.Provider>
                 </TimelineStateContext.Provider>
                 </NoteList.Provider>
-                </WSobj.Provider>
     </>
     )
 }
+
 export default Mainbox;
