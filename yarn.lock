@@ -8935,6 +8935,11 @@ react-native-unimodules@~0.12.0:
     unimodules-sensors-interface "~5.4.0"
     unimodules-task-manager-interface "~5.4.0"
 
+react-native-use-websocket@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-use-websocket/-/react-native-use-websocket-0.2.4.tgz#ca7e14d567da448decd61129f0ad2bc1268417c6"
+  integrity sha512-elonp3jKpVoA5t8Q8EGyg3AT4k/MYsnXsGbdM1PGtsR1k87ngGSpb2Jbo50vHNMf1ReXqcAezuF9pB0oTa7shQ==
+
 react-native-video@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-5.1.1.tgz#89a7989efeb8d404611c06154d1da227a745d7d8"
@@ -10533,6 +10538,11 @@ url-parse@^1.4.4:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-state-with-callback@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/use-state-with-callback/-/use-state-with-callback-2.0.3.tgz#3be56ca52b6afcfe364e0579749dfe588c47c01f"
+  integrity sha512-bJXNAtJZW0xz16GIW54aDbYxRkZa2c8RdoKGQnJqE7GmRdVkZkKQBTR/9vH6T5tZX/7yCIhywE09NyeTQ9EJJQ==
 
 use-subscription@^1.0.0:
   version "1.5.1"
