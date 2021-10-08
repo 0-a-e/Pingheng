@@ -10,13 +10,15 @@ import { useWS } from '../../Variable/wshook';
 const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
     const {notelist, notelistwrite} = useContext(NoteList);
-  //  const {changetimeline,CWS} = useWS();
+    const { changetimeline } = useWS();
     
   const returnbutton = () => {
     return ( 
       <ButtonGroup
         onPress={val => {
-          //changetimeline(val,timelinestatewrite,notelist,notelistwrite);
+          changetimeline(
+            //val,timelinestatewrite,notelist,notelistwrite
+            );
           Props["bottomsheetref"].current.snapTo(1);
         }}
         selectedIndex={reconvert(timelinestate)}
