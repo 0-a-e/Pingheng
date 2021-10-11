@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
-        <mxGraphModel dx="1942" dy="1605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2135" dy="1694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -936,7 +936,7 @@
                 <mxCell id="398" value="2021/9/21時点" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="2070" y="240" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="401" value="wshook.tsx" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="401" value="wshook.tsx" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1155" y="218" width="185" height="112" as="geometry"/>
                 </mxCell>
                 <mxCell id="347" value="WSobj" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;" parent="1" vertex="1">
@@ -944,6 +944,118 @@
                 </mxCell>
                 <mxCell id="354" value="changetimeline" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1162.5" y="290" width="170" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="402" value="メモ Notelistがimportされてる場所&lt;br&gt;Mainbox.tsx(Provider,Changetimeline)&lt;br&gt;Timelineswitchbotton.tsx(Changetimeline)&lt;br&gt;&lt;strike&gt;ReturnWS.tsx&lt;/strike&gt;&lt;br&gt;NoteListbox（表示)&lt;br&gt;&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="3430" y="690" width="420" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="404" value="usenotelist" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="3000" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="405" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="2900" y="281.5" as="sourcePoint"/>
+                        <mxPoint x="2970" y="281.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="409" value="wshookと一体でもいいかも" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="2810" y="210" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="418" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="2850" y="400" width="220" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="414" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="418">
+                    <mxGeometry width="220" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="411" value="wshook.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="418">
+                    <mxGeometry x="63.75" y="35" width="92.5" height="92.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="412" value="useoldnote.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="418">
+                    <mxGeometry x="85" y="155" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="413" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="418" source="411" target="412">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="454" value="call" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="413">
+                    <mxGeometry x="0.1298" y="3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="415" value="書き込み" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="418">
+                    <mxGeometry x="82.5" y="5" width="55" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="422" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="3120" y="400" width="180" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="420" value="&lt;p style=&quot;line-height: 40%&quot;&gt;読み込み&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;align=center;spacingLeft=0;horizontal=1;spacingBottom=313;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="422">
+                    <mxGeometry width="180" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="407" value="NoteListbox.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="422">
+                    <mxGeometry x="63.529411764705884" y="38.91891891891892" width="82.16216216216216" height="82.16216216216216" as="geometry"/>
+                </mxCell>
+                <mxCell id="421" value="" style="group" vertex="1" connectable="0" parent="422">
+                    <mxGeometry x="10.588235294117647" y="136.21621621621622" width="158.8235294117647" height="204.32432432432432" as="geometry"/>
+                </mxCell>
+                <mxCell id="419" value="&lt;p style=&quot;line-height: 40%&quot;&gt;For Changetimeline&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;align=center;spacingLeft=0;horizontal=0;spacingBottom=92;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="421">
+                    <mxGeometry width="158.8235294117647" height="204.32432432432432" as="geometry"/>
+                </mxCell>
+                <mxCell id="406" value="Mainbox.tsx&lt;br&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;spacingLeft=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="421">
+                    <mxGeometry x="52.94117647058824" y="9.72972972972973" width="82.16216216216215" height="82.16216216216215" as="geometry"/>
+                </mxCell>
+                <mxCell id="408" value="Timelineswitchbotton.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="421">
+                    <mxGeometry x="52.94117647058824" y="107.02702702702702" width="82.16216216216215" height="82.16216216216215" as="geometry"/>
+                </mxCell>
+                <mxCell id="438" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="3510" y="400" width="220" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="439" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="438">
+                    <mxGeometry width="220" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="440" value="wshook.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="438">
+                    <mxGeometry x="63.75" y="35" width="92.5" height="92.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="441" value="useoldnote.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="438">
+                    <mxGeometry x="85" y="155" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="442" value="call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="438" source="440" target="441">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="110" y="140"/>
+                            <mxPoint x="110" y="140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="443" value="書き込み" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="438">
+                    <mxGeometry x="82.5" y="5" width="55" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="444" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="3770" y="400" width="180" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="445" value="&lt;p style=&quot;line-height: 40%&quot;&gt;読み込み&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;align=center;spacingLeft=0;horizontal=1;spacingBottom=313;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="444">
+                    <mxGeometry width="180" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="446" value="NoteListbox.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="444">
+                    <mxGeometry x="63.529411764705884" y="38.91891891891892" width="82.16216216216216" height="82.16216216216216" as="geometry"/>
+                </mxCell>
+                <mxCell id="447" value="" style="group" vertex="1" connectable="0" parent="444">
+                    <mxGeometry x="10.588235294117647" y="136.21621621621622" width="158.8235294117647" height="204.32432432432432" as="geometry"/>
+                </mxCell>
+                <mxCell id="448" value="&lt;p style=&quot;line-height: 40%&quot;&gt;For Changetimeline&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;align=center;spacingLeft=0;horizontal=0;spacingBottom=92;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="447">
+                    <mxGeometry width="158.8235294117647" height="204.32432432432432" as="geometry"/>
+                </mxCell>
+                <mxCell id="449" value="Mainbox.tsx&lt;br&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;spacingLeft=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="447">
+                    <mxGeometry x="52.94117647058824" y="9.72972972972973" width="82.16216216216215" height="82.16216216216215" as="geometry"/>
+                </mxCell>
+                <mxCell id="450" value="Timelineswitchbotton.tsx" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="447">
+                    <mxGeometry x="52.94117647058824" y="107.02702702702702" width="82.16216216216215" height="82.16216216216215" as="geometry"/>
+                </mxCell>
+                <mxCell id="452" value="新" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;glass=0;" vertex="1" parent="1">
+                    <mxGeometry x="3040" y="335" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="453" value="旧" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;glass=0;" vertex="1" parent="1">
+                    <mxGeometry x="3730" y="355" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="455" value="2021/10/12" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;glass=0;" vertex="1" parent="1">
+                    <mxGeometry x="3380" y="370" width="40" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

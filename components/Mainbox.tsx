@@ -19,15 +19,14 @@ const Mainbox = () => {
     //後でTL状態記憶するように？いやいらんかも
     const [timelinestate, timelinestatewrite] = useState(undefined);
     const [notelist, notelistwrite] = useState([]);
-    const [TabbarState,TabbarStatewrite] = useState("home");
+    const [TabbarState,TabbarStatewrite] = useState("home");    
     const { changetimeline } = useWS();
-        
 
-                    if(TabbarState == "home"){
-                        changetimeline(
-                 //           1,timelinestatewrite,notelist,notelistwrite,ws,token
-                            );
-                    }
+    //以下で無限ループ
+    if(TabbarState == "home"){
+        changetimeline(1,timelinestatewrite,notelist,notelistwrite);
+    }
+
 
 return(
                 <NoteList.Provider value={{ notelist, notelistwrite }}>

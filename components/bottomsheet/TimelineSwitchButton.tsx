@@ -17,7 +17,7 @@ const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
       <ButtonGroup
         onPress={val => {
           changetimeline(
-            //val,timelinestatewrite,notelist,notelistwrite
+            val,timelinestatewrite,notelist,notelistwrite
             );
           Props["bottomsheetref"].current.snapTo(1);
         }}

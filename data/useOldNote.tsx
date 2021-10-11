@@ -2,10 +2,11 @@ import { sendAPI } from '../data/useAPI';
 import {toendpoint} from '../components/bottomsheet/useSwitchtltranslator';
 
 async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelistwrite: any) {
-    const tltype = toendpoint(rawtltype);
+     const tltype = toendpoint(rawtltype);
     const payload = {
         "limit":25
     };
+    
     sendAPI([Mtoken,"notes/" +  tltype,payload]).then(data => {
     if(data){
       notelistwrite(data); 
@@ -13,6 +14,7 @@ async function addoldnote(Mtoken: string,rawtltype: string,notelist: any,notelis
       console.log("nodata");
     }
     });
+    
 }
 
-export default addoldnote
+export default addoldnote;
