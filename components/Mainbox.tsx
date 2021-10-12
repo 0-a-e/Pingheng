@@ -9,10 +9,6 @@ import { useEffect,useLayoutEffect } from "react";
 import NoteList from '../Variable/NoteList';
 import TimelineStateContext from '../Variable/TimelineState';
 import { useWS } from "../Variable/wshook";
-import { ToastAndroid } from "react-native";
-import { getserverURL } from "../data/Getmeta";
-import gettoken from "../data/FILE/gettoken";
-import useWebSocket from 'react-native-use-websocket';
 
 // <Notifybox />
 const Mainbox = () => {
@@ -24,7 +20,7 @@ const Mainbox = () => {
 
     //以下で無限ループ
     if(TabbarState == "home"){
-        changetimeline(1,timelinestatewrite,notelist,notelistwrite);
+        changetimeline(1,timelinestatewrite);
     }
 
 

@@ -4,11 +4,12 @@ import useWebSocket from "react-native-use-websocket";
 import { convert } from "../components/bottomsheet/useSwitchtltranslator";
 import gettoken from "../data/FILE/gettoken";
 import { getserverURL } from "../data/Getmeta";
-import useOldNote from "../data/useOldNote";
+import { usenotelist } from "./usenotelist";
 
  
 export const useWS = () => {
   const [token, setToken] = useState("");
+  const [returnnotelist,addoldnote] = usenotelist();
 
   const getSocketUrl = useCallback(() => {
     return new Promise (async resolve => {
@@ -34,9 +35,7 @@ export const useWS = () => {
     shouldReconnect: (closeEvent) => true
   });
 
-
 useEffect(() => {
-  
   if(getWebSocket()){
     getWebSocket().onopen = () => console.log("opened");
     getWebSocket().onmessage = (message) => {
@@ -50,8 +49,10 @@ useEffect(() => {
   }
 }, [getWebSocket()]);
 
-const changetimeline = (val: any,timelinestatewrite: any,notelist,notelistwrite,) => {
+
+const changetimeline = (val: any,timelinestatewrite: any) => {
     const convertedval = convert(val);
+
     if(getWebSocket()){
       getWebSocket().send(JSON.stringify({
         "type": "disconnect",
@@ -68,12 +69,14 @@ const changetimeline = (val: any,timelinestatewrite: any,notelist,notelistwrite,
        }
       }));
     }
+
     if(token){
       console.log("token: ", token);
-      useOldNote(token,convertedval,notelist,notelistwrite);
+      returnnotelist();
+      addoldnote(token,convertedval);
     }
  // timelinestatewrite(convertedval);
-};
+}
 
 return { changetimeline };
 };
