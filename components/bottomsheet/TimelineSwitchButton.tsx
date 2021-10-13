@@ -3,20 +3,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import TimelineStateContext from '../../Variable/TimelineState';
 import timelinebuttonelem from './timelinebuttonelem';
 //import changetimeline from '../../data/changetimeline';
-import { reconvert } from './useSwitchtltranslator';
-import { useWS } from '../../Variable/wshook';
+import { reconvert,convert } from './useSwitchtltranslator';
 
 const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
-    const { changetimeline,changetimelinestate } = useWS();
 
     
   const returnbutton = () => {
     return ( 
       <ButtonGroup
         onPress={val => {
-
-          changetimelinestate(convert(val),timelinestatewrite);
+        timelinestatewrite(convert(val));
           Props["bottomsheetref"].current.snapTo(1);
         }}
         selectedIndex={reconvert(timelinestate)}

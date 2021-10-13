@@ -36,6 +36,7 @@ export const useWS = () => {
   });
 
 useEffect(() => {
+  console.log("wshook useeffect");
   if(getWebSocket()){
     getWebSocket().onopen = () => console.log("opened");
     getWebSocket().onmessage = (message) => {
@@ -48,7 +49,6 @@ useEffect(() => {
     getWebSocket().onclose = (closeEvent) => {ToastAndroid.show("WebSocket接続が切断されました。", 6000);console.log(closeEvent);};
   }
 }, [getWebSocket()]);
-
 
 const changetimeline = useCallback((val: any) => {
     if(getWebSocket()){
@@ -66,18 +66,21 @@ const changetimeline = useCallback((val: any) => {
         "params": {}
        }
       }));
+    } else {
+      console.log("getwebsocket not found");
     }
 
     if(token){
       console.log("token: ", token);
       //returnnotelist();
       addoldnote(token,val);
+      console.log("after addoldnote");
     }
 },[]);
-
+/* 
 const changetimelinestate = useCallback((val: any,timelinestatewrite:any) => {
   timelinestatewrite(val);
 },[]);
-
-return { changetimeline,changetimelinestate };
+*/
+return { changetimeline };
 };

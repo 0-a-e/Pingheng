@@ -11,16 +11,15 @@ import { useWS } from "../Variable/wshook";
 // <Notifybox />
 const Mainbox = () => {
     //後でTL状態記憶するように？いやいらんかも
-    const [timelinestate, timelinestatewrite] = useState(undefined);
+    const [timelinestate, timelinestatewrite] = useState("homeTimeline");
     const [TabbarState,TabbarStatewrite] = useState("home");    
-    const { changetimeline,changetimelinestate } = useWS();
-    //以下で無限ループ
+    const { changetimeline } = useWS();
+    //以下で無限ループだった
     useEffect(() => {
         //タブバーの変更
-        console.log(timelinestate);
         if(TabbarState == "home"){
-            changetimelinestate(timelinestate,timelinestatewrite);
-            changetimeline(timelinestate);
+                console.log("timelinestate: ",timelinestate);
+                changetimeline(timelinestate);
         }
     }, [TabbarState,timelinestate]);
 
