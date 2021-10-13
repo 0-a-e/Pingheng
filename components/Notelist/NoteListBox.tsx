@@ -1,4 +1,3 @@
-import NoteList from '../../Variable/NoteList';
 import React, { createRef,useCallback,useContext, useEffect, useState } from 'react';
 import { View,Text, BackHandler, ToastAndroid, TouchableOpacity, FlatList } from 'react-native';
 import SwipeActionList from 'react-native-swipe-action-list';
@@ -7,12 +6,13 @@ import RenderRight from './RenderRight';
 import NoteView from './NoteView';
 import Action from '../Action/Action';
 import Reaction from '../Reaction/Reaction';
+import { usenotelist } from '../../Variable/usenotelist';
 
 
 //(Noteview(仮))
 
 //ラグくなるのは読み込み終わるまで待っちゃうからかも
-const ListKey = (props) => {
+const ListKey = (props: { [x: string]: any; }) => {
    //console.log(props["id"]);
   //  const data = props["data"]["item"];
     return props["id"];
@@ -25,6 +25,7 @@ const NoteListBox = () => {
   let whichsheet = "nothing";
   let notedata: any;
   let reactiondata: any;
+  const {returnnotelist,notelist,addoldnote,addnote} = usenotelist();
 
   
   useEffect(() => {
@@ -106,17 +107,12 @@ const NoteListBox = () => {
   const renderItem = useCallback((item) =><NoteView data={item} EopenAction={(data:any) => openAction(data)} EopenReaction={(data:any) => openReaction(data)}/>,[]);
   const InitialNumToRender = 10;
   //const renderItem = useCallback((item) =><TouchableOpacity><Text style={{margin:70,backgroundColor:"red",fontSize:30}}>rgf</Text></TouchableOpacity>,[]);
-  return(
-  <NoteList.Consumer>
-    {(value) => {
-      const nlist = value["notelist"];
-//初回は空のリスト
-return (
-    //FlatListだとこのままでok
+      //FlatListだとこのままでok
     //SwipeAcrionListは更新に対応していない？
 
+  return(
     <View style={{width: "100%",height: "100%",backgroundColor: "rgb(19,20,26)"}}>
-        {nlist.length > 0 ?
+        {notelist.length > 0 ?
         <>
          <Action
             style={{justifyContent: "center",flex: 1}}
@@ -133,7 +129,7 @@ return (
         <FlatList
           style = {{width: "100%",backgroundColor: "rgb(19,20,26)"}}
           keyExtractor={getkey}
-          data={nlist} //be string 更新されるとだめらしい
+          data={notelist} //be string 更新されるとだめらしい
           renderItem={renderItem} 
       //    renderLeftHiddenItem={RenderLeft}
        //   renderRightHiddenItem={RenderRight}
@@ -148,9 +144,6 @@ return (
         </View>
         }
       </View>
-)
-}}
-</NoteList.Consumer>
 )
 
 }

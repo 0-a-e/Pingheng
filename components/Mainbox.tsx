@@ -4,9 +4,7 @@ import NoteListBox from "./Notelist/NoteListBox";
 import Notifybox from './Notify/NotifyBox';
 import Settingsbox from "./Settings";
 import TabbarStateContext from "../Variable/TabbarState";
-//import emoji from "../data/Emojis/emoji";
 import { useEffect,useLayoutEffect } from "react";
-import NoteList from '../Variable/NoteList';
 import TimelineStateContext from '../Variable/TimelineState';
 import { useWS } from "../Variable/wshook";
 
@@ -14,18 +12,19 @@ import { useWS } from "../Variable/wshook";
 const Mainbox = () => {
     //後でTL状態記憶するように？いやいらんかも
     const [timelinestate, timelinestatewrite] = useState(undefined);
-    const [notelist, notelistwrite] = useState([]);
     const [TabbarState,TabbarStatewrite] = useState("home");    
-    const { changetimeline } = useWS();
-
+    const { changetimeline,changetimelinestate } = useWS();
     //以下で無限ループ
-    if(TabbarState == "home"){
-        changetimeline(1,timelinestatewrite);
-    }
-
+    useEffect(() => {
+        //タブバーの変更
+        console.log(timelinestate);
+        if(TabbarState == "home"){
+            changetimelinestate(timelinestate,timelinestatewrite);
+            changetimeline(timelinestate);
+        }
+    }, [TabbarState,timelinestate]);
 
 return(
-                <NoteList.Provider value={{ notelist, notelistwrite }}>
                 <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
                 <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
                     {TabbarState == "home" && <NoteListBox />}
@@ -34,7 +33,6 @@ return(
                     <Mainbottomsheet />
                 </TabbarStateContext.Provider>
                 </TimelineStateContext.Provider>
-                </NoteList.Provider>
     )
 }
 

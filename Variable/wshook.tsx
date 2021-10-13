@@ -9,7 +9,7 @@ import { usenotelist } from "./usenotelist";
  
 export const useWS = () => {
   const [token, setToken] = useState("");
-  const [returnnotelist,addoldnote] = usenotelist();
+  const {returnnotelist,notelist,addoldnote,addnote} = usenotelist();
 
   const getSocketUrl = useCallback(() => {
     return new Promise (async resolve => {
@@ -41,7 +41,7 @@ useEffect(() => {
     getWebSocket().onmessage = (message) => {
           const data = JSON.parse(message.data);
           if(data.body.type == "note"){
-              console.log(data.body.body);
+            addnote(data.body.body);
           }
       };
     getWebSocket().onerror = (error) => {ToastAndroid.show("WebSocket接続ができませんでした。インターネット接続やサーバーの状態を確認してください。", 6000);console.log(error);};
@@ -50,9 +50,7 @@ useEffect(() => {
 }, [getWebSocket()]);
 
 
-const changetimeline = (val: any,timelinestatewrite: any) => {
-    const convertedval = convert(val);
-
+const changetimeline = useCallback((val: any) => {
     if(getWebSocket()){
       getWebSocket().send(JSON.stringify({
         "type": "disconnect",
@@ -63,7 +61,7 @@ const changetimeline = (val: any,timelinestatewrite: any) => {
       getWebSocket().send(JSON.stringify({
       "type": "connect",
       "body": {
-        "channel": convertedval,
+        "channel": val,
         "id": "timeline",
         "params": {}
        }
@@ -72,11 +70,14 @@ const changetimeline = (val: any,timelinestatewrite: any) => {
 
     if(token){
       console.log("token: ", token);
-      returnnotelist();
-      addoldnote(token,convertedval);
+      //returnnotelist();
+      addoldnote(token,val);
     }
- // timelinestatewrite(convertedval);
-}
+},[]);
 
-return { changetimeline };
+const changetimelinestate = useCallback((val: any,timelinestatewrite:any) => {
+  timelinestatewrite(val);
+},[]);
+
+return { changetimeline,changetimelinestate };
 };

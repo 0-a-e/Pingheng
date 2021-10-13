@@ -4,30 +4,37 @@ import { sendAPI } from "../data/useAPI";
 
 export const usenotelist = () => {
     const [notelist, setnotelist] = useState([]);
-
-   /*  const countUp = useCallback(() => {
-      setCount((prev) => prev + 1);
-    }, []); */
-    const returnnotelist = () => {
+    
+    const returnnotelist = useCallback(() => {
         return (
             notelist
         )
-    }
+    }, [notelist]);
 
-    const addoldnote = async (Mtoken: string,rawtltype: string) => {
+    const addoldnote = useCallback(async (Mtoken: string, rawtltype: string) => {
         const tltype = toendpoint(rawtltype);
         const payload = {
-           "limit":25
+            "limit": 25
         };
-        sendAPI([Mtoken,"notes/" +  tltype,payload]).then(data => {
-            if(data){
-                setnotelist(data); 
+        sendAPI([Mtoken, "notes/" + tltype, payload]).then(data => {
+            if (data) {
+                setnotelist(data);
             } else {
                 console.log("nodata");
             }
         });
-   
-    }
 
-    return [returnnotelist,addoldnote];
+    },[]);
+
+    const addnote = useCallback((data) => {
+        const note = JSON.parse(JSON.stringify(data));
+        console.log(note);
+        const appendeddata = [data,...notelist];
+        console.log(appendeddata);
+        //appendeddata.reverse();
+        // console.log(appendeddata);
+        setnotelist(appendeddata);
+     },[]); 
+
+    return {returnnotelist,notelist,addoldnote,addnote};
   };

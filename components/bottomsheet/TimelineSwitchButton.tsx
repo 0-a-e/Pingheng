@@ -1,7 +1,6 @@
 import { ButtonGroup } from 'react-native-elements';
 import React, { useContext, useEffect, useState } from 'react';
 import TimelineStateContext from '../../Variable/TimelineState';
-import NoteList from '../../Variable/NoteList';
 import timelinebuttonelem from './timelinebuttonelem';
 //import changetimeline from '../../data/changetimeline';
 import { reconvert } from './useSwitchtltranslator';
@@ -9,16 +8,15 @@ import { useWS } from '../../Variable/wshook';
 
 const SwitchTimeline = (Props: {Mtoken:string,bottomsheetref: any}) => {
     const {timelinestate,timelinestatewrite} = useContext(TimelineStateContext);
-    const {notelist, notelistwrite} = useContext(NoteList);
-    const { changetimeline } = useWS();
+    const { changetimeline,changetimelinestate } = useWS();
+
     
   const returnbutton = () => {
     return ( 
       <ButtonGroup
         onPress={val => {
-          changetimeline(
-            val,timelinestatewrite,notelist,notelistwrite
-            );
+
+          changetimelinestate(convert(val),timelinestatewrite);
           Props["bottomsheetref"].current.snapTo(1);
         }}
         selectedIndex={reconvert(timelinestate)}
