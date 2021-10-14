@@ -14,51 +14,53 @@ export const useWS = () => {
   const getSocketUrl = useCallback(() => {
     return new Promise (async resolve => {
             const localtoken = await gettoken();
-            if(token == ""){
+            const serverURL = await getserverURL();
+            if(token == "" && localtoken){
               setToken(localtoken);
             }
-            const serverURL = await getserverURL();
             const WebsocketURL = "wss://" + serverURL.replace('https://','').replace('http://','') + "/streaming?i=" + localtoken;
+            console.log("WebsocketURL: " + WebsocketURL);
             resolve(WebsocketURL);
         });
 }, []);
 
-  const {
-    sendMessage,
-    sendJsonMessage,
-    lastMessage,
-    lastJsonMessage,
-    readyState,
-    getWebSocket
-  } = useWebSocket(getSocketUrl, {
-  shared: true,
+  const {getWebSocket} = useWebSocket(getSocketUrl, {
+    shared: true,
     shouldReconnect: (closeEvent) => true
   });
 
 useEffect(() => {
-  console.log("wshook useeffect");
-  if(getWebSocket()){
-    getWebSocket().onopen = () => console.log("opened");
-    getWebSocket().onmessage = (message) => {
+  console.log("==wshook useeffect==");
+  const websocket = getWebSocket();
+  if(websocket){
+    console.log("useeffect getWebsocket found!");
+   // console.log(websocket);
+    websocket.onopen = () => console.log("opened");
+    websocket.onmessage = (message) => {
           const data = JSON.parse(message.data);
           if(data.body.type == "note"){
             addnote(data.body.body);
           }
       };
-    getWebSocket().onerror = (error) => {ToastAndroid.show("WebSocket接続ができませんでした。インターネット接続やサーバーの状態を確認してください。", 6000);console.log(error);};
-    getWebSocket().onclose = (closeEvent) => {ToastAndroid.show("WebSocket接続が切断されました。", 6000);console.log(closeEvent);};
+    websocket.onerror = (error) => {ToastAndroid.show("WebSocket接続ができませんでした。インターネット接続やサーバーの状態を確認してください。", 6000);console.log("Websocket Error: ",error);};
+    websocket.onclose = (closeEvent) => {ToastAndroid.show("WebSocket接続が切断されました。", 6000);console.log("Websocket Closed", closeEvent);};
+  } else {
+    console.log("useeffect getwebsocket not found");
   }
 }, [getWebSocket()]);
 
 const changetimeline = useCallback((val: any) => {
-    if(getWebSocket()){
-      getWebSocket().send(JSON.stringify({
+    const websocket = getWebSocket();
+    if(websocket && token && val){
+      console.log("changetimeline: Websocket and token found!");
+      console.log("val: " + val);
+      websocket.send(JSON.stringify({
         "type": "disconnect",
         "body": {
           "id": "timeline",
         }
       }));
-      getWebSocket().send(JSON.stringify({
+      websocket.send(JSON.stringify({
       "type": "connect",
       "body": {
         "channel": val,
@@ -66,21 +68,13 @@ const changetimeline = useCallback((val: any) => {
         "params": {}
        }
       }));
-    } else {
-      console.log("getwebsocket not found");
-    }
-
-    if(token){
-      console.log("token: ", token);
-      //returnnotelist();
       addoldnote(token,val);
-      console.log("after addoldnote");
+
+    } else {
+      console.log("changetimeline: websocket and token not found");
     }
+  
 },[]);
-/* 
-const changetimelinestate = useCallback((val: any,timelinestatewrite:any) => {
-  timelinestatewrite(val);
-},[]);
-*/
+
 return { changetimeline };
 };

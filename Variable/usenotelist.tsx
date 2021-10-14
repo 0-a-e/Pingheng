@@ -16,9 +16,10 @@ export const usenotelist = () => {
         const payload = {
             "limit": 25
         };
-        sendAPI([Mtoken, "notes/" + tltype, payload]).then(data => {
+       sendAPI([Mtoken, "notes/" + tltype, payload]).then(data => {
             if (data) {
-                setnotelist(data);
+              //  setnotelist(data);
+              console.log("addoldnote length: ",data.length);
             } else {
                 console.log("nodata");
             }

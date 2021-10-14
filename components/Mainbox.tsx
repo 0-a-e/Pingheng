@@ -16,9 +16,7 @@ const Mainbox = () => {
     const { changetimeline } = useWS();
     //以下で無限ループだった
     useEffect(() => {
-        //タブバーの変更
-        if(TabbarState == "home"){
-                console.log("timelinestate: ",timelinestate);
+        if(TabbarState == "home" && timelinestate){
                 changetimeline(timelinestate);
         }
     }, [TabbarState,timelinestate]);
