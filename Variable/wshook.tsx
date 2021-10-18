@@ -50,6 +50,7 @@ useEffect(() => {
 }, [getWebSocket()]);
 
 const changetimeline = useCallback((val: any) => {
+  //changetimelineがうまく実行されてない（リレンダリング時にもIFでだめ・そもそも利レンダリング時に実行されてない？）
     const websocket = getWebSocket();
     if(websocket && token && val){
       console.log("changetimeline: Websocket and token found!");
@@ -69,7 +70,6 @@ const changetimeline = useCallback((val: any) => {
        }
       }));
       addoldnote(token,val);
-
     } else {
       console.log("changetimeline: websocket and token not found");
     }

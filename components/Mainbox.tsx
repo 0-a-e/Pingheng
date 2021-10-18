@@ -15,11 +15,11 @@ const Mainbox = () => {
     const [TabbarState,TabbarStatewrite] = useState("home");    
     const { changetimeline } = useWS();
     //以下で無限ループだった
-    useEffect(() => {
+  //  useEffect(() => {
         if(TabbarState == "home" && timelinestate){
                 changetimeline(timelinestate);
         }
-    }, [TabbarState,timelinestate]);
+ //   }, [TabbarState,timelinestate]);
 
 return(
                 <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
