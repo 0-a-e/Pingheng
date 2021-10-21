@@ -54,7 +54,6 @@ const changetimeline = useCallback((val: any) => {
     const websocket = getWebSocket();
     if(websocket && token && val){
       console.log("changetimeline: Websocket and token found!");
-      console.log("val: " + val);
       websocket.send(JSON.stringify({
         "type": "disconnect",
         "body": {
