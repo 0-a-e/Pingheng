@@ -8,24 +8,25 @@ import { useEffect,useLayoutEffect } from "react";
 import TimelineStateContext from '../Variable/TimelineState';
 import { useWS } from "../Variable/wshook";
 
-// <Notifybox />
 const Mainbox = () => {
     //後でTL状態記憶するように？いやいらんかも
     const [timelinestate, timelinestatewrite] = useState("homeTimeline");
-    const [TabbarState,TabbarStatewrite] = useState("home");    
-    const { changetimeline } = useWS();
-    //以下で無限ループだった
-  //  useEffect(() => {
+    const [TabbarState,TabbarStatewrite] = useState("home"); 
+    const [refresh,setrefresh] = useState<boolean>(false);   
+    const { changetimeline } = useWS(setrefresh,refresh);
+
+    console.log("reloads");
+    useEffect(() => {
         if(TabbarState == "home" && timelinestate){
                 changetimeline(timelinestate);
         }
- //   }, [TabbarState,timelinestate]);
+    }, [TabbarState,timelinestate,refresh]);
 
 return(
                 <TimelineStateContext.Provider value={{timelinestate,timelinestatewrite}}>
                 <TabbarStateContext.Provider value={{ TabbarState,TabbarStatewrite }}>
                     {TabbarState == "home" && <NoteListBox />}
-                    {TabbarState == "notify" && <Notifybox />}
+                    {TabbarState == "notify" && <Notifybox />}   
                     {TabbarState == "settings" && <Settingsbox />}
                     <Mainbottomsheet />
                 </TabbarStateContext.Provider>
