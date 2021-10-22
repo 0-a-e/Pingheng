@@ -5,11 +5,7 @@ import { sendAPI } from "../data/useAPI";
 export const usenotelist = () => {
     const [notelist, setnotelist] = useState([]);
     
-    const returnnotelist = useCallback(() => {
-        return (
-            notelist
-        )
-    }, [notelist]);
+    const returnnotelist = useCallback(() => (notelist), [notelist]);
 
     const addoldnote = useCallback(async (Mtoken: string, rawtltype: string) => {
         const tltype = toendpoint(rawtltype);
