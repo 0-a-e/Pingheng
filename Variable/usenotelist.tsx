@@ -2,10 +2,7 @@ import { useCallback, useState } from "react";
 import { toendpoint } from "../components/bottomsheet/useSwitchtltranslator";
 import { sendAPI } from "../data/useAPI";
 
-export const usenotelist = () => {
-    const [notelist, setnotelist] = useState([]);
-    
-    const returnnotelist = useCallback(() => (notelist), [notelist]);
+export const usenotelist = (notelist,setnotelist) => {
 
     const addoldnote = useCallback(async (Mtoken: string, rawtltype: string) => {
         const tltype = toendpoint(rawtltype);
@@ -14,7 +11,7 @@ export const usenotelist = () => {
         };
        sendAPI([Mtoken, "notes/" + tltype, payload]).then(data => {
             if (data) {
-              //  setnotelist(data);
+              setnotelist(data);
               console.log("addoldnote length: ",data.length);
             } else {
                 console.log("nodata");
@@ -23,15 +20,16 @@ export const usenotelist = () => {
 
     },[]);
 
-    const addnote = useCallback((data) => {
-        const note = JSON.parse(JSON.stringify(data));
-        console.log(note);
-        const appendeddata = [data,...notelist];
-        console.log(appendeddata);
-        //appendeddata.reverse();
-        // console.log(appendeddata);
-        setnotelist(appendeddata);
-     },[]); 
+    const addnote = (data) => {
+        console.log("--");
+        console.log(notelist);
+        console.log("--");
+        setnotelist(notelist => {
+            const note = JSON.parse(JSON.stringify(data));
+            const appendeddata = [note,...notelist];
+            return appendeddata;
+        });
+     };
 
-    return {returnnotelist,notelist,addoldnote,addnote};
+    return {addoldnote,addnote};
   };

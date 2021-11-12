@@ -6,10 +6,10 @@ import gettoken from "../data/FILE/gettoken";
 import { getserverURL } from "../data/Getmeta";
 import { usenotelist } from "./usenotelist";
 
- 
-export const useWS = (setrefresh: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; },refresh: boolean) => {
+export const useWS = (setrefresh: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; },refresh: boolean,notelist,setnotelist) => {
   let token = "";
-  const {returnnotelist,notelist,addoldnote,addnote} = usenotelist();
+  console.log("wshook reload");
+  const {addoldnote,addnote} = usenotelist(notelist,setnotelist);
 
   const getSocketUrl = useCallback(() => {
     return new Promise (async resolve => {
@@ -38,7 +38,9 @@ useEffect(() => {
     websocket.onmessage = (message) => {
           const data = JSON.parse(message.data);
           if(data.body.type == "note"){
+            console.log("note");
             addnote(data.body.body);
+            console.log("afternote");
           }
       };
     websocket.onerror = (error) => {ToastAndroid.show("WebSocket接続ができませんでした。インターネット接続やサーバーの状態を確認してください。", 6000);console.log("Websocket Error: ",error);};
@@ -68,7 +70,7 @@ const changetimeline = useCallback((val: any) => {
         "params": {}
        }
       }));
-  //    addoldnote(token,val);
+      addoldnote(token,val);
     } else {
       console.log("changetimeline: websocket and token not found");
     }

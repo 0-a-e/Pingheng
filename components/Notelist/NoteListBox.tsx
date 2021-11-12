@@ -1,13 +1,12 @@
 import React, { createRef,useCallback,useContext, useEffect, useState } from 'react';
 import { View,Text, BackHandler, ToastAndroid, TouchableOpacity, FlatList } from 'react-native';
-import SwipeActionList from 'react-native-swipe-action-list';
-import RenderLeft from './RenderLeft';
-import RenderRight from './RenderRight';
+//import SwipeActionList from 'react-native-swipe-action-list';
+//import RenderLeft from './RenderLeft';
+//import RenderRight from './RenderRight';
 import NoteView from './NoteView';
 import Action from '../Action/Action';
 import Reaction from '../Reaction/Reaction';
-import { usenotelist } from '../../Variable/usenotelist';
-
+import NotelistContext from "../../Variable/NotelistContext";
 
 //(Noteview(仮))
 
@@ -25,13 +24,21 @@ const NoteListBox = () => {
   let whichsheet = "nothing";
   let notedata: any;
   let reactiondata: any;
-  const {returnnotelist,notelist,addoldnote,addnote} = usenotelist();
+  const {notelist,setnotelist} = useContext(NotelistContext);
+  
+  
+  /*const refreshnotelist = useCallback(() => {
+    console.log(returnnotelist());
+  },[returnnotelist]);
+  や　やっぱりこれのusecallbackのせいではなさそう
+}*/
 
   
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backAction);
-  return () =>
+  return function cleanup(){
     BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }
  }, []);
  
  const backAction = () => {

@@ -1,6 +1,6 @@
 //import ActionSheet from "react-native-actions-sheet";
 import BottomSheet from 'reanimated-bottom-sheet';
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet,View,Text, ToastAndroid,TouchableOpacity } from "react-native";
 import Reply from "./Reply/Reply";
 import Top from "./Reaction/Top";
