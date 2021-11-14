@@ -16,9 +16,10 @@ const Mainbox = () => {
     const [notelist, setnotelist] = useState([]);
     const [refresh,setrefresh] = useState<boolean>(false);
     const { changetimeline } = useWS(setrefresh, refresh, notelist, setnotelist);
+    const [beforeTimelineState,setbeforeTimelineState] = useState("");
     useEffect(() => {
-        if(TabbarState == "home" && timelinestate){
-                changetimeline(timelinestate);
+        if(TabbarState == "home" && timelinestate && beforeTimelineState != timelinestate){   
+            changetimeline(timelinestate,setbeforeTimelineState);
         }
     }, [TabbarState,timelinestate,refresh]);
 

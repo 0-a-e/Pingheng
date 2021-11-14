@@ -13,7 +13,19 @@ const notestyles = StyleSheet.create({
     cardwrapper:{
       flexDirection: 'row',
     },
-  
+    reactionpill:{
+      position:"relative",
+      marginLeft: 'auto',
+      right:10,
+      marginTop:0,
+      zIndex:10
+    },
+    incardcontainer:{
+      height: 77,
+      flexDirection: 'column',
+      //width: "100%",
+      width: "74%",
+    },
     topcontainer:{
       width: "100%",
       flexDirection: 'row',
@@ -29,34 +41,34 @@ const notestyles = StyleSheet.create({
     RT1container:{
       flexDirection: 'row',
       position: 'relative',
+      marginTop: 5,
       zIndex:-3,
     },
     RTtext:{
       color: "#fff",
       fontSize: 13,
-      marginTop:3
+      width: "100%",
+    },
+    RT2container:{
+      height:25,
+      width: 77,
+      marginLeft:-30,
+      zIndex:-3,
+      backgroundColor:"#3eb585",
     },
     RTtextcontainer:{
       backgroundColor:"#3eb585",
       borderTopEndRadius: 50,
       borderBottomEndRadius:50,
-      marginTop:5,
       paddingLeft: 5,
+      justifyContent: 'center',
       paddingRight:5,
       maxWidth: "65%"
 
     },
-    topRTcontainer:{
-      height:25,
-      width: 77,
-      marginTop: 5,
-      marginLeft:-30,
-      backgroundColor:"#3eb585",
-    },
     normalcontainer:{
-      width: "87%",
+      width: "100%",
       flexDirection: 'column',
-      paddingTop: 5,
     },
     renoteavatarcontainer:{
       position: "absolute",
@@ -74,7 +86,7 @@ const notestyles = StyleSheet.create({
     },
     avatar: {
         backgroundColor: "rgba(230,230,230,1)",
-        height: 77
+        height: 77,
     },
   
     notebox:{
@@ -87,6 +99,7 @@ const notestyles = StyleSheet.create({
     name:{
       color: "#fff",
       flexDirection:'row',
+      maxWidth: 100,
 },
     uncontainer:{
       height:20,
@@ -99,13 +112,7 @@ const notestyles = StyleSheet.create({
       height:20,
       flexDirection: 'row',
       alignItems: 'center',
-    },
-  
-    incardcontainer:{
-      height: 77,
-      flexDirection: 'column',
-      //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
-      //Avaterの位置変更で修正済み
+      maxWidth: 100,
     },
     linkbox:{
       position: 'absolute',

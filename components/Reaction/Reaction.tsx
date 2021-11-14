@@ -86,7 +86,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                 uri:props.item.user.avatarUrl
               }}
             />
-            {props.item.user.name != null && <ParseEmoji emojis={props.item.user.emojis} text={props.item.user.name} textStyle={{color:"#fff"}}/>}
+            {props.item.user.name != null && <ParseEmoji ifoneline={true} emojis={props.item.user.emojis} text={props.item.user.name} textStyle={{color:"#fff"}}/>}
             {props.item.user.name == null && <Text style={{color:"#fff"}}>{props.item.user.username}</Text>}
           </View>
           );
@@ -118,7 +118,7 @@ const Reaction = (props: {reactionSheetRef: React.LegacyRef<ActionSheet> | undef
                 borderRadius: 50,
               }}
             >
-               <ParseEmoji text={d.name} emojis={reactiondata["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
+               <ParseEmoji text={d.name} ifoneline={true} emojis={reactiondata["emojis"]} textStyle={{color:"#fff",fontSize:16}} />
             </View>
           </TouchableOpacity>
         )};

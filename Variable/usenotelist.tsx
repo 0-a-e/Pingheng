@@ -17,13 +17,9 @@ export const usenotelist = (notelist,setnotelist) => {
                 console.log("nodata");
             }
         });
-
     },[]);
 
     const addnote = (data) => {
-        console.log("--");
-        console.log(notelist);
-        console.log("--");
         setnotelist(notelist => {
             const note = JSON.parse(JSON.stringify(data));
             const appendeddata = [note,...notelist];

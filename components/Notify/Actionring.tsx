@@ -21,7 +21,7 @@ return(
 
     <View style={[{backgroundColor:data.actionringbar.background},notifystyles.actionring]}>
             {(data.actionringbar.reaction) ? 
-            <ParseEmoji text={data.actionringbar.reaction} emojis={data.actionringbar.emoji} textStyle={{}}/>
+            <ParseEmoji text={data.actionringbar.reaction} emojis={data.actionringbar.emoji} textStyle={{}} ifoneline={true}/>
             : 
             <Icon style={notifystyles.actionringicon} size={20} name={data.actionringbar.icon} color="#fff"/>
             }

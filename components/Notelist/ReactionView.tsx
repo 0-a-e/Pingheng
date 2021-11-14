@@ -41,7 +41,7 @@ const ReactionView= (props) => {
                             marginLeft:marginleft,borderLeftColor:"transparent",borderLeftWidth:2}}
                         key={action + index + uuidv4()}
                         >
-                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
+                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}} ifoneline={true}/>
                         </View>
                     )
                 })}
@@ -71,7 +71,7 @@ const ReactionView= (props) => {
                         }}
                         key={action + index + uuidv4()}
                         >
-                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}}/>
+                                <ParseEmoji text={action} emojis={props.data["emojis"]} textStyle={{}} ifoneline={true} />
                         </View>
                     )
                 })}
@@ -80,6 +80,8 @@ const ReactionView= (props) => {
         );
     } else if(actionlist.length == 0){
         //リアクションなし
+        return(<></>);
+    } else {
         return(<></>);
     }
 };

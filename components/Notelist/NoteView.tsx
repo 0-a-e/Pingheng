@@ -25,9 +25,6 @@ const NoteViewraw = (props) => {
       }
         >
         <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-        <TouchableOpacity onPress={() => {props.EopenReaction(data["item"])}}  style={{position:"absolute",right:0,marginRight:20,marginTop:5}}>
-          <ReactionView data={data["item"]} />
-        </TouchableOpacity>
         <Avatar
               size="large"
               overlayContainerStyle={notestyles.avatar}
@@ -38,12 +35,15 @@ const NoteViewraw = (props) => {
               }}
           />
       
-      
                 <View style={notestyles.incardcontainer}>
             <View style={notestyles.topcontainer}>
               <View style={notestyles.uncontainer}>
-                {data["item"]["user"]["name"]  != null &&  <View style={notestyles.name}><ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} /></View>}
-                {data["item"]["user"]["name"]  == null &&  <ListItem.Title style={notestyles.name}>{data["item"]["user"]["username"]}</ListItem.Title>}
+                {data["item"]["user"]["name"]  != null &&  
+                  <View style={notestyles.name}>
+                    <ParseEmoji text={data["item"]["user"]["name"]} emojis={data["item"]["user"]["emojis"]} textStyle={{color:"#fff",fontSize:16}} ifoneline={true}/>
+                  </View>
+                }
+                {data["item"]["user"]["name"]  == null &&  <Text style={notestyles.name} numberOfLines={1}>{data["item"]["user"]["username"]}</Text>}
               </View>
               {
               data["item"]["user"]["isBot"] && 
@@ -55,6 +55,9 @@ const NoteViewraw = (props) => {
                 />
               }
               <Text style={notestyles.username}>@{data["item"]["user"]["username"]}</Text>
+              <TouchableOpacity onPress={() => {props.EopenReaction(data["item"])}}  style={notestyles.reactionpill}>
+                <ReactionView data={data["item"]} />
+              </TouchableOpacity>
             </View>
             
             <View style={notestyles.normalcontainer}>     
@@ -100,9 +103,6 @@ const renotereturn = () => {
       }}
       >
       <Card wrapperStyle={notestyles.cardwrapper} containerStyle={notestyles.card}>
-      <TouchableOpacity onPress={() => {props.EopenReaction(data["item"]["renote"])}} style={{position:"absolute",right:0,marginRight:20,marginTop:5}}>
-        <ReactionView data={data["item"]["renote"]} />
-      </TouchableOpacity>
       <Avatar
             size="large"
             overlayContainerStyle={notestyles.avatar}
@@ -114,7 +114,7 @@ const renotereturn = () => {
         />
         <View style={notestyles.incardcontainer}>
           <View style={notestyles.RT1container}>
-          <View style={[notestyles.topRTcontainer,{borderRadius:bd}]}>
+          <View style={[notestyles.RT2container,{borderRadius:bd}]}>
           <ListItem.Title style={notestyles.RTicon}><Icon size={15} name="refresh-cw"/></ListItem.Title>
           <Avatar
             containerStyle = {notestyles.renoteavatarcontainer}
@@ -127,9 +127,14 @@ const renotereturn = () => {
           /> 
           </View>
           {data["item"]["text"]  != null && <View style={notestyles.RTtextcontainer}>
-            <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}><ParseEmoji text={data["item"]["text"]} emojis={data["item"]["emojis"]}/></ListItem.Title>
+          <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}>
+              <ParseEmoji text={data["item"]["text"]} emojis={data["item"]["emojis"]} ifoneline={true}/>
+          </ListItem.Title>
           </View>
           }
+          <TouchableOpacity onPress={() => {props.EopenReaction(data["item"]["renote"])}} style={notestyles.reactionpill}>
+            <ReactionView data={data["item"]["renote"]} />
+          </TouchableOpacity>
           </View>
           <View style={notestyles.normalcontainer}>     
             <Text style={notestyles.notetext}

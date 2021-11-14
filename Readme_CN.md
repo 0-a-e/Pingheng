@@ -30,9 +30,9 @@ Pingheng是用ReactNative的Misskey客户端。
 - [x] 注销
 - [x] 切换时自动加载 (TL)
 - [x] 切换时自动加载（通知）
-- [ ] 复活WS
+- [x] 复活WS
 - [x] 行动表（❤和👍）
-- [ ] 行动表（RIP）
+- [ ] 行动表（Reply）
 - [x] 行动表（反应）
 - [x] Twemoji
 - [ ] 制作图标

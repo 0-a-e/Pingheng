@@ -31,9 +31,9 @@ It is available in MisskeyV12.
 - [x] Logout
 - [x] Auto-load when switching (TL)
 - [x] Auto-load when switching (notification)
-- [ ] Resurrect WS
+- [x] Resurrect WS
 - [x] Action Sheet (❤ and 👍)
-- [ ] Action Sheet (RIP)
+- [ ] Action Sheet (Reply)
 - [x] Action Sheet (Reactions)
 - [x] Twemoji
 - [ ] Making Icons

@@ -53,7 +53,7 @@ const RTViewraw = (props) => {
             /> 
             </View>
             {data["item"]["text"]  != null && <View style={notestyles.RTtextcontainer}>
-              <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}><ParseEmoji text={data["item"]["text"]} /></ListItem.Title>
+              <ListItem.Title numberOfLines={1} ellipsizeMode='tail' style={notestyles.RTtext}><ParseEmoji text={data["item"]["text"]} ifoneline={true}/></ListItem.Title>
             </View>
             }
             </View>

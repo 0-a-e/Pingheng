@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useEffect, useState } from 'react';
-import {Text, ToastAndroid, TouchableOpacity, View} from 'react-native';
+import {Text, ToastAndroid, TouchableOpacity, View,NativeModules} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import logout from '../data/logout';
 import getMeta,{setnewMeta,getserverURL} from '../data/Getmeta';
@@ -19,7 +19,8 @@ const openlink = (url:string) => {
 const setnewEmoji = async () => {
 	const svurl = await getserverURL();
 	setnewMeta(svurl);
-	ToastAndroid.show("情報が更新されました。このまま使用することもできますが、更新を完全に適用するにはアプリの再起動が必要です。",4000);
+	ToastAndroid.show("情報が更新されました。",4000);
+	NativeModules.DevSettings.reload();
 }
     return(
 		<View style={{width:"100%",height:"100%",backgroundColor:"rgb(19,20,26)"}}>

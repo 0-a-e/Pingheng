@@ -28,7 +28,7 @@ const imageComemojis = (match,props,i:number) => {
   ;
 };
 
-const wraptext = (rtextraw: any[],textStyle:any) => {
+const wraptext = (rtextraw: any[],textStyle:any,ifoneline:Boolean) => {
   let rtext = rtextraw; 
   rtextraw.forEach((elem,index) => {
     if(typeof elem == "string"){
@@ -58,7 +58,7 @@ const twemojied = (text) => {
   return returntext;
 }
 
-const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }) => {
+const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; ifoneline:Boolean }) => {
   const str = props.text;
   
   //絵文字ある時
@@ -68,17 +68,17 @@ const ParseEmoji = (props: { text: any; emojis: string; textStyle:any | any[]; }
     const twemojieding = twemojied(str);
     if(twemojieding != undefined){
       returntext = reactStringReplace(twemojieding, regexp, (match, i) => (imageComemojis(match,props,i)));
-      return wraptext(returntext,props.textStyle);
+      return wraptext(returntext,props.textStyle,props.ifoneline);
     } else {
       returntext = reactStringReplace(str, regexp, (match, i) => (imageComemojis(match,props,i)));
-      return wraptext(returntext,props.textStyle);
+      return wraptext(returntext,props.textStyle,props.ifoneline);
     }
   } else {
     let twemojieding = twemojied(str);
     if(twemojieding != undefined){
-      return wraptext(twemojieding,props.textStyle);
+      return wraptext(twemojieding,props.textStyle,props.ifoneline);
     } else  {
-      return <Text style={props.textStyle}>{str}</Text>;
+      return <Text style={props.textStyle} {...props.ifoneline && {numberOfLines: 1}}>{str}</Text>;
     }
   }
 }
