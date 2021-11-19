@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Mainbox from './components/Mainbox';
 import { initializeParse } from  '@parse/react-native';
 import { Host } from 'react-native-portalize';
+import { ModalPortal } from 'react-native-modals';
 
 export default function App() {
   initializeParse(
@@ -37,6 +38,7 @@ export default function App() {
                       options={{ headerShown: false }}
                     />
                   </Stack.Navigator>
+                  <ModalPortal />
                   </Host>
                 </NavigationContainer>
     </View>
