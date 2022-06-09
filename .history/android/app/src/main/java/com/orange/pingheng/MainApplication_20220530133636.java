@@ -1,5 +1,4 @@
 package com.orange.pingheng;
-
 import android.content.res.Configuration;
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -24,33 +23,25 @@ import com.orange.pingheng.generated.BasePackageList;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public class MainApplication extends Application implements ReactApplication {
-  /*private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
+  private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
     new BasePackageList().getPackageList()
-  );*/
-  /*private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
-    new BasePackageList().getPackageList(),
-    null
-  );*/
-  //問題はここなのかも
+  );
 
-     private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(this, new ReactNativeHost(this) {
-     @Override
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(this, new ReactNativeHost(this) {
+    @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
-    
 
-     @Override
+    @Override
     protected List<ReactPackage> getPackages() {
-      /*List<ReactPackage> packages = new PackageList(this).getPackages();
+      List<ReactPackage> packages = new PackageList(this).getPackages();
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      return packages;*/
-      return Arrays.<ReactPackage>asList(
-       new MainReactPackage()
-    );
-    } 
+      return packages;
+    }
 
     @Override
     protected String getJSMainModuleName() {
@@ -60,6 +51,24 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected JSIModulePackage getJSIModulePackage() {
       return new ReanimatedJSIModulePackage(); // <- add      
+    }
+
+    @Override
+    protected @Nullable String getJSBundleFile() {
+      if (BuildConfig.DEBUG) {
+        return super.getJSBundleFile();
+      } else {
+        return UpdatesController.getInstance().getLaunchAssetFile();
+      }
+    }
+
+    @Override
+    protected @Nullable String getBundleAssetName() {
+      if (BuildConfig.DEBUG) {
+        return super.getBundleAssetName();
+      } else {
+        return UpdatesController.getInstance().getBundleAssetName();
+      }
     }
   });
 
@@ -72,6 +81,10 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+
+    if (!BuildConfig.DEBUG) {
+      UpdatesController.initialize(this);
+    }
 
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     ApplicationLifecycleDispatcher.onApplicationCreate(this);

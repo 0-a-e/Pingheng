@@ -1,5 +1,5 @@
-package com.orange.pingheng;
 import expo.modules.ReactActivityDelegateWrapper;
+//package com.orange.pingheng;
 import android.content.res.Configuration;
 import android.content.Intent;
 

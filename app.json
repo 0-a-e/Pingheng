@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pingheng",
-    "slug": "Pingheng",
+    "name": "pingheng",
+    "slug": "pingheng",
     "version": "0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

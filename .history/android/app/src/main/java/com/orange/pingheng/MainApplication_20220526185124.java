@@ -1,7 +1,7 @@
 import android.content.res.Configuration;
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
-package com.orange.pingheng;
+//package com.orange.pingheng;
 
 import android.app.Application;
 import android.content.Context;
@@ -20,11 +20,6 @@ import com.facebook.react.bridge.JSIModulePackage; // <- add
 import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add
 import com.orange.pingheng.generated.BasePackageList;
 
-import org.unimodules.adapters.react.ReactAdapterPackage;
-import org.unimodules.adapters.react.ModuleRegistryAdapter;
-import org.unimodules.adapters.react.ReactModuleRegistryProvider;
-import org.unimodules.core.interfaces.Package;
-import org.unimodules.core.interfaces.SingletonModule;
 import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;

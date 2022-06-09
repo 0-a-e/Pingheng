@@ -26,31 +26,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
-  /*private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
+  private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
     new BasePackageList().getPackageList()
-  );*/
-  /*private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
-    new BasePackageList().getPackageList(),
-    null
-  );*/
-  //問題はここなのかも
+  );
 
-     private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(this, new ReactNativeHost(this) {
-     @Override
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(this, new ReactNativeHost(this) {
+    @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
-    
 
-     @Override
+    @Override
     protected List<ReactPackage> getPackages() {
-      /*List<ReactPackage> packages = new PackageList(this).getPackages();
+      List<ReactPackage> packages = new PackageList(this).getPackages();
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      return packages;*/
-      return Arrays.<ReactPackage>asList(
-       new MainReactPackage()
-    );
-    } 
+      return packages;
+    }
 
     @Override
     protected String getJSMainModuleName() {
