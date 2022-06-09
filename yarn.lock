@@ -4726,6 +4726,13 @@ idb-keyval@6.0.3:
   dependencies:
     safari-14-idb-fix "^3.0.0"
 
+idb-keyval@^6.1.0:
+  version "6.1.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/idb-keyval/-/idb-keyval-6.1.0.tgz#e659cff41188e6097d7fadd69926f6adbbe70041"
+  integrity sha512-u/qHZ75rlD3gH+Zah8dAJVJcGW/RfCnfNrFkElC5RpRCnpsCXXhqjVk+6MoVKJ3WhmNbRYdI6IIVP88e+5sxGw==
+  dependencies:
+    safari-14-idb-fix "^3.0.0"
+
 ieee754@^1.1.13:
   version "1.2.1"
   resolved "https://repo.huaweicloud.com/repository/npm/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
