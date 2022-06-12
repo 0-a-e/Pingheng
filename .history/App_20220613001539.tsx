@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const App = () => {
   /*const isDarkMode = useColorScheme() === 'dark';
@@ -22,17 +21,15 @@ const App = () => {
    /* <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
     </SafeAreaView>*/
-    <SafeAreaProvider>
     <View style={styles.container}>
     <StatusBar
       animated={true}
       backgroundColor="rgb(19,20,26)"
       />
       <NavigationContainer>
-
+        
       </NavigationContainer>
     </View>
-    </SafeAreaProvider>
   );
 };
 
