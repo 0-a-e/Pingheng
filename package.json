@@ -11,14 +11,21 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
+    "@react-navigation/native-stack": "^6.6.2",
     "@rneui/base": "^4.0.0-rc.4",
     "@rneui/themed": "^4.0.0-rc.4",
+    "@types/react-native-modals": "^0.19.2",
+    "@types/react-native-video": "^5.0.13",
+    "@types/uuid": "^8.3.4",
     "axios": "^0.27.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-get-random-values": "^1.8.0",
+    "react-native-modals": "^0.22.3",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.13.1",
     "react-native-vector-icons": "^9.1.0",
+    "react-native-video": "^5.2.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
