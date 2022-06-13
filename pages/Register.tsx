@@ -63,7 +63,7 @@ const Register = ({navigation}) => {
           margin: 0,
         }}>
         <ModalContent>
-        <View
+          <View
             style={{
               backgroundColor: 'transparent',
               width: '100%',
@@ -104,7 +104,7 @@ const Register = ({navigation}) => {
       </Modal>
     );
   };
-  const parseurl = url => {
+  const parseurl = (url: string) => {
     var regex = /[?&]([^=#]+)=([^&#]*)/g,
       params = {},
       match;
@@ -234,6 +234,24 @@ const Register = ({navigation}) => {
           type="clear"
           onPress={() => {
             setmanualloginvisible(true);
+          }}
+        />
+        <Button
+          style={{borderRadius: 50}}
+          containerStyle={{borderRadius: 50, width: 250}}
+          title="MainScreenに移動"
+          type="clear"
+          onPress={() => {
+            navigation.navigate('Main');
+          }}
+        />
+        <Button
+          style={{borderRadius: 50}}
+          containerStyle={{borderRadius: 50, width: 250}}
+          title="SettingsScreenに移動"
+          type="clear"
+          onPress={() => {
+            navigation.navigate('Settings');
           }}
         />
       </View>

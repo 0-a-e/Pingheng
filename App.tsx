@@ -14,7 +14,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SettingsScreen from './pages/Settings';
 import RegisterScreen from './pages/Register';
-
+import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
 
 const App = () => {
@@ -95,18 +95,7 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-class MainScreen extends React.Component {
-  render() {
-    return (
-      <TouchableOpacity
-        style={{top: 100}}
-        // onPress = {() => this.props.navigation.navigate('HomeScreen')}
-      >
-        <Text> Main </Text>
-      </TouchableOpacity>
-    );
-  }
-}
+
 const lcRegisterScreen = ({navigation}) => {
   return (
     <View>
