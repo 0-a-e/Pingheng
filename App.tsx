@@ -23,7 +23,7 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };*/
-  const AppStackNavigator = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
     /* <SafeAreaView style={backgroundStyle}>
@@ -33,23 +33,23 @@ const App = () => {
       <View style={styles.container}>
         <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
         <NavigationContainer>
-          <AppStackNavigator.Navigator initialRouteName="Register">
-            <AppStackNavigator.Screen
+          <Stack.Navigator initialRouteName="Register">
+            <Stack.Screen
               name="Register"
               component={RegisterScreen}
               options={{headerShown: false}}
             />
-            <AppStackNavigator.Screen
+            <Stack.Screen
               name="Main"
               component={MainScreen}
               options={{headerShown: false}}
             />
-            <AppStackNavigator.Screen
+            <Stack.Screen
               name="Settings"
               component={SettingsScreen}
               options={{headerShown: false}}
             />
-          </AppStackNavigator.Navigator>
+          </Stack.Navigator>
           <ModalPortal />
         </NavigationContainer>
       </View>

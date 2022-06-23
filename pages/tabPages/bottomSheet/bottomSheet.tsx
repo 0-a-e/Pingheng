@@ -1,11 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Icon} from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {Button} from '@rneui/base';
 
-function BottomSheetModule(props) {
+function BottomSheetModule(sheetProps: {navigation: any}) {
   // const [Mtoken, Mtokenwrite] = useState();
   // const {TabbarState, TabbarStatewrite} = useContext(TabbarStateContext);
 
@@ -59,8 +59,8 @@ function BottomSheetModule(props) {
   //globalは外内全部
   //localは内全部
   //hybrid ?
-/*
-  const Navbtn = (props: {indexname: string; icon: string}) => {
+  //  bottomsheetref.current.snapTo(1);
+  const Navbtn = (btnProps: {indexname: string; icon: string}) => {
     return (
       <TouchableOpacity
         style={{
@@ -71,63 +71,45 @@ function BottomSheetModule(props) {
           justifyContent: 'center',
         }}
         onPress={() => {
-          //  TabbarStatewrite(props.indexname);
-          //  bottomsheetref.current.snapTo(1);
+          console.log(btnProps.indexname);
+          //navigation.navigate('Main', {screen: 'Timeline'});
+      //    sheetProps.navigation.navigate('Main', {screen: 'Notify'});
+          sheetProps.navigation.navigate('Main', {
+            screen: btnProps.indexname,
+            initial: false,
+          });
+            /*navigation.navigate('Root', {
+  screen: 'Settings',
+  params: {
+    screen: 'Sound',
+    params: {
+      screen: 'Media',
+    },
+  },
+}); */
+          //bottomsheetref.current.snapTo(1);
         }}>
-        <Icon size={55} name={props.icon} color="rgb(180,180,230)" />
+        <Icon size={55} name={btnProps.icon} color="rgb(180,180,230)" />
       </TouchableOpacity>
     );
   };
-*/
-
-  const Insheet = () => {
+  function MyTab() {
     return (
-      <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
-        <props.Tabs />
-        {/*   {bartoggle && (
-          <View style={styles.btmbox}>
-            <Navbtn icon="hexagon" indexname="home" />
-            <Navbtn icon="bell" indexname="notify" />
-          </View>
-        )}
-        <View>
-          <Box Mtoken={Mtoken} />
-        </View>*/}
-
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            backgroundColor: 'transparent',
-            width: '100%',
-            height: 190,
-          }}>
-        {/*  <Button
-            containerStyle={{
-              position: 'absolute',
-              top: 0,
-              right: 20,
-              width: 60,
-              height: 60,
-              borderRadius: 50,
-            }}
-            buttonStyle={{
-              width: 60,
-              height: 60,
-              borderRadius: 50,
-              backgroundColor: 'rgb(30,30,46)',
-            }}
-            icon={<Icon size={30} name={'settings'} color="rgb(180,180,230)" />}
-            onPress={() => {
-              // TabbarStatewrite('settings');
-              //   bottomsheetref.current.snapTo(1);
-            }}
-          />*/}
-          {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
-        </View>
+      <View style={styles.btmbox}>
+        <Navbtn icon="hexagon" indexname="Timeline" />
+        <Navbtn icon="bell" indexname="Notify" />
       </View>
     );
-  };
+  }
+
+  function Insheet() {
+    return (
+      <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
+        <MyTab />
+        {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
+      </View>
+    );
+  }
 
   const Header = () => (
     <View style={styles.header}>

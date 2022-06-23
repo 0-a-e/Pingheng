@@ -1,42 +1,47 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomSheet from './tabPages/bottomSheet/bottomSheet';
-
+import NotifyScreen from './tabPages/notify/Notify';
+import TimelineScreen from './tabPages/timeline/Timeline';
 const MainScreen = ({navigation}) => {
-  function HomeScreen() {
+  const Stack = createNativeStackNavigator();
+
+  function MyStack() {
+    useEffect(() => {
+      console.log('MyStackUseEffect');
+    }, []);
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Home!</Text>
-      </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Timeline"
+          component={TimelineScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Notify"
+          component={NotifyScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     );
   }
 
-  function SettingsScreen() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-
-  const Tab = createBottomTabNavigator();
-
-  function MyTabs() {
-    return (
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    );
-  }
   return (
-    <NavigationContainer independent={true}>
-  {/*    <MyTabs />*/}
-      <Text>fs</Text>
-      <BottomSheet Tabs={MyTabs} />
-    </NavigationContainer>
+    <View style={{position: 'absolute', width: 400, height: 300}}>
+      <NavigationContainer independent={true}>
+        <MyStack />
+      </NavigationContainer>
+      <BottomSheet navigation={navigation} />
+    </View>
   );
 };
+
 export default MainScreen;
