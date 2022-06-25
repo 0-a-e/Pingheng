@@ -4,6 +4,7 @@ import {
   ToastAndroid,
   View,
   useWindowDimensions,
+  Text,
 } from 'react-native';
 import {Button, Input} from '@rneui/base';
 import 'react-native-get-random-values';
@@ -207,7 +208,6 @@ const Register = ({navigation}) => {
         //   rate={1.0}
         //  ignoreSilentSwitch={"obey"}
       />
-
       <View
         style={{
           width: '100%',
