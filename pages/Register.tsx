@@ -190,7 +190,7 @@ const Register = ({navigation}) => {
     <View style={{backgroundColor: 'rgb(19,20,26)', height: '100%'}}>
       <Video
         source={{
-          uri: 'https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_1MB_MP4.mp4',
+          uri: 'https://cdn.videvo.net/videvo_files/video/free/2019-01/large_watermarked/181015_13_Venice%20Beach%20Drone_25_preview.mp4',
         }}
         style={{
           height: Dimensions.get('window').height,

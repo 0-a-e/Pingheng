@@ -1,16 +1,17 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import Animated from 'react-native-reanimated';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import BottomSheet from 'reanimated-bottom-sheet';
 import {Button} from '@rneui/base';
-
+import BottomSheet from 'react-native-bottomsheet-reanimated';
 function BottomSheetModule(sheetProps: {navigation: any}) {
   // const [Mtoken, Mtokenwrite] = useState();
   // const {TabbarState, TabbarStatewrite} = useContext(TabbarStateContext);
 
   //const [bartoggle, bartoggleWrite] = useState(true);
-  const bottomsheetref = React.useRef();
+  /**
+   * @test {boolean} 114514
+   */
+  const bottomsheetRef = React.useRef();
 
   /*useEffect(() => {
     const f = async () => {
@@ -73,12 +74,12 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
         onPress={() => {
           console.log(btnProps.indexname);
           //navigation.navigate('Main', {screen: 'Timeline'});
-      //    sheetProps.navigation.navigate('Main', {screen: 'Notify'});
+          //    sheetProps.navigation.navigate('Main', {screen: 'Notify'});
           sheetProps.navigation.navigate('Main', {
             screen: btnProps.indexname,
             initial: false,
           });
-            /*navigation.navigate('Root', {
+          /*navigation.navigate('Root', {
   screen: 'Settings',
   params: {
     screen: 'Sound',
@@ -118,9 +119,8 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
       </View>
     </View>
   );
-
-  return (
-    <BottomSheet
+  {
+    /*  <BottomSheet
       //backDropColor="red"
       ref={bottomsheetref}
       initialSnap={1}
@@ -128,6 +128,34 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
       enabledContentTapInteraction={false}
       renderHeader={Header}
       renderContent={Insheet}
+  />*/
+  }
+  return (
+    <BottomSheet
+      keyboardAware
+      bottomSheerColor="#FFFFFF"
+      ref={bottomsheetRef}
+      initialPosition={'50%'} //200, 300
+      snapPoints={['50%', '100%']}
+      isBackDrop={true}
+      isBackDropDismissByPress={true}
+      isRoundBorderWithTipHeader={true}
+      // backDropColor="red"
+      // isModal
+      // containerStyle={{backgroundColor:"red"}}
+      // tipStyle={{backgroundColor:"red"}}
+      // headerStyle={{backgroundColor:"red"}}
+      // bodyStyle={{backgroundColor:"red",flex:1}}
+      header={
+        <View>
+          <Text>Header</Text>
+        </View>
+      }
+      body={
+        <View>
+          <Text>Body</Text>
+        </View>
+      }
     />
   );
 }

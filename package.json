@@ -21,15 +21,16 @@
     "axios": "^0.27.2",
     "react": "18.2.0",
     "react-native": "0.69.0",
-    "react-native-gesture-handler": "^2.4.2",
+    "react-native-bottomsheet-reanimated": "^0.2.0",
+    "react-native-gesture-handler": "^2.5.0",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-interactable-reanimated": "^0.0.15",
     "react-native-modals": "^0.22.3",
     "react-native-reanimated": "^3.0.0-rc.0",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.13.1",
     "react-native-vector-icons": "9.2.0",
     "react-native-video": "6.0.0-alpha.1",
-    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
