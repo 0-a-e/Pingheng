@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Pressable,
   StyleSheet,
@@ -6,17 +6,26 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomSheet from './tabPages/bottomSheet/bottomSheet';
 import NotifyScreen from './tabPages/notify/Notify';
 import TimelineScreen from './tabPages/timeline/Timeline';
+
 const MainScreen = ({navigation}) => {
+  const [beforetab, beforetabWrite] = useState('kk');
   const Stack = createNativeStackNavigator();
 
   function MyStack() {
+    const Navigation = useNavigation();
     useEffect(() => {
-      console.log('MyStackUseEffect');
+      const navParams = navigation.getState().routes[1].params;
+      if (navParams) {
+        if (navParams.screen && navParams.screen !== beforetab) {
+          beforetabWrite(navParams.screen);
+          Navigation.navigate(navParams.screen);
+        }
+      }
     }, []);
     return (
       <Stack.Navigator>

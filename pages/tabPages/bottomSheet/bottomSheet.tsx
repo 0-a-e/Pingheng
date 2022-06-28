@@ -71,22 +71,9 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           justifyContent: 'center',
         }}
         onPress={() => {
-          console.log(btnProps.indexname);
-          //navigation.navigate('Main', {screen: 'Timeline'});
-      //    sheetProps.navigation.navigate('Main', {screen: 'Notify'});
           sheetProps.navigation.navigate('Main', {
             screen: btnProps.indexname,
-            initial: false,
           });
-            /*navigation.navigate('Root', {
-  screen: 'Settings',
-  params: {
-    screen: 'Sound',
-    params: {
-      screen: 'Media',
-    },
-  },
-}); */
           //bottomsheetref.current.snapTo(1);
         }}>
         <Icon size={55} name={btnProps.icon} color="rgb(180,180,230)" />
