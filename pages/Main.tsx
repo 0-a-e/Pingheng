@@ -13,20 +13,20 @@ import NotifyScreen from './tabPages/notify/Notify';
 import TimelineScreen from './tabPages/timeline/Timeline';
 
 const MainScreen = ({navigation}) => {
-  const [beforetab, beforetabWrite] = useState('kk');
+  const [beforetab, beforetabWrite] = useState('');
   const Stack = createNativeStackNavigator();
 
   function MyStack() {
-    const Navigation = useNavigation();
+    const stackNavigation = useNavigation();
     useEffect(() => {
       const navParams = navigation.getState().routes[1].params;
       if (navParams) {
         if (navParams.screen && navParams.screen !== beforetab) {
           beforetabWrite(navParams.screen);
-          Navigation.navigate(navParams.screen);
+          stackNavigation.navigate(navParams.screen);
         }
       }
-    }, []);
+    }, [stackNavigation]);
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -44,12 +44,10 @@ const MainScreen = ({navigation}) => {
   }
 
   return (
-    <View style={{position: 'absolute', width: 400, height: 300}}>
-      <NavigationContainer independent={true}>
-        <MyStack />
-      </NavigationContainer>
+    <NavigationContainer independent={true}>
+      <MyStack />
       <BottomSheet navigation={navigation} />
-    </View>
+    </NavigationContainer>
   );
 };
 

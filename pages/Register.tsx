@@ -4,6 +4,8 @@ import {
   ToastAndroid,
   View,
   useWindowDimensions,
+  Linking,
+  Platform,
 } from 'react-native';
 import {Button, Input} from '@rneui/base';
 import 'react-native-get-random-values';
@@ -14,6 +16,7 @@ import axios from 'axios';
 //import getMeta, {setnewMeta} from '../data/Getmeta';
 //import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
 //import * as SecureStore from 'expo-secure-store';
+import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 import Video from 'react-native-video';
 
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
@@ -127,39 +130,47 @@ const Register = ({navigation}) => {
     return !!pattern.test(string);
   }
 
-  const getAuth = (url: string) => {
-    if (url) {
-      try {
-        const sessionid = parseurl(url).session;
-        if (!sessionid) {
-          ToastAndroid.show('パースに失敗しました', 2000);
-        } else {
-          const checkurl = svurl + '/api/miauth/' + sessionid + '/check';
-          axios.post(checkurl).then(function (response) {
-            //あとでユーザー情報取り出してこんにちは！xxさんをやる
-            if (response.data.ok) {
-              const token = response.data.token;
-              SecureStore.setItemAsync('user1', token).then(() => {
-                /* HMSAvailability.isHuaweiMobileServicesAvailable()
-                    .then((res) => { console.log(JSON.stringify(res)) })
-                    .catch((err) => { console.log(JSON.stringify(err)) });*/
-                setnewMeta(svurl).then(() => {
-                  navigation.navigate('Main');
-                });
-              });
-            } else {
-              ToastAndroid.show('認証エラー', 2000);
-            }
-          });
-        }
-      } catch (ee) {
-        console.log(ee);
-        ToastAndroid.show('パースに失敗しました', 2000);
+  const openbrowser = async (url: string) => {
+    try {
+      if (await InAppBrowser.isAvailable()) {
+        await InAppBrowser.openAuth(url, 'pingheng://auth/', {
+          // iOS Properties
+          dismissButtonStyle: 'cancel',
+          preferredBarTintColor: '#453AA4',
+          preferredControlTintColor: 'white',
+          readerMode: false,
+          animated: true,
+          modalPresentationStyle: 'fullScreen',
+          modalTransitionStyle: 'coverVertical',
+          modalEnabled: true,
+          enableBarCollapsing: false,
+          ephemeralWebSession: false,
+          // Android Properties
+          showTitle: false,
+          toolbarColor: '#6200EE',
+          secondaryToolbarColor: 'black',
+          navigationBarColor: 'black',
+          navigationBarDividerColor: 'white',
+          enableUrlBarHiding: true,
+          enableDefaultShare: false,
+          forceCloseOnRedirection: false,
+          // Specify full animation resource identifier(package:anim/name)
+          // or only resource name(in case of animation bundled with app).
+          animations: {
+            startEnter: 'slide_in_right',
+            startExit: 'slide_out_left',
+            endEnter: 'slide_in_left',
+            endExit: 'slide_out_right',
+          },
+        });
+      } else {
+        Linking.openURL(url);
       }
-    } else {
-      ToastAndroid.show('入力されていません', 2000);
+    } catch (error) {
+      Linking.openURL(url);
     }
   };
+
 
   const getAuthURL = async (serverurl: string) => {
     const uuid = uuidv4();
@@ -169,8 +180,9 @@ const Register = ({navigation}) => {
     } else {
       url = 'https://' + serverurl;
     }
+    console.log('url: ', url);
     if (isValidUrl(url)) {
-      let redirectUrl = Linking.createURL('auth/', {});
+      let redirectUrl = 'pingheng://auth/';
       const latesturl =
         url +
         '/miauth/' +
@@ -178,8 +190,11 @@ const Register = ({navigation}) => {
         '?name=PingHeng&callback=' +
         redirectUrl +
         '&permission=read:account,write:account,read:blocks,write:blocks,read:drive,write:drive,read:favorites,write:favorites,read:following,write:following,read:messageing,write:messageing,read:mutes,write:mutes,write:notes,read:notifications,write:notificaions,write:reactions,write:votes,read:pages,write:pages,write:page-likes,read:page-likes';
-      setSvurl(url);
-      WebBrowser.openBrowserAsync(latesturl);
+      // setSvurl(url);
+      console.log('lturl: ', latesturl);
+      // const url = 'https://github.com/proyecto26';
+      openbrowser(latesturl);
+      // WebBrowser.openBrowserAsync(latesturl);
     } else {
       ToastAndroid.show('URLが入力されていないか、無効なURLです。', 2000);
     }

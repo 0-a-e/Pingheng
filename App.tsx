@@ -12,8 +12,9 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SettingsScreen from './pages/Settings';
 import RegisterScreen from './pages/Register';
+import SetupScreen from './pages/Setup';
+import SettingsScreen from './pages/Settings';
 import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
 
@@ -23,6 +24,21 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };*/
+  const config = {
+    screens: {
+      Setup: {
+        path: 'auth/:session?',
+        parse: {
+          session: (session: String) => `${session}`,
+        },
+      },
+    },
+  };
+
+  const linking = {
+    prefixes: ['pingheng://'],
+    config,
+  };
   const Stack = createNativeStackNavigator();
 
   return (
@@ -32,7 +48,9 @@ const App = () => {
     <SafeAreaProvider>
       <View style={styles.container}>
         <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
-        <NavigationContainer>
+        <NavigationContainer
+          linking={linking}
+          fallback={<Text>処理中...</Text>}>
           <Stack.Navigator initialRouteName="Register">
             <Stack.Screen
               name="Register"
@@ -47,6 +65,11 @@ const App = () => {
             <Stack.Screen
               name="Settings"
               component={SettingsScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Setup"
+              component={SetupScreen}
               options={{headerShown: false}}
             />
           </Stack.Navigator>
@@ -65,22 +88,6 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
   },
-  btmbox: {
-    //  flex: 1,
-    flexWrap: 'wrap',
-    width: '100%',
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'space-between',
-  },
-  btmbutton: {
-    position: 'relative',
-    width: 150,
-    height: 70,
-    borderRadius: 20,
-    backgroundColor: 'red',
-  },
   textareaContainer: {
     height: 180,
     padding: 4,
@@ -95,21 +102,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
-const lcRegisterScreen = ({navigation}) => {
-  return (
-    <View>
-      <Text> Register </Text>
-      <TouchableOpacity
-        style={{top: 100}}
-        onPress={() => navigation.navigate('Main')}>
-        <Text> Go to Main </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{top: 100}}
-        onPress={() => navigation.navigate('Settings')}>
-        <Text> Go to Settings </Text>
-      </TouchableOpacity>
-    </View>
-  );
-};

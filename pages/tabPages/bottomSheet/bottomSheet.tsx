@@ -74,7 +74,7 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           sheetProps.navigation.navigate('Main', {
             screen: btnProps.indexname,
           });
-          //bottomsheetref.current.snapTo(1);
+          bottomsheetref.current.snapTo(1);
         }}>
         <Icon size={55} name={btnProps.icon} color="rgb(180,180,230)" />
       </TouchableOpacity>

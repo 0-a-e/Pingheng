@@ -23,6 +23,8 @@
     "react-native": "0.68.2",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-inappbrowser-reborn": "^3.6.3",
+    "react-native-keychain": "^8.1.0",
     "react-native-modals": "^0.22.3",
     "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "^4.3.1",
