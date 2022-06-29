@@ -19,7 +19,12 @@ const MainScreen = ({navigation}) => {
   function MyStack() {
     const stackNavigation = useNavigation();
     useEffect(() => {
-      const navParams = navigation.getState().routes[1].params;
+      let navParams;
+      try {
+        navParams = navigation.getState().routes[0].params;
+      } catch (e) {
+        navParams = navigation.getState().routes[1].params;
+      }
       if (navParams) {
         if (navParams.screen && navParams.screen !== beforetab) {
           beforetabWrite(navParams.screen);

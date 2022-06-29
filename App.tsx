@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,19 +17,28 @@ import SetupScreen from './pages/Setup';
 import SettingsScreen from './pages/Settings';
 import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
-
+import {checkUserexists} from './api/tokenManage';
 const App = () => {
+  const [ifUserExists, setifUserExists] = useState(false);
   /*const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };*/
+  useEffect(() => {
+    (async () => {
+      const a = await checkUserexists();
+      setifUserExists(a);
+    })();
+  }, []);
+
   const config = {
     screens: {
       Setup: {
         path: 'auth/:session?',
         parse: {
           session: (session: String) => `${session}`,
+          serverAddr: (serverAddr: String) => `${serverAddr}`,
         },
       },
     },
@@ -49,29 +58,36 @@ const App = () => {
       <View style={styles.container}>
         <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
         <NavigationContainer
-          linking={linking}
+          linking={!ifUserExists && linking}
           fallback={<Text>処理中...</Text>}>
           <Stack.Navigator initialRouteName="Register">
-            <Stack.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Main"
-              component={MainScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Settings"
-              component={SettingsScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Setup"
-              component={SetupScreen}
-              options={{headerShown: false}}
-            />
+            {ifUserExists ? (
+              <>
+                <Stack.Screen
+                  name="Main"
+                  component={MainScreen}
+                  options={{headerShown: false}}
+                />
+                <Stack.Screen
+                  name="Settings"
+                  component={SettingsScreen}
+                  options={{headerShown: false}}
+                />
+              </>
+            ) : (
+              <>
+                <Stack.Screen
+                  name="Setup"
+                  component={SetupScreen}
+                  options={{headerShown: false}}
+                />
+                <Stack.Screen
+                  name="Register"
+                  component={RegisterScreen}
+                  options={{headerShown: false}}
+                />
+              </>
+            )}
           </Stack.Navigator>
           <ModalPortal />
         </NavigationContainer>

@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -83,6 +83,8 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
   function MyTab() {
     return (
       <View style={styles.btmbox}>
+        
+      <TouchableOpacity onPress={() => {sheetProps.navigation.navigate('Settings')}}><Icon size={55} name="settings" color="rgb(180,180,230)" /></TouchableOpacity>
         <Navbtn icon="hexagon" indexname="Timeline" />
         <Navbtn icon="bell" indexname="Notify" />
       </View>
@@ -93,6 +95,9 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
     return (
       <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
         <MyTab />
+        <View style={{height: 200}}>
+          <Text>IKJDPDJDPOJDFP</Text>
+        </View>
         {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
       </View>
     );

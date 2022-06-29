@@ -12,9 +12,9 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-//import logout from '../data/logout';
 //import getMeta,{setnewMeta,getserverURL} from '../data/Getmeta';
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
+import {removeUser} from '../api/tokenManage';
 
 const SettingsScreen = () => {
   /*	const [meta, metawrite] = useState();
@@ -71,8 +71,9 @@ const setnewEmoji = async () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          //    onPress={() => {logout();}}
-        >
+          onPress={() => {
+            removeUser();
+          }}>
           <Icon name="log-out" size={50} color="rgb(255,120,120)" />
         </TouchableOpacity>
         <TouchableOpacity

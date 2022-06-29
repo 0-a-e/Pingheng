@@ -10,7 +10,6 @@ import {
 import {Button, Input} from '@rneui/base';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
-import axios from 'axios';
 //import * as WebBrowser from 'expo-web-browser';
 //import * as Linking from 'expo-linking';
 //import getMeta, {setnewMeta} from '../data/Getmeta';
@@ -182,7 +181,7 @@ const Register = ({navigation}) => {
     }
     console.log('url: ', url);
     if (isValidUrl(url)) {
-      let redirectUrl = 'pingheng://auth/';
+      let redirectUrl = 'pingheng://auth?serverAddr=' + url;
       const latesturl =
         url +
         '/miauth/' +
