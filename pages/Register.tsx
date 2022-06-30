@@ -17,12 +17,13 @@ import {v4 as uuidv4} from 'uuid';
 //import * as SecureStore from 'expo-secure-store';
 import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 import Video from 'react-native-video';
+import {getMeta} from '../api/useApi';
 
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
 
 const Register = ({navigation}) => {
   const [manualloginvisible, setmanualloginvisible] = useState();
-  const [serverURL, setserverURL] = useState('');
+  const [inputURL, setinputURL] = useState('');
   console.log('Register open');
   /*  const [svurl, setSvurl] = useState('');
 
@@ -87,9 +88,9 @@ const Register = ({navigation}) => {
             <Input
               //style={{color:"white"}}
               onChangeText={(text: string) => {
-                setserverURL(text);
+                setinputURL(text);
               }}
-              value={serverURL}
+              value={inputURL}
               placeholder="サーバーのURLを入力...(例:misskey.io)"
             />
             <Button
@@ -98,7 +99,7 @@ const Register = ({navigation}) => {
               title="ログインする"
               type="clear"
               onPress={() => {
-                getAuthURL(serverURL);
+                loginProcess(inputURL);
               }}
             />
           </View>
@@ -106,28 +107,6 @@ const Register = ({navigation}) => {
       </Modal>
     );
   };
-  const parseurl = (url: string) => {
-    var regex = /[?&]([^=#]+)=([^&#]*)/g,
-      params = {},
-      match;
-    while ((match = regex.exec(url))) {
-      params[match[1]] = match[2];
-    }
-    return params;
-  };
-
-  function isValidUrl(string: string): boolean {
-    var pattern = new RegExp(
-      '^(https?:\\/\\/)?' +
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
-        '((\\d{1,3}\\.){3}\\d{1,3}))' +
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
-        '(\\?[;&a-z\\d%_.~+=-]*)?' +
-        '(\\#[-a-z\\d_]*)?$',
-      'i',
-    );
-    return !!pattern.test(string);
-  }
 
   const openbrowser = async (url: string) => {
     try {
@@ -169,31 +148,82 @@ const Register = ({navigation}) => {
       Linking.openURL(url);
     }
   };
+  function isValidUrl(string: string): boolean {
+    var pattern = new RegExp(
+      '^(https?:\\/\\/)?' +
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+        '((\\d{1,3}\\.){3}\\d{1,3}))' +
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+        '(\\?[;&a-z\\d%_.~+=-]*)?' +
+        '(\\#[-a-z\\d_]*)?$',
+      'i',
+    );
+    return !!pattern.test(string);
+  }
 
-
-  const getAuthURL = async (serverurl: string) => {
-    const uuid = uuidv4();
-    let url;
-    if (serverurl.match(/https:\/\//) || serverurl.match(/http:\/\//)) {
-      url = serverurl;
-    } else {
-      url = 'https://' + serverurl;
-    }
-    console.log('url: ', url);
+  const generateServerURL = (url: string) => {
     if (isValidUrl(url)) {
-      let redirectUrl = 'pingheng://auth?serverAddr=' + url;
-      const latesturl =
-        url +
-        '/miauth/' +
-        uuid +
-        '?name=PingHeng&callback=' +
-        redirectUrl +
-        '&permission=read:account,write:account,read:blocks,write:blocks,read:drive,write:drive,read:favorites,write:favorites,read:following,write:following,read:messageing,write:messageing,read:mutes,write:mutes,write:notes,read:notifications,write:notificaions,write:reactions,write:votes,read:pages,write:pages,write:page-likes,read:page-likes';
-      // setSvurl(url);
-      console.log('lturl: ', latesturl);
-      // const url = 'https://github.com/proyecto26';
-      openbrowser(latesturl);
-      // WebBrowser.openBrowserAsync(latesturl);
+      if (url.match(/https:\/\//) || url.match(/http:\/\//)) {
+        return url;
+      } else {
+        return 'https://' + url;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  const checkServerExists = async (url: string) => {
+    const res = await getMeta(url);
+    if (res) {
+      if (await registerServerInfo(res)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  const registerServerInfo = async (res: any) => {
+    //仮
+    return true;
+  };
+
+  const openAuth = async (url: string) => {
+    const uuid = uuidv4();
+    let redirectUrl = 'pingheng://auth?serverAddr=' + url;
+    const authUrl =
+      url +
+      '/miauth/' +
+      uuid +
+      '?name=PingHeng&callback=' +
+      redirectUrl +
+      '&permission=read:account,write:account,read:blocks,write:blocks,read:drive,write:drive,read:favorites,write:favorites,read:following,write:following,read:messageing,write:messageing,read:mutes,write:mutes,write:notes,read:notifications,write:notificaions,write:reactions,write:votes,read:pages,write:pages,write:page-likes,read:page-likes';
+    openbrowser(authUrl);
+  };
+
+  const loginProcess = async (inputUrl: string) => {
+    //あとで処理中表示
+    const serverUrl = generateServerURL(inputUrl);
+    if (serverUrl) {
+      const res = await checkServerExists(serverUrl);
+      if (res) {
+        if (await registerServerInfo(res)) {
+          openAuth(serverUrl);
+        } else {
+          ToastAndroid.show(
+            'サーバー情報の登録に失敗しました。アプリを再起動し、再度お試しください。',
+            2000,
+          );
+        }
+      } else {
+        ToastAndroid.show(
+          'サーバーにアクセスできません。正しいURLを入力し、ネットワーク接続を確認してください。',
+          2000,
+        );
+      }
     } else {
       ToastAndroid.show('URLが入力されていないか、無効なURLです。', 2000);
     }
@@ -238,7 +268,7 @@ const Register = ({navigation}) => {
           containerStyle={{borderRadius: 50, width: '80%', marginBottom: 10}}
           title="はじめる"
           onPress={() => {
-            getAuthURL('https://msk.seppuku.club');
+            loginProcess('https://msk.seppuku.club');
           }}
         />
         <Button
