@@ -18,7 +18,7 @@ import {v4 as uuidv4} from 'uuid';
 import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 import Video from 'react-native-video';
 import {getMeta} from '../api/useApi';
-
+import { addInfo, deleteInfo } from '../api/serverInfo';
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
 
 const Register = ({navigation}) => {
@@ -176,19 +176,10 @@ const Register = ({navigation}) => {
   const checkServerExists = async (url: string) => {
     const res = await getMeta(url);
     if (res) {
-      if (await registerServerInfo(res)) {
-        return true;
-      } else {
-        return false;
-      }
+      return res;
     } else {
       return false;
     }
-  };
-
-  const registerServerInfo = async (res: any) => {
-    //仮
-    return true;
   };
 
   const openAuth = async (url: string) => {
@@ -210,7 +201,12 @@ const Register = ({navigation}) => {
     if (serverUrl) {
       const res = await checkServerExists(serverUrl);
       if (res) {
-        if (await registerServerInfo(res)) {
+        try {
+     //   await deleteInfo();
+        } catch {
+  //       console.log("test-np");
+        }
+        if (await addInfo(res)) {
           openAuth(serverUrl);
         } else {
           ToastAndroid.show(
@@ -296,6 +292,24 @@ const Register = ({navigation}) => {
           type="clear"
           onPress={() => {
             navigation.navigate('Settings');
+          }}
+        />
+        <Button
+          style={{borderRadius: 50}}
+          containerStyle={{borderRadius: 50, width: 250}}
+          title="deleteInfo"
+          type="clear"
+          onPress={() => {
+            deleteInfo();
+          }}
+        />
+        <Button
+          style={{borderRadius: 50}}
+          containerStyle={{borderRadius: 50, width: 250}}
+          title="addInfo"
+          type="clear"
+          onPress={() => {
+           addInfo({name: "DE"});
           }}
         />
       </View>
