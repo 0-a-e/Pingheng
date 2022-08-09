@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
-import Realm from 'realm';
+import Realm, {BSON} from 'realm';
 
 const schema = {
   name: 'serverInfo',
@@ -33,20 +33,24 @@ const schema = {
     backgroundImageUrl: {type: 'string', optional: true},
     logoImageUrl: {type: 'string', optional: true},
     maxNoteTextLength: 'int',
-    emojis: {type: 'list', objectType: 'emojis'},
+    emojis: {type: 'list', objectType: 'Emojis'},
+    enableEmail: 'bool',
+    enableTwitterIntegration: 'bool',
+    enableGithubIntegration: 'bool',
+    enableDiscordIntegration: 'bool',
+    enableServiceWorker: 'bool',
+    translatorAvailable: 'bool',
+    pinnedPages: {type: 'list', objectType: 'string'},
+    pinnedClipId: {type: 'string', optional: true},
+    cacheRemoteFiles: 'bool',
+    requireSetup: 'bool',
+    proxyAccountName: {type: 'string', optional: true},
+    features: 'Features',
   },
-  enableEmail: 'bool',
-  enableTwitterIntegration: 'bool',
-  enableGithubIntegration: 'bool',
-  enableDiscordIntegration: 'bool',
-  enableServiceWorker: 'bool',
-  translatorAvailable: 'bool',
-  pinnedPages: {type: 'list', objectType: 'string'},
-  pinnedClipId: {type: 'string', optional: true},
-  cacheRemoteFiles: 'bool',
-  requireSetup: 'bool',
-  proxyAccountName: {type: 'string', optional: true},
-  features: {
+};
+const featuresSchema = {
+  name: 'Features',
+  properties: {
     registration: 'bool',
     localTimeLine: 'bool',
     globalTimeLine: 'bool',
@@ -64,7 +68,7 @@ const schema = {
 };
 
 const emojisSchema = {
-  name: 'emojis',
+  name: 'Emojis',
   properties: {
     id: 'string',
     aliases: {type: 'list', objectType: 'string'},
@@ -76,17 +80,21 @@ const emojisSchema = {
 };
 
 const config = {
-  schema: [schema, emojisSchema],
+  schema: [schema, featuresSchema, emojisSchema],
   schemaVersion: 1,
 };
 
 const addInfo = async info => {
   try {
     const projectRealm = await Realm.open(config);
-    projectRealm.write(() => {
+    await projectRealm.write(() => {
+      projectRealm.create('serverInfo', info);
+    });
+    return true;
+    /*   projectRealm.write(() => {
       projectRealm.create('serverInfo', info);
       return true;
-    });
+    });*/
   } catch (e) {
     console.log('addInfo ERROR:', e);
     return false;

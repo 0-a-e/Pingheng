@@ -202,9 +202,9 @@ const Register = ({navigation}) => {
       const res = await checkServerExists(serverUrl);
       if (res) {
         try {
-     //   await deleteInfo();
+          await deleteInfo();
         } catch {
-  //       console.log("test-np");
+          console.log('failed deleteInfo');
         }
         if (await addInfo(res)) {
           openAuth(serverUrl);
