@@ -74,7 +74,7 @@ const ServerInfoModal = ({serverInfo}) => (
             {serverInfo.maintainerName}
           </Text>
         </View>
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: '#c9d3f2',
             width: '50%',
@@ -84,6 +84,9 @@ const ServerInfoModal = ({serverInfo}) => (
             borderLeftWidth: 1,
             borderTopEndRadius: 20,
             padding: 5,
+          }}
+          onPress={() => {
+            Linking.openURL('mailto:', serverInfo.maintainerEmail);
           }}>
           <Text numberOfLines={1} style={{color: '#0657F3', fontSize: 15}}>
             <Icon name="mail" size={13} /> メール
@@ -91,10 +94,10 @@ const ServerInfoModal = ({serverInfo}) => (
           <Text numberOfLines={2} style={{color: '#073285'}}>
             {serverInfo.maintainerEmail}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', marginBottom: 10}}>
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: '#c9d3f2',
             width: '50%',
@@ -103,6 +106,9 @@ const ServerInfoModal = ({serverInfo}) => (
             borderTopWidth: 0.5,
             borderBottomStartRadius: 20,
             padding: 5,
+          }}
+          onPress={() => {
+            Linking.openURL(serverInfo.repositoryUrl);
           }}>
           <Text numberOfLines={1} style={{color: '#0657F3', fontSize: 15}}>
             <Icon name="code" size={13} /> リポジトリ
@@ -110,8 +116,8 @@ const ServerInfoModal = ({serverInfo}) => (
           <Text numberOfLines={2} style={{color: '#073285'}}>
             {serverInfo.repositoryUrl}
           </Text>
-        </View>
-        <View
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             backgroundColor: '#c9d3f2',
             width: '50%',
@@ -121,6 +127,9 @@ const ServerInfoModal = ({serverInfo}) => (
             borderLeftWidth: 1,
             borderBottomEndRadius: 20,
             padding: 5,
+          }}
+          onPress={() => {
+            Linking.openURL(serverInfo.feedbackUrl);
           }}>
           <Text numberOfLines={1} style={{color: '#0657F3', fontSize: 15}}>
             <Icon name="flag" size={13} /> フィードバック
@@ -128,7 +137,7 @@ const ServerInfoModal = ({serverInfo}) => (
           <Text numberOfLines={2} style={{color: '#073285'}}>
             {serverInfo.feedbackUrl}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
     <View

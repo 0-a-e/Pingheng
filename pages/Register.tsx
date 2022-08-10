@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
   ToastAndroid,
@@ -9,10 +9,7 @@ import {
 import {Button, Input} from '@rneui/base';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
-//import * as WebBrowser from 'expo-web-browser';
-//import * as Linking from 'expo-linking';
 //import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
-//import * as SecureStore from 'expo-secure-store';
 import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 import Video from 'react-native-video';
 import {getMeta} from '../api/useApi';
@@ -23,25 +20,6 @@ const Register = ({navigation}) => {
   const [manualloginvisible, setmanualloginvisible] = useState();
   const [inputURL, setinputURL] = useState('');
   console.log('Register open');
-  /*  const [svurl, setSvurl] = useState('');
-
-  useEffect(() => {
-    Linking.addEventListener('url', async event => {
-      await getAuth(event.url);
-    });
-  });
-
-  SecureStore.getItemAsync('user1').then(
-    res => {
-      if (res) {
-        navigation.navigate('Main');
-      }
-    },
-    err => {
-      console.log(err);
-    },
-  );
-*/
   const ModalView = () => {
     return (
       <Modal
@@ -272,33 +250,6 @@ const Register = ({navigation}) => {
           type="clear"
           onPress={() => {
             setmanualloginvisible(true);
-          }}
-        />
-        <Button
-          style={{borderRadius: 50}}
-          containerStyle={{borderRadius: 50, width: 250}}
-          title="MainScreenに移動"
-          type="clear"
-          onPress={() => {
-            navigation.navigate('Main');
-          }}
-        />
-        <Button
-          style={{borderRadius: 50}}
-          containerStyle={{borderRadius: 50, width: 250}}
-          title="SettingsScreenに移動"
-          type="clear"
-          onPress={() => {
-            navigation.navigate('Settings');
-          }}
-        />
-        <Button
-          style={{borderRadius: 50}}
-          containerStyle={{borderRadius: 50, width: 250}}
-          title="deleteInfo"
-          type="clear"
-          onPress={() => {
-            deleteInfo();
           }}
         />
       </View>

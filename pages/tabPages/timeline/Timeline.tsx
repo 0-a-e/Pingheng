@@ -6,7 +6,13 @@ function TimelineScreen({navigation}) {
     console.log('TimelineUseEffect');
   }, []);
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'lightblue',
+      }}>
       <Text>TL!</Text>
       <TouchableOpacity
         onPress={() => {

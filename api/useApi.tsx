@@ -1,14 +1,24 @@
-import axios from 'axios';
-//import {getserverURL} from './Getmeta';
+import axios, { AxiosError } from 'axios';
+import {getInfo} from './serverInfo';
+import { getUser } from './tokenManage';
 
-export const sendAPI = async ([token, endpoint, data]: [
-  String,
+export const sendAPI = async ([ifneedtoken, endpoint, data]: [
+  Boolean,
   String,
   Object,
 ]) => {
-  const serverURL = await getserverURL();
+  const serverInfo = await getInfo();
+  const userInfo = await getUser();
+  let token: string, serverURL: string;
+  if (serverInfo && userInfo) {
+    token = userInfo.password;
+    serverURL = serverInfo.uri;
+  } else {
+    console.log('sendAPI: ユーザー情報またはサーバー情報がありません');
+    return false;
+  }
   const getjsondata = () => {
-    if (token && token !== '') {
+    if (ifneedtoken) {
       return {i: token, ...data};
     } else {
       return data;
@@ -36,6 +46,10 @@ export const sendAPI = async ([token, endpoint, data]: [
   } catch (error: any) {
     if (error.message === 'Network Error') {
       console.log('sendAPI: ネットワークエラー');
+      return false;
+    } else if (error.response.status === 429) {
+      console.log('sendAPI: リクエストが多すぎます');
+      console.log(error.message);
       return false;
     } else {
       console.log('sendAPI: 不明なエラー');

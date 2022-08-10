@@ -24,7 +24,7 @@ const SettingsScreen = () => {
     const remoteServerInfo = await getMeta(localServerInfo.uri);
     addInfo(remoteServerInfo);
     ToastAndroid.show('情報が更新されました。', 4000);
-    //NativeModules.DevSettings.reload();
+    NativeModules.DevSettings.reload();
   };
   return (
     <View

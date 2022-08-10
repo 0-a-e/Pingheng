@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {Button} from '@rneui/base';
@@ -83,25 +82,58 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
   function MyTab() {
     return (
       <View style={styles.btmbox}>
-        
-      <TouchableOpacity onPress={() => {sheetProps.navigation.navigate('Settings')}}><Icon size={55} name="settings" color="rgb(180,180,230)" /></TouchableOpacity>
         <Navbtn icon="hexagon" indexname="Timeline" />
+        <TouchableOpacity
+          onPress={() => {
+            bottomsheetref.current.snapTo(0);
+          }}
+          style={{alignItems: 'center'}}>
+          <Icon size={30} name="arrow-up" color="rgb(180,180,230)" />
+          <Text>(仮)</Text>
+        </TouchableOpacity>
         <Navbtn icon="bell" indexname="Notify" />
       </View>
     );
   }
 
-  function Insheet() {
-    return (
-      <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
-        <MyTab />
-        <View style={{height: 200}}>
-          <Text>IKJDPDJDPOJDFP</Text>
-        </View>
-        {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
-      </View>
-    );
+  function Inisheet() {
+    return <></>;
   }
+  const Insheet = () => (
+    <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
+      <MyTab />
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          backgroundColor: 'transparent',
+          width: '100%',
+          height: 190,
+        }}>
+        <Button
+          containerStyle={{
+            position: 'absolute',
+            top: 0,
+            right: 20,
+            width: 60,
+            height: 60,
+            borderRadius: 50,
+          }}
+          buttonStyle={{
+            width: 60,
+            height: 60,
+            borderRadius: 50,
+            backgroundColor: 'rgb(30,30,46)',
+          }}
+          icon={<Icon size={30} name={'settings'} color="rgb(180,180,230)" />}
+          onPress={() => {
+            sheetProps.navigation.navigate('Settings');
+          }}
+        />
+      </View>
+      {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
+    </View>
+  );
 
   const Header = () => (
     <View style={styles.header}>
