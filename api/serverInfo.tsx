@@ -1,5 +1,4 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
-import Realm, {BSON} from 'realm';
+import Realm from 'realm';
 
 const schema = {
   name: 'serverInfo',
@@ -86,15 +85,17 @@ const config = {
 
 const addInfo = async info => {
   try {
-    const projectRealm = await Realm.open(config);
-    await projectRealm.write(() => {
-      projectRealm.create('serverInfo', info);
-    });
-    return true;
-    /*   projectRealm.write(() => {
-      projectRealm.create('serverInfo', info);
+    if (info) {
+      deleteInfo();
+      const projectRealm = await Realm.open(config);
+      projectRealm.write(() => {
+        projectRealm.create('serverInfo', info);
+      });
       return true;
-    });*/
+    } else {
+      console.log('addInfo ERROR: info is null');
+      return false;
+    }
   } catch (e) {
     console.log('addInfo ERROR:', e);
     return false;
@@ -106,7 +107,7 @@ const deleteInfo = async () => {
   try {
     const projectRealm = await Realm.open(config);
     projectRealm.write(() => {
-      projectRealm.delete('serverInfo');
+      projectRealm.delete(projectRealm.objects('serverInfo'));
       return true;
     });
   } catch (e) {
@@ -115,4 +116,19 @@ const deleteInfo = async () => {
   }
 };
 
-export {addInfo, deleteInfo};
+const getInfo = async () => {
+  try {
+    const projectRealm = await Realm.open(config);
+    const info = projectRealm.objects('serverInfo');
+    if (info.length > 0) {
+      return info[0];
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log('getInfo ERROR:', e);
+    return false;
+  }
+};
+
+export {addInfo, deleteInfo, getInfo};

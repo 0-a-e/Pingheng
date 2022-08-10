@@ -1,40 +1,31 @@
 //import * as WebBrowser from 'expo-web-browser';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   ToastAndroid,
   TouchableOpacity,
   View,
   NativeModules,
-  ScrollView,
-  Image,
-  Dimensions,
   useWindowDimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-//import getMeta,{setnewMeta,getserverURL} from '../data/Getmeta';
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
 import {removeUser} from '../api/tokenManage';
-
+import {addInfo, getInfo, deleteInfo} from '../api/serverInfo';
+import ServerInfoModal from './settingsComponent/ServerInfoModal';
+import {getMeta} from '../api/useApi';
 const SettingsScreen = () => {
-  /*	const [meta, metawrite] = useState();
-	const [appinfovisible, setappinfovisible] = useState(false);*/
+  const [meta, metawrite] = useState();
+  //	const [appinfovisible, setappinfovisible] = useState(false);
   const [serverinfovisible, setserverinfovisible] = useState(false);
-  /*	useEffect(() => {
-	getMeta().then(metaraw => {
-		metawrite(metaraw);
-	});
-	}, []);
 
-const openlink = (url:string) => {
-    WebBrowser.openBrowserAsync(url);
-}
-const setnewEmoji = async () => {
-	const svurl = await getserverURL();
-	setnewMeta(svurl);
-	ToastAndroid.show("情報が更新されました。",4000);
-	NativeModules.DevSettings.reload();
-}*/
+  const setnewEmoji = async () => {
+    const localServerInfo = await getInfo();
+    const remoteServerInfo = await getMeta(localServerInfo.uri);
+    addInfo(remoteServerInfo);
+    ToastAndroid.show('情報が更新されました。', 4000);
+    //NativeModules.DevSettings.reload();
+  };
   return (
     <View
       style={{width: '100%', height: '100%', backgroundColor: 'rgb(19,20,26)'}}>
@@ -72,6 +63,7 @@ const setnewEmoji = async () => {
             justifyContent: 'center',
           }}
           onPress={() => {
+            deleteInfo();
             removeUser();
           }}>
           <Icon name="log-out" size={50} color="rgb(255,120,120)" />
@@ -90,8 +82,9 @@ const setnewEmoji = async () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          //    onPress={() => {setnewEmoji();}}
-        >
+          onPress={() => {
+            setnewEmoji();
+          }}>
           <Icon name="download-cloud" size={50} color="rgb(120,140,255)" />
         </TouchableOpacity>
       </View>
@@ -117,7 +110,9 @@ const setnewEmoji = async () => {
             justifyContent: 'center',
             flexDirection: 'row',
           }}
-          onPress={() => {
+          onPress={async () => {
+            const info = await getInfo();
+            metawrite(info);
             setserverinfovisible(true);
           }}>
           <Icon name="info" size={50} color="rgb(120,120,200)" />
@@ -188,62 +183,7 @@ const setnewEmoji = async () => {
             }}
             onTouchStart={() => setserverinfovisible(false)}
           />
-          <View
-            style={{
-              backgroundColor: 'rgb(255,255,255)',
-              width: '100%',
-              borderRadius: 20,
-              height: 345,
-              paddingLeft: 10,
-              paddingRight: 10,
-              paddingTop: 10,
-              paddingBottom: 10,
-            }}>
-            {/*meta &&
-		<>
-		<TouchableOpacity style={{flexDirection:"row",alignItems:"center",backgroundColor:"#0657F3",padding:10,borderRadius:20,marginBottom:10}} onPress={() => {openlink(meta.uri);}}  activeOpacity={0.85}>
-		<Image
-	source={{
-          uri: meta.iconUrl,
-        }}
-		style={{width:45,height:45,backgroundColor:"#fff",borderRadius:10,marginRight:10}}
-		/>
-	<View>
-	<Text  style={{color:"#fff"}}><Icon name="inbox" size={13} /> {meta.name}</Text>
-	<Text style={{color:"#fff"}}><Icon name="book" size={13} /> {meta.version}</Text>
-	</View>
-	</TouchableOpacity>
-	<View>
-  <View style={{flexDirection:'row'}}>
-   <View style={{backgroundColor:"#c9d3f2",width:"50%",height:70,borderColor:"#b7c6f7",borderBottomWidth:0.5,borderTopStartRadius:20,padding:5}}>
-   <Text numberOfLines={1} style={{color:"#0657F3",fontSize:15}}><Icon name="zap" size={13} /> 管理者</Text>
-   <Text numberOfLines={2} style={{color:"#073285"}} >{meta.maintainerName}</Text>
-   </View>
-   <View style={{backgroundColor:"#c9d3f2",width:"50%",height:70,borderColor:"#b7c6f7",borderBottomWidth:0.5,borderLeftWidth:1,borderTopEndRadius:20,padding:5}}>
-   <Text numberOfLines={1} style={{color:"#0657F3",fontSize:15}}><Icon name="mail" size={13} /> メール</Text>
-   <Text numberOfLines={2} style={{color:"#073285"}} >{meta.maintainerEmail}</Text>
-   </View>
-  </View>
-  <View style={{flexDirection:'row',marginBottom:10}}>
-  <View style={{backgroundColor:"#c9d3f2",width:"50%",height:70,borderColor:"#b7c6f7",borderTopWidth:0.5,borderBottomStartRadius:20,padding:5}}>
-  <Text numberOfLines={1} style={{color:"#0657F3",fontSize:15}}><Icon name="code" size={13} /> リポジトリ</Text>
-  <Text numberOfLines={2} style={{color:"#073285"}} >{meta.repositoryUrl}</Text>
-  </View>
-   <View style={{backgroundColor:"#c9d3f2",width:"50%",height:70,borderColor:"#b7c6f7",borderTopWidth:0.5,borderLeftWidth:1,borderBottomEndRadius:20,padding:5}}>
-	      <Text numberOfLines={1} style={{color:"#0657F3",fontSize:15}}><Icon name="flag" size={13} /> フィードバック</Text>
-		  <Text numberOfLines={2} style={{color:"#073285"}} >{meta.feedbackUrl}</Text>
-   </View>
-  </View>
-</View>
-<View style={{borderRadius:20,backgroundColor:"#c9d3f2",padding:10,marginBottom:10,height:100}}>
-<Text style={{color:"#0657F3",fontSize:15,marginBottom:10}}><Icon name="info" size={13} /> このサーバーについて</Text>
-<ScrollView>
-<Text style={{color:"#073285"}}>{meta.description}</Text>
-</ScrollView>
-</View>
-</>
-*/}
-          </View>
+          {meta && <ServerInfoModal serverInfo={meta} />}
         </ModalContent>
       </Modal>
     </View>

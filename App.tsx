@@ -18,8 +18,9 @@ import SettingsScreen from './pages/Settings';
 import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
 import {checkUserexists} from './api/tokenManage';
+import {getInfo} from './api/serverInfo';
 const App = () => {
-  const [ifUserExists, setifUserExists] = useState(false);
+  const [ifloggedin, setifloggedin] = useState(false);
   /*const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -28,7 +29,10 @@ const App = () => {
   useEffect(() => {
     (async () => {
       const a = await checkUserexists();
-      setifUserExists(a);
+      const b = await getInfo();
+      if (a && b) {
+        setifloggedin(true);
+      }
     })();
   }, []);
 
@@ -58,10 +62,10 @@ const App = () => {
       <View style={styles.container}>
         <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
         <NavigationContainer
-          linking={!ifUserExists && linking}
+          linking={!ifloggedin && linking}
           fallback={<Text>処理中...</Text>}>
           <Stack.Navigator initialRouteName="Register">
-            {ifUserExists ? (
+            {ifloggedin ? (
               <>
                 <Stack.Screen
                   name="Main"

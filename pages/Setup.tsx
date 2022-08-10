@@ -67,8 +67,6 @@ const getAuth = async (sessionId: String, serverAddr: String) => {
 
 const Welcome = (rawinfo: any, navigation: any) => {
   const info = rawinfo.info;
-  console.log(info);
-  // console.log(info.user.username);
   return (
     <View style={styles.bg}>
       {/*   <Image source={info.user.avatarUrl} /> */}
@@ -79,7 +77,7 @@ const Welcome = (rawinfo: any, navigation: any) => {
         onPress={() => {
           registerUser(info.user.id, info.token).then(res => {
             if (res) {
-              console.log(navigation);
+             // console.log(navigation);
              // navigation.push('Main');
             } else {
               ToastAndroid.show('エラー', 2000);

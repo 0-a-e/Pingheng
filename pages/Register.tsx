@@ -5,20 +5,18 @@ import {
   View,
   useWindowDimensions,
   Linking,
-  Platform,
 } from 'react-native';
 import {Button, Input} from '@rneui/base';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 //import * as WebBrowser from 'expo-web-browser';
 //import * as Linking from 'expo-linking';
-//import getMeta, {setnewMeta} from '../data/Getmeta';
 //import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
 //import * as SecureStore from 'expo-secure-store';
 import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 import Video from 'react-native-video';
 import {getMeta} from '../api/useApi';
-import { addInfo, deleteInfo } from '../api/serverInfo';
+import {addInfo, deleteInfo} from '../api/serverInfo';
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
 
 const Register = ({navigation}) => {
@@ -301,15 +299,6 @@ const Register = ({navigation}) => {
           type="clear"
           onPress={() => {
             deleteInfo();
-          }}
-        />
-        <Button
-          style={{borderRadius: 50}}
-          containerStyle={{borderRadius: 50, width: 250}}
-          title="addInfo"
-          type="clear"
-          onPress={() => {
-           addInfo({name: "DE"});
           }}
         />
       </View>
