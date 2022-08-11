@@ -14,7 +14,7 @@ const ActionRing = (actionRingProps: any) => {
         }}
         accessible={true}
         style={notifyStyles.avatar}
-        //accessibilityLabel= これ後で表示用ユーザー名の変数用意してユーザー名ないときもそれで表示するようにする　NotifyViewも  (仮:data.props['data']['item']['user']['name']
+        accessibilityLabel={data.name}
       />
 
       <View

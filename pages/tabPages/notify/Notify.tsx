@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Alert, FlatList, RefreshControl} from 'react-native';
+import {View, Alert, FlatList, RefreshControl} from 'react-native';
 import {sendAPI} from '../../../api/useApi';
 import NotifyView from './NotifyView';
 
@@ -39,16 +39,12 @@ function NotifyScreen() {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'green',
       }}>
       <FlatList
         data={notifylist}
         style={{width: '100%', backgroundColor: 'rgb(19,20,26)'}}
         keyExtractor={item => ListKey(item)}
-          renderItem={item => <NotifyView data={item} />}
-       /* renderItem={item => (
-          <Text style={{color: '#fff'}}>{JSON.stringify(item)}</Text>
-        )}*/
+        renderItem={item => <NotifyView data={item} />}
         refreshControl={
           <RefreshControl
             colors={['rgb(19,20,26)', '#000']}

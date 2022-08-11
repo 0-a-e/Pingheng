@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -96,9 +96,6 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
     );
   }
 
-  function Inisheet() {
-    return <></>;
-  }
   const Insheet = () => (
     <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
       <MyTab />

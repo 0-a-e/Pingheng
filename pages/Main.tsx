@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import BottomSheet from './tabPages/bottomSheet/bottomSheet';
+import BottomSheet from './tabPages/bottomSheet/BottomSheet';
 import NotifyScreen from './tabPages/notify/Notify';
 import TimelineScreen from './tabPages/timeline/Timeline';
 

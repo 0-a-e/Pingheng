@@ -77,8 +77,8 @@ const Welcome = (rawinfo: any, navigation: any) => {
         onPress={() => {
           registerUser(info.user.id, info.token).then(res => {
             if (res) {
-             // console.log(navigation);
-             // navigation.push('Main');
+              // console.log(navigation);
+              // navigation.push('Main');
             } else {
               ToastAndroid.show('エラー', 2000);
             }
