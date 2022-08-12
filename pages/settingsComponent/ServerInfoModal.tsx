@@ -6,30 +6,50 @@ import {
   Image,
   ScrollView,
   Linking,
+  useWindowDimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
+import {serverInfoModalStyles, infoTileStyles} from './serverInfoModalStyles';
 
-const ServerInfoModal = ({serverInfo}) => (
-  <View
-    style={{
-      backgroundColor: 'rgb(255,255,255)',
-      width: '100%',
-      borderRadius: 20,
-      height: 345,
-      paddingLeft: 10,
-      paddingRight: 10,
-      paddingTop: 10,
-      paddingBottom: 10,
-    }}>
+const ServerInfoModal = (serverInfoModalProps: {
+  visible: boolean;
+  switchServerInfoModalVisible: () => void;
+  serverInfo: any;
+}) => (
+  <Modal
+    visible={serverInfoModalProps.visible}
+    onTouchOutside={() => {
+      serverInfoModalProps.switchServerInfoModalVisible();
+    }}
+    modalAnimation={
+      new SlideAnimation({
+        slideFrom: 'bottom',
+      })
+    }
+    width={1}
+    height={1}
+    modalStyle={serverInfoModalStyles.modalStyle}>
+    <ModalContent style={{margin: 0, padding: 0}}>
+      <View
+        style={{
+          backgroundColor: 'transparent',
+          width: '100%',
+          height: useWindowDimensions().height - 380,
+        }}
+        onTouchStart={() => serverInfoModalProps.switchServerInfoModalVisible()}
+      />
+      {serverInfoModalProps.serverInfo && (
+        <ServerInfoModalContent serverInfo={serverInfoModalProps.serverInfo} />
+      )}
+    </ModalContent>
+  </Modal>
+);
+
+const ServerInfoModalContent = ({serverInfo}) => (
+  <View style={serverInfoModalStyles.modalContentBox}>
     <TouchableOpacity
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#0657F3',
-        padding: 10,
-        borderRadius: 20,
-        marginBottom: 10,
-      }}
+      style={serverInfoModalStyles.topBox}
       onPress={() => {
         Linking.openURL(serverInfo.uri);
       }}
@@ -38,13 +58,7 @@ const ServerInfoModal = ({serverInfo}) => (
         source={{
           uri: serverInfo.iconUrl,
         }}
-        style={{
-          width: 45,
-          height: 45,
-          backgroundColor: '#fff',
-          borderRadius: 10,
-          marginRight: 10,
-        }}
+        style={serverInfoModalStyles.serverIcon}
       />
       <View>
         <Text style={{color: '#fff'}}>
@@ -57,16 +71,7 @@ const ServerInfoModal = ({serverInfo}) => (
     </TouchableOpacity>
     <View>
       <View style={{flexDirection: 'row'}}>
-        <View
-          style={{
-            backgroundColor: '#c9d3f2',
-            width: '50%',
-            height: 70,
-            borderColor: '#b7c6f7',
-            borderBottomWidth: 0.5,
-            borderTopStartRadius: 20,
-            padding: 5,
-          }}>
+        <View style={[infoTileStyles.infoTile, infoTileStyles.topLeft]}>
           <Text numberOfLines={1} style={{color: '#0657F3', fontSize: 15}}>
             <Icon name="zap" size={13} /> 管理者
           </Text>
@@ -75,18 +80,9 @@ const ServerInfoModal = ({serverInfo}) => (
           </Text>
         </View>
         <TouchableOpacity
-          style={{
-            backgroundColor: '#c9d3f2',
-            width: '50%',
-            height: 70,
-            borderColor: '#b7c6f7',
-            borderBottomWidth: 0.5,
-            borderLeftWidth: 1,
-            borderTopEndRadius: 20,
-            padding: 5,
-          }}
+          style={[infoTileStyles.infoTile, infoTileStyles.topRight]}
           onPress={() => {
-            Linking.openURL('mailto:', serverInfo.maintainerEmail);
+            Linking.openURL(`mailto:${serverInfo.maintainerEmail}`);
           }}>
           <Text numberOfLines={1} style={{color: '#0657F3', fontSize: 15}}>
             <Icon name="mail" size={13} /> メール
@@ -98,15 +94,7 @@ const ServerInfoModal = ({serverInfo}) => (
       </View>
       <View style={{flexDirection: 'row', marginBottom: 10}}>
         <TouchableOpacity
-          style={{
-            backgroundColor: '#c9d3f2',
-            width: '50%',
-            height: 70,
-            borderColor: '#b7c6f7',
-            borderTopWidth: 0.5,
-            borderBottomStartRadius: 20,
-            padding: 5,
-          }}
+          style={[infoTileStyles.infoTile, infoTileStyles.bottomLeft]}
           onPress={() => {
             Linking.openURL(serverInfo.repositoryUrl);
           }}>
@@ -118,16 +106,7 @@ const ServerInfoModal = ({serverInfo}) => (
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={{
-            backgroundColor: '#c9d3f2',
-            width: '50%',
-            height: 70,
-            borderColor: '#b7c6f7',
-            borderTopWidth: 0.5,
-            borderLeftWidth: 1,
-            borderBottomEndRadius: 20,
-            padding: 5,
-          }}
+          style={[infoTileStyles.infoTile, infoTileStyles.bottomRight]}
           onPress={() => {
             Linking.openURL(serverInfo.feedbackUrl);
           }}>
@@ -140,14 +119,7 @@ const ServerInfoModal = ({serverInfo}) => (
         </TouchableOpacity>
       </View>
     </View>
-    <View
-      style={{
-        borderRadius: 20,
-        backgroundColor: '#c9d3f2',
-        padding: 10,
-        marginBottom: 10,
-        height: 100,
-      }}>
+    <View style={serverInfoModalStyles.descriptionBox}>
       <Text style={{color: '#0657F3', fontSize: 15, marginBottom: 10}}>
         <Icon name="info" size={13} /> このサーバーについて
       </Text>
