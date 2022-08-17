@@ -1,14 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, {useEffect, useReducer, useState} from 'react';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -21,6 +12,7 @@ import {checkUserexists} from './api/tokenManage';
 import {getInfo} from './api/serverInfo';
 const App = () => {
   const [ifloggedin, setifloggedin] = useState(false);
+  console.log('--reload--\n', ifloggedin, '\n--');
   /*const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -28,13 +20,19 @@ const App = () => {
   };*/
   useEffect(() => {
     (async () => {
-      const a = await checkUserexists();
-      const b = await getInfo();
-      if (a && b) {
-        setifloggedin(true);
-      }
+      await checkIfloggedin();
     })();
   }, []);
+
+  const checkIfloggedin = async () => {
+    const a = await checkUserexists();
+    const b = await getInfo();
+    if (a && b) {
+      setifloggedin(true);
+    } else {
+      setifloggedin(false);
+    }
+  };
 
   const config = {
     screens: {
@@ -84,6 +82,7 @@ const App = () => {
                   name="Setup"
                   component={SetupScreen}
                   options={{headerShown: false}}
+                  initialParams={{checkIfloggedin: checkIfloggedin}}
                 />
                 <Stack.Screen
                   name="Register"

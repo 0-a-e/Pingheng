@@ -9,9 +9,20 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {registerUser} from '../api/tokenManage';
+import {getInfo} from '../api/serverInfo';
+import {registerUser, getUser} from '../api/tokenManage';
+import {useNavigation} from '@react-navigation/native';
 
-const Setup = ({route, navigation}) => {
+const ifSaved = async () => {
+  const serverInfo = await getInfo();
+  const userInfo = await getUser();
+  if (serverInfo && userInfo) {
+    return true;
+  }
+  return false;
+};
+
+const Setup = ({route}) => {
   const [info, setinfo] = useState('loading');
   useEffect(() => {
     (async () => {
@@ -24,17 +35,37 @@ const Setup = ({route, navigation}) => {
             route.params.session,
             route.params.serverAddr,
           );
-          setinfo(Info);
+          if (Info) {
+            if (Info.ok) {
+              console.log(Info.user.id);
+              registerUser(Info.user.id, Info.token).then(res => {
+                if (res) {
+                  // console.log(navigation);
+                  // navigation.push('Main');
+                  ToastAndroid.show('登録成功', 2000);
+                  setinfo(Info);
+                } else {
+                  ToastAndroid.show('エラー', 2000);
+                }
+              });
+            }
+          }
         } else {
-          setinfo(false);
+          setinfo('error');
         }
       } else {
-        setinfo(false);
+        setinfo('error');
       }
     })();
   }, [route.params]);
-  if (info) {
-    return <Welcome info={info} navigation={navigation} />;
+  if (info === 'loading') {
+    return <Loading />;
+  } else if (info === 'error') {
+    return <Error />;
+  } else if (info) {
+    return (
+      <Welcome info={info} checkIfloggedin={route.params.checkIfloggedin} />
+    );
   } else {
     return <Error />;
   }
@@ -46,15 +77,9 @@ const getAuth = async (sessionId: String, serverAddr: String) => {
     const response = await axios.post(checkurl);
     if (response.data.ok) {
       return response.data;
-      // const token = response.data.token;
-      //  SecureStore.setItemAsync('user1', token).then(() => {
       /* HMSAvailability.isHuaweiMobileServicesAvailable()
                       .then((res) => { console.log(JSON.stringify(res)) })
                       .catch((err) => { console.log(JSON.stringify(err)) });*/
-      //   setnewMeta(svurl).then(() => {
-      //     navigation.navigate('Main');
-      //  });
-      //   });
     } else {
       ToastAndroid.show('認証エラー', 2000);
       return false;
@@ -64,25 +89,45 @@ const getAuth = async (sessionId: String, serverAddr: String) => {
     return false;
   }
 };
-
-const Welcome = (rawinfo: any, navigation: any) => {
-  const info = rawinfo.info;
+const Loading = () => {
   return (
     <View style={styles.bg}>
-      {/*   <Image source={info.user.avatarUrl} /> */}
-      <Text>welcome</Text>
+      <Icon size={125} name="loader" color="rgb(180,180,230)" />
+    </View>
+  );
+};
+
+const Welcome = ({info, checkIfloggedin}) => {
+  const navigation = useNavigation();
+  console.log(info.user);
+  let name;
+  if (info.user.name) {
+    name = info.user.name;
+  } else {
+    name = info.user.username;
+  }
+  return (
+    <View style={styles.bg}>
+      <Image
+        style={{
+          width: 100,
+          height: 100,
+          alignSelf: 'center',
+          marginTop: 50,
+          borderRadius: 50,
+        }}
+        source={{uri: info.user.avatarUrl}}
+      />
+      <Text style={{color: 'white'}}>ようこそ！</Text>
+      <Text style={{color: 'white'}}>{name}さん</Text>
       <Icon size={125} name="check" color="rgb(180,180,230)" />
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          registerUser(info.user.id, info.token).then(res => {
-            if (res) {
-              // console.log(navigation);
-              // navigation.push('Main');
-            } else {
-              ToastAndroid.show('エラー', 2000);
-            }
-          });
+          checkIfloggedin();
+          try {
+            navigation.navigate('Main');
+          } catch {}
         }}>
         <Icon size={55} name="arrow-right" color="rgb(180,180,230)" />
       </TouchableOpacity>
@@ -104,6 +149,7 @@ const Error = () => {
 const styles = StyleSheet.create({
   bg: {
     backgroundColor: 'rgba(5,5,20,0.95)',
+    flex: 1,
   },
   button: {
     width: 150,

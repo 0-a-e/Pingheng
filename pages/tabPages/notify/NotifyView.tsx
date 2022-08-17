@@ -140,15 +140,16 @@ const NotifyView = (props: any) => {
     );
   };
   try {
-    if (props.data.item.note.renoteId != null) {
-      return renotereturn();
-    } else if (
+    if (
       props.data.item.type === 'follow' ||
       props.data.item.type === 'followRequestAccepted' ||
       props.data.item.type === 'receiveFollowRequest' ||
       props.data.item.note.renoteId == null ||
       props.data.item.note.renoteId === void 0
     ) {
+      return notereturn();
+    } else if (props.data.item.note.renoteId != null) {
+      //   return renotereturn();
       return notereturn();
     } else {
       console.log('???renote');

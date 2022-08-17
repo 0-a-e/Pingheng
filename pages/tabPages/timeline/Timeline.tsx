@@ -11,15 +11,8 @@ function TimelineScreen({navigation}) {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightblue',
       }}>
-      <Text>TL!</Text>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Notify');
-        }}>
-        <Text>go to Notify</Text>
-      </TouchableOpacity>
+      <Text style={{fontSize: 100}}>TL</Text>
     </View>
   );
 }
