@@ -2,22 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
-import {Button} from '@rneui/base';
+import SwitchTimelineButton from './SwitchTimelineButton';
 
 function BottomSheetModule(sheetProps: {navigation: any}) {
-  // const [Mtoken, Mtokenwrite] = useState();
-  // const {TabbarState, TabbarStatewrite} = useContext(TabbarStateContext);
-
   //const [bartoggle, bartoggleWrite] = useState(true);
-  const bottomsheetref = React.useRef();
 
-  /*useEffect(() => {
-    const f = async () => {
-      const token = await gettoken();
-      Mtokenwrite(token);
-    };
-    f();
-  }, []);*/
+  const bottomsheetref = React.useRef();
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#fff',
@@ -89,7 +79,7 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           }}
           style={{alignItems: 'center'}}>
           <Icon size={30} name="arrow-up" color="rgb(180,180,230)" />
-          <Text>(仮)</Text>
+          <Text style={{color: 'white'}}>(仮)</Text>
         </TouchableOpacity>
         <Navbtn icon="bell" indexname="Notify" />
       </View>
@@ -107,28 +97,25 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           width: '100%',
           height: 190,
         }}>
-        <Button
-          containerStyle={{
-            position: 'absolute',
-            top: 0,
-            right: 20,
-            width: 60,
-            height: 60,
-            borderRadius: 50,
+        <TouchableOpacity
+          onPress={() => {
+            sheetProps.navigation.navigate('Settings');
           }}
-          buttonStyle={{
+          style={{
             width: 60,
             height: 60,
             borderRadius: 50,
             backgroundColor: 'rgb(30,30,46)',
-          }}
-          icon={<Icon size={30} name={'settings'} color="rgb(180,180,230)" />}
-          onPress={() => {
-            sheetProps.navigation.navigate('Settings');
-          }}
-        />
+            position: 'absolute',
+            top: 0,
+            right: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Icon size={30} name="settings" color="rgb(180,180,230)" />
+        </TouchableOpacity>
       </View>
-      {/*  <SwitchTimeline Mtoken={Mtoken} bottomsheetref={bottomsheetref} /> */}
+      <SwitchTimelineButton />
     </View>
   );
 

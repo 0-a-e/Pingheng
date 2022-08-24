@@ -22,10 +22,17 @@ const notifyStyles = StyleSheet.create({
     bottom: 0,
     marginBottom: 30,
   },
-  startButton: {padding: 15, backgroundColor: 'rgb(240,240,240)'},
+  startButton: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 15,
+    backgroundColor: 'rgb(240,240,240)',
+    borderRadius: 50,
+    width: '80%',
+    marginBottom: 10,
+  },
   startButtonTitle: {fontSize: 25, color: 'rgb(19,20,26)'},
-  startButtonContainer: {borderRadius: 50, width: '80%', marginBottom: 10},
-  manualServerButtonContainer: {borderRadius: 50, width: 250},
   /*ManualServerModal.tsx*/
   modalStyle: {
     marginBottom: 20,
@@ -44,14 +51,18 @@ const notifyStyles = StyleSheet.create({
     borderRadius: 20,
     height: 185,
   },
-  manualLoginButtonTitle: {color: '#fff'},
-  manualLoginButtonContainer: {
+  manualLoginButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 50,
     width: 150,
     marginTop: 35,
     marginBottom: 35,
     backgroundColor: 'rgb(19,20,26)',
   },
+  manualLoginButtonTitle: {color: '#fff', fontSize: 14},
   inputView: {
     flex: 1,
     width: '100%',

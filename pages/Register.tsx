@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Dimensions, View} from 'react-native';
-import {Button} from '@rneui/base';
+import {Dimensions, Text, View, TouchableOpacity} from 'react-native';
 import 'react-native-get-random-values';
 //import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
 import Video from 'react-native-video';
@@ -8,7 +7,6 @@ import loginProcess from './registerComponent/loginProcess';
 import registerStyles from './registerComponent/registerStyles';
 import ManualServerModal from './registerComponent/ManualServerModal';
 
-//メモ あとでreact-native-elementsから標準のbuttonに変更
 const Register = () => {
   const [manualloginvisible, setmanualloginvisible] = useState(false);
 
@@ -34,25 +32,19 @@ const Register = () => {
         //  ignoreSilentSwitch={"obey"}
       />
       <View style={registerStyles.bottomBox}>
-        <Button
-          style={{borderRadius: 50}}
-          buttonStyle={registerStyles.startButton}
-          titleStyle={registerStyles.startButtonTitle}
-          containerStyle={registerStyles.startButtonContainer}
-          title="はじめる"
+        <TouchableOpacity
           onPress={() => {
             loginProcess('https://msk.seppuku.club');
           }}
-        />
-        <Button
-          style={{borderRadius: 50}}
-          containerStyle={registerStyles.manualServerButtonContainer}
-          title="別のインスタンスで使用する"
-          type="clear"
+          style={registerStyles.startButton}>
+          <Text style={registerStyles.startButtonTitle}>はじめる</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => {
             switchManualLoginVisible();
-          }}
-        />
+          }}>
+          <Text>別のインスタンスで使用する</Text>
+        </TouchableOpacity>
       </View>
       <ManualServerModal
         visible={manualloginvisible}

@@ -1,4 +1,3 @@
-import {Text} from '@rneui/themed';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
@@ -7,6 +6,7 @@ import {
   ToastAndroid,
   TouchableOpacity,
   View,
+  Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {getInfo} from '../api/serverInfo';

@@ -1,4 +1,4 @@
-const allocation = props => {
+const allocation = (props) => {
   const name = getName(props);
   const ifrenote = ifRenote(props);
   const text = getText(props, ifrenote);

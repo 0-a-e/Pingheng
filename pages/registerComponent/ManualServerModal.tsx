@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import Modal, {ModalContent, SlideAnimation} from 'react-native-modals';
-import {Button} from '@rneui/base';
-import {View, useWindowDimensions} from 'react-native';
+import {View, useWindowDimensions, TouchableOpacity, Text} from 'react-native';
 import loginProcess from './loginProcess';
 import registerStyles from './registerStyles';
 import {TextInput} from 'react-native-gesture-handler';
-//メモ あとでreact-native-elementsから標準のbuttonに変更
 const ManualServerModal = (props: {
   visible: Boolean;
   switchManualLoginVisible: Function;
@@ -47,16 +45,15 @@ const ManualServerModal = (props: {
               }}
             />
           </View>
-          <Button
-            style={{borderRadius: 50}}
-            containerStyle={registerStyles.manualLoginButtonContainer}
-            titleStyle={registerStyles.manualLoginButtonTitle}
-            title="ログインする"
-            type="clear"
+          <TouchableOpacity
             onPress={() => {
               loginProcess(inputURL);
             }}
-          />
+            style={registerStyles.manualLoginButton}>
+            <Text style={registerStyles.manualLoginButtonTitle}>
+              ログインする
+            </Text>
+          </TouchableOpacity>
         </View>
       </ModalContent>
     </Modal>

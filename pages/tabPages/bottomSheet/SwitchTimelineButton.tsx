@@ -1,38 +1,92 @@
-import {ButtonGroup} from 'react-native-elements';
-import React, {useContext, useEffect, useState} from 'react';
-import TimelineStateContext from '../../Variable/TimelineState';
-import timelinebuttonelem from './timelinebuttonelem';
-//import changetimeline from '../../data/changetimeline';
-import {reconvert, convert} from './useSwitchtltranslator';
+import React from 'react';
+import {TouchableOpacity, View} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import {useTimelineType} from '../../../api/testReduser';
 
-const SwitchTimeline = (Props: {Mtoken: string; bottomsheetref: any}) => {
-  const {timelinestate, timelinestatewrite} = useContext(TimelineStateContext);
-
-  const returnbutton = () => {
-    return (
-      <ButtonGroup
-        onPress={val => {
-          timelinestatewrite(convert(val));
-          Props['bottomsheetref'].current.snapTo(1);
+const SwitchTimeline = () => {
+  const {
+    timeline,
+    setTimelineHome,
+    setTimelineLocal,
+    setTimelineGlobal,
+    setTimelineHybrid,
+  } = useTimelineType();
+  return (
+    <View
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        backgroundColor: 'rgb(30,30,46)',
+        borderRadius: 50,
+        height: 70,
+        width: '75%',
+      }}>
+      <TouchableOpacity
+        onPress={() => {
+          setTimelineHome();
         }}
-        selectedIndex={reconvert(timelinestate)}
-        buttons={timelinebuttonelem(timelinestate)}
-        innerBorderStyle={{width: 0}}
-        selectedButtonStyle={{backgroundColor: 'rgba(10,10,40,0.5)'}}
-        containerStyle={{
-          backgroundColor: 'rgb(30,30,46)',
-          height: 100,
-          borderRadius: 50,
-          borderWidth: 0,
-          position: 'relative',
-          marginTop: 80,
+        style={{marginLeft: 5, marginRight: 5}}>
+        <Icon
+          name="home"
+          color={
+            timeline === 'homeTimeline'
+              ? 'rgba(255,255,255,0.9)'
+              : 'rgb(180,180,230)'
+          }
+          size={45}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setTimelineLocal();
         }}
-        buttonStyle={{borderWidth: 0}}
-      />
-    );
-  };
-
-  return returnbutton();
+        style={{marginLeft: 5, marginRight: 5}}>
+        <Icon
+          name="box"
+          color={
+            timeline === 'localTimeline'
+              ? 'rgba(255,255,255,0.9)'
+              : 'rgb(180,180,230)'
+          }
+          size={45}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setTimelineGlobal();
+        }}
+        style={{marginLeft: 5, marginRight: 5}}>
+        <Icon
+          name="globe"
+          color={
+            timeline === 'globalTimeline'
+              ? 'rgba(255,255,255,0.9)'
+              : 'rgb(180,180,230)'
+          }
+          size={45}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setTimelineHybrid();
+        }}
+        style={{marginLeft: 5, marginRight: 5}}>
+        <Icon
+          name="shuffle"
+          color={
+            timeline === 'hybridTimeline'
+              ? 'rgba(255,255,255,0.9)'
+              : 'rgb(180,180,230)'
+          }
+          size={45}
+        />
+      </TouchableOpacity>
+    </View>
+  );
 };
+
+//Props['bottomsheetref'].current.snapTo(1);
 
 export default SwitchTimeline;
