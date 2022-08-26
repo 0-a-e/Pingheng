@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import {Alert} from 'react-native';
 import {useSharedCounter, useTimelineType} from '../../../api/testReduser';
 import {sendAPI} from '../../../api/useApi';
@@ -6,11 +6,16 @@ import useTimelineTypeTranslator from './useTimelineTypeTranslator';
 
 //あとで無限スクロール対応
 const useGetNote = () => {
+  useEffect(() => {
+    console.log('useGetNoteUseEffect');
+    console.log(timeline);
+  }, []);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const {notelist, addToHead, addToTail, reset} = useSharedCounter();
-  const {toEndpoint} = useTimelineTypeTranslator();
   const {timeline} = useTimelineType();
+  const {toEndpoint} = useTimelineTypeTranslator();
   const endpoint = toEndpoint(timeline);
+  console.log('endpoint: ',endpoint);
   const getNote = (place: String) => {
     let config = {
       limit: 20,
@@ -24,6 +29,8 @@ const useGetNote = () => {
         config.untilId = notelist.slice(-1)[0].id;
       }
     }
+    console.log(endpoint);
+    console.log(config);
     sendAPI([true, 'notes/' + endpoint, config]).then(data => {
       if (data) {
         if (place === 'head') {
@@ -41,6 +48,7 @@ const useGetNote = () => {
       }
     });
   };
+
   return {getNote};
 };
 export default useGetNote;

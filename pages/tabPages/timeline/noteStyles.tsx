@@ -43,7 +43,7 @@ const noteStyles = StyleSheet.create({
 
   incardcontainer: {
     position: 'absolute',
-    marginLeft: 115,
+    marginLeft: 85,
     height: 77,
     width: '100%',
     flexDirection: 'column',
