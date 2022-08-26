@@ -1,17 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomSheet from './tabPages/bottomSheet/BottomSheet';
 import NotifyScreen from './tabPages/notify/Notify';
 import TimelineScreen from './tabPages/timeline/Timeline';
-
+import UserScreen from './tabPages/user/User';
 const MainScreen = ({navigation}) => {
   const [beforetab, beforetabWrite] = useState('');
   const Stack = createNativeStackNavigator();
@@ -42,6 +35,11 @@ const MainScreen = ({navigation}) => {
         <Stack.Screen
           name="Notify"
           component={NotifyScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="User"
+          component={UserScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

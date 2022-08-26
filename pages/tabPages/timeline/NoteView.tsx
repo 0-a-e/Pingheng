@@ -1,31 +1,40 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import noteStyles from './NoteStyles';
+import noteStyles from './noteStyles';
 import allocation from './allocation';
+import { useNavigation } from '@react-navigation/native';
 
 const NoteView = props => {
   const {name, avatarUrl} = allocation(props);
   const data = props.data;
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       onLongPress={() => {
         alert('long tap');
-        console.log(props.data.item);
+        console.log(data.item);
       }}>
       <View style={noteStyles.card}>
         <View style={noteStyles.cardwrapper}>
-          <Image
-            source={{
-              uri: avatarUrl,
-            }}
-            accessible={true}
-            style={noteStyles.avatar}
-            accessibilityLabel={name}
-          />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('User', data.user);
+            }}>
+            <Image
+              source={{
+                uri: avatarUrl,
+              }}
+              accessible={true}
+              style={noteStyles.avatar}
+              accessibilityLabel={name}
+            />
+          </TouchableOpacity>
           <View style={noteStyles.incardcontainer}>
             <View style={noteStyles.topcontainer}>
               <View style={{flexDirection: 'row'}}>
-                <Text numberOfLines={1}>{name}</Text>
+                <Text style={{color: '#fff'}} numberOfLines={1}>
+                  {name}
+                </Text>
               </View>
             </View>
             <View style={noteStyles.normalcontainer}>
@@ -33,7 +42,6 @@ const NoteView = props => {
                 style={noteStyles.notetext}
                 numberOfLines={2}
                 ellipsizeMode="middle">
-                    {data.id}
                 {data.text}
               </Text>
             </View>

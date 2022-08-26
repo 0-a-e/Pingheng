@@ -1,5 +1,6 @@
 const allocation = (props) => {
-  const name = getName(props);
+  const data = props.data.item;
+  const name = getName(data);
   const ifrenote = ifRenote(props);
   const text = getText(props, ifrenote);
   const actionring = switchActionRing(props);
@@ -12,14 +13,11 @@ const allocation = (props) => {
   return res;
 };
 
-const getName = (props: any) => {
-  if (props.data.item.user.name != null) {
-    return props.data.item.user.name;
-  } else if (
-    props.data.item.user.username &&
-    props.data.item.user.name == null
-  ) {
-    return '@' + props.data.item.user.username;
+const getName = (data: any) => {
+  if (data.user.name != null) {
+    return data.user.name;
+  } else if (data.user.username && data.user.name == null) {
+    return '@' + data.user.username;
   }
 };
 
