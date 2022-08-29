@@ -18,7 +18,7 @@ const NoteView = props => {
         <View style={noteStyles.cardwrapper}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('User', data.user);
+              navigation.navigate('User', data.user.id);
             }}>
             <Image
               source={{

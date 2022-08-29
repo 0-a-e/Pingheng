@@ -25,9 +25,9 @@ function TimelineScreen({navigation}) {
         alignItems: 'center',
       }}>
       <TouchableOpacity
-      style={{
-        width: '100%',
-        height: 30,
+        style={{
+          width: '100%',
+          height: 30,
         }}
         onPress={() => {
           reset();

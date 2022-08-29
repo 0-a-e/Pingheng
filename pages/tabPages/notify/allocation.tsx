@@ -1,4 +1,4 @@
-const allocation = (props) => {
+const allocation = props => {
   const data = props.data.item;
   const name = getName(data);
   const ifrenote = ifRenote(props);
@@ -7,8 +7,9 @@ const allocation = (props) => {
   const res = {
     name: name,
     text: text,
-    avatar: props.data.item.user.avatarUrl,
+    avatar: data.user.avatarUrl,
     actionring: actionring,
+    userId: data.user.id,
   };
   return res;
 };
@@ -62,16 +63,16 @@ const getText = (props: any, renote: boolean) => {
     return 'renotetext';
   }*/
   switch (props.data.item.type) {
-  /*  case 'renote':
+    case 'renote':
       // json位置の参考用　消さない
       //   console.log("333---");
       //   console.log(props["data"]["item"]["note"]["renote"]["text"]);
       //未実装: pollvote
       if (renote) {
-        //  return props.data.item.note.renote.text;
+        return 'リノートされました: ' + props.data.item.note.renote.text;
       } else {
-        //  return props.data.item.note.text;
-      }*/
+        return props.data.item.note.text;
+      }
     case 'follow':
       return 'フォローされました';
     case 'reply':
