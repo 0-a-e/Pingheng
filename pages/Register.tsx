@@ -18,7 +18,7 @@ const Register = () => {
     <View style={registerStyles.background}>
       <Video
         source={{
-          uri: 'https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_1MB_MP4.mp4',
+          uri: 'https://static.vecteezy.com/system/resources/previews/002/018/013/mp4/hd-bars-and-tone-free-video.mp4',
         }}
         style={[
           {height: Dimensions.get('window').height},

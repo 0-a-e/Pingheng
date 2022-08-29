@@ -50,11 +50,13 @@ const notifyStyles = StyleSheet.create({
     //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
     //Avaterの位置変更で修正済み
   },
+  avatarContainer: {
+    zIndex: 20,
+  },
   avatar: {
     position: 'relative',
     backgroundColor: 'rgba(230,230,230,1)',
     borderRadius: 50,
-    zIndex: 20,
     height: 77,
     width: 77,
   },

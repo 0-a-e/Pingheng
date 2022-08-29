@@ -1,22 +1,30 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 //import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notifyStyles from './notifyStyles';
 
 const ActionRing = (actionRingProps: any) => {
+  //パフォーマンスに問題でそう usecallback使えばいいの?
+  const navigation = useNavigation();
   const data = actionRingProps.data;
   return (
     <View>
-      <Image
-        source={{
-          uri: data.avatar,
-        }}
-        accessible={true}
-        style={notifyStyles.avatar}
-        accessibilityLabel={data.name}
-      />
-
+      <TouchableOpacity
+      style={notifyStyles.avatarContainer}
+        onPress={() => {
+          navigation.navigate('User', data.userId);
+        }}>
+        <Image
+          source={{
+            uri: data.avatar,
+          }}
+          accessible={true}
+          style={notifyStyles.avatar}
+          accessibilityLabel={data.name}
+        />
+      </TouchableOpacity>
       <View
         style={[
           {backgroundColor: data.actionring.background},

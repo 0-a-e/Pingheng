@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import {useEffect, useReducer} from 'react';
 import {Alert} from 'react-native';
 import {useSharedCounter, useTimelineType} from '../../../api/testReduser';
 import {sendAPI} from '../../../api/useApi';
@@ -15,8 +15,8 @@ const useGetNote = () => {
   const {timeline} = useTimelineType();
   const {toEndpoint} = useTimelineTypeTranslator();
   const endpoint = toEndpoint(timeline);
-  console.log('endpoint: ',endpoint);
-  const getNote = (place: String) => {
+  console.log('endpoint: ', endpoint);
+  const getNote = async (place: String) => {
     let config = {
       limit: 20,
     };
@@ -31,22 +31,21 @@ const useGetNote = () => {
     }
     console.log(endpoint);
     console.log(config);
-    sendAPI([true, 'notes/' + endpoint, config]).then(data => {
-      if (data) {
-        if (place === 'head') {
-          addToHead(data);
-        } else if (place === 'tail') {
-          addToTail(data);
-        } else {
-          addToHead(data);
-        }
-        forceUpdate();
+    const data = await sendAPI([true, 'notes/' + endpoint, config]);
+    if (data) {
+      if (place === 'head') {
+        addToHead(data);
+      } else if (place === 'tail') {
+        addToTail(data);
       } else {
-        Alert.alert('取得エラー', 'hogehoge(枠外をタップして非表示)', [], {
-          cancelable: true,
-        });
+        addToHead(data);
       }
-    });
+      forceUpdate();
+    } else {
+      Alert.alert('取得エラー', 'hogehoge(枠外をタップして非表示)', [], {
+        cancelable: true,
+      });
+    }
   };
 
   return {getNote};
