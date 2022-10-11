@@ -54,6 +54,7 @@ const noteStyles = StyleSheet.create({
     width: 77,
     height: 77,
     borderRadius: 50,
+    backgroundColor: '#fff',
   },
   /*RT系*/
   RTicon: {

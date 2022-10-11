@@ -6507,7 +6507,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@*, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@*, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://repo.huaweicloud.com/repository/npm/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6665,7 +6665,7 @@ react-native-modals@^0.22.3:
 
 react-native-pager-view@^5.4.25:
   version "5.4.25"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-pager-view/-/react-native-pager-view-5.4.25.tgz#cd639d5387a7f3d5581b55a33c5faa1cbc200f97"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-pager-view/-/react-native-pager-view-5.4.25.tgz"
   integrity sha512-3drrYwaLat2fYszymZe3nHMPASJ4aJMaxiejfA1V5SK3OygYmdtmV2u5prX7TnjueJzGSyyaCYEr2JlrRt4YPg==
 
 react-native-reanimated@2.9.1:
@@ -6697,7 +6697,7 @@ react-native-screens@^3.16.0:
 
 react-native-tab-view@^3.1.1:
   version "3.1.1"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz#1f8d7a835ab4f5b1b1407ec8dddc1053b53fa3c6"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
   integrity sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw==
 
 react-native-vector-icons@^9.2.0:
@@ -6717,6 +6717,13 @@ react-native-video@^6.0.0-alpha.1:
     keymirror "^0.1.1"
     prop-types "^15.7.2"
     shaka-player "^3.3.2"
+
+react-native-websocket@^1.0.2:
+  version "1.0.2"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-websocket/-/react-native-websocket-1.0.2.tgz#5f9f57c6adcfd6163e4480207302d161bb602315"
+  integrity sha512-V0yP5gEHrfP6dj3DEgMywf+yyqN6B0csGdPxv8sLSpmEQoN3e9umhwkz0OC/7Tl5BR0yAISSDIs4w95Lp1Sudg==
+  dependencies:
+    prop-types "^15.6.1"
 
 react-native@0.68.2:
   version "0.68.2"

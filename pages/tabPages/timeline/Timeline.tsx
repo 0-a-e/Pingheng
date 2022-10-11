@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,13 @@ import {useSharedCounter} from '../../../api/testReduser';
 import useGetNote from './useGetNote';
 import NoteView from './NoteView';
 import {v4 as uuidv4} from 'uuid';
+import {WSComponent} from './useWebsocket';
 
 function TimelineScreen({navigation}) {
   const {notelist, reset} = useSharedCounter();
   const {getNote} = useGetNote();
+  const [isLoading, setIsLoading] = useState(false);
+ // const {TES} = useWebsocket(isLoading, setIsLoading);
   useEffect(() => {
     console.log('TimelineUseEffect');
   }, []);
@@ -32,13 +35,13 @@ function TimelineScreen({navigation}) {
         onPress={() => {
           reset();
         }}>
-        <Text>reset</Text>
+        <Text style={{color: 'red'}}>reset</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           getNote('head');
         }}>
-        <Text>getNote</Text>
+        <Text style={{color: 'green'}}>getNote</Text>
       </TouchableOpacity>
       <FlatList
         style={{width: '100%', backgroundColor: 'rgb(19,20,26)'}}
@@ -54,6 +57,7 @@ function TimelineScreen({navigation}) {
           </View>
         )}
       />
+      <WSComponent />
     </View>
   );
 }

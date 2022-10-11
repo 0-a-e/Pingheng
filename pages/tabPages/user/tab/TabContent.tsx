@@ -9,6 +9,7 @@ import {
 import useGetUserNote from '../useGetUserNote';
 import NoteView from '../../timeline/NoteView';
 import {v4 as uuidv4} from 'uuid';
+import useListEditFunc from '../../../../api/useListEditFunc';
 
 const TabContent = ({userId, mode}: {userId: string; mode: string}) => {
   const [notelist, setNotelist] = useState([]);
@@ -36,8 +37,8 @@ const TabContent = ({userId, mode}: {userId: string; mode: string}) => {
     config.ifAllNote = true;
   }
 
-  const {getUserNote, getHeadTailId, getNewNotelist} = useGetUserNote(config);
-
+  const {getUserNote} = useGetUserNote(config);
+  const {getHeadTailId, getNewlist} = useListEditFunc();
   const firstUpdate = async () => {
     setIsLoading(true);
     const r = await getUserNote('', '');
@@ -48,7 +49,7 @@ const TabContent = ({userId, mode}: {userId: string; mode: string}) => {
   const tailUpdate = async () => {
     const placeId = getHeadTailId(notelist, 'tail');
     const addlist = await getUserNote('', placeId);
-    const newlist = getNewNotelist(notelist, addlist, 'tail');
+    const newlist = getNewlist(notelist, addlist, 'tail');
     setNotelist(newlist);
   };
 
@@ -59,7 +60,7 @@ const TabContent = ({userId, mode}: {userId: string; mode: string}) => {
     const addlist = await getUserNote(newPlaceId, '');
     const oldPlaceId = getHeadTailId(addlist, 'head');
     if (oldPlaceId !== newPlaceId) {
-      const newlist = getNewNotelist(notelist, addlist, 'head');
+      const newlist = getNewlist(notelist, addlist, 'head');
       setNotelist(newlist);
     }
     setIsLoading(false);

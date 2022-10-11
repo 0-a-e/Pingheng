@@ -2,6 +2,7 @@ import {useEffect, useReducer} from 'react';
 import {Alert} from 'react-native';
 import {useSharedCounter, useTimelineType} from '../../../api/testReduser';
 import {sendAPI} from '../../../api/useApi';
+import useListEditFunc from '../../../api/useListEditFunc';
 import useTimelineTypeTranslator from './useTimelineTypeTranslator';
 
 //あとで無限スクロール対応
@@ -15,6 +16,8 @@ const useGetNote = () => {
   const {timeline} = useTimelineType();
   const {toEndpoint} = useTimelineTypeTranslator();
   const endpoint = toEndpoint(timeline);
+  const {getHeadTailId, getNewlist} = useListEditFunc();
+
   console.log('endpoint: ', endpoint);
   const getNote = async (place: String) => {
     let config = {
@@ -23,14 +26,13 @@ const useGetNote = () => {
     if (notelist.length > 0) {
       if (place === 'head') {
         //から、先頭
-        config.sinceId = notelist[0].id;
+        config.sinceId = getHeadTailId(notelist, 'head');
       } else if (place === 'tail') {
         //まで、最後
-        config.untilId = notelist.slice(-1)[0].id;
+        config.untilId = getHeadTailId(notelist, 'tail');
       }
     }
-    console.log(endpoint);
-    console.log(config);
+
     const data = await sendAPI([true, 'notes/' + endpoint, config]);
     if (data) {
       if (place === 'head') {

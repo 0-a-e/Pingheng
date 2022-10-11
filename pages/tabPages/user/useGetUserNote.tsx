@@ -1,7 +1,6 @@
 import {Alert} from 'react-native';
 import {sendAPI} from '../../../api/useApi';
 
-//あとで無限スクロール対応
 const useGetUserNote = (props: {
   ifWithFiles: boolean;
   ifAllNote: boolean;
@@ -36,27 +35,6 @@ const useGetUserNote = (props: {
     }
   };
 
-  const getHeadTailId = (notelist, place: string) => {
-    if (notelist.length > 0) {
-      if (place === 'head') {
-        //から、先頭
-        return notelist[0].id;
-      } else if (place === 'tail') {
-        //まで、最後
-        return notelist.slice(-1)[0].id;
-      }
-    }
-  };
-
-  const getNewNotelist = (notelist, addlist, place: string) => {
-    if (place === 'head') {
-      return [...addlist, ...notelist];
-    } else if (place === 'tail') {
-      return [...notelist, ...addlist];
-    }
-    return [];
-  };
-
-  return {getUserNote, getHeadTailId, getNewNotelist};
+  return {getUserNote};
 };
 export default useGetUserNote;

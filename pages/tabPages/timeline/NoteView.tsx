@@ -3,7 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import noteStyles from './noteStyles';
 import allocation from './allocation';
 import { useNavigation } from '@react-navigation/native';
-
+import { roundedDiffDate } from '../../../api/dateCalc';
 const NoteView = props => {
   const {name, avatarUrl} = allocation(props);
   const data = props.data;
@@ -35,6 +35,7 @@ const NoteView = props => {
                 <Text style={{color: '#fff'}} numberOfLines={1}>
                   {name}
                 </Text>
+                <Text>{roundedDiffDate(data.createdAt)}</Text>
               </View>
             </View>
             <View style={noteStyles.normalcontainer}>

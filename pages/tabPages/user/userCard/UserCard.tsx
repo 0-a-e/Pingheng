@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Image, Text, Dimensions, StyleSheet} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, Image, Text, Dimensions, StyleSheet, Linking} from 'react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
@@ -23,7 +23,6 @@ const UserCard = ({user}) => {
   const width85 = SCREEN_WIDTH * 0.85;
   const translateX = useSharedValue(0);
   const arrowrotate = useSharedValue(0);
-
   const arrowStyle = useAnimatedStyle(() => {
     return {
       transform: [{rotateZ: `${arrowrotate.value}deg`}],
@@ -68,6 +67,31 @@ const UserCard = ({user}) => {
       }
     },
   });
+  const NameBox = () => {
+    const username = () => {
+      let un = '@' + user.username;
+      if (user.host) {
+        un += '@' + user.host;
+      }
+      return un;
+    };
+    // メモ usernameのとこは要素ごとifすると特殊文字なのかバージョンとかなのかわからんけど1人エラー出る人いてCSSで消してる
+    return (
+      <TouchableOpacity
+        style={{
+          marginLeft: 10,
+        }}
+        // タップでnameとusername入れ替わるようにする -> やっぱやめた
+        onPress={() => {
+          Linking.openURL(user.uri);
+        }}>
+        <Text style={userCardStyles.nameStyle}>
+          {user.name === '' ? username() : user.name || username()}
+        </Text>
+        <Text style={{display: user.name ? 'flex' : 'none'}}>{username()}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <GestureHandlerRootView style={{height: 150}}>
@@ -113,17 +137,7 @@ const UserCard = ({user}) => {
                   //   accessibilityLabel={name}
                 />
               </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  marginLeft: 10,
-                }}
-                // タップでnameとusername入れ替わるようにする
-                onPress={() => {}}>
-                <Text style={userCardStyles.nameStyle}>
-                  {user.username}
-                  {/*user.name*/}
-                </Text>
-              </TouchableOpacity>
+              <NameBox />
             </View>
             <TouchableOpacity
               onPress={() => {
