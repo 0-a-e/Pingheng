@@ -1,91 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {roundedDiffDate} from '../../../../api/dateCalc';
+import {roundedDiffDate, dateToJa} from '../../../../api/dateCalc';
+import InstanceTag from './InstanceTag';
 
 const UserDetail = props => {
   const user = props.data;
-  const dateToJa = (dateString: string) => {
-    const date = new Date(Date.parse(dateString));
-    const dateJa =
-      date.getFullYear() +
-      '年' +
-      (date.getMonth() + 1).toString().replace(/^0+/, '') +
-      '月' +
-      date.getDate() +
-      '日';
-    return dateJa;
-  };
-
   const calcBirth = (dateString: string) => {
     const date = new Date(Date.parse(dateString));
     const nowDate = new Date(Date.now());
     const difference = nowDate - date;
-    const age = Math.round(difference / (1000 * 60 * 60 * 24 * 365));
+    const age = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
     const dateJa = dateToJa(dateString) + '(' + age + '歳)';
     return dateJa;
   };
 
-  const InstanceTag = () => {
-    if ('instance' in user === false) {
-      return (
-        <View
-          style={{
-            height: 18,
-            borderRadius: 50,
-            backgroundColor: 'rgb(31,34,42)',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 0,
-            position: 'relative',
-            paddingLeft: 10,
-            paddingRight: 10,
-          }}>
-          <Text numberOfLines={1} style={{fontSize: 10, marginBottom: 0.5}}>
-            ローカル
-          </Text>
-        </View>
-      );
-    } else {
-      return (
-        <View style={{height: 18, justifyContent: 'center'}}>
-          <Image
-            style={{
-              width: 50,
-              height: 18,
-              borderRadius: 20,
-              zIndex: 1,
-              position: 'absolute',
-              backgroundColor: user.instance.themeColor,
-            }}
-            source={{
-              uri: user.instance.iconUrl,
-            }}
-          />
-          <View
-            style={{
-              height: 50,
-              borderRadius: 20,
-              backgroundColor: user.instance.themeColor,
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: 0,
-              marginLeft: 10,
-              position: 'relative',
-              paddingRight: 5,
-            }}>
-            <Text
-              numberOfLines={1}
-              style={{marginLeft: 12, fontSize: 10, marginBottom: 0.5}}>
-              {user.instance.name}
-            </Text>
-          </View>
-        </View>
-      );
-    }
-  };
   return (
-    //ローカルでないときに注意書き
     <View style={{height: '100%'}}>
       <View
         style={{
@@ -119,11 +49,11 @@ const UserDetail = props => {
           flexDirection: 'row',
           height: 150 - 55 - 18 - 8 - 8,
           paddingLeft: 15,
-          paddingRight: 15,
+          paddingRight: 10,
         }}>
         <View
           style={{
-            width: '60%',
+            width: '53%',
             height: '100%',
             justifyContent: 'space-around',
           }}>
@@ -164,12 +94,11 @@ const UserDetail = props => {
         </View>
         <View
           style={{
-            width: '40%',
+            width: '47%',
             height: '100%',
             justifyContent: 'space-around',
-           // backgroundColor: 'green',
           }}>
-          <InstanceTag />
+          <InstanceTag user={user} />
         </View>
       </View>
       <View style={styles.numberContainer}>
@@ -180,8 +109,12 @@ const UserDetail = props => {
               borderRightWidth: 0.25,
             },
           ]}>
-          <Text style={styles.numberStyle}>{user.followingCount}</Text>
-          <Text style={{fontSize: 11}}>フォロー</Text>
+          <Text style={styles.numberStyle} numberOfLines={1}>
+            {user.followingCount}
+          </Text>
+          <Text style={{fontSize: 11}} numberOfLines={1}>
+            フォロー
+          </Text>
         </View>
         <View
           style={[
@@ -191,8 +124,12 @@ const UserDetail = props => {
               borderRightWidth: 0.25,
             },
           ]}>
-          <Text style={styles.numberStyle}>{user.followersCount}</Text>
-          <Text style={{fontSize: 11}}>フォロワー</Text>
+          <Text style={styles.numberStyle} numberOfLines={1}>
+            {user.followersCount}
+          </Text>
+          <Text style={{fontSize: 11}} numberOfLines={1}>
+            フォロワー
+          </Text>
         </View>
         <View
           style={[
@@ -201,8 +138,12 @@ const UserDetail = props => {
               borderLeftWidth: 0.25,
             },
           ]}>
-          <Text style={styles.numberStyle}>{user.notesCount}</Text>
-          <Text style={{fontSize: 11}}>投稿</Text>
+          <Text style={styles.numberStyle} numberOfLines={1}>
+            {user.notesCount}
+          </Text>
+          <Text style={{fontSize: 11}} numberOfLines={1}>
+            投稿
+          </Text>
         </View>
       </View>
     </View>
@@ -222,7 +163,7 @@ const styles = StyleSheet.create({
   numberBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '33.33%',
+    flex: 1,
   },
   numberStyle: {
     color: '#cfcfcf',

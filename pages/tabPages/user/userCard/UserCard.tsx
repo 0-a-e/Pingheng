@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 import {View, Image, Text, Dimensions, StyleSheet, Linking} from 'react-native';
 import {
   GestureHandlerRootView,
@@ -67,6 +67,7 @@ const UserCard = ({user}) => {
       }
     },
   });
+
   const NameBox = () => {
     const username = () => {
       let un = '@' + user.username;
@@ -77,86 +78,98 @@ const UserCard = ({user}) => {
     };
     // メモ usernameのとこは要素ごとifすると特殊文字なのかバージョンとかなのかわからんけど1人エラー出る人いてCSSで消してる
     return (
-      <TouchableOpacity
-        style={{
-          marginLeft: 10,
-        }}
+      <View
+        style={userCardStyles.textContainer}
         // タップでnameとusername入れ替わるようにする -> やっぱやめた
-        onPress={() => {
-          Linking.openURL(user.uri);
-        }}>
-        <Text style={userCardStyles.nameStyle}>
-          {user.name === '' ? username() : user.name || username()}
-        </Text>
-        <Text style={{display: user.name ? 'flex' : 'none'}}>{username()}</Text>
-      </TouchableOpacity>
+      >
+        <TouchableOpacity
+          onPress={() => {
+            if (user.uri) {
+              Linking.openURL(user.uri);
+            }
+          }}>
+          <Text style={userCardStyles.nameStyle} numberOfLines={1}>
+            {user.name === '' ? username() : user.name || username()}
+          </Text>
+          <Text
+            numberOfLines={1}
+            style={{display: user.name ? 'flex' : 'none'}}>
+            {username()}
+          </Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
+  const BackgroundBox = () => (
+    <View
+      style={[
+        // user.bannerColorがあるときはその色?
+        userCardStyles.backgroundContainer,
+      ]}>
+      <Image
+        source={{
+          uri: user.bannerUrl,
+        }}
+        accessible={true}
+        style={userCardStyles.bannerImage}
+        //   accessibilityLabel={name}
+      />
+      <View style={userCardStyles.imagekariShadow} />
+    </View>
+  );
+
+  const FrontBox = ({children}: {children?: React.ReactNode}) => (
+    <View style={userCardStyles.frontCardContainer}>{children}</View>
+  );
+
+  const IconBox = () => (
+    <View style={userCardStyles.avatarContainer}>
+      <TouchableOpacity>
+        <Image
+          source={{
+            uri: user.avatarUrl,
+          }}
+          accessible={true}
+          style={userCardStyles.avatarImage}
+          //   accessibilityLabel={name}
+        />
+      </TouchableOpacity>
+    </View>
+  );
+
+  const ArrowBox = () => (
+    <View style={userCardStyles.arrowContainer}>
+      <TouchableOpacity
+        style={{width: 30}}
+        onPress={() => {
+          console.log(translateX.value);
+          console.log(-width85);
+          if (translateX.value <= -width85 + 80) {
+            translateX.value = withSpring(0, springConfig);
+            arrowrotate.value = withSpring(180, springConfig);
+          } else {
+            translateX.value = withSpring(-width85, springConfig);
+            arrowrotate.value = withSpring(0, springConfig);
+          }
+        }}>
+        <Animated.View style={arrowStyle}>
+          <Icon name="arrow-right" color={'#fff'} size={30} />
+        </Animated.View>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
-    <GestureHandlerRootView style={{height: 150}}>
+    <GestureHandlerRootView>
       <PanGestureHandler onGestureEvent={gestureHandler}>
-        <Animated.View>
-          <View
-            style={[
-              // user.bannerColorがあるときはその色?
-              userCardStyles.Container,
-            ]}>
-            <Image
-              source={{
-                uri: user.bannerUrl,
-              }}
-              accessible={true}
-              style={userCardStyles.bannerImage}
-              //   accessibilityLabel={name}
-            />
-            <View
-              style={{
-                position: 'absolute',
-                width: '100%',
-                height: 150,
-                opacity: 0.4,
-                backgroundColor: 'black',
-                borderRadius: 0,
-              }}
-            />
-          </View>
-          <View style={userCardStyles.frontCardContainer}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <TouchableOpacity style={userCardStyles.avatarContainer}>
-                <Image
-                  source={{
-                    uri: user.avatarUrl,
-                  }}
-                  accessible={true}
-                  style={userCardStyles.avatarImage}
-                  //   accessibilityLabel={name}
-                />
-              </TouchableOpacity>
-              <NameBox />
-            </View>
-            <TouchableOpacity
-              onPress={() => {
-                console.log(translateX.value);
-                console.log(-width85);
-                if (translateX.value <= -width85 + 80) {
-                  translateX.value = withSpring(0, springConfig);
-                  arrowrotate.value = withSpring(180, springConfig);
-                } else {
-                  translateX.value = withSpring(-width85, springConfig);
-                  arrowrotate.value = withSpring(0, springConfig);
-                }
-              }}
-              style={{marginRight: 10}}>
-              <Animated.View style={arrowStyle}>
-                <Icon name="arrow-right" color={'#fff'} size={30} />
-              </Animated.View>
-            </TouchableOpacity>
-          </View>
+        <Animated.View style={{height: 150, width: '100%'}}>
+          <BackgroundBox />
+          <FrontBox>
+            <IconBox />
+            <NameBox />
+            <ArrowBox />
+          </FrontBox>
           <Animated.View style={[rStyle, userCardStyles.userDetailContainer]}>
             <UserDetail data={user} />
           </Animated.View>
@@ -169,37 +182,45 @@ const UserCard = ({user}) => {
 export default UserCard;
 
 const userCardStyles = StyleSheet.create({
-  Container: {
-    position: 'absolute',
-    width: '100%',
-    height: 150,
-  },
-  frontCardContainer: {
+  /* BackgroundBox */
+  backgroundContainer: {
     position: 'relative',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    height: 150,
+    flex: 1,
+    backgroundColor: '#fff',
   },
   bannerImage: {
     position: 'absolute',
     width: '100%',
     height: 150,
-    borderRadius: 0,
+  },
+  imagekariShadow: {
+    flex: 1,
+    opacity: 0.4,
+    backgroundColor: 'black',
+  },
+  /* FrontBox */
+  frontCardContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: 75,
+    top: '25%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   avatarImage: {
     width: 75,
     height: 75,
     borderRadius: 50,
-    marginLeft: 0,
+    backgroundColor: 'white',
   },
   avatarContainer: {
-    borderRadius: 50,
-    backgroundColor: '#fff',
-    width: 75,
+    width: 95,
     height: 75,
-    marginLeft: 5,
+    paddingLeft: 5,
+  },
+  textContainer: {
+    justifyContent: 'center',
+    flex: 1,
   },
   nameStyle: {
     color: '#fff',
@@ -215,6 +236,13 @@ const userCardStyles = StyleSheet.create({
     backgroundColor: 'rgb(19,20,26)',
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
+  },
+  /*ArrowBox*/
+  arrowContainer: {
+    height: '100%',
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 // const opacity = useSharedValue(1);

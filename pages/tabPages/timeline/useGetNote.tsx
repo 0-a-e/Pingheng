@@ -1,16 +1,11 @@
-import {useEffect, useReducer} from 'react';
+import {useReducer} from 'react';
 import {Alert} from 'react-native';
 import {useSharedCounter, useTimelineType} from '../../../api/testReduser';
 import {sendAPI} from '../../../api/useApi';
 import useListEditFunc from '../../../api/useListEditFunc';
 import useTimelineTypeTranslator from './useTimelineTypeTranslator';
 
-//あとで無限スクロール対応
 const useGetNote = () => {
-  useEffect(() => {
-    console.log('useGetNoteUseEffect');
-    console.log(timeline);
-  }, []);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const {notelist, addToHead, addToTail, reset} = useSharedCounter();
   const {timeline} = useTimelineType();
@@ -18,21 +13,27 @@ const useGetNote = () => {
   const endpoint = toEndpoint(timeline);
   const {getHeadTailId, getNewlist} = useListEditFunc();
 
-  console.log('endpoint: ', endpoint);
-  const getNote = async (place: String) => {
+  const headUpdate = async () => {
     let config = {
       limit: 20,
     };
     if (notelist.length > 0) {
-      if (place === 'head') {
-        //から、先頭
-        config.sinceId = getHeadTailId(notelist, 'head');
-      } else if (place === 'tail') {
-        //まで、最後
-        config.untilId = getHeadTailId(notelist, 'tail');
-      }
+      config.sinceId = getHeadTailId(notelist, 'head');
     }
-
+    await getNote(config, 'head');
+    return;
+  };
+  const tailUpdate = async () => {
+    let config = {
+      limit: 20,
+    };
+    if (notelist.length > 0) {
+      config.untilId = getHeadTailId(notelist, 'tail');
+    }
+    await getNote(config, 'tail');
+    return;
+  };
+  const getNote = async (config: Object, place: string) => {
     const data = await sendAPI([true, 'notes/' + endpoint, config]);
     if (data) {
       if (place === 'head') {
@@ -48,8 +49,8 @@ const useGetNote = () => {
         cancelable: true,
       });
     }
+    return;
   };
-
-  return {getNote};
+  return {headUpdate, tailUpdate};
 };
 export default useGetNote;

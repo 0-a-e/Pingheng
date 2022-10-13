@@ -32,7 +32,7 @@ const Tab = ({publicReactions, id}: {publicReactions: boolean; id: string}) => {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{width: layout.width}}
-      renderTabBar={TabBar}
+      renderTabBar={props => <TabBar {...props} onIndexChange={setIndex} />}
     />
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import noteStyles from './noteStyles';
-import allocation from './allocation';
-import { useNavigation } from '@react-navigation/native';
-import { roundedDiffDate } from '../../../api/dateCalc';
+import allocation from '../timeline/allocation';
+import {useNavigation} from '@react-navigation/native';
+import {roundedDiffDate} from '../../../api/dateCalc';
 const NoteView = props => {
   const {name, avatarUrl} = allocation(props);
   const data = props.data;

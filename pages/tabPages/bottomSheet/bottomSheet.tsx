@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import BottomSheet from 'reanimated-bottom-sheet';
+import UserCard from './UserCard';
+import SendNoteCard from './SendNoteCard';
 import SwitchTimelineButton from './SwitchTimelineButton';
 
 function BottomSheetModule(sheetProps: {navigation: any}) {
@@ -89,32 +91,8 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
   const Insheet = () => (
     <View style={{height: '100%', backgroundColor: 'rgba(5,5,20,0.95)'}}>
       <MyTab />
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          backgroundColor: 'transparent',
-          width: '100%',
-          height: 190,
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            sheetProps.navigation.navigate('Settings');
-          }}
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: 50,
-            backgroundColor: 'rgb(30,30,46)',
-            position: 'absolute',
-            top: 0,
-            right: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Icon size={30} name="settings" color="rgb(180,180,230)" />
-        </TouchableOpacity>
-      </View>
+      <SendNoteCard />
+      <UserCard props={sheetProps} />
       <SwitchTimelineButton />
     </View>
   );

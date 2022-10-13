@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import {sendAPI} from '../../../api/useApi';
+import {sendAPI} from '../../../../api/useApi';
 
 const useGetUserNote = (props: {
   ifWithFiles: boolean;

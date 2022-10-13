@@ -3,11 +3,13 @@ import {Alert, View} from 'react-native';
 import {sendAPI} from '../../../api/useApi';
 import Tab from './tab/Tab';
 import UserCard from './userCard/UserCard';
+import {useRoute} from '@react-navigation/native';
 
-const UserScreen = props => {
+const UserScreen = () => {
+  const route = useRoute();
   const [user, setUser] = useState({});
   useEffect(() => {
-    const userId = props.route.params;
+    const userId = route.params;
     sendAPI([true, 'users/show', {userId: userId}]).then(data => {
       if (data) {
         setUser(data);
@@ -18,7 +20,7 @@ const UserScreen = props => {
         setUser({});
       }
     });
-  }, [props.route.params]);
+  }, [route.params]);
 
   if (user.id !== undefined) {
     return (

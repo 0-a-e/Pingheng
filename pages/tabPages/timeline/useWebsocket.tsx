@@ -41,7 +41,7 @@ export const WSComponent = (
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: 'green', width: 200, height: 200}}>
+    <View style={{display: 'none'}}>
       {socketUrl !== '' && (
         <WS
           ref={ref => {
@@ -54,7 +54,6 @@ export const WSComponent = (
           }}
           onMessage={note => {
             const data = JSON.parse(note['data']).body;
-            console.log(data.type);
             if (data.type === 'note') {
               addToHead([data.body]);
             }

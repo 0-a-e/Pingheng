@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {DarkTheme, NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomSheet from './tabPages/bottomSheet/BottomSheet';
 import NotifyScreen from './tabPages/notify/Notify';
@@ -47,7 +47,7 @@ const MainScreen = ({navigation}) => {
   }
 
   return (
-    <NavigationContainer independent={true}>
+    <NavigationContainer theme={DarkTheme} independent={true}>
       <MyStack />
       <BottomSheet navigation={navigation} />
     </NavigationContainer>

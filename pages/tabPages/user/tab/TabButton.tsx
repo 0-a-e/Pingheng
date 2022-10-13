@@ -1,5 +1,12 @@
-import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, TouchableOpacity, View, Animated} from 'react-native';
+import ReAnimated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {NavigationState, Route} from 'react-native-tab-view';
+import {Measure} from './types';
 
 const TabButton = ({
   icon,
@@ -12,15 +19,19 @@ const TabButton = ({
   jumpTo: any;
   route: string;
 }) => {
+
   return (
-    <TouchableOpacity
-      onPress={() => {
-        jumpTo(route);
-      }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={{marginLeft: 10}}>{title}</Text>
-      </View>
-    </TouchableOpacity>
+    <ReAnimated.View style={[{backgroundColor: 'red', height: '100%'}]}>
+      <TouchableOpacity
+        onPress={() => {
+          jumpTo(route);
+        }}
+        style={{width: '100%', height: '100%', justifyContent: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginLeft: 10}}>{title}</Text>
+        </View>
+      </TouchableOpacity>
+    </ReAnimated.View>
   );
 };
 
