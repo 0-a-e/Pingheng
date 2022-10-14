@@ -21,7 +21,7 @@ const SwitchTimeline = () => {
         backgroundColor: 'rgb(30,30,46)',
         borderRadius: 50,
         height: 70,
-        width: '75%',
+        width: '100%',
       }}>
       <TouchableOpacity
         onPress={() => {

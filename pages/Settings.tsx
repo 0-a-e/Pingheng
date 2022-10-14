@@ -40,7 +40,7 @@ const SettingsScreen = () => {
     <View style={settingsStyles.background}>
       <View style={settingsStyles.logoBox}>
         <View style={{height: 150, width: 150, backgroundColor: 'red'}} />
-        <Text style={{color: '#fff', fontSize: 20, marginTop: 5}}>1.0.0</Text>
+        <Text style={{color: '#fff', fontSize: 20, marginTop: 5}}>2.0.0</Text>
       </View>
 
       <View style={settingsStyles.topButtonBox}>

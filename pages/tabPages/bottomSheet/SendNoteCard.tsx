@@ -5,13 +5,20 @@ import {TextInput} from 'react-native-gesture-handler';
 
 const SendNoteCard = () => {
   return (
-    <View style={{width: '85%', backgroundColor: 'red', height: 200}}>
+    <View
+      style={{
+        width: '100%',
+        backgroundColor: 'rgb(30,30,46)',
+        height: 200,
+        borderRadius: 15,
+        overflow: 'hidden',
+      }}>
       <View
         style={{
           flex: 1,
           width: '100%',
           backgroundColor: 'rgb(19,20,26)',
-          borderRadius: 20,
+          borderRadius: 15,
           marginTop: -1,
         }}>
         <TextInput
@@ -29,16 +36,23 @@ const SendNoteCard = () => {
           }}
         />
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '100%',
+          height: 50,
+          alignItems: 'center',
+        }}>
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity>
-            <Icon name="inbox" size={35} />
+            <Icon name="image" size={25} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Icon name="smile" size={35} />
+            <Icon name="smile" size={25} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Icon name="image" size={35} />
+            <Icon name="inbox" size={25} />
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={{width: 35, height: 35}}>

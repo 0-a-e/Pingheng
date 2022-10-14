@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Image, Text, Dimensions, StyleSheet, Linking} from 'react-native';
+import {easeGradient} from 'react-native-easing-gradient';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
   TouchableOpacity,
 } from 'react-native-gesture-handler';
+import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
@@ -101,23 +103,47 @@ const UserCard = ({user}) => {
     );
   };
 
-  const BackgroundBox = () => (
-    <View
-      style={[
-        // user.bannerColorがあるときはその色?
-        userCardStyles.backgroundContainer,
-      ]}>
-      <Image
-        source={{
-          uri: user.bannerUrl,
-        }}
-        accessible={true}
-        style={userCardStyles.bannerImage}
-        //   accessibilityLabel={name}
-      />
-      <View style={userCardStyles.imagekariShadow} />
-    </View>
-  );
+  const BackgroundBox = () => {
+    console.log("bnc", user.bannerColor);
+    const {colors, locations} = easeGradient({
+      colorStops: {
+        0: {
+          color: 'rgba(0,0,0,0.2)',
+        },
+        0.9: {
+          color: 'rgb(15,15,20)',
+        },
+      },
+    });
+    return (
+      <View
+        style={[
+          // user.bannerColorがあるときはその色?
+          // あとで画像から色取得やる
+          userCardStyles.backgroundContainer,
+        ]}>
+        <Image
+          source={{
+            uri: user.bannerUrl,
+          }}
+          accessible={true}
+          style={userCardStyles.bannerImage}
+          //   accessibilityLabel={name}
+        />
+        <LinearGradient
+          colors={colors}
+          locations={locations}
+          useAngle={true}
+          angle={-90}
+          angleCenter={{x: 0.5, y: 0.5}}
+          style={{
+            flex: 1,
+            zIndex: 1,
+          }}
+        />
+      </View>
+    );
+  };
 
   const FrontBox = ({children}: {children?: React.ReactNode}) => (
     <View style={userCardStyles.frontCardContainer}>{children}</View>
@@ -186,17 +212,12 @@ const userCardStyles = StyleSheet.create({
   backgroundContainer: {
     position: 'relative',
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(30,30,36)',
   },
   bannerImage: {
     position: 'absolute',
     width: '100%',
     height: 150,
-  },
-  imagekariShadow: {
-    flex: 1,
-    opacity: 0.4,
-    backgroundColor: 'black',
   },
   /* FrontBox */
   frontCardContainer: {

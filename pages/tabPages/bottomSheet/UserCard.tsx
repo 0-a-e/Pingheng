@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Alert, Image, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {TextInput} from 'react-native-gesture-handler';
 import {sendAPI} from '../../../api/useApi';
 import {getUser} from '../../../api/tokenManage';
 import LinearGradient from 'react-native-linear-gradient';
 import {easeGradient} from 'react-native-easing-gradient';
+import {useNavigation} from '@react-navigation/native';
 
-const UserCard = ({props}) => {
+const UserCard = ({props, bottomsheetRef}) => {
+  const navigation = useNavigation();
   const {colors, locations} = easeGradient({
     colorStops: {
       0: {
@@ -38,19 +39,18 @@ const UserCard = ({props}) => {
   return (
     <View
       style={{
-        width: '85%',
+        width: '100%',
         backgroundColor: 'rgb(30,30,46)',
         height: 200,
         borderRadius: 15,
         alignItems: 'center',
+        marginTop: 10,
+        overflow: 'hidden',
       }}>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('Main', {
-            screen: 'User',
-            params: { user: 'jane' },
-        //    params: {userId: user.id},
-          });
+          bottomsheetRef.current.snapTo(1);
+          navigation.navigate('User', user.id);
         }}
         style={{height: 150, width: '100%', alignItems: 'center'}}>
         <Image
