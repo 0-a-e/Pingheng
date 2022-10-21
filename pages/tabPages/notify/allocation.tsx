@@ -131,7 +131,7 @@ const switchActionRing = (props: any) => {
     case 'reaction':
       return {
         background: '#eb9534',
-        emoji: props.data.item.note.emojis,
+        emojis: props.data.item.note.emojis,
         reaction: props.data.item.reaction,
       };
 

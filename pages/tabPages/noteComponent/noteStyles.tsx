@@ -2,35 +2,69 @@ import {StyleSheet} from 'react-native';
 
 const noteStyles = StyleSheet.create({
   card: {
-    borderRadius: 50,
     backgroundColor: 'rgb(31,34,42)',
     borderWidth: 0,
     padding: 0,
-    height: 77,
-    marginTop: 4,
-    marginBottom: 4,
-  },
-
-  cardwrapper: {
-    width: '60%',
-    flexDirection: 'row',
+    marginTop: 0.5,
+    marginBottom: 0.5,
   },
 
   topcontainer: {
     width: '100%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+  },
+  intopcontainer: {
     flexDirection: 'row',
-    paddingTop: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '95%',
   },
   normalcontainer: {
     width: '100%',
     flexDirection: 'column',
     paddingTop: 5,
   },
+  namebox: {
+    // backgroundColor: 'green',
+    flexDirection: 'row',
+    marginLeft: 8,
+  },
+  nameSeparator: {
+    backgroundColor: 'rgb(200,200,200)',
+    borderRadius: 50,
+    width: 1.5,
+    height: 11,
+    marginTop: 6,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  leftbox: {
+    flex: 0.65,
+    width: '100%',
+    alignItems: 'center',
+    //backgroundColor: 'blue',
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  rightbox: {
+    flex: 0.25,
+    width: '100%',
+    alignItems: 'center',
+    //backgroundColor: 'red',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  middlebox: {
+    flex: 0.1,
+  },
   notebox: {
     marginLeft: 5,
-    //width: "85%",
-    width: 100,
-    height: 100,
+    width: '85%',
+    //width: 100,
+    //height: 100,
     backgroundColor: '#ffffff',
   },
   notetext: {
@@ -42,17 +76,17 @@ const noteStyles = StyleSheet.create({
   },
 
   incardcontainer: {
-    position: 'absolute',
-    marginLeft: 85,
-    height: 77,
-    width: '100%',
+    position: 'relative',
+    //   marginLeft: 85,
+    // height: 77,
+    flex: 1,
     flexDirection: 'column',
-    //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
-    //Avaterの位置変更で修正済み
+    alignItems: 'center',
+    //  backgroundColor: 'rgb(0,0,0)',
   },
   avatar: {
-    width: 77,
-    height: 77,
+    width: 30,
+    height: 30,
     borderRadius: 50,
     backgroundColor: '#fff',
   },
@@ -82,7 +116,7 @@ const noteStyles = StyleSheet.create({
     maxWidth: '65%',
   },
   topRTcontainer: {
-    height: 25,
+    // height: 25,
     width: 77,
     marginTop: 5,
     marginLeft: -30,
@@ -90,7 +124,7 @@ const noteStyles = StyleSheet.create({
   },
   renoteavatarcontainer: {
     position: 'absolute',
-    height: 25,
+    //height: 25,
     width: 25,
     marginRight: 3,
     marginLeft: 52,

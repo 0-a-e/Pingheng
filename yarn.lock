@@ -1614,6 +1614,11 @@
   resolved "https://repo.huaweicloud.com/repository/npm/@types/stack-utils/-/stack-utils-2.0.1.tgz"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
+"@types/twemoji-parser@^13.1.1":
+  version "13.1.1"
+  resolved "https://repo.huaweicloud.com/repository/npm/@types/twemoji-parser/-/twemoji-parser-13.1.1.tgz"
+  integrity sha512-KhGr5xLxf8XCITgMMG8CIHpnZ5EzbVFPmStoEPd6KqtX7Lc7pc7OZyicfcWJgPv68lq/+y52zu+S5A58oOdVJw==
+
 "@types/uuid@^8.3.4":
   version "8.3.4"
   resolved "https://repo.huaweicloud.com/repository/npm/@types/uuid/-/uuid-8.3.4.tgz"
@@ -6621,7 +6626,7 @@ react-native-codegen@^0.0.17:
 
 react-native-easing-gradient@^1.1.0:
   version "1.1.0"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-easing-gradient/-/react-native-easing-gradient-1.1.0.tgz#477696c7fc5dd85ad6e9e32de63d606d271c052d"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-easing-gradient/-/react-native-easing-gradient-1.1.0.tgz"
   integrity sha512-0zYsg7087WxodAM2fO0tYGPpWKLwqKlub1MW7svNTXpZwmrp29ktWwI96RejrhotgP/LVuob+4cb8NQ4oWwElg==
 
 react-native-gesture-handler@^2.5.0:
@@ -6662,7 +6667,7 @@ react-native-keychain@^8.1.1:
 
 react-native-linear-gradient@^2.6.2:
   version "2.6.2"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz#56598a76832724b2afa7889747635b5c80948f38"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
   integrity sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ==
 
 react-native-modals@^0.22.3:
@@ -6730,7 +6735,7 @@ react-native-video@^6.0.0-alpha.1:
 
 react-native-websocket@^1.0.2:
   version "1.0.2"
-  resolved "https://repo.huaweicloud.com/repository/npm/react-native-websocket/-/react-native-websocket-1.0.2.tgz#5f9f57c6adcfd6163e4480207302d161bb602315"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-native-websocket/-/react-native-websocket-1.0.2.tgz"
   integrity sha512-V0yP5gEHrfP6dj3DEgMywf+yyqN6B0csGdPxv8sLSpmEQoN3e9umhwkz0OC/7Tl5BR0yAISSDIs4w95Lp1Sudg==
   dependencies:
     prop-types "^15.6.1"
@@ -6793,6 +6798,11 @@ react-shallow-renderer@^16.13.1:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
+
+react-string-replace@^1.1.0:
+  version "1.1.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/react-string-replace/-/react-string-replace-1.1.0.tgz#a3f7b458e697e77d70b0ea663caf38ab38f7cc17"
+  integrity sha512-N6RalSDFGbOHs0IJi1H611WbZsvk3ZT47Jl2JEXFbiS3kTwsdCYij70Keo/tWtLy7sfhDsYm7CwNM/WmjXIaMw==
 
 react-test-renderer@17.0.2:
   version "17.0.2"
@@ -8019,6 +8029,11 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://repo.huaweicloud.com/repository/npm/tweetnacl/-/tweetnacl-0.14.5.tgz"
   integrity sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==
+
+twemoji-parser@^14.0.0:
+  version "14.0.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/twemoji-parser/-/twemoji-parser-14.0.0.tgz"
+  integrity sha512-9DUOTGLOWs0pFWnh1p6NF+C3CkQ96PWmEFwhOVmT3WbecRC+68AIqpsnJXygfkFcp4aXbOp8Dwbhh/HQgvoRxA==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

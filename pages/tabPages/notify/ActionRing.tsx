@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import EmojiText from '../../../component/EmojiText';
 //import ParseEmoji from '../../data/Emojis/ParseEmoji';
 import notifyStyles from './notifyStyles';
 
@@ -12,7 +13,7 @@ const ActionRing = (actionRingProps: any) => {
   return (
     <View>
       <TouchableOpacity
-      style={notifyStyles.avatarContainer}
+        style={notifyStyles.avatarContainer}
         onPress={() => {
           navigation.navigate('User', data.userId);
         }}>
@@ -41,7 +42,9 @@ const ActionRing = (actionRingProps: any) => {
         }
 
         {data.actionring.reaction ? (
-          <Text>{data.actionring.reaction}</Text>
+          <EmojiText emojis={data.actionring.emojis} numberOfLines={1}>
+            {data.actionring.reaction}
+          </EmojiText>
         ) : (
           <Icon
             style={notifyStyles.actionringicon}

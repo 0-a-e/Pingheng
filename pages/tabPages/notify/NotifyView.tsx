@@ -6,6 +6,7 @@ import notifyStyles from './notifyStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import ActionRing from './ActionRing';
 import allocation from './allocation';
+import EmojiText from '../../../component/EmojiText';
 
 //notereturnとrenotereturn無くす途中 allocation.tsxで出力統一 renoteのリノート元(先?)表示部分用コンポネント後で作成
 const NotifyView = (props: any) => {
@@ -30,7 +31,11 @@ const NotifyView = (props: any) => {
                       emojis={props.data.item.user.emojis}
                       textStyle={{color: '#fff', fontSize: 16}}
                     />*/}
-                    <Text numberOfLines={1}>{data.name}</Text>
+                    <EmojiText
+                      numberOfLines={1}
+                      emojis={props.data.item.user.emojis}>
+                      {data.name}
+                    </EmojiText>
                   </View>
                 </View>
                 <View style={notifyStyles.normalcontainer}>

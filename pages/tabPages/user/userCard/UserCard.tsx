@@ -15,6 +15,7 @@ import Animated, {
   WithSpringConfig,
 } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Feather';
+import EmojiText from '../../../../component/EmojiText';
 import UserDetail from './UserDetail';
 
 const UserCard = ({user}) => {
@@ -90,9 +91,12 @@ const UserCard = ({user}) => {
               Linking.openURL(user.uri);
             }
           }}>
-          <Text style={userCardStyles.nameStyle} numberOfLines={1}>
+          <EmojiText
+            numberOfLines={1}
+            emojis={user.emojis}
+            style={userCardStyles.nameStyle}>
             {user.name === '' ? username() : user.name || username()}
-          </Text>
+          </EmojiText>
           <Text
             numberOfLines={1}
             style={{display: user.name ? 'flex' : 'none'}}>
@@ -104,7 +108,7 @@ const UserCard = ({user}) => {
   };
 
   const BackgroundBox = () => {
-    console.log("bnc", user.bannerColor);
+    console.log('bnc', user.bannerColor);
     const {colors, locations} = easeGradient({
       colorStops: {
         0: {
