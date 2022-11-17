@@ -1,11 +1,9 @@
 .history/
 
 # OSX
-#
 .DS_Store
 
 # Xcode
-#
 build/
 *.pbxuser
 !default.pbxuser
@@ -33,7 +31,6 @@ local.properties
 android/app/src/main/assets/index.android.bundle
 
 # node.js
-#
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -64,6 +61,7 @@ buck-out/
 
 # Yarn
 .yarn/*
+yarn.lock
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
