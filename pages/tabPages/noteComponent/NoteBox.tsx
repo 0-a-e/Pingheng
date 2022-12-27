@@ -43,11 +43,7 @@ const NoteBox = ({
             }}
           />
         }
-        ListFooterComponent={() => (
-          <View style={{backgroundColor: 'red', height: 100, width: '100%'}}>
-            <ActivityIndicator size="large" />
-          </View>
-        )}
+        ListFooterComponent={Footer(isLoading)}
       />
     );
   } else if (notelist.length === 0 && !isLoading) {
@@ -56,6 +52,18 @@ const NoteBox = ({
     return <MessageBox text={'読み込み中...'} />;
   } else {
     return <MessageBox text={'不明なエラーが発生しました'} />;
+  }
+};
+
+const Footer = (isLoading: boolean) => {
+  if (isLoading) {
+    return (
+      <View style={{backgroundColor: 'red', height: 100, width: '100%'}}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  } else {
+    return <></>;
   }
 };
 

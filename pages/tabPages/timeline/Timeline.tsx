@@ -37,8 +37,8 @@ function TimelineScreen({navigation}) {
           headUpdate();
         }}
       />
-      <WSComponent />
     </View>
   );
 }
+//  <WSComponent />
 export default TimelineScreen;

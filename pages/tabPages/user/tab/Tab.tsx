@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useWindowDimensions} from 'react-native';
+import {useWindowDimensions, View} from 'react-native';
 import {SceneMap, TabView} from 'react-native-tab-view';
 import TabContent from './TabContent';
 import TabBar from './TabBar';
@@ -31,6 +31,15 @@ const Tab = ({publicReactions, id}: {publicReactions: boolean; id: string}) => {
       navigationState={{index, routes}}
       renderScene={renderScene}
       onIndexChange={setIndex}
+      renderLazyPlaceholder={() => (
+        <View
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgb(19,20,26)',
+          }}
+        />
+      )}
       initialLayout={{width: layout.width}}
       renderTabBar={props => <TabBar {...props} onIndexChange={setIndex} />}
     />

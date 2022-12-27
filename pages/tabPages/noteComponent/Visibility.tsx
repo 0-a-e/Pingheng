@@ -44,7 +44,7 @@ const Visibility = ({
             );
           }}
           style={{marginRight: 5}}>
-          <Icon name="wifi-off" size={13} color="#fff" />
+          <Icon name="cloud-off" size={13} color="#fff" />
         </TouchableOpacity>
       )}
       <TouchableOpacity

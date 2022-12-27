@@ -5,6 +5,7 @@ import {
   FlatList,
   RefreshControl,
   ActivityIndicator,
+  Text,
 } from 'react-native';
 import {sendAPI} from '../../../api/useApi';
 import useListEditFunc from '../../../api/useListEditFunc';
@@ -49,6 +50,10 @@ function NotifyScreen() {
     const r = await getNotify('', '');
     setNotifylist(r);
     setIsLoading(false);
+    console.log('firstUpdate');
+    console.log(notifylist);
+    console.log(isLoading);
+    console.log('firstUpdate');
   };
 
   const tailUpdate = async () => {
@@ -77,30 +82,35 @@ function NotifyScreen() {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(19,20,26)',
       }}>
-      <FlatList
-        data={notifylist}
-        style={{width: '100%', backgroundColor: 'rgb(19,20,26)'}}
-        keyExtractor={item => ListKey(item)}
-        renderItem={item => <NotifyView data={item} />}
-        refreshControl={
-          <RefreshControl
-            colors={['rgb(19,20,26)', '#000']}
-            refreshing={isLoading}
-            onRefresh={() => {
-              headUpdate();
-            }}
-          />
-        }
-        onEndReached={() => {
-          tailUpdate();
-        }}
-        ListFooterComponent={() => (
-          <View style={{backgroundColor: 'red', height: 100, width: '100%'}}>
-            <ActivityIndicator size="large" />
-          </View>
-        )}
-      />
+      {notifylist.length && isLoading === false ? (
+        <FlatList
+          data={notifylist}
+          style={{width: '100%'}}
+          keyExtractor={item => ListKey(item)}
+          renderItem={item => <NotifyView data={item} />}
+          refreshControl={
+            <RefreshControl
+              colors={['rgb(19,20,26)', '#000']}
+              refreshing={isLoading}
+              onRefresh={() => {
+                headUpdate();
+              }}
+            />
+          }
+          onEndReached={() => {
+            tailUpdate();
+          }}
+          ListFooterComponent={() => (
+            <View style={{backgroundColor: 'red', height: 100, width: '100%'}}>
+              <ActivityIndicator size="large" />
+            </View>
+          )}
+        />
+      ) : (
+        <Text>通知はありません</Text>
+      )}
     </View>
   );
 }

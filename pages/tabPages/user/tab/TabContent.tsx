@@ -28,4 +28,4 @@ const TabContent = ({userId, mode}: {userId: string; mode: string}) => {
   );
 };
 
-export default TabContent;
+export default React.memo(TabContent);
