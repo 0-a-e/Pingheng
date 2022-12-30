@@ -8,6 +8,7 @@ const allocation = props => {
     name: name,
     text: text,
     avatar: data.user.avatarUrl,
+    createdAt: data.createdAt,
     actionring: actionring,
     userId: data.user.id,
   };

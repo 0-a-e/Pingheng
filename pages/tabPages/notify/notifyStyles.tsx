@@ -19,6 +19,7 @@ const notifyStyles = StyleSheet.create({
   topcontainer: {
     width: '100%',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingTop: 5,
   },
   normalcontainer: {
@@ -47,8 +48,6 @@ const notifyStyles = StyleSheet.create({
     height: 77,
     width: '100%',
     flexDirection: 'column',
-    //rowにすればtitleの位置は合うけど横ならびになって本文が見えなくなる
-    //Avaterの位置変更で修正済み
   },
   avatarContainer: {
     zIndex: 20,

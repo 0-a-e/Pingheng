@@ -7,10 +7,14 @@ import Icon from 'react-native-vector-icons/Feather';
 import ActionRing from './ActionRing';
 import allocation from './allocation';
 import EmojiText from '../../../component/EmojiText';
+import {useNavigation} from '@react-navigation/native';
+import {roundedDiffDate} from '../../../api/dateCalc';
 
 //notereturnとrenotereturn無くす途中 allocation.tsxで出力統一 renoteのリノート元(先?)表示部分用コンポネント後で作成
+
 const NotifyView = (props: any) => {
   const data = allocation(props);
+  const navigation = useNavigation();
   const notereturn = () => {
     return (
       <View>
@@ -24,7 +28,11 @@ const NotifyView = (props: any) => {
               <ActionRing data={data} />
               <View style={notifyStyles.incardcontainer}>
                 <View style={notifyStyles.topcontainer}>
-                  <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity
+                    style={{flexDirection: 'row'}}
+                    onPress={() => {
+                      navigation.navigate('User', data.userId);
+                    }}>
                     {/*  <ParseEmoji
                       text={props.data.item.user.name}
                       ifoneline={true}
@@ -36,7 +44,10 @@ const NotifyView = (props: any) => {
                       emojis={props.data.item.user.emojis}>
                       {data.name}
                     </EmojiText>
-                  </View>
+                  </TouchableOpacity>
+                  <Text style={{color: '#fff'}}>
+                    {roundedDiffDate(data.createdAt)}
+                  </Text>
                 </View>
                 <View style={notifyStyles.normalcontainer}>
                   <Text

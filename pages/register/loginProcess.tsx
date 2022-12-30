@@ -1,8 +1,9 @@
-import {addInfo, deleteInfo} from '../../api/serverInfo';
+import useRealmManage,{serverInfoManage} from '../../api/realm/useRealmManage';
 import {getMeta} from '../../api/useApi';
 import {v4 as uuidv4} from 'uuid';
 import {ToastAndroid} from 'react-native';
 import openBrowser from './openBrowser';
+
 function isValidUrl(string: string): boolean {
   var pattern = new RegExp(
     '^(https?:\\/\\/)?' +
@@ -52,6 +53,7 @@ const openAuth = async (url: string) => {
 
 const loginProcess = async (inputUrl: string) => {
   //あとで処理中表示
+  const {addInfo, deleteInfo} = serverInfoManage();
   const serverUrl = generateServerURL(inputUrl);
   if (serverUrl) {
     ToastAndroid.show('処理中...', 1000);

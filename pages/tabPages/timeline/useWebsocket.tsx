@@ -2,7 +2,7 @@ import {SetStateAction, useCallback, useEffect, useState} from 'react';
 import {ToastAndroid, View} from 'react-native';
 import WS from 'react-native-websocket';
 //import {convert} from '../components/bottomsheet/useSwitchtltranslator';
-import {getInfo} from '../../../api/serverInfo';
+//import {getInfo} from '../../../api/realm/serverInfo.tsx-save';
 import {getUser} from '../../../api/tokenManage';
 import {useSharedCounter, useTimelineType} from '../../../api/testReduser';
 import React from 'react';

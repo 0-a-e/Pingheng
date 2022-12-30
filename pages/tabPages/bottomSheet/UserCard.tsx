@@ -86,17 +86,17 @@ const UserCard = ({props, bottomsheetRef}) => {
           //    backgroundColor: 'red',
         }}>
         <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
-          <Icon name="mail" size={29} />
+          <Icon name="mail" size={29} color={'white'} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{flex: 1, alignItems: 'center'}}
           onPress={() => {
             props.navigation.navigate('Settings');
           }}>
-          <Icon name="settings" size={29} />
+          <Icon name="settings" size={29} color={'white'} />
         </TouchableOpacity>
         <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
-          <Icon name="bell" size={29} />
+          <Icon name="bell" size={29} color={'white'} />
         </TouchableOpacity>
       </View>
     </View>

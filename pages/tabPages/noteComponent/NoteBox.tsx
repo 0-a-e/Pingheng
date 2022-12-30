@@ -7,7 +7,8 @@ import {
   View,
 } from 'react-native';
 import {v4 as uuidv4} from 'uuid';
-import NoteView from './NoteView';
+import NoteView from './noteView/NoteView';
+import ReactionModal from './reactionModal/ReactionModal';
 
 const NoteBox = ({
   tailUpdate,
@@ -20,31 +21,51 @@ const NoteBox = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  //読み込み周りは明日.これだと初回だめ.
+  const [modalVisible, setModalVisible] = useState(false);
+
+  let modalNoteId;
+  const switchModalVisible = data => {
+    setModalVisible(!modalVisible);
+    modalNoteId = data;
+  };
+
+  const getNoteDataForModal = () => {
+    return modalNoteId;
+  };
+
   if (notelist.length !== 0) {
     return (
-      <FlatList
-        style={{width: '100%', backgroundColor: 'rgb(19,20,26)'}}
-        data={notelist}
-        keyExtractor={item => item.id + '-' + uuidv4()}
-        renderItem={({item}) => <NoteView data={item} />}
-        onEndReached={async () => {
-          setIsLoading(true);
-          await tailUpdate();
-          setIsLoading(false);
-        }}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={async () => {
-              setIsRefreshing(true);
-              await headUpdate();
-              setIsRefreshing(false);
-            }}
-          />
-        }
-        ListFooterComponent={Footer(isLoading)}
-      />
+      <>
+        <FlatList
+          style={{width: '100%', backgroundColor: 'rgb(19,20,26)'}}
+          data={notelist}
+          keyExtractor={item => item.id + '-' + uuidv4()}
+          renderItem={({item}) => (
+            <NoteView data={item} switchModalVisible={switchModalVisible} />
+          )}
+          onEndReached={async () => {
+            setIsLoading(true);
+            await tailUpdate();
+            setIsLoading(false);
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={async () => {
+                setIsRefreshing(true);
+                await headUpdate();
+                setIsRefreshing(false);
+              }}
+            />
+          }
+          ListFooterComponent={Footer(isLoading)}
+        />
+        <ReactionModal
+          modalVisible={modalVisible}
+          getNoteDataForModal={getNoteDataForModal}
+          switchModalVisible={switchModalVisible}
+        />
+      </>
     );
   } else if (notelist.length === 0 && !isLoading) {
     return <MessageBox text={'ノートはありません'} />;

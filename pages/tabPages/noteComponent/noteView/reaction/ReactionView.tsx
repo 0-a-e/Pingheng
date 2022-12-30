@@ -2,9 +2,10 @@ import React from 'react';
 import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {v4 as uuidv4} from 'uuid';
-import {sendAPI} from '../../../../api/useApi';
-import {getUser} from '../../../../api/tokenManage';
-import EmojiText from '../../../../component/EmojiText';
+import {sendAPI} from '../../../../../api/useApi';
+import {getUser} from '../../../../../api/tokenManage';
+import EmojiText from '../../../../../component/EmojiText';
+import editReaction from '../../../../../api/editReaction';
 
 const ReactionView = ({
   reactions,
@@ -90,20 +91,4 @@ const toggleReaction = async (reaction: string, noteId: string) => {
   }
 };
 
-const editReaction = async (
-  reaction: string,
-  noteId: string,
-  createordelete: string,
-) => {
-  const data = await sendAPI([
-    true,
-    'notes/reactions/' + createordelete,
-    {noteId: noteId, reaction: reaction},
-  ]);
-  if (!data) {
-    Alert.alert('取得エラー', 'n', [], {
-      cancelable: true,
-    });
-  }
-};
 export default ReactionView;

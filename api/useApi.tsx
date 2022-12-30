@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import {getInfo} from './serverInfo';
+import useRealmManage, {serverInfoManage} from './realm/useRealmManage';
 import { getUser } from './tokenManage';
 
 export const sendAPI = async ([ifneedtoken, endpoint, data]: [
@@ -7,6 +7,7 @@ export const sendAPI = async ([ifneedtoken, endpoint, data]: [
   String,
   Object,
 ]) => {
+  const {getInfo} = serverInfoManage();
   const serverInfo = await getInfo();
   const userInfo = await getUser();
   let token: string, serverURL: string;

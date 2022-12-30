@@ -1,5 +1,4 @@
-const allocation = props => {
-  const data = props.data;
+const allocation = data => {
   let name;
   let ifNoName;
   let avatarUrl;

@@ -5,7 +5,7 @@ import {WSComponent} from './useWebsocket';
 import {useSharedCounter} from '../../../api/testReduser';
 import NoteBox from '../noteComponent/NoteBox';
 
-function TimelineScreen({navigation}) {
+function TimelineScreen() {
   const {headUpdate, tailUpdate} = useGetNote();
   const {notelist, reset} = useSharedCounter();
   useEffect(() => {

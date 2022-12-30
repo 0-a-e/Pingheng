@@ -81,7 +81,7 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           }}
           style={{alignItems: 'center'}}>
           <Icon size={30} name="arrow-up" color="rgb(180,180,230)" />
-          <Text style={{color: 'white'}}>(仮)</Text>
+          <Text style={{color: 'white'}}>仮</Text>
         </TouchableOpacity>
         <Navbtn icon="bell" indexname="Notify" />
       </View>

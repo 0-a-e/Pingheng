@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Image, TouchableOpacity, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
-import setupStyles from './setupComponent/setupStyles';
-import setupProcess from './setupComponent/setupProcess';
+import setupStyles from './setupStyles';
+import setupProcess from './setupProcess';
 
 const Setup = ({route}) => {
   const [status, setStatus] = useState('loading');

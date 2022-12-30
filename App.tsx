@@ -3,15 +3,16 @@ import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import RegisterScreen from './pages/Register';
-import SetupScreen from './pages/Setup';
-import SettingsScreen from './pages/Settings';
+import RegisterScreen from './pages/register/Register';
+import SetupScreen from './pages/setup/Setup';
+import SettingsScreen from './pages/settings/Settings';
 import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
 import {checkUserexists} from './api/tokenManage';
-import {getInfo} from './api/serverInfo';
+import useRealmManage, {serverInfoManage} from './api/realm/useRealmManage';
 const App = () => {
   const [ifloggedin, setifloggedin] = useState(false);
+  const {getInfo} = serverInfoManage();
   console.log('--reload--\n', ifloggedin, '\n--');
   /*const isDarkMode = useColorScheme() === 'dark';
 

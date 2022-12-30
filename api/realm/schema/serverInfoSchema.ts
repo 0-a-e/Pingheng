@@ -1,6 +1,4 @@
-import Realm from 'realm';
-
-const schema = {
+export const serverInfoSchema = {
   name: 'serverInfo',
   properties: {
     maintainerName: 'string',
@@ -32,7 +30,7 @@ const schema = {
     backgroundImageUrl: {type: 'string', optional: true},
     logoImageUrl: {type: 'string', optional: true},
     maxNoteTextLength: 'int',
-    emojis: {type: 'list', objectType: 'Emojis'},
+    emojis: {type: 'list', objectType: 'serverInfoCustomEmojis'},
     enableEmail: 'bool',
     enableTwitterIntegration: 'bool',
     enableGithubIntegration: 'bool',
@@ -47,7 +45,8 @@ const schema = {
     features: 'Features',
   },
 };
-const featuresSchema = {
+
+export const featuresSchema = {
   name: 'Features',
   properties: {
     registration: 'bool',
@@ -65,70 +64,3 @@ const featuresSchema = {
     miauth: 'bool',
   },
 };
-
-const emojisSchema = {
-  name: 'Emojis',
-  properties: {
-    id: 'string',
-    aliases: {type: 'list', objectType: 'string'},
-    name: 'string',
-    category: {type: 'string', optional: true},
-    host: {type: 'bool', optional: true},
-    url: 'string',
-  },
-};
-
-const config = {
-  schema: [schema, featuresSchema, emojisSchema],
-  schemaVersion: 1,
-};
-
-const addInfo = async info => {
-  try {
-    if (info) {
-      deleteInfo();
-      const projectRealm = await Realm.open(config);
-      projectRealm.write(() => {
-        projectRealm.create('serverInfo', info);
-      });
-      return true;
-    } else {
-      console.log('addInfo ERROR: info is null');
-      return false;
-    }
-  } catch (e) {
-    console.log('addInfo ERROR:', e);
-    return false;
-  }
-};
-
-// Define the function for deleting a task.
-const deleteInfo = async () => {
-  try {
-    const projectRealm = await Realm.open(config);
-    projectRealm.write(() => {
-      projectRealm.delete(projectRealm.objects('serverInfo'));
-      return true;
-    });
-  } catch (e) {
-    console.log('deleteInfo ERROR:', e);
-    return false;
-  }
-};
-
-const getInfo = async () => {
-  try {
-    const projectRealm = await Realm.open(config);
-    const info = projectRealm.objects('serverInfo');
-    if (info.length > 0) {
-      return info[0];
-    } else {
-      return null;
-    }
-  } catch (e) {
-    console.log('getInfo ERROR:', e);
-    return false;
-  }
-};
-
-export {addInfo, deleteInfo, getInfo};

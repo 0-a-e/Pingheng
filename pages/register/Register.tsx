@@ -3,9 +3,9 @@ import {Dimensions, Text, View, TouchableOpacity} from 'react-native';
 import 'react-native-get-random-values';
 //import HMSAvailability, {ErrorCode} from "@hmscore/react-native-hms-availability";
 import Video from 'react-native-video';
-import loginProcess from './registerComponent/loginProcess';
-import registerStyles from './registerComponent/registerStyles';
-import ManualServerModal from './registerComponent/ManualServerModal';
+import loginProcess from './loginProcess';
+import registerStyles from './registerStyles';
+import ManualServerModal from './ManualServerModal';
 
 const Register = () => {
   const [manualloginvisible, setmanualloginvisible] = useState(false);
