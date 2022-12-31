@@ -17,7 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 import useRealmManage, {
   emojisManage,
   serverInfoManage,
-} from '../../api/realm/useRealmManage';
+} from '../../api/realm/realmManage';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const SettingsScreen = () => {

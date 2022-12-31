@@ -22,11 +22,11 @@ const NoteBox = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalNoteId, setModalNoteId] = useState<string>('');
 
-  let modalNoteId;
-  const switchModalVisible = data => {
+  const switchModalVisible = (noteId?: string) => {
     setModalVisible(!modalVisible);
-    modalNoteId = data;
+    noteId && setModalNoteId(noteId);
   };
 
   const getNoteDataForModal = () => {

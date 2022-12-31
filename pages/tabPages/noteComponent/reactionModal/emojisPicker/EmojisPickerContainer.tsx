@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useWindowDimensions, View} from 'react-native';
 import {TabBar, TabView} from 'react-native-tab-view';
-import {emojisManage} from '../../../../../api/realm/useRealmManage';
+import {emojisManage} from '../../../../../api/realm/realmManage';
 import {emojiType, emojisType} from '../../../../../types/EmojiTypes';
 import EmojisPicker from './EmojisPicker';
 import FavAndHistoryEmojiPicker from './FavAndHistoryEmojiPicker';

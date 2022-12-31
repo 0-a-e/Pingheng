@@ -3270,15 +3270,15 @@ escape-html@~1.0.3:
   resolved "https://repo.huaweicloud.com/repository/npm/escape-html/-/escape-html-1.0.3.tgz"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
 
+escape-string-regexp@2.0.0, escape-string-regexp@^2.0.0:
+  version "2.0.0"
+  resolved "https://repo.huaweicloud.com/repository/npm/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://repo.huaweicloud.com/repository/npm/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
-
-escape-string-regexp@^2.0.0:
-  version "2.0.0"
-  resolved "https://repo.huaweicloud.com/repository/npm/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz"
-  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 escape-string-regexp@^4.0.0:
   version "4.0.0"
@@ -4275,7 +4275,7 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-invariant@*, invariant@^2.2.2, invariant@^2.2.4:
+invariant@*, invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://repo.huaweicloud.com/repository/npm/invariant/-/invariant-2.2.4.tgz"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -6736,6 +6736,11 @@ react-native-reanimated@2.9.1:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
+react-native-remote-svg@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/react-native-remote-svg/-/react-native-remote-svg-2.0.10.tgz#9e8cb2ea7e178f93fd293557f8c6c5deaec92794"
+  integrity sha512-6s+IpcX8xBe5SI/5J/IbgqtnMBZTUU+qGKAz1klEtlwC+3EiGTvVZX9e0QgJ3DQ7Jf2CN1YQ4pDBkEH1WA5Q+A==
+
 react-native-safe-area-context@^4.3.1:
   version "4.3.3"
   resolved "https://repo.huaweicloud.com/repository/npm/react-native-safe-area-context/-/react-native-safe-area-context-4.3.3.tgz"
@@ -6788,6 +6793,14 @@ react-native-websocket@^1.0.2:
   integrity sha512-V0yP5gEHrfP6dj3DEgMywf+yyqN6B0csGdPxv8sLSpmEQoN3e9umhwkz0OC/7Tl5BR0yAISSDIs4w95Lp1Sudg==
   dependencies:
     prop-types "^15.6.1"
+
+react-native-webview@^11.26.0:
+  version "11.26.0"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.26.0.tgz#e524992876fe4a79e69905f0fab8949b470e9f16"
+  integrity sha512-4T4CKRm8xlaQDz9h/bCMPGAvtkesrhkRWqCX9FDJEzBToaVUIsV0ZOqtC4w/JSnCtFKKYiaC1ReJtCGv+4mFeQ==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
 
 react-native@0.68.2:
   version "0.68.2"

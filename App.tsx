@@ -9,7 +9,7 @@ import SettingsScreen from './pages/settings/Settings';
 import MainScreen from './pages/Main';
 import {ModalPortal} from 'react-native-modals';
 import {checkUserexists} from './api/tokenManage';
-import useRealmManage, {serverInfoManage} from './api/realm/useRealmManage';
+import useRealmManage, {serverInfoManage} from './api/realm/realmManage';
 const App = () => {
   const [ifloggedin, setifloggedin] = useState(false);
   const {getInfo} = serverInfoManage();

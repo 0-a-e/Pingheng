@@ -1,7 +1,7 @@
 import React from 'react';
 import {Alert, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {emojisManage} from '../../../../../api/realm/useRealmManage';
+import {emojisManage} from '../../../../../api/realm/realmManage';
 import {emojiType} from '../../../../../types/EmojiTypes';
 
 const manageFavEmoji = async (item: emojiType) => {

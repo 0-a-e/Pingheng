@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Image, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, ToastAndroid, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {sendAPI} from '../../../api/useApi';
 import {getUser} from '../../../api/tokenManage';
@@ -95,8 +95,12 @@ const UserCard = ({props, bottomsheetRef}) => {
           }}>
           <Icon name="settings" size={29} color={'white'} />
         </TouchableOpacity>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
-          <Icon name="bell" size={29} color={'white'} />
+        <TouchableOpacity
+          onPress={() => {
+            ToastAndroid.show('後でSpaceみたいなやつ作る', 3000);
+          }}
+          style={{flex: 1, alignItems: 'center'}}>
+          <Icon name="mic" size={29} color={'white'} />
         </TouchableOpacity>
       </View>
     </View>

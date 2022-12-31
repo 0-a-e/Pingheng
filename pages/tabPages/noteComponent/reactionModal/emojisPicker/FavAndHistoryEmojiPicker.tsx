@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Dimensions, FlatList, Text, View} from 'react-native';
 import {emojisType} from '../../../../../types/EmojiTypes';
 import EmojiView from './EmojiView';
-import {emojisManage} from '../../../../../api/realm/useRealmManage';
+import {emojisManage} from '../../../../../api/realm/realmManage';
 import Icon from 'react-native-vector-icons/Feather';
 
 const FavAndHistoryEmojisPicker = ({}: {}) => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View} from 'react-native';
+import Image from 'react-native-remote-svg';
 const reactStringReplace = require('react-string-replace');
 import {parse} from 'twemoji-parser';
 //import Image from 'react-native-remote-svg';
@@ -23,8 +24,6 @@ const imageComemojis = (
       url = element.url;
     }
   });
-  //url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
-
   return (
     <Image
       key={match + i + uuidv4()}
@@ -64,8 +63,6 @@ const twemojied = (text: string, style: any) => {
         text,
         emoji.text,
         (match: any, i: number) => {
-          // const url = "https://upload.wikimedia.org/wikipedia/commons/2/25/Red.svg";
-          //emoji.url
           return (
             <Image
               key={match + i + uuidv4()}

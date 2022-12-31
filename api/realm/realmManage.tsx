@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import {serverInfoSchema, featuresSchema} from './schema/serverInfoSchema';
 import {serverInfoCustomEmojisSchema} from './schema/serverInfoCustomEmojisSchema';
 import {customEmojisSchema} from './schema/customEmojisSchema';
+import {noteSettingsSchema} from './schema/noteSettingsSchema';
 
 export const openRealm = () => {
   const config = {
@@ -12,11 +13,74 @@ export const openRealm = () => {
       featuresSchema,
       serverInfoCustomEmojisSchema,
       customEmojisSchema,
+      noteSettingsSchema,
     ],
     schemaVersion: 1,
   };
 
   return new Realm(config);
+};
+
+export const noteSettingsManage = () => {
+  const changeVisibility = async (
+    visibility: 'public' | 'home' | 'followers' | 'specified',
+  ) => {
+    try {
+      const realm = openRealm();
+      const noteSettings =
+        realm.objects<typeof noteSettingsSchema>('noteSettings')[0];
+      realm.write(() => {
+        noteSettings.visibility = visibility;
+      });
+      return true;
+    } catch (e) {
+      console.log('changeVisibility ERROR:', e);
+      return false;
+    }
+  };
+
+  const managelocalOnly = (value: boolean) => {
+    try {
+      const realm = openRealm();
+      const noteSettings =
+        realm.objects<typeof noteSettingsSchema>('noteSettings')[0];
+      realm.write(() => {
+        noteSettings.localOnly = value;
+      });
+    } catch (e) {
+      console.log('changeVisibility ERROR:', e);
+      return false;
+    }
+  };
+
+  const deleteSettings = async () => {
+    try {
+      const realm = openRealm();
+      realm.write(() => {
+        realm.delete(realm.objects('noteSettings'));
+        return true;
+      });
+    } catch (e) {
+      console.log('deleteInfo ERROR:', e);
+      return false;
+    }
+  };
+
+  const getSettings = async () => {
+    try {
+      const realm = openRealm();
+      const info = realm.objects('noteSettings');
+      if (info.length > 0) {
+        return info[0];
+      } else {
+        return null;
+      }
+    } catch (e) {
+      console.log('getInfo ERROR:', e);
+      return false;
+    }
+  };
+  return {getSettings, changeVisibility, deleteSettings, managelocalOnly};
 };
 
 export const serverInfoManage = () => {
@@ -26,9 +90,6 @@ export const serverInfoManage = () => {
         deleteInfo();
         const realm = openRealm();
         realm.write(() => {
-          /*   for (const item of info.emojis) {
-            item.isFavorited = false;
-          } */
           realm.create('serverInfo', info);
           /*仮*/
           const defaultDate = new Date(1000, 1, 1);
@@ -37,6 +98,11 @@ export const serverInfoManage = () => {
             item.lastUsedDate = defaultDate;
             realm.create('customEmojis', item);
           }
+          realm.create('noteSettings', {
+            visibility: 'home',
+            localOnly: false,
+            visibleUserIds: [],
+          });
         });
         return true;
       } else {

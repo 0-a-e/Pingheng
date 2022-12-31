@@ -1,4 +1,4 @@
-import useRealmManage,{serverInfoManage} from '../../api/realm/useRealmManage';
+import useRealmManage,{serverInfoManage} from '../../api/realm/realmManage';
 import {getMeta} from '../../api/useApi';
 import {v4 as uuidv4} from 'uuid';
 import {ToastAndroid} from 'react-native';
