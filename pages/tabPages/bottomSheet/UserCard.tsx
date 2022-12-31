@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {easeGradient} from 'react-native-easing-gradient';
 import {useNavigation} from '@react-navigation/native';
 
-const UserCard = ({props, bottomsheetRef}) => {
+const UserCard = ({props, bottomSheetRef}) => {
   const navigation = useNavigation();
   const {colors, locations} = easeGradient({
     colorStops: {
@@ -44,12 +44,12 @@ const UserCard = ({props, bottomsheetRef}) => {
         height: 200,
         borderRadius: 15,
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: 25,
         overflow: 'hidden',
       }}>
       <TouchableOpacity
         onPress={() => {
-          bottomsheetRef.current.snapTo(1);
+          bottomSheetRef.current.snapToIndex(0);
           navigation.navigate('User', user.id);
         }}
         style={{height: 150, width: '100%', alignItems: 'center'}}>
@@ -85,7 +85,11 @@ const UserCard = ({props, bottomsheetRef}) => {
           width: '65%',
           //    backgroundColor: 'red',
         }}>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
+        <TouchableOpacity
+          style={{flex: 1, alignItems: 'center'}}
+          onPress={() => {
+            props.navigation.navigate('Messages');
+          }}>
           <Icon name="mail" size={29} color={'white'} />
         </TouchableOpacity>
         <TouchableOpacity

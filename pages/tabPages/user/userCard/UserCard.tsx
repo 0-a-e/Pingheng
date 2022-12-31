@@ -99,7 +99,11 @@ const UserCard = ({user}) => {
           </EmojiText>
           <Text
             numberOfLines={1}
-            style={{display: user.name ? 'flex' : 'none'}}>
+            style={{
+              display: user.name ? 'flex' : 'none',
+              color: '#FFF',
+              opacity: 0.8,
+            }}>
             {username()}
           </Text>
         </TouchableOpacity>

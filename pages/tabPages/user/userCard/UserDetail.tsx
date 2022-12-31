@@ -14,6 +14,31 @@ const UserDetail = props => {
     const dateJa = dateToJa(dateString) + '(' + age + '歳)';
     return dateJa;
   };
+  const userAttributes = [
+    {
+      icon: 'calendar',
+      text:
+        ' ' +
+        dateToJa(user.createdAt) +
+        '(' +
+        roundedDiffDate(user.createdAt) +
+        ')',
+    },
+    {
+      icon: 'gift',
+      text: user.birthday ? ' ' + calcBirth(user.birthday) : ' -',
+    },
+    {
+      icon: 'map-pin',
+      text: user.location ? ' ' + user.location : ' -',
+    },
+  ];
+
+  const userNumbersList = [
+    {text: 'フォロー', number: user.followingCount},
+    {text: 'フォロワー', number: user.followersCount},
+    {text: '投稿', number: user.notesCount},
+  ];
 
   return (
     <View style={{height: '100%'}}>
@@ -57,95 +82,54 @@ const UserDetail = props => {
             height: '100%',
             justifyContent: 'space-around',
           }}>
-          <View style={styles.infoContainer}>
-            <Icon name="calendar" size={13} />
-            <Text
-              numberOfLines={1}
-              style={{
-                fontSize: 10,
-              }}>
-              {' ' +
-                dateToJa(user.createdAt) +
-                '(' +
-                roundedDiffDate(user.createdAt) +
-                ')'}
-            </Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Icon name="gift" size={13} />
-            <Text
-              numberOfLines={1}
-              style={{
-                fontSize: 10,
-              }}>
-              {user.birthday ? ' ' + calcBirth(user.birthday) : ' -'}
-            </Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Icon name="map-pin" size={13} />
-            <Text
-              numberOfLines={1}
-              style={{
-                fontSize: 10,
-              }}>
-              {user.location ? ' ' + user.location : ' -'}
-            </Text>
-          </View>
+          {userAttributes.map(item => (
+            <UserAttribute icon={item.icon} text={item.text} />
+          ))}
         </View>
-        <View
-          style={{
-            width: '47%',
-            height: '100%',
-            justifyContent: 'space-around',
-          }}>
+        <View style={styles.instanceTagContainer}>
           <InstanceTag user={user} />
         </View>
       </View>
       <View style={styles.numberContainer}>
-        <View
-          style={[
-            styles.numberBox,
-            {
-              borderRightWidth: 0.25,
-            },
-          ]}>
-          <Text style={styles.numberStyle} numberOfLines={1}>
-            {user.followingCount}
-          </Text>
-          <Text style={{fontSize: 11}} numberOfLines={1}>
-            フォロー
-          </Text>
-        </View>
-        <View
-          style={[
-            styles.numberBox,
-            {
-              borderLeftWidth: 0.25,
-              borderRightWidth: 0.25,
-            },
-          ]}>
-          <Text style={styles.numberStyle} numberOfLines={1}>
-            {user.followersCount}
-          </Text>
-          <Text style={{fontSize: 11}} numberOfLines={1}>
-            フォロワー
-          </Text>
-        </View>
-        <View
-          style={[
-            styles.numberBox,
-            {
-              borderLeftWidth: 0.25,
-            },
-          ]}>
-          <Text style={styles.numberStyle} numberOfLines={1}>
-            {user.notesCount}
-          </Text>
-          <Text style={{fontSize: 11}} numberOfLines={1}>
-            投稿
-          </Text>
-        </View>
+        {userNumbersList.map(item => (
+          <NumberBox number={item.number} text={item.text} />
+        ))}
       </View>
+    </View>
+  );
+};
+const NumberBox = ({text, number}: {text: string; number: number}) => {
+  return (
+    <View
+      style={[
+        styles.numberBox,
+        {
+          borderLeftWidth: 0.25,
+        },
+      ]}>
+      <Text style={styles.numberStyle} numberOfLines={1}>
+        {number.toString()}
+      </Text>
+      <Text style={{fontSize: 11, color: '#FFF'}} numberOfLines={1}>
+        {text}
+      </Text>
+    </View>
+  );
+};
+
+const UserAttribute = ({icon, text}: {icon: string; text: string}) => {
+  return (
+    <View style={styles.infoContainer}>
+      <Icon name={icon} size={13} color={'#FFF'} style={{opacity: 0.8}} />
+      <Text
+        numberOfLines={1}
+        style={{
+          color: '#FFF',
+          fontSize: 10,
+          opacity: 0.8,
+        }}>
+        {text}
+      </Text>
     </View>
   );
 };
@@ -173,6 +157,11 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  instanceTagContainer: {
+    width: '47%',
+    height: '100%',
+    justifyContent: 'space-around',
   },
 });
 export default UserDetail;

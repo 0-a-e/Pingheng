@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {DarkTheme, NavigationContainer, useNavigation} from '@react-navigation/native';
+import {
+  DarkTheme,
+  NavigationContainer,
+  useNavigation,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomSheet from './tabPages/bottomSheet/BottomSheet';
 import NotifyScreen from './tabPages/notify/Notify';
 import TimelineScreen from './tabPages/timeline/Timeline';
 import UserScreen from './tabPages/user/User';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 const MainScreen = ({navigation}) => {
   const [beforetab, beforetabWrite] = useState('');
   const Stack = createNativeStackNavigator();

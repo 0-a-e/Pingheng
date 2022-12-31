@@ -6,7 +6,7 @@ import {emojiType, emojisType} from '../../../../../types/EmojiTypes';
 import EmojisPicker from './EmojisPicker';
 import FavAndHistoryEmojiPicker from './FavAndHistoryEmojiPicker';
 
-const EmojisPickerContainer = () => {
+const EmojisPickerContainer = ({noteId}: {noteId: string}) => {
   const [emojis, setEmojis] = useState<emojisType>();
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
@@ -46,10 +46,15 @@ const EmojisPickerContainer = () => {
     }
     if (emojis) {
       if (route.key === 'PINGHENG_FAVANDHISTORY_PINGHENG') {
-        return <FavAndHistoryEmojiPicker />;
+        return <FavAndHistoryEmojiPicker noteId={noteId} />;
       } else {
         return (
-          <EmojisPicker key={route.key} routeKey={route.key} emojis={emojis} />
+          <EmojisPicker
+            key={route.key}
+            noteId={noteId}
+            routeKey={route.key}
+            emojis={emojis}
+          />
         );
       }
     } else {

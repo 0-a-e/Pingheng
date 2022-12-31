@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import useRealmManage, {serverInfoManage} from './realm/realmManage';
-import { getUser } from './tokenManage';
+import {getUser} from './tokenManage';
 
 export const sendAPI = async ([ifneedtoken, endpoint, data]: [
   Boolean,

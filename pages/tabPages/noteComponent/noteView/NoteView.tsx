@@ -38,7 +38,7 @@ const NoteView = ({
           switchModalVisible(data.id);
         }}
         onLongPress={() => {
-          alert('long tap');
+          //自分のノートの場合削除できるようにする
           console.log(data.files);
         }}>
         <View style={noteStyles.card}>

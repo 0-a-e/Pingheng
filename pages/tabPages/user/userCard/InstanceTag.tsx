@@ -14,7 +14,14 @@ const InstanceTag = route => {
   if ('instance' in user === false) {
     return (
       <View style={styles.localContainer}>
-        <Text numberOfLines={1} style={{fontSize: 13, marginBottom: 0.5}}>
+        <Text
+          numberOfLines={1}
+          style={{
+            fontSize: 13,
+            marginBottom: 0.5,
+            color: '#FFF',
+            opacity: 0.8,
+          }}>
           ローカル
         </Text>
       </View>
@@ -50,12 +57,20 @@ const InstanceTag = route => {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text numberOfLines={1} style={{fontSize: 12}}>
+          <Text
+            numberOfLines={1}
+            style={{fontSize: 12, color: '#FFF', opacity: 0.9}}>
             {user.instance.name}
           </Text>
           <Text
             numberOfLines={1}
-            style={{fontSize: 7, marginTop: -1.8, marginLeft: 0.5}}>
+            style={{
+              fontSize: 7,
+              marginTop: -1.8,
+              marginLeft: 0.5,
+              color: '#FFF',
+              opacity: 0.9,
+            }}>
             {'by ' + user.instance.softwareName}
           </Text>
         </View>

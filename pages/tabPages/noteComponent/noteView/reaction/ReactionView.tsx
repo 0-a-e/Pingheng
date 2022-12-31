@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {v4 as uuidv4} from 'uuid';
@@ -17,10 +17,17 @@ const ReactionView = ({
   emojis: any;
 }) => {
   const ReactionButton = ({item}) => {
-    const [isPressed, setisPressed] = React.useState(false);
-    const [reactionCount, setReactionCount] = React.useState(item.count);
+    const [isPressed, setisPressed] = useState(false);
+    const [reactionCount, setReactionCount] = useState(item.count);
+    const [isLocalEmoji, setIsLocalEmoji] = useState(true);
+    useEffect(() => {
+      if (item.key.includes('@') && !item.key.includes('@.')) {
+        setIsLocalEmoji(false);
+      }
+    }, []);
     return (
       <TouchableOpacity
+        disabled={true}
         onPress={async () => {
           const r = await toggleReaction(item.key, noteId);
           if (r && r === 'create') {
@@ -37,7 +44,9 @@ const ReactionView = ({
           borderRadius: 50,
           marginRight: 3,
           marginLeft: 3,
-          backgroundColor: `${isPressed ? 'green' : 'blue'}`,
+          backgroundColor: `${
+            isLocalEmoji ? 'green' : isLocalEmoji && isPressed ? 'blue' : 'red'
+          }`,
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'row',

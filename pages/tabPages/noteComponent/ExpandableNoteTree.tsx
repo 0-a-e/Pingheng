@@ -6,7 +6,7 @@ const ExpandableNoteTree = ({noteId}: {noteId: string}) => {
   const [noteData, setNoteData] = useState();
   useEffect(() => {
     console.log(noteId);
-    getNote(noteId);
+   // getNote(noteId);
   }, []);
   const getNote = (noteId: string) => {
     sendAPI([true, 'notes/show', {noteId: noteId}]).then(data => {
@@ -27,7 +27,8 @@ const ExpandableNoteTree = ({noteId}: {noteId: string}) => {
         //    minHeight: 100,
         overflow: 'hidden',
       }}>
-      {//noteData && <NoteView data={noteData} />
+      {
+        //noteData && <NoteView data={noteData} />
       }
       <Text style={{bottom: 0, position: 'absolute'}}>ツリーを展開</Text>
     </View>

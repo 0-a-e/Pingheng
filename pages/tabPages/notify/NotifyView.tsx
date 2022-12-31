@@ -40,6 +40,7 @@ const NotifyView = (props: any) => {
                       textStyle={{color: '#fff', fontSize: 16}}
                     />*/}
                     <EmojiText
+                      style={{color: '#FFF'}}
                       numberOfLines={1}
                       emojis={props.data.item.user.emojis}>
                       {data.name}

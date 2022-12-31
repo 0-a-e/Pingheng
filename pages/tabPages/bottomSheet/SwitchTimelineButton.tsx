@@ -14,6 +14,8 @@ const SwitchTimeline = () => {
   return (
     <View
       style={{
+        position: 'absolute',
+        bottom: '5%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

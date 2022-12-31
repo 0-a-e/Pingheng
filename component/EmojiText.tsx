@@ -93,31 +93,31 @@ const EmojiText = (props: {
   if (props.emojis && props.emojis.length > 0) {
     const regexp = /:["']?([a-zA-Z0-9_./\-@<>]+)["']?:/g;
     let returntext;
-    const twemojieding = twemojied(text, props.style);
-    if (twemojieding !== undefined) {
-      returntext = reactStringReplace(twemojieding, regexp, (match, i) =>
-        imageComemojis(match, props, i),
-      );
-      return wraptext(returntext, props.style);
-    } else {
-      returntext = reactStringReplace(text, regexp, (match, i) =>
-        imageComemojis(match, props, i),
-      );
-      return wraptext(returntext, props.style);
-    }
+    /*  const twemojieding = twemojied(text, props.style);
+        if (twemojieding !== undefined) {
+    returntext = reactStringReplace(twemojieding, regexp, (match, i) =>
+      imageComemojis(match, props, i),
+    );
+    return wraptext(returntext, props.style);
+     } else {*/
+    returntext = reactStringReplace(text, regexp, (match, i) =>
+      imageComemojis(match, props, i),
+    );
+    return wraptext(returntext, props.style);
+    //}
   } else {
-    let twemojieding = twemojied(text, props.style);
+    /* let twemojieding = twemojied(text, props.style);
     if (twemojieding !== undefined) {
       return wraptext(twemojieding, props.style);
-    } else {
-      return (
-        <Text
-          style={props.style}
-          {...(props.numberOfLines && {numberOfLines: props.numberOfLines})}>
-          {text}
-        </Text>
-      );
-    }
+    } else {*/
+    return (
+      <Text
+        style={props.style}
+        {...(props.numberOfLines && {numberOfLines: props.numberOfLines})}>
+        {text}
+      </Text>
+    );
+    //}
   }
 };
 

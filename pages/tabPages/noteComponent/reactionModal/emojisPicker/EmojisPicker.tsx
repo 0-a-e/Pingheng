@@ -2,16 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {Dimensions, FlatList} from 'react-native';
 import {emojisType} from '../../../../../types/EmojiTypes';
 import EmojiView from './EmojiView';
+import editReaction from '../../../../../api/editReaction';
+import {v4 as uuidv4} from 'uuid';
+import { useAddReaction } from './useAddReaction';
 
 const EmojisPicker = ({
   emojis,
   routeKey,
+  noteId,
 }: {
   emojis: emojisType;
   routeKey: string;
+  noteId: string;
 }) => {
   const [waru60, setWaru60] = useState(0);
-
+  const hitEmojis = emojis.get(routeKey);
+  const {addReaction} = useAddReaction(noteId);
   const calcbox = () => {
     //メモ　消さない
     // widthはディスプレイ幅の90%(枠内)
@@ -22,10 +28,13 @@ const EmojisPicker = ({
     const sidepaddingwidth = (width - waru60 * 60) / 2;
     return {_waru60, sidepaddingwidth};
   };
+
   useEffect(() => {
     const {_waru60, sidepaddingwidth} = calcbox();
     setWaru60(_waru60);
   }, []);
+
+
   return (
     <FlatList
       style={{
@@ -34,12 +43,13 @@ const EmojisPicker = ({
         //     marginRight: sidepaddingwidthuse,
         height: 240,
       }}
-      data={emojis.get(routeKey)}
+      data={hitEmojis}
       numColumns={5}
-      key={waru60}
-      renderItem={EmojiView}
+      renderItem={({item}) => (
+        <EmojiView item={item} addReaction={addReaction} />
+      )}
       maxToRenderPerBatch={7}
-      //    keyExtractor={keyExtractor}
+      keyExtractor={emoji => emoji.id + uuidv4()}
       //    getItemLayout={getItemLayout}
     />
   );

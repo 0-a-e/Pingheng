@@ -4,9 +4,12 @@ import {emojisType} from '../../../../../types/EmojiTypes';
 import EmojiView from './EmojiView';
 import {emojisManage} from '../../../../../api/realm/realmManage';
 import Icon from 'react-native-vector-icons/Feather';
+import {useAddReaction} from './useAddReaction';
 
-const FavAndHistoryEmojisPicker = ({}: {}) => {
+const FavAndHistoryEmojisPicker = ({noteId}: {noteId: string}) => {
   const [emojiList, setEmojiList] = useState([]);
+  const {addReaction} = useAddReaction(noteId);
+
   const getFunc = async () => {
     const {getFavEmojis, getLatest50Emojis} = emojisManage();
     const latest50Emojis = await getLatest50Emojis();
@@ -44,7 +47,9 @@ const FavAndHistoryEmojisPicker = ({}: {}) => {
         data={emojiList}
         numColumns={5}
         key={waru60}
-        renderItem={EmojiView}
+        renderItem={({item}) => (
+          <EmojiView item={item} addReaction={addReaction} />
+        )}
         maxToRenderPerBatch={7}
         //    keyExtractor={keyExtractor}
         //    getItemLayout={getItemLayout}

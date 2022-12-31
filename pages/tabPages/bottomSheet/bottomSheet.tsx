@@ -1,24 +1,29 @@
-import React from 'react';
+import React, {useMemo, useRef} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import BottomSheet from 'reanimated-bottom-sheet';
 import UserCard from './UserCard';
-import SendNoteCard from './SendNoteCard';
+import SendNoteCard from './sendNoteCard/SendNoteCard';
 import SwitchTimelineButton from './SwitchTimelineButton';
+import BottomSheet, {
+  BottomSheetView,
+  useBottomSheetSpringConfigs,
+} from '@gorhom/bottom-sheet';
 
 function BottomSheetModule(sheetProps: {navigation: any}) {
   //const [bartoggle, bartoggleWrite] = useState(true);
+  const snapPoints = useMemo(() => [70 + 5 + 5 + 8, '95%'], []);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const bottomsheetRef = React.useRef();
+  const animationConfigs = useBottomSheetSpringConfigs({
+    damping: 80,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.1,
+    restSpeedThreshold: 0.1,
+    stiffness: 500,
+  });
+
   const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      flex: 1,
-    },
-    btmbox: {
+    toptab: {
       //  flex: 1,
       flexWrap: 'wrap',
       width: '100%',
@@ -27,30 +32,13 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
       alignItems: 'stretch',
       justifyContent: 'space-between',
     },
-    header: {
-      backgroundColor: 'rgba(5,5,20,0.95)',
-      shadowColor: '#000000',
-      paddingTop: 5,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
-    },
-    panelHeader: {
-      alignItems: 'center',
-    },
-    panelHandle: {
-      width: 40,
-      height: 8,
-      borderRadius: 4,
-      backgroundColor: '#fff',
-      marginBottom: 5,
-    },
   });
 
   //homeは外部含めたフォロー中
   //globalは外内全部
   //localは内全部
   //hybrid ?
-  //  bottomsheetRef.current.snapTo(1);
+
   const Navbtn = (btnProps: {indexname: string; icon: string}) => {
     return (
       <TouchableOpacity
@@ -59,74 +47,56 @@ function BottomSheetModule(sheetProps: {navigation: any}) {
           borderRadius: 20,
           height: 70,
           alignItems: 'center',
-          justifyContent: 'center',
+          // justifyContent: 'center',
         }}
         onPress={() => {
           sheetProps.navigation.navigate('Main', {
             screen: btnProps.indexname,
           });
-          bottomsheetRef.current.snapTo(1);
+          bottomSheetRef.current.snapToIndex(0);
         }}>
-        <Icon size={55} name={btnProps.icon} color="rgb(180,180,230)" />
+        <Icon size={40} name={btnProps.icon} color="rgb(180,180,230)" />
       </TouchableOpacity>
     );
   };
-  function MyTab() {
-    return (
-      <View style={styles.btmbox}>
-        <Navbtn icon="hexagon" indexname="Timeline" />
-        <TouchableOpacity
-          onPress={() => {
-            bottomsheetRef.current.snapTo(0);
-          }}
-          style={{alignItems: 'center'}}>
-          <Icon size={30} name="arrow-up" color="rgb(180,180,230)" />
-          <Text style={{color: 'white'}}>仮</Text>
-        </TouchableOpacity>
-        <Navbtn icon="bell" indexname="Notify" />
-      </View>
-    );
-  }
 
-  const Insheet = () => (
-    <View
-      style={{
-        height: '100%',
-        backgroundColor: 'rgba(5,5,20,0.95)',
-      }}>
-      <MyTab />
-      <View
-        style={{
-          height: '100%',
-          width: '85%',
-          marginLeft: '7.5%',
-          marginRight: '7.5%',
-        }}>
-        <SendNoteCard />
-        <UserCard props={sheetProps} bottomsheetRef={bottomsheetRef} />
-        <SwitchTimelineButton />
-      </View>
+  const TopTab = () => (
+    <View style={styles.toptab}>
+      <Navbtn icon="hexagon" indexname="Timeline" />
+      <Navbtn icon="bell" indexname="Notify" />
     </View>
   );
 
-  const Header = () => (
-    <View style={styles.header}>
-      <View style={styles.panelHeader}>
-        <View style={styles.panelHandle} />
+  const Insheet = () => (
+    <BottomSheetView
+      style={{
+        height: '100%',
+        alignItems: 'center',
+      }}>
+      <TopTab />
+      <View
+        style={{
+          width: '85%',
+          flex: 1,
+        }}>
+        <SendNoteCard />
+        <UserCard props={sheetProps} bottomSheetRef={bottomSheetRef} />
+        <SwitchTimelineButton />
       </View>
-    </View>
+    </BottomSheetView>
   );
 
   return (
     <BottomSheet
       //backDropColor="red"
-      ref={bottomsheetRef}
-      initialSnap={1}
-      snapPoints={['95%', 70 + 5 + 5 + 8]}
-      enabledContentTapInteraction={false}
-      renderHeader={Header}
-      renderContent={Insheet}
-    />
+      ref={bottomSheetRef}
+      index={0}
+      animationConfigs={animationConfigs}
+      snapPoints={snapPoints}
+      backgroundStyle={{backgroundColor: 'rgba(5,5,20,1)'}}
+      handleIndicatorStyle={{backgroundColor: '#FFF'}}>
+      <Insheet />
+    </BottomSheet>
   );
 }
 export default BottomSheetModule;

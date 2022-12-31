@@ -7,9 +7,12 @@ import RegisterScreen from './pages/register/Register';
 import SetupScreen from './pages/setup/Setup';
 import SettingsScreen from './pages/settings/Settings';
 import MainScreen from './pages/Main';
+import MessagesScreen from './pages/messages/Messages';
 import {ModalPortal} from 'react-native-modals';
 import {checkUserexists} from './api/tokenManage';
-import useRealmManage, {serverInfoManage} from './api/realm/realmManage';
+import {serverInfoManage} from './api/realm/realmManage';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+
 const App = () => {
   const [ifloggedin, setifloggedin] = useState(false);
   const {getInfo} = serverInfoManage();
@@ -57,9 +60,9 @@ const App = () => {
     /* <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
     </SafeAreaView>*/
+    <GestureHandlerRootView style={styles.container}>
     <SafeAreaProvider>
-      <View style={styles.container}>
-        <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
+      <StatusBar animated={true} backgroundColor="rgb(19,20,26)" />
         <NavigationContainer
           linking={!ifloggedin && linking}
           fallback={<Text>処理中...</Text>}>
@@ -74,6 +77,11 @@ const App = () => {
                 <Stack.Screen
                   name="Settings"
                   component={SettingsScreen}
+                  options={{headerShown: false}}
+                />
+                <Stack.Screen
+                  name="Messages"
+                  component={MessagesScreen}
                   options={{headerShown: false}}
                 />
               </>
@@ -95,8 +103,8 @@ const App = () => {
           </Stack.Navigator>
           <ModalPortal />
         </NavigationContainer>
-      </View>
     </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
 const styles = StyleSheet.create({

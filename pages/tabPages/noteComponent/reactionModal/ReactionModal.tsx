@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, Text, View, Image} from 'react-native';
 import NoteView from '../noteView/NoteView';
 import Modal from 'react-native-modal';
@@ -16,9 +16,12 @@ const ReactionModal = ({
 }) => {
   const [noteData, setNoteData] = useState();
   const notedata = getNoteDataForModal();
-  const [targetNoteId, setTargetNoteId] = useState<string>(
-    getNoteDataForModal(),
-  );
+  const [targetNoteId, setTargetNoteId] = useState<string>('');
+  useEffect(() => {
+    const noteId = getNoteDataForModal();
+    noteId && setTargetNoteId(noteId);
+  }, [getNoteDataForModal]);
+
   return (
     <Modal
       visible={modalVisible}
@@ -47,7 +50,7 @@ const ReactionModal = ({
           <Text style={{color: 'red'}}>閉じる</Text>
         </TouchableOpacity>
         <ExpandableNoteTree noteId={targetNoteId} />
-        <EmojisPickerContainer />
+        <EmojisPickerContainer noteId={targetNoteId} />
       </View>
     </Modal>
   );

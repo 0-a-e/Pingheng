@@ -29,6 +29,10 @@ const Visibility = ({
       message = 'このノートはフォロワーのみに公開されています。';
       iconName = 'users';
       break;
+    case 'specified':
+      message = 'このノートは指定されたユーザーのみに公開されています。';
+      iconName = 'mail';
+      break;
     default:
       message = 'このノートの公開設定を取得できませんでした。';
       iconName = 'help-circle';

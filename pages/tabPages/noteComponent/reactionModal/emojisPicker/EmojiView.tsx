@@ -5,8 +5,7 @@ import {emojisManage} from '../../../../../api/realm/realmManage';
 import {emojiType} from '../../../../../types/EmojiTypes';
 
 const manageFavEmoji = async (item: emojiType) => {
-  const {addAttribute, removeAttribute, checkIsEmojiFavorited} =
-    emojisManage();
+  const {addAttribute, removeAttribute, checkIsEmojiFavorited} = emojisManage();
   const emojiStatus = await checkIsEmojiFavorited(item);
   console.log(item);
   Alert.alert(
@@ -26,12 +25,13 @@ const manageFavEmoji = async (item: emojiType) => {
   );
 };
 
-const addReaction = (item: emojiType) => {
-  const {addAttribute} = emojisManage();
-  addAttribute(item, 'history');
-};
-
-const EmojiView = ({item}: {item: emojiType}) => {
+const EmojiView = ({
+  item,
+  addReaction,
+}: {
+  item: emojiType;
+  addReaction: any;
+}) => {
   return (
     <TouchableOpacity
       style={{
@@ -42,14 +42,12 @@ const EmojiView = ({item}: {item: emojiType}) => {
         marginBottom: 2.5,
         marginTop: 2.5,
         marginRight: 2.5,
-        backgroundColor: 'red',
         overflow: 'hidden',
       }}
       onLongPress={() => {
         manageFavEmoji(item);
       }}
       onPress={() => {
-        //    props.addreaction(':' + item.name + ':');
         addReaction(item);
       }}>
       {item.isFavorited && (
@@ -70,8 +68,8 @@ const EmojiView = ({item}: {item: emojiType}) => {
         key={item.name}
         source={{uri: item.url}}
         style={{
-          width: 50,
-          height: 50,
+          width: 55,
+          height: 55,
           justifyContent: 'center',
           alignItems: 'center',
         }}
