@@ -8,24 +8,20 @@ const noteStyles = StyleSheet.create({
     marginTop: 0.5,
     marginBottom: 0.5,
   },
-
-  topcontainer: {
+  topBar: {
     width: '100%',
+    paddingHorizontal: '3%',
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.05)',
-  },
-  intopcontainer: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '95%',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    flexDirection: 'row',
   },
-  normalcontainer: {
-    width: '100%',
+  container: {
     flexDirection: 'column',
     paddingTop: 5,
+    width: '100%',
+    paddingHorizontal: '3%',
   },
   namebox: {
     // backgroundColor: 'green',
@@ -73,16 +69,6 @@ const noteStyles = StyleSheet.create({
   username: {
     color: 'rgba(200,200,200,1)',
     marginLeft: 5,
-  },
-
-  incardcontainer: {
-    position: 'relative',
-    //   marginLeft: 85,
-    // height: 77,
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    //  backgroundColor: 'rgb(0,0,0)',
   },
   avatar: {
     width: 30,

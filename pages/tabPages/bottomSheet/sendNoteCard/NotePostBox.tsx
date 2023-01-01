@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import {sendAPI} from '../../../../api/useApi';
@@ -8,6 +8,7 @@ import {settingsList} from './settings/settingsList';
 const NotePostBox = ({switchShowNoteSettings, visibility, isLocalOnly}) => {
   const [statusIcon, setStatusIcon] = useState<string>('globe');
   const [noteText, setNoteText] = useState<string>('');
+  const textInput = useRef(null);
   useEffect(() => {
     const matchedSetting = settingsList.find(
       setting => setting.id === visibility,
@@ -41,6 +42,7 @@ const NotePostBox = ({switchShowNoteSettings, visibility, isLocalOnly}) => {
         //overflow: 'hidden',
       }}>
       <View
+        onStartShouldSetResponder={() => textInput.current.focus()}
         style={{
           flex: 1,
           width: '100%',
@@ -55,6 +57,8 @@ const NotePostBox = ({switchShowNoteSettings, visibility, isLocalOnly}) => {
             marginLeft: 10,
             marginRight: 10,
           }}
+          multiline
+          ref={textInput}
           placeholder="ここに書いてください"
           placeholderTextColor="#fff"
           selectionColor="#fff"

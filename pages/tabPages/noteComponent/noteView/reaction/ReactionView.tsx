@@ -84,7 +84,6 @@ const toggleReaction = async (reaction: string, noteId: string) => {
         already = true;
       }
     });
-    console.log(already);
     if (already) {
       editReaction(reaction, noteId, 'delete');
       return 'delete';

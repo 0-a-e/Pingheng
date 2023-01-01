@@ -98,7 +98,7 @@ const getText = (props: any, renote: boolean) => {
       //これは元ツイートの文章
       //console.log(props["data"]["item"]["note"]["renote"]["text"]);
       //  鍵アカウントのときはNullになるぽい？
-      // いや　鍵外してもnullか ["note"]にそもそもないぽい　["data"]["item"]でもなし？　全部でもIDもtextもない　意味わからん　諦め
+      // いや　鍵外してもnullか ["note"]にそもそもないぽい　["data"]["item"]でもなし？　全部でもIDもtextもない　よくわからん
       //  console.log(props);
       return '引用リノートされました';
     case 'mention':
@@ -151,7 +151,7 @@ const switchActionRing = (props: any) => {
       //これは元ツイートの文章
       //console.log(props["data"]["item"]["note"]["renote"]["text"]);
       //  鍵アカウントのときはNullになるぽい？
-      // いや　鍵外してもnullか ["note"]にそもそもないぽい　["data"]["item"]でもなし？　全部でもIDもtextもない　意味わからん　諦め
+      // いや　鍵外してもnullか ["note"]にそもそもないぽい　["data"]["item"]でもなし？　全部でもIDもtextもない　よくわからん
       //  console.log(props);
       return {
         background: '#3ea9b5',

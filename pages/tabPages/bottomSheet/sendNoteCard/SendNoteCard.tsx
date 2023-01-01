@@ -38,25 +38,23 @@ const SendNoteCard = () => {
     setIsLocalOnly(!isLocalOnly);
   };
 
-  if (!showNoteSettings) {
-    return (
+  return (
+    <>
       <NotePostBox
         switchShowNoteSettings={switchShowNoteSettings}
         visibility={visibility}
         isLocalOnly={isLocalOnly}
       />
-    );
-  } else {
-    return (
       <NoteSettings
         changeVisibility={changeVisibility}
         visibility={visibility}
         switchShowNoteSettings={switchShowNoteSettings}
         isLocalOnly={isLocalOnly}
         switchIsLocalOnly={switchIsLocalOnly}
+        showNoteSettings={showNoteSettings}
       />
-    );
-  }
+    </>
+  );
 };
 
 export default SendNoteCard;

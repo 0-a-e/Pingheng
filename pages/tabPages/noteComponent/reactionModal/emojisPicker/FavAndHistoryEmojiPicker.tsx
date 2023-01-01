@@ -67,7 +67,9 @@ const FavAndHistoryEmojisPicker = ({noteId}: {noteId: string}) => {
         <Icon name={'coffee'} size={90} color={'#FFF'} />
 
         <Text style={{color: '#fff', width: '80%', marginTop: 20}}>
-          ここには最近使用した絵文字とお気に入りに追加した絵文字が表示されます。\n絵文字のアイコンを長押しして絵文字をお気に入りに追加できrる。
+          ここには最近使用した絵文字とお気に入りに追加した絵文字が表示されます。
+          {'\n'}
+          追加したい絵文字を長押しして追加してください。
         </Text>
       </View>
     );

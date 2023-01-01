@@ -11,19 +11,23 @@ const NoteSettings = ({
   switchIsLocalOnly,
   visibility,
   changeVisibility,
+  showNoteSettings,
 }) => {
   return (
     <View
       style={[
         {
+          position: 'absolute',
           width: '100%',
           height: 200,
           borderRadius: 15,
           padding: 5,
+          zIndex: 1,
         },
         isLocalOnly
           ? {backgroundColor: '#2950ff'}
           : {backgroundColor: 'rgb(30,30,46)'},
+        !showNoteSettings && {display: 'none'},
       ]}>
       <View
         style={{
